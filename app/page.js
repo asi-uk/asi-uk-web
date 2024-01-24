@@ -11,8 +11,8 @@ export default function Home() {
       <div className={styles.center}>
         <Image
           className={styles.logo}
-          src="/asiLogo.png"
-          alt="Next.js Logo"
+          src="/asiLogo.svg"
+          alt="ASI Logo"
           width={375}
           height={150}
           priority
