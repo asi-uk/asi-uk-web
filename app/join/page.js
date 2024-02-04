@@ -8,11 +8,6 @@ export default function About() {
       <p>
       TODO
       </p>
-      <div className={styles.description}>
-
-        
-
-      </div>
     </main>
   )
 }
