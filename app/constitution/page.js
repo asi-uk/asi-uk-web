@@ -93,11 +93,11 @@ export default function Constitution() {
                 <li>The Decision to terminate must state the reason for termination. The termination notice must be sent to the member in writing and be dated.</li>
               </ol>
             </li>
-            <li class="mb-4">Member's appeals process. Before the decision of termination is effective, the Executive shall give the opportunity to the Member to submit an appeal regarding the termination.
+            <li class="mb-4">Member&apos;s appeals process. Before the decision of termination is effective, the Executive shall give the opportunity to the Member to submit an appeal regarding the termination.
               <ol class="list-decimal list-outside text-sm md:text-base">
                 <li>The termination notice described in article 6.3 has been sent.</li>
-                <li>For the appeal to be considered the Member must lodge an appeal in writing within one month from the date of the termination notice and shall be directed to the Executive. The Member's appeal can then be considered by the Executive.</li>
-                <li>After receiving and having considered the appeal, the Executive must bring the termination before a General Meeting to be considered by the Members. The appeals must be added to the General Meeting's agenda. During this meeting shall the Decision be made regarding the termination of membership.</li>
+                <li>For the appeal to be considered the Member must lodge an appeal in writing within one month from the date of the termination notice and shall be directed to the Executive. The Member&apos;s appeal can then be considered by the Executive.</li>
+                <li>After receiving and having considered the appeal, the Executive must bring the termination before a General Meeting to be considered by the Members. The appeals must be added to the General Meeting&apos;s agenda. During this meeting shall the Decision be made regarding the termination of membership.</li>
               </ol>
             </li>
           </ol>
@@ -114,8 +114,8 @@ export default function Constitution() {
             <li class="mb-4">The General Meeting shall have a quorum regardless of the number of Members present.</li>
             <li class="mb-4">In general, all votes shall be cast by public vote. A secret vote is possible provided a Simple Majority of Members with Voting Rights present request this. The exception is the election of all Executive Members that is cast by secret vote.</li>
             <li class="mb-4">Voting on Decisions shall reached by a Simple Majority Vote. Voting by proxy is not permitted.</li>
-            <li class="mb-4">Amendments to the Association's Constitution may be made by a two-thirds majority vote of those Members present, provided four (4) weeks' written notice of the amendment is given to Members prior to the meeting, detailing the nature and subject of the amendments for consideration.</li>
-            <li class="mb-4">Extraordinary Meetings can be called by the Executive, or if one third of the Association’s Members with Voting Rights request it in writing to the Executive. The Executive cannot block the Member’s request and must organise the Extraordinary Meeting within a reasonable time. Four (4) weeks' written notice for the Meeting must be given to Members and an agenda detailing the nature and subject of the Extraordinary Meeting is to be supplied.</li>
+            <li class="mb-4">Amendments to the Association&apos;s Constitution may be made by a two-thirds majority vote of those Members present, provided four (4) weeks&apos; written notice of the amendment is given to Members prior to the meeting, detailing the nature and subject of the amendments for consideration.</li>
+            <li class="mb-4">Extraordinary Meetings can be called by the Executive, or if one third of the Association’s Members with Voting Rights request it in writing to the Executive. The Executive cannot block the Member’s request and must organise the Extraordinary Meeting within a reasonable time. Four (4) weeks&apos; written notice for the Meeting must be given to Members and an agenda detailing the nature and subject of the Extraordinary Meeting is to be supplied.</li>
             <li class="mb-4">All Decisions made during the General Meeting and Extraordinary Meeting shall be recorded in the minutes which shall be signed by the President and the Executive Secretary. A copy of the minutes shall be sent to Members prior to the following meeting.</li>
           </ol>
         </li>
