@@ -1,45 +1,67 @@
+"use client";
 import Image from 'next/image'
-import styles from './page.module.css'
+import dynamic from 'next/dynamic'; // Import dynamic from 'next/dynamic'
 import Link from 'next/link';
+import EventIcon from '@mui/icons-material/Event';
+
+const CountdownTimer = dynamic(() => import('./components/CountdownTimer'), { ssr: false });
 
 export default function Home() {
+
+  const targetDate = new Date('2024-03-02T18:00:00');
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
+      <div className="flex items-center justify-center h-screen w-screen">
+        <div className="max-w-screen-md mx-auto">
+          <div className="flex p-10 items-center justify-center content-center mx-auto w-3/4 md:w-1/2">
+            <Image
+              src="/asiLogo.svg"
+              alt="ASI Logo"
+              width={375}
+              height={150}
+              priority
+              className="object-contain max-w-full max-h-full"
+            />
+          </div>
+          <div>
+            <div className="group bg-slate-50 transition duration-300 ease-out hover:bg-slate-100 rounded-2xl p-5 m-5">
+              <Link href="/event" className="text-center">
+                  <h2 className="text-xl md:text-2xl font-bold text-asi-blue">
+                  <EventIcon className="mx-2 my-1" />Formation Event <span className="transition duration-300 ease-in-out group-hover:translate-x-2 inline-block">-&gt;</span>
+                  </h2>
+                  <h3 className="text-lg ">2nd March, 2024</h3>
+                  <p className="text-sm md:text-base">Details on our upcoming relaunch event at Newbold College</p>
+                  <div className="bg-white border border-4 border-slate-100 p-5 rounded-xl mt-4">
+                    <CountdownTimer targetDate={targetDate}/>
+                  </div>
+              </Link>
+            </div>
 
-      </div>
+            <div className="grid grid-cols-2 gap-5 m-5">
+              <div className="group bg-slate-50 transition duration-300 ease-out hover:bg-slate-100 rounded-2xl p-5 ">
+              <Link href="/about" className="text-center">
+                <div>
+                  <h2 className="text-lg md:text-xl font-bold text-asi-blue">
+                    About <span className="transition duration-300 ease-in-out group-hover:translate-x-2 inline-block">-&gt;</span>
+                  </h2>
+                  <p className="text-sm md:text-base">Find out more about the mission and structure of ASI UK</p>
+                </div>
+              </Link>
+              </div>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/asiLogo.svg"
-          alt="ASI Logo"
-          width={375}
-          height={150}
-          priority
-        />
+              <div className="group bg-slate-50 transition duration-300 ease-out hover:bg-slate-100 rounded-2xl p-5">
+              <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSepfSgNKd0cxDILqxmI-HrfcoL4YN-gImb_7YekDqmBWD2wng/viewform" rel="noopener noreferrer" className="text-center">
+                <div>
+                  <h2 className="text-lg md:text-xl font-bold text-asi-blue">
+                    Join <span className="transition duration-300 ease-in-out group-hover:translate-x-2 inline-block">-&gt;</span>
+                  </h2>
+                  <p className="text-sm md:text-base w-50">Join the movement of Adventist lay professionals in the UK</p>
+                </div>
+              </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-
-      <div className={styles.grid}>
-      <Link href="/about">
-      <div className={styles.card}>
-        <h2>
-          About <span>-&gt;</span>
-        </h2>
-        <p>Find out more about the mission and structure of ASI UK</p>
-      </div>
-    </Link>
-
-    <Link href="/join">
-      <div className={styles.card}>
-        <h2>
-          Join <span>-&gt;</span>
-        </h2>
-        <p>Join the movement of Adventist lay professionals in the UK</p>
-      </div>
-    </Link>
-
-      </div>
-    </main>
   )
 }
