@@ -8,7 +8,7 @@ const CountdownTimer = dynamic(() => import('./components/CountdownTimer'), { ss
 
 export default function Home() {
 
-  const targetDate = new Date('2024-03-02T18:00:00');
+  const targetDate = new Date('2024-03-02T19:00:00');
 
   return (
       <div className="flex items-center justify-center h-screen w-screen">

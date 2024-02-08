@@ -28,7 +28,7 @@ export default function About() {
                   <h2 className="text-lg md:text-xl font-bold text-asi-blue">
                     Constitution <span className="transition duration-300 ease-in-out group-hover:translate-x-2 inline-block">-&gt;</span>
                   </h2>
-                  <p className="text-sm md:text-base">Fundamental principles, structure, and rules that govern the ASI-UK operations</p>
+                  <p className="text-sm md:text-base">Fundamental principles, structure, and rules that govern ASI UK operations</p>
                 </div>
               </Link>
               </div>
