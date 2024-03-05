@@ -43,22 +43,7 @@ export default function About() {
                 </div>
               </a>
         </div>
-      
-      <h2 className="text-asi-blue text-2xl font-bold mt-12 mb-4 text-center md:text-left">Formation Event</h2>
-      <p>ASI is a powerful worldwide organisation, with 19 chapters throughout Europe. After years of anticipation, the ASI-UK chapter will be relaunched on 2 March.  All church members, who would like to know more, or be part of it, are invited to Newbold that afternoon.</p>  
-
       </div>
-
-      <div className="group bg-slate-50 transition duration-300 ease-out hover:bg-slate-100 rounded-2xl p-5 mx-5">
-              <Link href="/event" className="text-center">
-                <div>
-                  <h2 className="text-lg md:text-xl font-bold text-asi-blue">
-                    Formation Event <span className="transition duration-300 ease-in-out group-hover:translate-x-2 inline-block">-&gt;</span>
-                  </h2>
-                  <p className="text-sm md:text-base">Details on our upcoming formation event at Newbold College</p>
-                </div>
-              </Link>
-              </div>
 
       
     </div>
