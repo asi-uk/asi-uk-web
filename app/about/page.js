@@ -26,7 +26,7 @@ export default function About() {
               <Link href="/constitution" className="text-center">
                 <div>
                   <h2 className="text-lg md:text-xl font-bold text-asi-blue">
-                    Constitution <span className="transition duration-300 ease-in-out group-hover:translate-x-2 inline-block">-&gt;</span>
+                    Constitution <span className="font-sans transition duration-300 ease-in-out group-hover:translate-x-2 inline-block">→</span>
                   </h2>
                   <p className="text-sm md:text-base">Fundamental principles, structure, and rules that govern ASI UK operations</p>
                 </div>
@@ -37,7 +37,7 @@ export default function About() {
         <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSepfSgNKd0cxDILqxmI-HrfcoL4YN-gImb_7YekDqmBWD2wng/viewform" rel="noopener noreferrer" className="text-center">
                 <div>
                   <h2 className="text-lg md:text-xl font-bold text-asi-blue">
-                    Join <span className="transition duration-300 ease-in-out group-hover:translate-x-2 inline-block">-&gt;</span>
+                    Join <span className="font-sans transition duration-300 ease-in-out group-hover:translate-x-2 inline-block">→</span>
                   </h2>
                   <p className="text-sm md:text-base w-50">Join the movement of Adventist lay professionals in the UK</p>
                 </div>
