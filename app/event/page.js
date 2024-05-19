@@ -62,7 +62,7 @@ export default function Event() {
             <div className="text-left p-5">
 
             <h2 className="text-asi-blue text-2xl font-bold mt-5 mb-2 text-center md:text-left px-4 py-2 bg-slate-50 rounded-xl">Networking Meetings</h2>
-            Ahead of the general meeting on Sunday, we will be holding some networking meetings on Friday evening and Sabbath to provide opportunities to get acquainted with others who are passionate about witnessing and sharing Christ's love through their business or profession.
+            Ahead of the general meeting on Sunday, we will be holding some networking meetings on Friday evening and Sabbath to provide opportunities to get acquainted with others who are passionate about witnessing and sharing Christ through their business or profession.
             <div className="text-md mt-3 mb-4 text-asi-blue">Location: King Soloman International Business School, Lord St, Birmingham B7 4AA</div>
 
             <h3 className="text-asi-blue text-lg font-bold mt-5 mb-2 text-center md:text-left">Friday, 21 June</h3>
