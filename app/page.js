@@ -8,7 +8,7 @@ const CountdownTimer = dynamic(() => import('./components/CountdownTimer'), { ss
 
 export default function Home() {
 
-  const targetDate = new Date('2024-03-02T19:00:00');
+  const targetDate = new Date('2024-06-23T10:00:00');
 
   return (
       <div className="flex items-center justify-center h-screen w-screen">
@@ -24,7 +24,18 @@ export default function Home() {
             />
           </div>
           <div>
-
+          <div className="group bg-slate-50 transition duration-300 ease-out hover:bg-slate-100 rounded-2xl p-5 m-5">
+              <Link href="/event" className="text-center">
+                  <h2 className="text-xl md:text-2xl font-bold text-asi-blue">
+                  <EventIcon className="mx-2 my-1" />General Meeting <span className="transition duration-300 ease-in-out group-hover:translate-x-2 inline-block">-&gt;</span>
+                  </h2>
+                  <h3 className="text-lg ">23rd June, 2024</h3>
+                  <p className="text-sm md:text-base">Register to join for the first general meeting of ASI UK</p>
+                  <div className="bg-white border border-4 border-slate-100 p-5 rounded-xl mt-4">
+                    <CountdownTimer targetDate={targetDate}/>
+                  </div>
+              </Link>
+            </div>
             <div className="grid grid-cols-2 gap-5 m-5">
               <div className="group bg-slate-50 transition duration-300 ease-out hover:bg-slate-100 rounded-2xl p-5 ">
               <Link href="/about" className="text-center">
