@@ -29,8 +29,7 @@ export default function Event() {
           <div className="text-left p-5">
 
             <h1 className="text-asi-blue text-3xl md:text-4xl font-bold mb-6 text-center md:text-left">General Meeting</h1>
-            The first general meeting for the relaunched ASI UK will be taking place on the 23rd of June at Camp Hill SDA Church in Birmingham. The event will allow for the voting and formation of the executive committee along with further actions and discussions to organise ASI UK work moving forward.
-
+            <div>The first general meeting for the relaunched ASI UK will be taking place on the 23rd of June at Camp Hill SDA Church in Birmingham. The event will allow for the voting and formation of the executive committee along with further actions and discussions to organise ASI UK work moving forward.</div>
             </div>
 
             <div className="grid grid-cols-2 gap-5 mx-5">
@@ -73,6 +72,7 @@ export default function Event() {
             <h3 className="text-asi-blue text-lg font-bold mt-5 mb-2 text-center md:text-left">Sabbath, 22 June</h3>
             <div className="grid grid-cols-4 md:grid-cols-7 gap-y-4 gap-x-2">
               <div className="text-asi-blue">10:00 am</div><div class="col-span-3 md:col-span-6">Church</div>
+              <div className="text-asi-blue">1:00 pm</div><div class="col-span-3 md:col-span-6">Lunch <span className="text-slate-500">(£25 per person)</span></div>
             </div>
 
             <h2 className="text-asi-blue text-2xl font-bold mt-10 mb-2 text-center md:text-left px-4 py-2 bg-slate-50 rounded-xl">General Meeting</h2>
@@ -82,7 +82,7 @@ export default function Event() {
             <div className="grid grid-cols-4 md:grid-cols-7 gap-y-4 gap-x-2">
               <div className="text-asi-blue">10:00 am</div><div class="col-span-3 md:col-span-6">Registration and networking</div>
               <div className="text-asi-blue">11:00 am</div><div class="col-span-3 md:col-span-6">General Meeting</div>
-              <div className="text-asi-blue">1:00 pm</div><div class="col-span-3 md:col-span-6">Lunch</div>
+              <div className="text-asi-blue">1:00 pm</div><div class="col-span-3 md:col-span-6">Lunch <span className="text-slate-500">(£25 per person)</span></div>
             </div>
 
             </div>
