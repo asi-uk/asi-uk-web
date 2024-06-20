@@ -63,7 +63,7 @@ export default function Event() {
 
             <h2 className="text-asi-blue text-2xl font-bold mt-5 mb-2 text-center md:text-left px-4 py-2 bg-slate-50 rounded-xl">Networking Meetings</h2>
             Ahead of the general meeting on Sunday, we will be holding some networking meetings on Friday evening and Sabbath to provide opportunities to get acquainted with others who are passionate about witnessing and sharing Christ through their business or profession.
-            <div className="text-md mt-3 mb-4 text-asi-blue">Location: King Soloman International Business School, Lord St, Birmingham B7 4AA</div>
+            <div className="text-md mt-3 mb-4 text-asi-blue">Location: King Solomon International Business School, Lord St, Birmingham B7 4AA</div>
 
             <h3 className="text-asi-blue text-lg font-bold mt-5 mb-2 text-center md:text-left">Friday, 21 June</h3>
             <div className="grid grid-cols-4 md:grid-cols-7 gap-y-4 gap-x-2">
@@ -74,6 +74,8 @@ export default function Event() {
             <div className="grid grid-cols-4 md:grid-cols-7 gap-y-4 gap-x-2">
               <div className="text-asi-blue">10:00 am</div><div class="col-span-3 md:col-span-6">Church</div>
               <div className="text-asi-blue">1:00 pm</div><div class="col-span-3 md:col-span-6">Lunch*</div>
+              <div className="text-asi-blue"></div><div class="col-span-3 md:col-span-6">Afternoon programme</div>
+              <div className="text-asi-blue">6:30 pm</div><div class="col-span-3 md:col-span-6">Dinner*</div>
             </div>
 
             <h2 className="text-asi-blue text-2xl font-bold mt-10 mb-2 text-center md:text-left px-4 py-2 bg-slate-50 rounded-xl">General Meeting</h2>
@@ -83,11 +85,11 @@ export default function Event() {
             <div className="grid grid-cols-4 md:grid-cols-7 gap-y-4 gap-x-2">
               <div className="text-asi-blue">10:00 am</div><div class="col-span-3 md:col-span-6">Registration and networking</div>
               <div className="text-asi-blue">11:00 am</div><div class="col-span-3 md:col-span-6">General Meeting</div>
-              <div className="text-asi-blue">1:00 pm</div><div class="col-span-3 md:col-span-6">Lunch*</div>
+              <div className="text-asi-blue">2:00 pm</div><div class="col-span-3 md:col-span-6">Lunch*</div>
             </div>
 
             <div className='my-10'>
-            *£25 per person for all three meals
+            *£25 per person in total for all meals
             </div>
 
             </div>
