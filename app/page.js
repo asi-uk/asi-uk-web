@@ -25,18 +25,6 @@ export default function Home() {
             />
           </div>
           <div>
-          <div className="group bg-slate-50 transition duration-300 ease-out hover:bg-slate-100 rounded-2xl p-5 m-5">
-              <Link href="/event" className="text-center">
-                  <h2 className="text-xl md:text-2xl font-bold text-asi-blue">
-                  <EventIcon className="mx-2 my-1" />General Meeting <span className="transition duration-300 ease-in-out group-hover:translate-x-2 inline-block">-&gt;</span>
-                  </h2>
-                  <h3 className="text-lg ">23rd June, 2024</h3>
-                  <p className="text-sm md:text-base">Register to join for the first general meeting of ASI UK</p>
-                  <div className="bg-white border border-4 border-slate-100 p-5 rounded-xl mt-4">
-                    <CountdownTimer targetDate={targetDate}/>
-                  </div>
-              </Link>
-            </div>
             <div className="group bg-slate-50 transition duration-300 ease-out hover:bg-slate-100 rounded-2xl p-2 m-5">
               <div className="flex flex-col md:flex-row space-y-5 md:space-y-0 items-center p-4">
                 <a target="_blank" href="https://adventist.uk/news/article/go/2024-03-14/1875/" rel="noopener noreferrer" className="text-center px-5">
