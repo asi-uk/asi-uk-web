@@ -40,7 +40,7 @@ export default function About() {
               </div>
 
         <div className="group bg-slate-50 transition duration-300 ease-out hover:bg-slate-100 rounded-2xl p-5 my-8 ">
-        <a target="_blank" href="/join" rel="noopener noreferrer" className="text-center">
+        <a href="/join" className="text-center">
                 <div>
                   <h2 className="text-lg md:text-xl font-bold text-asi-blue">
                     Join <span className="font-sans transition duration-300 ease-in-out group-hover:translate-x-2 inline-block">→</span>
