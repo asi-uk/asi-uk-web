@@ -119,7 +119,7 @@ export default function Event() {
               </div>
 
               <div className="group bg-slate-50 transition duration-300 ease-out hover:bg-slate-100 rounded-2xl p-5">
-              <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSepfSgNKd0cxDILqxmI-HrfcoL4YN-gImb_7YekDqmBWD2wng/viewform" rel="noopener noreferrer" className="text-center">
+              <a target="_blank" href="/join" rel="noopener noreferrer" className="text-center">
                 <div>
                   <h2 className="text-lg md:text-xl font-bold text-asi-blue">
                     Join <span className="font-sans transition duration-300 ease-in-out group-hover:translate-x-2 inline-block">→</span>
