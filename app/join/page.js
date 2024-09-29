@@ -34,7 +34,7 @@ export default function About() {
         </div>
 
       <h1 className="text-asi-blue text-2xl md:text-3xl font-bold mb-6 text-center md:text-left">Information for Membership</h1>
-      <p>Membership in ASI UK is open to any member of the Seventh-day Adventist Church who is in good and regular standing, manages a business, provides professional services, sells products, or has a supporting ministry. Members agree to align their business practices and personal lives with the goals and principles outlined in the organisation's mission and vision.</p>
+      <p>Membership in ASI UK is open to any member of the Seventh-day Adventist Church who is in good and regular standing, manages a business, provides professional services, sells products, or has a supporting ministry. Members agree to align their business practices and personal lives with the goals and principles outlined in the organisation&lsquo;s mission and vision.</p>
 
       <div className="my-10">
         <h1 className="text-asi-blue text-xl md:text-2xl font-bold mb-6 text-center md:text-left">Types of Membership in ASI UK</h1>
@@ -54,7 +54,7 @@ export default function About() {
 
         <div className="my-6">
           <h2 className="text-asi-blue text-lg md:text-xl font-bold mb-6 text-left">2. Supporting Member</h2>
-          <p>There are individuals who wish to support the organisation passively, or back specific projects based on their personal interests. These members do not participate in the decisions of organisation and are not eligible to vote during the AGM. However, their membership allows them to represent ASI UK in their cities, encouraging and motivating other laypeople about the organisation's purpose and mission.</p>
+          <p>There are individuals who wish to support the organisation passively, or back specific projects based on their personal interests. These members do not participate in the decisions of organisation and are not eligible to vote during the AGM. However, their membership allows them to represent ASI UK in their cities, encouraging and motivating other laypeople about the organisation&lsquo;s purpose and mission.</p>
           <p className="my-4">The membership fee is £20 per annum.</p>
         </div>
       </div>
