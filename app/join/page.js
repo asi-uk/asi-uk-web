@@ -33,7 +33,7 @@ export default function About() {
               </a>
         </div>
 
-      <h1 className="text-asi-blue text-2xl md:text-3xl font-bold mb-6 text-center md:text-left">Information for Membership</h1>
+      <h1 id="information-for-membership" className="text-asi-blue text-2xl md:text-3xl font-bold mb-6 text-center md:text-left">Information for Membership</h1>
       <p>Membership in ASI UK is open to any member of the Seventh-day Adventist Church who is in good and regular standing, manages a business, provides professional services, sells products, or has a supporting ministry. Members agree to align their business practices and personal lives with the goals and principles outlined in the organisation&lsquo;s mission and vision.</p>
 
       <div className="my-10">
