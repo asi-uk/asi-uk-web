@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic'; // Import dynamic from 'next/dynamic'
 import Link from 'next/link';
 import EventIcon from '@mui/icons-material/Event';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import MainHeader from "@/app/components/MainHeader";
 
 const CountdownTimer = dynamic(() => import('../components/CountdownTimer'), { ssr: false });
 
@@ -14,18 +15,7 @@ export default function Event() {
     return (
       <div className="flex items-center justify-center w-screen">
         <div className="max-w-screen-md mx-auto">
-        <Link href="/">
-        <div className="flex p-8 items-center justify-center hover:bg-slate-50 rounded-xl content-center w-7/12 md:w-1/3 mx-auto mt-8">
-            <Image
-              src="/asiLogo.svg"
-              alt="ASI Logo"
-              width={375}
-              height={150}
-              priority
-              className="object-contain max-w-full max-h-full"
-            />
-          </div>
-          </Link>
+        <MainHeader />
           <div className="text-left p-5">
 
             <h1 className="text-asi-blue text-3xl md:text-4xl font-bold mb-6 text-center md:text-left">General Meeting</h1>
