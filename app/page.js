@@ -25,21 +25,6 @@ export default function Home() {
             />
           </div>
           <div>
-            <div className="group bg-slate-50 transition duration-300 ease-out hover:bg-slate-100 rounded-2xl p-2 m-5">
-              <div className="flex flex-col md:flex-row space-y-5 md:space-y-0 items-center p-4">
-                <a target="_blank" href="https://adventist.uk/news/article/go/2024-03-14/1875/" rel="noopener noreferrer" className="text-center px-5">
-                      <h2 className="text-lg md:text-xl font-bold text-asi-blue">
-                      <HistoryIcon className="mx-2 my-1" /><span className="hidden md:inline">Relaunch </span>Event Recap <span className="transition duration-300 ease-in-out group-hover:translate-x-2 inline-block">-&gt;</span>
-                      </h2>
-                      <p className="text-sm md:text-base">Read about the recent ASI UK relaunch event in March at Newbold</p>
-                </a>
-                <img 
-                  src="https://adventist.uk/fileadmin/_processed_/0/5/csm_ASI7_fd53113d6e.jpg" 
-                  alt="ASI UK relaunch team" 
-                  className="w-60 h-auto rounded-2xl grayscale-50"
-                />
-              </div>
-            </div>
             <div className="grid grid-cols-2 gap-5 m-5">
               <div className="group bg-slate-50 transition duration-300 ease-out hover:bg-slate-100 rounded-2xl p-5 ">
               <Link href="/about" className="text-center">
