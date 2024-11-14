@@ -2,6 +2,53 @@ import Image from 'next/image'
 import Link from 'next/link';
 import MainHeader from "@/app/components/MainHeader";
 
+export const metadata = {
+  title: "ASI UK Constitution",
+  description:
+      "Founding document of the UK chapter of Adventist Laymen's Services and Industries",
+  keywords: [
+    "ASI UK constitution",
+    "ASI constitution",
+    "ASI",
+    "ASI UK",
+    "ASI-UK",
+    "adventist",
+    "adventist uk",
+    "adventist laymen's services and industries",
+    "ministry",
+    "ministries",
+  ],
+  openGraph: {
+    url: "https://asiuk.org/constitution",
+    type: "website",
+    title: "ASI UK Constitution",
+    description:
+        "Learn more about the ASI UK organisational structure and founding principles",
+    images: [
+      {
+        url: "https://www.asiuk.org/thumbnail.png",
+        width: 1200,
+        height: 630,
+        alt: "ASIUK"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ASI UK Constitution",
+    description:
+        "Learn more about the ASI UK organisational structure and founding principles",
+    images: [
+      {
+        url: "https://www.asiuk.org/thumbnail.png",
+        width: 1200,
+        height: 630,
+        alt: "ASIUK"
+      }
+    ]
+  },
+}
+
 export default function Constitution() {
   return (
   <div className="flex items-center justify-center w-screen">

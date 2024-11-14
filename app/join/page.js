@@ -4,6 +4,53 @@ import MainHeader from "@/app/components/MainHeader";
 import CTARounded from "@/app/components/CTARounded";
 import {Heading1, Heading2, Heading3, Heading4} from "@/app/components/Headings";
 
+export const metadata = {
+  title: "Join ASI UK",
+  description:
+      "Join the UK chapter of Adventist Laymen's Services and Industires",
+  keywords: [
+    "Join ASI UK",
+    "Join ASI",
+    "ASI",
+    "ASI UK",
+    "ASI-UK",
+    "adventist",
+    "adventist uk",
+    "adventist laymen's services and industries",
+    "ministry",
+    "ministries",
+  ],
+  openGraph: {
+    url: "https://asiuk.org/join",
+    type: "website",
+    title: "Join ASI UK",
+    description:
+        "Apply to be a member of ASI UK",
+    images: [
+      {
+        url: "https://www.asiuk.org/thumbnail.png",
+        width: 1200,
+        height: 630,
+        alt: "ASIUK"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Join ASI UK",
+    description:
+        "Apply to be a member of ASI UK",
+    images: [
+      {
+        url: "https://www.asiuk.org/thumbnail.png",
+        width: 1200,
+        height: 630,
+        alt: "ASIUK"
+      }
+    ]
+  },
+}
+
 export function MembershipFormButton() {
   return (
       <CTARounded

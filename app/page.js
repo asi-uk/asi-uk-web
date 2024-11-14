@@ -1,4 +1,3 @@
-"use client";
 import Image from 'next/image'
 import dynamic from 'next/dynamic'; // Import dynamic from 'next/dynamic'
 import Link from 'next/link';
@@ -6,7 +5,50 @@ import EventIcon from '@mui/icons-material/Event';
 import HistoryIcon from '@mui/icons-material/History';
 import CTARounded from "@/app/components/CTARounded";
 
-const CountdownTimer = dynamic(() => import('./components/CountdownTimer'), { ssr: false });
+export const metadata = {
+  title: "ASI UK Home Page",
+  description:
+      "Home page of ASI UK website",
+  keywords: [
+    "ASI",
+    "ASI UK",
+    "ASI-UK",
+    "adventist",
+    "adventist uk",
+    "adventist laymen's services and industries",
+    "ministry",
+    "ministries",
+  ],
+  openGraph: {
+    url: "https://asiuk.org",
+    type: "website",
+    title: "ASI UK",
+    description:
+        "Adventist-laymen‘s Services and Industries (ASI), UK Chapter",
+    images: [
+      {
+        url: "https://www.asiuk.org/thumbnail.png",
+        width: 1200,
+        height: 630,
+        alt: "ASIUK"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ASI UK",
+    description:
+        "Adventist-laymen‘s Services and Industries (ASI), UK Chapter",
+    images: [
+      {
+        url: "https://www.asiuk.org/thumbnail.png",
+        width: 1200,
+        height: 630,
+        alt: "ASIUK"
+      }
+    ]
+  },
+}
 
 export default function Home() {
 
