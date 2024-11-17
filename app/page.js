@@ -6,9 +6,9 @@ import HistoryIcon from '@mui/icons-material/History';
 import CTARounded from "@/app/components/CTARounded";
 
 export const metadata = {
-  title: "ASI UK Home Page",
+  title: "ASI UK | Adventist-laymen‘s Services and Industries",
   description:
-      "Home page of ASI UK website",
+      "ASI is an organisation comprised of members of the Seventh-day Adventist church who are engaged in spreading the gospel of Christ to the world.",
   keywords: [
     "ASI",
     "ASI UK",
@@ -20,11 +20,11 @@ export const metadata = {
     "ministries",
   ],
   openGraph: {
-    url: "https://asiuk.org",
+    url: "https://www.asiuk.org",
     type: "website",
-    title: "ASI UK",
+    title: "ASI UK | Adventist-laymen‘s Services and Industries",
     description:
-        "Adventist-laymen‘s Services and Industries (ASI), UK Chapter",
+        "ASI is an organisation comprised of members of the Seventh-day Adventist church who are engaged in spreading the gospel of Christ to the world.",
     images: [
       {
         url: "https://www.asiuk.org/thumbnail.png",
@@ -36,9 +36,9 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "ASI UK",
+    title: "ASI UK | Adventist-laymen‘s Services and Industries",
     description:
-        "Adventist-laymen‘s Services and Industries (ASI), UK Chapter",
+        "ASI is an organisation comprised of members of the Seventh-day Adventist church who are engaged in spreading the gospel of Christ to the world.",
     images: [
       {
         url: "https://www.asiuk.org/thumbnail.png",

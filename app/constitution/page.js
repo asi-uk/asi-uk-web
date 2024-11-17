@@ -3,7 +3,7 @@ import Link from 'next/link';
 import MainHeader from "@/app/components/MainHeader";
 
 export const metadata = {
-  title: "ASI UK Constitution",
+  title: "ASI UK | Constitution",
   description:
       "Founding document of the UK chapter of Adventist Laymen's Services and Industries",
   keywords: [

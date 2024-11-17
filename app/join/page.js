@@ -5,9 +5,9 @@ import CTARounded from "@/app/components/CTARounded";
 import {Heading1, Heading2, Heading3, Heading4} from "@/app/components/Headings";
 
 export const metadata = {
-  title: "Join ASI UK",
+  title: "ASI UK | Join",
   description:
-      "Join the UK chapter of Adventist Laymen's Services and Industires",
+      "Join the UK chapter of Adventist-laymen's Services and Industries",
   keywords: [
     "Join ASI UK",
     "Join ASI",
@@ -23,7 +23,7 @@ export const metadata = {
   openGraph: {
     url: "https://asiuk.org/join",
     type: "website",
-    title: "Join ASI UK",
+    title: "ASI UK | Join",
     description:
         "Apply to be a member of ASI UK",
     images: [
@@ -37,7 +37,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Join ASI UK",
+    title: "ASI UK | Join",
     description:
         "Apply to be a member of ASI UK",
     images: [
