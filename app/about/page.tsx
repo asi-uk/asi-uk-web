@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link';
-import MainHeader from '../components/MainHeader';
+import MainHeader from '@/app/components/MainHeader';
 import {Heading1, Heading2} from "@/app/components/Headings";
 import CTARounded from "@/app/components/CTARounded";
 
