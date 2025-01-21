@@ -48,3 +48,14 @@ export function Heading4({text}) {
         />
     )
 }
+
+export function Heading5({text = "Heading Text",
+                             containerClass = "",
+                             id = "",}) {
+    return (
+        <h1 id={id}
+            className={`text-asi-blue text-center my-2 md:text-left text-lg md:text-xl ${containerClass}`}>
+            {text}
+        </h1>
+    )
+}

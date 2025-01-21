@@ -71,12 +71,14 @@ export default function About() {
         heading={"Constitution"}
         subheading={"Fundamental principles, structure, and rules that govern ASI UK operations"}
         href={"/constitution"}
+        containerClass="my-8"
       />
 
       <CTARounded
           heading={"Join"}
           subheading={"Join the movement of Adventist lay professionals in the UK"}
           href={"/join"}
+          containerClass="my-8"
       />
 
       </div>

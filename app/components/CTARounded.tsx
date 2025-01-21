@@ -23,7 +23,7 @@ const CTARounded: React.FC<CTARoundedProps> = ({
            subheadingClass = "",
        }) => {
     return (
-        <div className={`group bg-slate-50 transition duration-300 ease-out hover:bg-slate-100 rounded-2xl p-5 my-8 ${containerClass}`}>
+        <div className={`group bg-slate-50 transition duration-300 ease-out hover:bg-slate-100 rounded-2xl p-5 ${containerClass}`}>
             <Link target={target} href={href} rel={rel} className="text-center">
                 <div>
                     <h2 className={`text-lg md:text-xl font-bold text-asi-blue ${headingClass}`}>

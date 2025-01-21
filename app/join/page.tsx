@@ -59,6 +59,7 @@ export function MembershipFormButton() {
           rel="noopener noreferrer"
           heading={"Membership Form"}
           subheading={"Join the movement of Adventist lay professionals in the UK"}
+          containerClass="my-8"
       />
   )
 }
@@ -75,13 +76,13 @@ export default function About() {
 
       <MembershipFormButton />
 
-      <Heading2 text={"Information for Membership"} id={"information-for-membership"}/>
+      <Heading2 text={"Information for Membership"} />
       <p>Membership in ASI UK is open to any member of the Seventh-day Adventist Church who is in good and regular standing, manages a business, provides professional services, sells products, or has a supporting ministry. Members agree to align their business practices and personal lives with the goals and principles outlined in the organisation&lsquo;s mission and vision.</p>
 
       <div className="my-10">
         <Heading3 text={"Types of Membership in ASI UK"} />
         <p className="pb-5">An individual or organisation may qualify for ASI UK membership if it meets the following requirements:</p>
-        <ol>
+        <ol className="list-decimal list-outside">
           <li>Is an individual that is employed in a profession or are self-employed and is a member of the Seventh-day Adventist Church.</li>
           <li>An organisation is owned and controlled by an individual who is a member of the Seventh-day Adventist Church.</li>
           <li>An individual who owns and/or operates a religious based organisation, self-supporting ministry, or mission project that complies with the Seventh-day Adventist Church’s K 05 05 definition of a Supporting Ministry, and where that organisation does not receive a salary or subsidies from any organisation within the SDA Church.</li>
