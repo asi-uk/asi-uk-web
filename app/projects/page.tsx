@@ -3,6 +3,7 @@ import Link from 'next/link';
 import MainHeader from '@/app/components/MainHeader';
 import {Heading1, Heading2, Heading3, Heading4, Heading5} from "@/app/components/Headings";
 import CTARounded from "@/app/components/CTARounded";
+import {FileDown} from "lucide-react";
 
 export const metadata = {
     title: "ASI UK | Projects",
@@ -63,29 +64,48 @@ export default function Projects() {
                 <div className="text-left p-5">
 
                     <Heading1 text={"Project Funding"} />
-                    <p>The 2025 ASI UK project application cycle is now open. Check in on those page for updates regarding application deadlines and more.</p>
+                    <p>The 2025 ASI UK project application cycle is now open. Check in on this page for updates regarding application deadlines and more.</p>
 
-                    <CTARounded
-                        heading={"Application Documents"}
-                        subheading={"Click here to download the project funding application documents"}
-                        href={"https://c1crerc0h1fs4ljz.public.blob.vercel-storage.com/asi-uk-project-application-documents.zip"}
-                        containerClass={"outline outline-5 outline-asi-blue my-8"}
-                    />
+                    <div className="bg-white rounded-2xl p-5 my-5 mb-10 flex flex-col items-center outline outline-5 outline-asi-blue">
+                        <span className={`text-xl text-asi-blue font-bold`}>Application Forms</span>
+                        <p className={`m-2`}>Download and fill out the following application forms to apply for ASI UK funding</p>
+                        <div className="flex items-center w-full justify-between gap-5">
+                            <CTARounded
+                                heading={"Main Application Form"}
+                                href={"https://c1crerc0h1fs4ljz.public.blob.vercel-storage.com/asi-uk-project-funding-application-form.docx"}
+                                containerClass={"bg-slate-50 flex-1"}
+                                headingClass={"text-sm md:text-base font-normal"}
+                                Icon={FileDown}
+                            />
+                            <CTARounded
+                                heading={"Budget Form"}
+                                href={"https://c1crerc0h1fs4ljz.public.blob.vercel-storage.com/asi-uk-project-funding-budget-form.xlsx"}
+                                containerClass={"bg-slate-50 flex-1"}
+                                headingClass={"text-sm md:text-base font-normal"}
+                                Icon={FileDown}
+                            />
+                        </div>
+                    </div>
 
-                    <Heading2 text={"Funding Application Guidelines"} />
 
-                    <Heading5 text={"Project Criteria"} />
+                    <Heading2 text={"Funding Application Guidelines"}/>
+
+                    <Heading5 text={"Project Criteria"}/>
                     <ol className={`list-decimal pb-5`}>
                         <li>The project must be primarily evangelistic in nature.</li>
                         <li>The applicant must supply a budget for the project.</li>
-                        <li>Applications must be submitted in English on the official ASI Application form, which can be requested via the ASI UK website.</li>
+                        <li>Applications must be submitted in English on the official ASI Application form, which can be
+                            requested via the ASI UK website.
+                        </li>
                     </ol>
 
                     <Heading5 text={"Application Criteria"}/>
                     <ol className={`list-decimal pb-5`} start={4}>
                         <li>Applications are only accepted from ASI UK members.</li>
-                        <li>The Applicant must be in good and regular standing with the Seventh-day Adventist Church.</li>
-                        <li>Applications are only accepted from organisations and groups that work not for profit or from individuals applying for funding to join evangelistic campaigns.</li>
+                        <li>The Applicant must be in good and regular standing with the Seventh-day Adventist Church.
+                        </li>
+                        <li>Applications are only accepted from organisations and groups that work not for profit or
+                            from individuals applying for funding to join evangelistic campaigns.</li>
                         <li>ASI UK funding must not be available for profit-making purposes.</li>
                         <li>Seventh-day Adventist entities will be considered for funding for special evangelistic projects, but not for regular church budget items unless ASI UK is directly involved with the project.</li>
                     </ol>
@@ -113,6 +133,25 @@ export default function Projects() {
                             <p className={`my-2`}>All of the above regular above guidelines apply to the Interim Applications, except for the Application Submission Deadline (point 12 above).</p>
                         </li>
                     </ol>
+                    <Heading4 text={"Recommended Additional Criteria"} />
+                    <p>All applications will be considered. Below is a list of recommended criteria (not compulsory), which will give the application a higher chance of approval, if they are met. Your application does not need to meet the criteria below in order to be considered and approved.</p>
+                    <ul className={`list-disc p-5 space-y-3`}>
+                        <li>If an organization is applying for funding, its Board of Directors should be comprised of less than 50% family members.</li>
+                        <li>If the Applicant invested some of their own funds in their project or at least invested “service time” in their project, that will show that the Applicant is committed to their own project.</li>
+                        <li>If the project has already started that may show that the project is more feasible and achievable.</li>
+                        <li>Priority will be given to projects run in the territory of the UK.</li>
+                    </ul>
+
+                    <CTARounded
+                        heading={"Download Application Guidelines"}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href={"https://c1crerc0h1fs4ljz.public.blob.vercel-storage.com/asi-uk-project-funding-guidelines.pdf"}
+                        containerClass={"bg-slate-50 flex-1"}
+                        headingClass={"text-sm md:text-base font-normal"}
+                        Icon={FileDown}
+                    />
+
                 </div>
             </div>
         </div>

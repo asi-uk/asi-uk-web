@@ -1,6 +1,8 @@
 import React from 'react';
 import Link from "next/link";
 
+import { ChevronRight, LucideIcon } from "lucide-react" // Import default icon
+
 interface CTARoundedProps {
     href?: string;
     target?: string;
@@ -10,6 +12,9 @@ interface CTARoundedProps {
     containerClass?: string;
     headingClass?: string;
     subheadingClass?: string;
+    Icon?: LucideIcon;  // Add optional icon prop
+    iconSize?: number;
+    iconClass?: string;
 }
 
 const CTARounded: React.FC<CTARoundedProps> = ({
@@ -17,21 +22,24 @@ const CTARounded: React.FC<CTARoundedProps> = ({
            target = "",
            rel = "",
            heading = "Heading",
-           subheading = "Lorem Ipsum this is a subheading",
+           subheading = "",
            containerClass = "",
-           headingClass = "",
+           headingClass = "text-lg md:text-xl",
            subheadingClass = "",
-       }) => {
+           Icon = ChevronRight,  // Set default icon
+        }) => {
     return (
-        <div className={`group bg-slate-50 transition duration-300 ease-out hover:bg-slate-100 rounded-2xl p-5 ${containerClass}`}>
+        <div
+            className={`group bg-slate-50 transition duration-300 ease-out hover:bg-slate-100 rounded-2xl p-5 ${containerClass}`}>
             <Link target={target} href={href} rel={rel} className="text-center">
                 <div>
-                    <h2 className={`text-lg md:text-xl font-bold text-asi-blue ${headingClass}`}>
-                        {heading}{" "}
-                        <span className="font-sans transition duration-300 ease-in-out group-hover:translate-x-2 inline-block">
-                            →
-                        </span>
-                    </h2>
+                    <div className="flex justify-center">
+                        <h2 className={`flex items-center gap-2 text-asi-blue`}>
+                            <span className={`font-bold ${headingClass}`}>{heading}</span>
+                            <Icon
+                                className="h-5 w-5 transition duration-300 ease-in-out group-hover:translate-x-2 inline-block"/>
+                        </h2>
+                    </div>
                     <p className={`text-sm md:text-base ${subheadingClass}`}>{subheading}</p>
                 </div>
             </Link>
