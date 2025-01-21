@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link';
-import MainHeader from '../components/MainHeader';
+import MainHeader from '@/app/components/MainHeader';
 import {Heading1, Heading2} from "@/app/components/Headings";
 import CTARounded from "@/app/components/CTARounded";
 
@@ -71,12 +71,14 @@ export default function About() {
         heading={"Constitution"}
         subheading={"Fundamental principles, structure, and rules that govern ASI UK operations"}
         href={"/constitution"}
+        containerClass="my-8"
       />
 
       <CTARounded
           heading={"Join"}
           subheading={"Join the movement of Adventist lay professionals in the UK"}
           href={"/join"}
+          containerClass="my-8"
       />
 
       </div>

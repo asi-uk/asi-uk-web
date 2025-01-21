@@ -66,6 +66,12 @@ export default function Home() {
             />
           </div>
           <div>
+            <CTARounded
+                href="/projects"
+                heading="2025 Project Funding Applications"
+                subheading="Submit an application for evangelistic project funding from ASI UK"
+                containerClass="my-5"
+            />
             <div className="grid grid-cols-2 gap-5">
               <CTARounded
                 href="/about"

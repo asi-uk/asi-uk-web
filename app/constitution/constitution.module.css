@@ -1,0 +1,32 @@
+/* nested-counters.module.css */
+.nestedCounters {
+    list-style-type: none !important; /* Higher specificity */
+    counter-reset: item;
+    margin: 0;
+    padding: 0;
+}
+
+/* Target direct li children */
+.nestedCounters > li {
+    display: table;
+    counter-increment: item;
+    margin-bottom: 0.6em;
+}
+
+/* Target the counter display */
+.nestedCounters > li:before {
+    content: counters(item, ".") ". ";
+    display: table-cell;
+    color: #223f99;
+    padding-right: 0.6em;
+}
+
+/* Target nested lists */
+.nestedCounters li .nestedCounters > li {
+    margin: 0;
+}
+
+/* Target nested counters */
+.nestedCounters li .nestedCounters > li:before {
+    content: counters(item, ".") ". ";
+}
