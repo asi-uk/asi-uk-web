@@ -66,21 +66,21 @@ export default function Projects() {
                     <Heading1 text={"Project Funding"} />
                     <p>The 2025 ASI UK project application cycle is now open. Check in on this page for updates regarding application deadlines and more.</p>
 
-                    <div className="bg-white rounded-2xl p-5 my-5 mb-10 flex flex-col items-center outline outline-5 outline-asi-blue">
+                    <div className="bg-slate-50 rounded-2xl p-5 my-5 mb-10 flex flex-col items-center">
                         <span className={`text-xl text-asi-blue font-bold`}>Application Forms</span>
                         <p className={`m-2`}>Download and fill out the following application forms to apply for ASI UK funding</p>
-                        <div className="flex items-center w-full justify-between gap-5">
+                        <div className="flex items-center w-full justify-between gap-5 my-2 mx-5">
                             <CTARounded
                                 heading={"Main Application Form"}
                                 href={"https://c1crerc0h1fs4ljz.public.blob.vercel-storage.com/asi-uk-project-funding-application-form.docx"}
-                                containerClass={"bg-slate-50 flex-1"}
+                                containerClass={"bg-slate-50 flex-1 outline outline-5 outline-slate-300 p-3"}
                                 headingClass={"text-sm md:text-base font-normal"}
                                 Icon={FileDown}
                             />
                             <CTARounded
                                 heading={"Budget Form"}
                                 href={"https://c1crerc0h1fs4ljz.public.blob.vercel-storage.com/asi-uk-project-funding-budget-form.xlsx"}
-                                containerClass={"bg-slate-50 flex-1"}
+                                containerClass={"bg-slate-50 flex-1 outline outline-5 outline-slate-300 p-3"}
                                 headingClass={"text-sm md:text-base font-normal"}
                                 Icon={FileDown}
                             />
@@ -91,7 +91,7 @@ export default function Projects() {
                     <Heading2 text={"Funding Application Guidelines"}/>
 
                     <Heading5 text={"Project Criteria"}/>
-                    <ol className={`list-decimal pb-5`}>
+                    <ol className={`list-decimal ml-10 pb-5`}>
                         <li>The project must be primarily evangelistic in nature.</li>
                         <li>The applicant must supply a budget for the project.</li>
                         <li>Applications must be submitted in English on the official ASI Application form, which can be
@@ -100,7 +100,7 @@ export default function Projects() {
                     </ol>
 
                     <Heading5 text={"Application Criteria"}/>
-                    <ol className={`list-decimal pb-5`} start={4}>
+                    <ol className={`list-decimal ml-10 pb-5`} start={4}>
                         <li>Applications are only accepted from ASI UK members.</li>
                         <li>The Applicant must be in good and regular standing with the Seventh-day Adventist Church.
                         </li>
@@ -111,18 +111,18 @@ export default function Projects() {
                     </ol>
 
                     <Heading5 text={"Funding"} />
-                    <ol className={`list-decimal pb-5`} start={9}>
+                    <ol className={`list-decimal ml-10 pb-5`} start={9}>
                         <li>Funding will be limited to not more than 50% of the total project cost.</li>
                         <li>In most cases funding will be released in interim payments upon receipt of progress reports.</li>
                     </ol>
 
                     <Heading5 text={"Application Submission Deadline"} />
-                    <ol className={`list-decimal pb-5`} start={11}>
+                    <ol className={`list-decimal ml-10 pb-5`} start={11}>
                         <li>Applications must be received by the deadline date announced on the ASI UK website, in order to be considered for inclusion in the next Convention project list.</li>
                     </ol>
 
                     <Heading5 text={"Interim Applications"} />
-                    <ol className={`list-decimal pb-5`} start={12}>
+                    <ol className={`list-decimal ml-10 pb-5`} start={12}>
                         <li>
                             Interim Applications may be considered for approval and may receive funding before the next Convention at the discretion of the Projects Committee, and subject to approval by the ASI UK Ex Com, in the following circumstances:
                             <ol className={`list-decimal mx-6 my-2`}>
