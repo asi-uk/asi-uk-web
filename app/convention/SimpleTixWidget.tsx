@@ -19,7 +19,11 @@ const SimpleTixWidget = () => {
         <>
             <Script
                 src="https://embed.prod.simpletix.com/assets/widget/widget.min.js?t=2024.12.10"
-                strategy="beforeInteractive"
+                strategy="lazyOnload"
+                onLoad={() => {
+                    // Script is loaded and ready to use
+                    console.log('SimpleTix script loaded');
+                }}
             />
             <link
                 href="https://embed.prod.simpletix.com/assets/widget/widget.min.css?t=2024.05.08"
