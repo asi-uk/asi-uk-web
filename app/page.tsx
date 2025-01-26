@@ -3,6 +3,7 @@ import dynamic from 'next/dynamic'; // Import dynamic from 'next/dynamic'
 import Link from 'next/link';
 import EventIcon from '@mui/icons-material/Event';
 import HistoryIcon from '@mui/icons-material/History';
+import { Calendar, PoundSterling } from "lucide-react"
 import CTARounded from "@/app/components/CTARounded";
 
 export const metadata = {
@@ -67,10 +68,18 @@ export default function Home() {
           </div>
           <div>
             <CTARounded
+                href="/convention"
+                heading="Convention 2025"
+                subheading="Reserve your spot for our first annual convention on 21 June"
+                containerClass="my-5 border-2 border-slate-200 rounded-lg"
+                Icon={Calendar}
+            />
+            <CTARounded
                 href="/projects"
-                heading="2025 Project Funding Applications"
+                heading="Project Funding Applications"
                 subheading="Submit an application for evangelistic project funding from ASI UK"
                 containerClass="my-5"
+                Icon={PoundSterling}
             />
             <div className="grid grid-cols-2 gap-5">
               <CTARounded
