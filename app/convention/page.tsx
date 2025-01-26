@@ -10,7 +10,7 @@ import React from "react";
 export const metadata = {
     title: "ASI UK | Convention 2025",
     description:
-        "Join us for the annual ASI UK Convention on 21 June, 2025 in Northamptonshire",
+        "Join us for the annual ASI UK Convention on 21 June, 2025 in Daventry",
     keywords: [
         "ASI UK Convention",
         "Convention",
@@ -26,7 +26,7 @@ export const metadata = {
         type: "website",
         title: "ASI UK | Convention 2025",
         description:
-            "Apply for evangelistic project funding from ASI UK",
+            "Join us for the annual ASI UK Convention on 21 June, 2025 in Daventry",
         images: [
             {
                 url: "https://www.asiuk.org/thumbnail.png",
@@ -40,7 +40,7 @@ export const metadata = {
         card: "summary_large_image",
         title: "ASI UK | Projects",
         description:
-            "Join us for the annual ASI UK Convention on 21 June, 2025 in Northamptonshire",
+            "Join us for the annual ASI UK Convention on 21 June, 2025 in Daventry",
         images: [
             {
                 url: "https://www.asiuk.org/thumbnail.png",
