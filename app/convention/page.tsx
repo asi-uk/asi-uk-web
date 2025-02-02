@@ -103,7 +103,8 @@ export default function Convention() {
                         <li>Enjoy fellowship over a provided lunch and refreshments</li>
                     </ul>
 
-                    <p className={`font-bold my-5`}>Early Bird Tickets: £25 (Limited time offer)<br/>
+                    <p className={`font-bold my-5`}>ASI UK Members: £15<br/>
+                        Early Bird Tickets: £25 (Limited time offer)<br/>
                         Standard Tickets: £40 (from April)</p>
 
                     <p>Don't miss this chance to be part of ASI UK's growing community of business leaders and
