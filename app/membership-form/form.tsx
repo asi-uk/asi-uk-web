@@ -1,10 +1,10 @@
 "use client"
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
+import {zodResolver} from "@hookform/resolvers/zod"
+import {useForm} from "react-hook-form"
+import {z} from "zod"
 
-import { Button } from "@/components/ui/button"
+import {Button} from "@/components/ui/button"
 import {
     Form,
     FormControl,
@@ -14,7 +14,7 @@ import {
     FormLabel,
     FormMessage,
 } from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
+import {Input} from "@/components/ui/input"
 import {
     Select,
     SelectContent,
@@ -23,18 +23,25 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 import DateInput from "@/components/ui/date";
-import { Label } from "@/components/ui/label"
+import {Label} from "@/components/ui/label"
 import RadioCards from "@/components/ui/radio-cards";
-import {Building2, HeartHandshake, User} from "lucide-react";
+import {BriefcaseBusiness, Building2, ChartCandlestick, HandHeart, HeartHandshake, User} from "lucide-react";
 
 const formSchema = z.object({
+
+    applicantDescription: z.enum(["Businessperson", "Professional", "Self-supporting ministry"], {
+        required_error: "Please select an option",
+    }),
+
     membershipType: z.enum(["Individual", "Organisation", "Supporting"], {
         required_error: "Please select a membership type",
-    }).optional(),
+    }),
 
     title: z.enum(["Mr", "Mrs", "Miss", "Dr"], {
         required_error: "Please select a title",
-    }).optional(),
+    }).nullable().refine((value) => value !== null, {
+        message: "Please select a title"
+    }),
 
     firstName: z
         .string()
@@ -50,7 +57,7 @@ const formSchema = z.object({
 
     dateOfBirth: z
         .date({
-            required_error: "Please select your date of birth",
+            required_error: "Please enter a valid date of birth",
             invalid_type_error: "That's not a valid date",
         })
         .min(new Date("1900-01-01"), "Date of birth cannot be before 1900")
@@ -58,17 +65,31 @@ const formSchema = z.object({
 
     address: z
         .string()
-        .min(5, "Address must be at least 5 characters")
-        .max(200, "Address must not exceed 200 characters"),
+        .optional()
+        .refine(
+            (val) => !val || val.length >= 5,
+            "Address must be at least 5 characters"
+        )
+        .refine(
+            (val) => !val || val.length <= 200,
+            "Address must not exceed 200 characters"
+        ),
 
     phoneNumber: z
         .string()
-        .regex(
-            /^(?:\+?\d{1,4}[\s-]?)?\(?(?:\d{1,}\)?[\s-]?){6,}$/,
+        .optional()
+        .refine(
+            (val) => !val || /^(?:\+?\d{1,4}[\s-]?)?\(?(?:\d{1,}\)?[\s-]?){6,}$/.test(val),
             "Please enter a valid phone number"
         )
-        .min(10, "Phone number must be at least 10 digits")
-        .max(17, "Phone number must not exceed 15 digits"),
+        .refine(
+            (val) => !val || val.length >= 10,
+            "Phone number must be at least 10 digits"
+        )
+        .refine(
+            (val) => !val || val.length <= 17,
+            "Phone number must not exceed 15 digits"
+        ),
 
     email: z
         .string()
@@ -82,8 +103,9 @@ export function MembershipForm() {
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            membershipType: "Individual",
-            title: undefined,
+            applicantDescription: null,
+            membershipType: null,
+            title: null,
             firstName: "",
             surname: "",
             dateOfBirth: undefined,
@@ -105,150 +127,209 @@ export function MembershipForm() {
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
                 <FormField
                     control={form.control}
-                    name="membershipType"
-                    render={({ field }) => (
+                    name="applicantDescription"
+                    render={({field}) => (
                         <FormItem>
-                            <FormLabel>Membership Type</FormLabel>
+                            <FormLabel>What best describes you?</FormLabel>
                             <FormControl>
                                 <RadioCards
+                                    className="sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3"
                                     options={[
                                         {
-                                            value: "Individual",
-                                            label: "Individual",
-                                            description: "Ordinary membership as an individual",
-                                            icon: User,
-                                            annualFee: 100
+                                            value: "Businessperson",
+                                            label: "Businessperson",
+                                            icon: ChartCandlestick,
                                         },
                                         {
-                                            value: "Organisation",
-                                            label: "Organisation",
-                                            description: "Ordinary membership as a business, organisation or self-supporting ministry",
-                                            icon: Building2,
-                                            annualFee: 100
+                                            value: "Professional",
+                                            label: "Professional",
+                                            icon: BriefcaseBusiness,
                                         },
                                         {
-                                            value: "Supporting",
-                                            label: "Supporting",
-                                            description: "For those wanting to support ASI UK, but not as full members",
-                                            icon: HeartHandshake,
-                                            annualFee: 100
+                                            value: "Self-supporting ministry",
+                                            label: "Self-supporting ministry",
+                                            icon: HandHeart,
                                         }
                                     ]}
                                     value={field.value}
-                                    onChange={field.onChange}
+                                    layout={"horizontal"}
+                                    onChange={(value) => {
+                                        field.onChange(value);
+                                        form.setValue('membershipType', null);
+                                    }}
                                 />
                             </FormControl>
-                            <FormMessage />
+                            <FormMessage/>
                         </FormItem>
                     )}
                 />
-                <FormField
+                {form.watch("applicantDescription") && (<FormField
                     control={form.control}
-                    name="title"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Title</FormLabel>
-                            <FormControl>
-                                <Select>
-                                    <SelectTrigger className="w-[180px]">
-                                        <SelectValue placeholder="Choose" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        <SelectItem value="Mr">Mr</SelectItem>
-                                        <SelectItem value="Mrs">Mrs</SelectItem>
-                                        <SelectItem value="Miss">Miss</SelectItem>
-                                        <SelectItem value="Dr">Dr</SelectItem>
-                                    </SelectContent>
-                                </Select>
+                    name="membershipType"
+                    render={({field}) => {
+                        // Get the current applicant type
+                        const applicantType = form.watch("applicantDescription");
 
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <div className="flex grid grid-cols-2 space-x-8">
+                        // Define which membership types are available for each applicant type
+                        const membershipOptions = {
+                            "Businessperson": ["Individual", "Organisation", "Supporting"],
+                            "Professional": ["Individual", "Organisation", "Supporting"],
+                            "Self-supporting ministry": ["Organisation"]
+                        };
+
+                        // Filter the options based on the selected applicant type
+                        const filteredOptions = [
+                            {
+                                value: "Individual",
+                                label: "Individual",
+                                description: "Ordinary membership as an individual",
+                                icon: User,
+                                annualFee: 100
+                            },
+                            {
+                                value: "Organisation",
+                                label: "Organisation",
+                                description: "Ordinary membership as a business, organisation or self-supporting ministry",
+                                icon: Building2,
+                                annualFee: 100
+                            },
+                            {
+                                value: "Supporting",
+                                label: "Supporting",
+                                description: "For those wanting to support ASI UK, but not as full members",
+                                icon: HeartHandshake,
+                                annualFee: 100
+                            }
+                        ].filter(option =>
+                            !applicantType || // Show all options if no applicant type selected
+                            membershipOptions[applicantType]?.includes(option.value)
+                        );
+
+                        return (
+                            <FormItem>
+                                <FormLabel>Membership Type</FormLabel>
+                                <FormControl>
+                                    <RadioCards
+                                        options={filteredOptions}
+                                        value={field.value}
+                                        onChange={field.onChange}
+                                    />
+                                </FormControl>
+                                <FormMessage/>
+                            </FormItem>
+                        );
+                    }}
+                />)}
+                {form.watch("applicantDescription") && form.watch("membershipType") && (<>
                     <FormField
                         control={form.control}
-                        name="firstName"
-                        render={({ field }) => (
+                        name="title"
+                        render={({field}) => (
                             <FormItem>
-                                <FormLabel>First name(s)</FormLabel>
+                                <FormLabel>Title <span className="text-destructive">*</span></FormLabel>
                                 <FormControl>
-                                    <Input placeholder="Ellen Gould" className="" {...field} />
+                                    <Select onValueChange={field.onChange}
+                                            defaultValue={field.value || ""}
+                                            value={field.value || ""}>
+                                        <SelectTrigger className="w-[180px]">
+                                            <SelectValue placeholder="Choose"/>
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            <SelectItem value="Mr">Mr</SelectItem>
+                                            <SelectItem value="Mrs">Mrs</SelectItem>
+                                            <SelectItem value="Miss">Miss</SelectItem>
+                                            <SelectItem value="Dr">Dr</SelectItem>
+                                        </SelectContent>
+                                    </Select>
+
                                 </FormControl>
-                                <FormMessage />
+                                <FormMessage/>
+                            </FormItem>
+                        )}
+                    />
+                    <div className="flex grid grid-cols-2 space-x-8">
+                        <FormField
+                            control={form.control}
+                            name="firstName"
+                            render={({field}) => (
+                                <FormItem>
+                                    <FormLabel>First name(s) <span className="text-destructive">*</span></FormLabel>
+                                    <FormControl>
+                                        <Input placeholder="Ellen Gould" className="" {...field} />
+                                    </FormControl>
+                                    <FormMessage/>
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="surname"
+                            render={({field}) => (
+                                <FormItem>
+                                    <FormLabel>Surname <span className="text-destructive">*</span></FormLabel>
+                                    <FormControl>
+                                        <Input placeholder="White" {...field} />
+                                    </FormControl>
+                                    <FormMessage/>
+                                </FormItem>
+                            )}
+                        />
+                    </div>
+                    <FormField
+                        control={form.control}
+                        name="dateOfBirth"
+                        render={({field}) => (
+                            <FormItem>
+                                <FormLabel>Date of Birth <span className="text-destructive">*</span></FormLabel>
+                                <DateInput
+                                    value={field.value}
+                                    onChange={field.onChange}
+                                    error={!!form.formState.errors.dateOfBirth}
+                                />
+                                <FormMessage/>
                             </FormItem>
                         )}
                     />
                     <FormField
                         control={form.control}
-                        name="surname"
-                        render={({ field }) => (
+                        name="address"
+                        render={({field}) => (
                             <FormItem>
-                                <FormLabel>Surname</FormLabel>
+                                <FormLabel>Mailing Address</FormLabel>
                                 <FormControl>
-                                    <Input placeholder="White" {...field} />
+                                    <Input placeholder="Please enter your mailing address" {...field} />
                                 </FormControl>
-                                <FormMessage />
+                                <FormMessage/>
                             </FormItem>
                         )}
                     />
-                </div>
-                <FormField
-                    control={form.control}
-                    name="dateOfBirth"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Date of Birth</FormLabel>
-                            <DateInput
-                                value={field.value}
-                                onChange={field.onChange}
-                                error={!!form.formState.errors.dateOfBirth}
-                            />
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="address"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Mailing Address</FormLabel>
-                            <FormControl>
-                                <Input placeholder="Please enter your mailing address" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="phoneNumber"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Phone Number</FormLabel>
-                            <FormControl>
-                                <Input placeholder="Phone number" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Email</FormLabel>
-                            <FormControl>
-                                <Input placeholder="Email address" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <Button type="submit">Submit</Button>
+                    <FormField
+                        control={form.control}
+                        name="phoneNumber"
+                        render={({field}) => (
+                            <FormItem>
+                                <FormLabel>Phone Number</FormLabel>
+                                <FormControl>
+                                    <Input placeholder="Phone number" {...field} />
+                                </FormControl>
+                                <FormMessage/>
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="email"
+                        render={({field}) => (
+                            <FormItem>
+                                <FormLabel>Email <span className="text-destructive">*</span></FormLabel>
+                                <FormControl>
+                                    <Input placeholder="Email address" {...field} />
+                                </FormControl>
+                                <FormMessage/>
+                            </FormItem>
+                        )}
+                    />
+                    <Button type="submit">Submit</Button> </>)}
             </form>
         </Form>
     )
