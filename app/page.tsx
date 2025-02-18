@@ -66,32 +66,34 @@ export default function Home() {
               className="object-contain max-w-full max-h-full"
             />
           </div>
-          <div>
-            <CTARounded
-                href="/convention"
-                heading="Convention 2025"
-                subheading="Reserve your spot for our first annual convention on 21 June"
-                containerClass="my-5 border-2 border-slate-200 rounded-lg"
-                Icon={Calendar}
-            />
-            <CTARounded
-                href="/projects"
-                heading="Project Funding Applications"
-                subheading="Submit an application for evangelistic project funding from ASI UK"
-                containerClass="my-5"
-                Icon={PoundSterling}
-            />
-            <div className="grid grid-cols-2 gap-5">
+          <div className="px-5">
+            <div>
               <CTARounded
-                href="/about"
-                heading="About"
-                subheading="Find out more about the mission and structure of ASI UK"
+                  href="/convention"
+                  heading="Convention 2026"
+                  subheading="Reserve your spot for our first annual convention on 21 June"
+                  containerClass="my-5 border-2 border-slate-200 rounded-lg"
+                  Icon={Calendar}
               />
               <CTARounded
-                href="/join"
-                heading="Join"
-                subheading="Join the movement of Adventist lay professionals in the UK"
+                  href="/projects"
+                  heading="Project Funding Applications"
+                  subheading="Submit an application for evangelistic project funding from ASI UK"
+                  containerClass="my-5"
+                  Icon={PoundSterling}
               />
+              <div className="grid grid-cols-2 gap-5">
+                <CTARounded
+                    href="/about"
+                    heading="About"
+                    subheading="Find out more about the mission and structure of ASI UK"
+                />
+                <CTARounded
+                    href="/join"
+                    heading="Join"
+                    subheading="Join the movement of Adventist lay professionals in the UK"
+                />
+              </div>
             </div>
           </div>
         </div>
