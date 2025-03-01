@@ -53,7 +53,7 @@ export default function About() {
                         className={"grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 justify-items-center grid-auto-rows-fr"}>
 
                         <Profile
-                            imageSrc="https://res.cloudinary.com/disrkguox/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1739827123/Grey-9800_-_DK_pbhxvr.jpg"
+                            imageSrc="https://res.cloudinary.com/disrkguox/image/upload/v1740858925/Grey-9800_-_DK_pbhxvr_a040f8.jpg"
                             name="Daniel Klop"
                             title="President"
                             email="daniel@asiuk.org"
@@ -61,24 +61,19 @@ export default function About() {
                         />
 
                         <Profile
-                            imageSrc="https://res.cloudinary.com/disrkguox/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1739827122/IMG_7350_-_Karlene_Agard_xclhpj.jpg"
+                            imageSrc="https://res.cloudinary.com/disrkguox/image/upload/v1740859115/IMG_7350_-_Karlene_Agard_xclhpj_739e44.jpg"
                             name="Karlene Agard"
                             title="Vice President"
                             email="karlene@asiuk.org"
-                            bio="Karlene Agard is the VP of ASI UK, she is on the team for Envision Youth Conference and has founded a women's ministry, Ladies Lounge UK, that helps Christian women understand their worth in Christ and to pursue excellence in all areas of life.
-
-        Karlene Agard is also an award-winning mega-project expert who consults and speaks at conferences internationally. She has written for Forbes, McKinsey, and Deloitte.
-        She has completed an Executive Masters in Major Program Management at the University of Oxford, Saïd Business School and now deliver project management training at the University of Oxford. Karlene is a Senior Consultant at ARAVUN and Oxford Global Projects, leading consulting engagements for government and private projects internationally."
+                            bio={`Karlene Agard is the VP of ASI UK, she is on the team for Envision Youth Conference and has founded a women's ministry, Ladies Lounge UK, that helps Christian women understand their worth in Christ and to pursue excellence in all areas of life.\n\nKarlene Agard is also an award-winning mega-project expert who consults and speaks at conferences internationally. She has written for Forbes, McKinsey, and Deloitte.\n\nShe has completed an Executive Masters in Major Program Management at the University of Oxford, Saïd Business School and now deliver project management training at the University of Oxford. Karlene is a Senior Consultant at ARAVUN and Oxford Global Projects, leading consulting engagements for government and private projects internationally.`}
                         />
 
                         <Profile
-                            imageSrc="https://res.cloudinary.com/disrkguox/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1739827123/profile-pic_-_Craig_Gooden_ukcaz9.jpg"
+                            imageSrc="https://res.cloudinary.com/disrkguox/image/upload/v1740859392/profile-pic_-_Craig_Gooden_ukcaz9_9d47d3.jpg"
                             name="Craig Gooden"
                             title="Vice President for Chapter Growth"
                             email="craig@asiuk.org"
-                            bio="Craig is a Software/DevOps Engineer specialising in automation, cloud infrastructure, and software engineering. Alongside his career in technology, he is deeply committed to his faith and passionate about sharing the Gospel.
-        Since dedicating his life to Christ, Craig has had the opportunity to preach, teach, and train internationally, serving in various ministries to help proclaim the everlasting Gospel to this generation. His key areas of biblical study include Faith and Bible Prophecy.
-        He also serves as an Elder in the North England Conference, UK, where he enjoys fellowship and evangelistic ministry. In his personal time, Craig finds joy in reading, travelling, and spending time with his wife and best friend, Farida, and their son, Izraël."
+                            bio={`Craig is a Software/DevOps Engineer specialising in automation, cloud infrastructure, and software engineering. Alongside his career in technology, he is deeply committed to his faith and passionate about sharing the Gospel.\n\nSince dedicating his life to Christ, Craig has had the opportunity to preach, teach, and train internationally, serving in various ministries to help proclaim the everlasting Gospel to this generation. His key areas of biblical study include Faith and Bible Prophecy.\n\nHe also serves as an Elder in the North England Conference, UK, where he enjoys fellowship and evangelistic ministry. In his personal time, Craig finds joy in reading, travelling, and spending time with his wife and best friend, Farida, and their son, Izraël.`}
                         />
 
 
@@ -95,13 +90,15 @@ export default function About() {
                             name="Michael Garkov"
                             title="Treasurer"
                             email="michael@asiuk.org"
-                            bio="Elder Michael Garkov is a chartered accountant, running his own company in London. He is a missionary at heart and is passionate about sharing Christ in the marketplace. He also holds a theology degree from Newbold College. He has served in the Treasury Departments at both the Trans-European Division of SDA and the British Union Conference of SDA before starting his own business in 2005.
+                            bio={`Elder Michael Garkov is a chartered accountant, running his own company in London. He is a missionary at heart and is passionate about sharing Christ in the marketplace. He also holds a theology degree from Newbold College. He has served in the Treasury Departments at both the Trans-European Division of SDA and the British Union Conference of SDA before starting his own business in 2005.\n\nElder Garkov has extensive experience in leadership within ASI. He served as Treasurer of ASI Europe for over seven years, now serves as its Vice-President, and has previously been the President of ASI Bulgaria. Michael also initiated and spearheaded the relaunch of ASI UK in 2024.\n\nElder Garkov is deeply involved in the management of national evangelistic projects, like 'Reflecting Hope' in the UK and 'SEED' in Bulgaria.\n\nMichael is happily married and blessed with four children. His hobbies include fitness training, tennis, and above all, sharing Christ and His love.`}
+                        />
 
-        Elder Garkov has extensive experience in leadership within ASI. He served as Treasurer of ASI Europe for over seven years, now serves as its Vice-President, and has previously been the President of ASI Bulgaria. Michael also initiated and spearheaded the relaunch of ASI UK in 2024.
-
-        Elder Garkov is deeply involved in the management of national evangelistic projects, like 'Reflecting Hope' in the UK and 'SEED' in Bulgaria.
-
-        Michael is happily married and blessed with four children. His hobbies include fitness training, tennis, and above all, sharing Christ and His love."
+                        <Profile
+                            imageSrc="https://res.cloudinary.com/disrkguox/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1740857931/eric-profile_f7cuka.jpg"
+                            name="Eric Welch"
+                            title="Secretary"
+                            email="eric@asiuk.org"
+                            bio={`Eric works as an aerospace engineer in Staffordshire. He and his wife are passionate about sharing the love of Jesus in their local community. In his spare time he loves camping, hiking, sailing, and travelling.`}
                         />
 
                         <Profile
@@ -117,7 +114,7 @@ export default function About() {
                             name="Tashana Samuels"
                             title="Projects Committee"
                             email="projects@asiuk.org"
-                            bio="Tashana is a nurse by profession who works in the operating theatre. She is an avid hiker who enjoys the great outdoors. Wales and the Lake District are some of her favourite locations to hike. She currently lives in Birmingham and has done so for quite a few years. She love sharing her faith through Bible studies and regularly engages in studies with friends preparing them for studies.   "
+                            bio="Tashana is a nurse by profession who works in the operating theatre. She is an avid hiker who enjoys the great outdoors. Wales and the Lake District are some of her favourite locations to hike. She currently lives in Birmingham and has done so for quite a few years. She love sharing her faith through Bible studies and regularly engages in studies with friends preparing them for studies."
                         />
 
                         <Profile
@@ -126,6 +123,14 @@ export default function About() {
                             title="Director for Youth Relations"
                             email="sam@asiuk.org"
                             bio="Sam Walters is from Wolverhampton UK where he works as a specialist paediatric pharmacist in a local hospital. He currently serves the Wednesfield SDA Church as the first elder, is the Co-host of the 'Faith on top podcast' and sits on the British Union Conference executive committee. As a former Outreach coordinator for the PEACE Centre of Evangelism, he enjoys witnessing and teaching others to do the same. He has a passion to help Adventist young professionals live out their faith in the work place and to seek first the kingdom of God in all that they do. His desire is to be close to God and a blessing to others. In his spare time Sam enjoys connecting with friends, good food, travelling and listening to audiobooks."
+                        />
+
+                        <Profile
+                            imageSrc="https://res.cloudinary.com/disrkguox/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1739917247/IMG_5124_-_Rachel_Graham-Tohue_z8ddun.jpg"
+                            name="Rachel Graham-Tohue"
+                            title="Director for Logistics"
+                            email="rachel@asiuk.org"
+                            bio={`Rachel Graham-Tohue is a seasoned professional with over 15 years of experience in events and industry coordination, having worked at SJM Concerts and Kennedy Street Enterprises, specialising in music event management.\n\nCurrently an Atlassian Infrastructure Engineer in an Atlassian Centre of Excellence, she brings advanced organisational/project management skills to her role. She is also the founder of Rachel's Cake Delights in Wolverhampton, managing a vegan and gluten-free cake business. Previously, she served as an Administrative Secretary at the North England Conference, where she managed administrative duties for four directors and played a crucial role in organizing conference events and maintaining operational efficiency.`}
                         />
                     </div>
 

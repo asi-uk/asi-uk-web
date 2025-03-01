@@ -33,7 +33,7 @@ const Profile = ({ imageSrc, name, title, email, bio }: ProfileProps) => {
                             />
                         </div>
                         <div className="text-center w-full">
-                            <h1 className="text-asi-blue font-bold text-lg md:text-xl">{name}</h1>
+                            <h1 className="text-asi-blue font-bold text-base md:text-lg">{name}</h1>
                             <h2 className="text-gray-700 text-base">{title}</h2>
                         </div>
                     </div>
@@ -62,11 +62,11 @@ const Profile = ({ imageSrc, name, title, email, bio }: ProfileProps) => {
                     </div>
                     <div className="w-full max-w-xl">
                         <div className="text-center mb-4">
-                            <h1 className="text-asi-blue font-bold text-xl md:text-2xl">{name}</h1>
+                            <h1 className="text-asi-blue font-bold text-lg md:text-xl">{name}</h1>
                             <h2 className="font-medium text-base md:text-lg">{title}</h2>
-                            <h3 className="font-light text-base">{email}</h3>
+                            {/*<h3 className="font-light text-base">{email}</h3>*/}
                         </div>
-                        <p className="text-gray-700 text-sm md:text-base">{bio}</p>
+                        <p className="text-gray-700 text-sm md:text-base whitespace-pre-wrap">{bio}</p>
                     </div>
                 </div>
             </DialogContent>
