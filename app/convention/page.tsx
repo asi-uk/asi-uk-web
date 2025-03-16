@@ -69,7 +69,7 @@ export default function Convention() {
                             </h2>
                             <h3 className="text-2xl font-medium h-full flex items-center">21 June<span className="hidden md:inline">, 2025</span>
                             </h3>
-                            <p>9:00 am - 6:00 pm</p>
+                            <p>9:00 am - 7:00 pm</p>
                         </div>
 
 
