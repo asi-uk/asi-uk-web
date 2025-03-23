@@ -70,7 +70,7 @@ export default function Home() {
             <div>
               <CTARounded
                   href="/convention"
-                  heading="Convention 2026"
+                  heading="Convention 2025"
                   subheading="Reserve your spot for our first annual convention on 21 June"
                   containerClass="my-5 border-2 border-slate-200 rounded-lg"
                   Icon={Calendar}
