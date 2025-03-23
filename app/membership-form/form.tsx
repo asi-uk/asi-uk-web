@@ -741,7 +741,7 @@ export function MembershipForm() {
                             )}
                         />
                     </div>
-                    {form.watch("applicantDescription") === "Organisation" && (
+                    {form.watch("applicantDescription") === "Entity" && (
                         <FormField
                             control={form.control}
                             name="orgApplicantRole"
