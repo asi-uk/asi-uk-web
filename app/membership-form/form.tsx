@@ -2,9 +2,17 @@
 
 import {zodResolver} from "@hookform/resolvers/zod"
 import {useForm} from "react-hook-form"
+import Link from 'next/link';
 import {z} from "zod"
+import { useEffect, useRef } from "react"
 
 import {Button} from "@/components/ui/button"
+import {Checkbox} from "@/components/ui/checkbox"
+import {Input} from "@/components/ui/input"
+import DateInput from "@/components/ui/date"
+import RadioCards from "@/components/ui/radio-cards"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import {Label} from "@/components/ui/label"
 import {
     Form,
     FormControl,
@@ -14,7 +22,6 @@ import {
     FormLabel,
     FormMessage,
 } from "@/components/ui/form"
-import {Input} from "@/components/ui/input"
 import {
     Select,
     SelectContent,
@@ -22,20 +29,16 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
-import DateInput from "@/components/ui/date";
-import {Label} from "@/components/ui/label"
-import RadioCards from "@/components/ui/radio-cards";
-import {BriefcaseBusiness, Building2, ChartCandlestick, HandHeart, HeartHandshake, User} from "lucide-react";
+
+import {BriefcaseBusiness, Building, Building2, ChartCandlestick, HandHeart, HeartHandshake, User} from "lucide-react";
 
 const formSchema = z.object({
 
-    applicantDescription: z.enum(["Businessperson", "Professional", "Self-supporting ministry"], {
-        required_error: "Please select an option",
-    }),
+    applicantDescription: z.enum(["Individual", "Entity"]),
 
-    membershipType: z.enum(["Individual", "Organisation", "Supporting"], {
-        required_error: "Please select a membership type",
-    }),
+    membershipType: z.enum(["Ordinary-Individual", "Ordinary-Organisation", "Supporting"]),
+
+    orgType: z.enum(["Business", "Organisation"]),
 
     title: z.enum(["Mr", "Mrs", "Miss", "Dr"], {
         required_error: "Please select a title",
@@ -62,6 +65,81 @@ const formSchema = z.object({
         })
         .min(new Date("1900-01-01"), "Date of birth cannot be before 1900")
         .max(new Date(), "Date of birth cannot be in the future"),
+
+    orgName: z
+        .string({required_error: "Please enter the name of your organisation",}),
+
+    orgLegalName: z
+        .string().optional(),
+
+    orgApplicantRole: z
+        .string({required_error: "Please specify your role",}),
+
+    orgDescription: z.string({required_error: "Please enter a description",}),
+
+    orgAddress: z
+        .string()
+        .optional()
+        .refine(
+            (val) => !val || val.length >= 5,
+            "Address must be at least 5 characters"
+        )
+        .refine(
+            (val) => !val || val.length <= 200,
+            "Address must not exceed 200 characters"
+        ),
+
+    orgPostalAddress: z
+        .string()
+        .optional()
+        .refine(
+            (val) => !val || val.length >= 5,
+            "Address must be at least 5 characters"
+        )
+        .refine(
+            (val) => !val || val.length <= 200,
+            "Address must not exceed 200 characters"
+        ),
+
+    orgPhone: z
+        .string()
+        .optional()
+        .refine(
+            (val) => !val || /^(?:\+?\d{1,4}[\s-]?)?\(?(?:\d{1,}\)?[\s-]?){6,}$/.test(val),
+            "Please enter a valid phone number"
+        )
+        .refine(
+            (val) => !val || val.length >= 10,
+            "Phone number must be at least 10 digits"
+        )
+        .refine(
+            (val) => !val || val.length <= 17,
+            "Phone number must not exceed 15 digits"
+        ),
+
+    orgEmail: z
+        .string({required_error: "Please enter an email"})
+        .email("Please enter a valid email address")
+        .min(5, "Email must be at least 5 characters")
+        .max(100, "Email must not exceed 100 characters"),
+
+    orgEmployees: z.string({required_error: "Please specify the size of your organisation"}),
+
+    orgYearsInOperation: z.string({required_error: "Please enter the number of years in operation"}),
+
+    orgWebsite: z.string().url().optional(),
+
+    orgSocialMedia: z
+        .string()
+        .optional(),
+
+    orgK0505IsAgreed: z.enum(["yes", "no"], {
+        required_error: "Please select an option",
+    }),
+
+    orgIsFundedByChurch: z.enum(["yes", "no"], {
+        required_error: "Please select an option",
+    }),
 
     address: z
         .string()
@@ -92,26 +170,61 @@ const formSchema = z.object({
         ),
 
     email: z
-        .string()
+        .string({required_error: "Please provide a contact email"})
         .email("Please enter a valid email address")
         .min(5, "Email must be at least 5 characters")
         .max(100, "Email must not exceed 100 characters"),
+
+    website: z.string().url().optional(),
+
+    socialMedia: z
+        .string()
+        .optional(),
+
+
+
 });
+
+const capitalizeFirstWord = (str) => {
+    if (!str) return str;
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+};
 
 export function MembershipForm() {
     // 1. Define your form.
+
+    const orgSectionRef = useRef(null);
+    const personalInfoSectionRef = useRef(null);
+
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            applicantDescription: null,
-            membershipType: null,
+            applicantDescription: undefined,
+            membershipType: undefined,
+            orgType: null,
             title: null,
-            firstName: "",
-            surname: "",
+            firstName: undefined,
+            surname: undefined,
             dateOfBirth: undefined,
-            address: "",
-            phoneNumber: "",
-            email: ""
+            orgName: undefined,
+            orgLegalName: undefined,
+            orgApplicantRole: undefined,
+            orgDescription: undefined,
+            orgAddress: undefined,
+            orgPostalAddress: undefined,
+            orgPhone: undefined,
+            orgEmail: undefined,
+            orgEmployees: undefined,
+            orgYearsInOperation: undefined,
+            orgWebsite: undefined,
+            orgSocialMedia: undefined,
+            orgK0505IsAgreed: null,
+            orgIsFundedByChurch: null,
+            address: undefined,
+            phoneNumber: undefined,
+            email: undefined,
+            website: undefined,
+            socialMedia: undefined
         }
     })
 
@@ -122,40 +235,94 @@ export function MembershipForm() {
         console.log(values)
     }
 
+    // Watch for changes in key form values that trigger conditional rendering
+    const applicantDescription = form.watch("applicantDescription");
+    const membershipType = form.watch("membershipType");
+    const orgType = form.watch("orgType");
+
+    // Scroll to entity section when it appears
+    useEffect(() => {
+        if (applicantDescription === "Entity" && membershipType && orgType && orgSectionRef.current) {
+            setTimeout(() => {
+                orgSectionRef.current.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+            }, 100); // Small delay to ensure DOM has updated
+        }
+    }, [applicantDescription, orgType]);
+
+    // Scroll to personal info section when it appears
+    useEffect(() => {
+        if (
+            personalInfoSectionRef.current &&
+            applicantDescription == "Individual" &&
+            membershipType
+        ) {
+            setTimeout(() => {
+                personalInfoSectionRef.current.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+            }, 100); // Small delay to ensure DOM has updated
+        }
+    }, [applicantDescription, membershipType, orgType]);
+
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                 <FormField
                     control={form.control}
                     name="applicantDescription"
                     render={({field}) => (
                         <FormItem>
-                            <FormLabel>What best describes you?</FormLabel>
+                            <FormLabel>Membership category</FormLabel>
+                            <FormDescription>Which best describes the type of membership you wish to apply for?</FormDescription>
                             <FormControl>
                                 <RadioCards
-                                    className="sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3"
+                                    className="grid-cols-2"
                                     options={[
                                         {
-                                            value: "Businessperson",
-                                            label: "Businessperson",
-                                            icon: ChartCandlestick,
+                                            value: "Individual",
+                                            label: "Individual",
+                                            icon: User,
                                         },
                                         {
-                                            value: "Professional",
-                                            label: "Professional",
-                                            icon: BriefcaseBusiness,
+                                            value: "Entity",
+                                            label: "Organisation",
+                                            icon: Building2,
                                         },
-                                        {
-                                            value: "Self-supporting ministry",
-                                            label: "Self-supporting ministry",
-                                            icon: HandHeart,
-                                        }
                                     ]}
                                     value={field.value}
                                     layout={"horizontal"}
                                     onChange={(value) => {
+
+                                        if (value === "Individual") {
+                                            form.setValue("orgName", "");
+                                            form.setValue("orgLegalName", "");
+                                            form.setValue("orgApplicantRole", "");
+                                            form.setValue("orgDescription", "");
+                                            form.setValue("orgAddress", "");
+                                            form.setValue("orgPostalAddress", "");
+                                            form.setValue("orgPhone", "");
+                                            form.setValue("orgEmail", "");
+                                            form.setValue("orgEmployees", "");
+                                            form.setValue("orgYearsInOperation", "");
+                                            form.setValue("orgWebsite", "");
+                                            form.setValue("orgSocialMedia", "");
+                                            form.setValue("orgK0505IsAgreed", null);
+                                            form.setValue("orgIsFundedByChurch", null);
+                                        }
+
+                                        if (value === "Entity") {
+                                            form.setValue("membershipType", "Ordinary-Organisation")
+                                        } else {
+                                            form.setValue('membershipType', null);
+                                        }
+
                                         field.onChange(value);
-                                        form.setValue('membershipType', null);
+                                        form.setValue('orgType', null);
+                                        form.clearErrors();
                                     }}
                                 />
                             </FormControl>
@@ -172,23 +339,22 @@ export function MembershipForm() {
 
                         // Define which membership types are available for each applicant type
                         const membershipOptions = {
-                            "Businessperson": ["Individual", "Organisation", "Supporting"],
-                            "Professional": ["Individual", "Organisation", "Supporting"],
-                            "Self-supporting ministry": ["Organisation"]
+                            "Individual": ["Ordinary-Individual", "Supporting"],
+                            "Entity": ["Ordinary-Organisation"],
                         };
 
                         // Filter the options based on the selected applicant type
                         const filteredOptions = [
                             {
-                                value: "Individual",
-                                label: "Individual",
+                                value: "Ordinary-Individual",
+                                label: "Ordinary",
                                 description: "Ordinary membership as an individual",
                                 icon: User,
                                 annualFee: 100
                             },
                             {
-                                value: "Organisation",
-                                label: "Organisation",
+                                value: "Ordinary-Organisation",
+                                label: "Ordinary",
                                 description: "Ordinary membership as a business, organisation or self-supporting ministry",
                                 icon: Building2,
                                 annualFee: 100
@@ -198,7 +364,7 @@ export function MembershipForm() {
                                 label: "Supporting",
                                 description: "For those wanting to support ASI UK, but not as full members",
                                 icon: HeartHandshake,
-                                annualFee: 100
+                                annualFee: 20
                             }
                         ].filter(option =>
                             !applicantType || // Show all options if no applicant type selected
@@ -207,12 +373,16 @@ export function MembershipForm() {
 
                         return (
                             <FormItem>
-                                <FormLabel>Membership Type</FormLabel>
+                                <FormLabel>Membership type</FormLabel>
+                                <FormDescription>Please select your desired membership type</FormDescription>
                                 <FormControl>
                                     <RadioCards
                                         options={filteredOptions}
                                         value={field.value}
-                                        onChange={field.onChange}
+                                        onChange={(value) => {
+                                            field.onChange(value);
+                                            form.clearErrors();
+                                        }}
                                     />
                                 </FormControl>
                                 <FormMessage/>
@@ -220,7 +390,304 @@ export function MembershipForm() {
                         );
                     }}
                 />)}
-                {form.watch("applicantDescription") && form.watch("membershipType") && (<>
+                {form.watch("applicantDescription") === "Entity" && form.watch("membershipType") && (
+                    <FormField
+                        control={form.control}
+                        name="orgType"
+                        render={({field}) => (
+                            <FormItem>
+                                <FormLabel>Type of organisation</FormLabel>
+                                <FormDescription>Which of the following best describes your organisation?</FormDescription>
+                                <FormControl>
+                                    <RadioCards
+                                        className="grid-cols-2"
+                                        options={[
+                                            {
+                                                value: "Business",
+                                                label: "For-profit",
+                                                icon: BriefcaseBusiness,
+                                            },
+                                            {
+                                                value: "Organisation",
+                                                label: "Not-for-profit",
+                                                icon: HandHeart,
+                                            }
+                                        ]}
+                                        value={field.value}
+                                        onChange={field.onChange}
+                                        layout="horizontal"
+                                    />
+                                </FormControl>
+                                <FormMessage/>
+                            </FormItem>
+                        )}
+                    />
+                )}
+
+                {form.watch("applicantDescription") === "Entity" && form.watch("orgType") && (<>
+                    <h1 ref={orgSectionRef} className={"text-asi-blue text-left pt-10 text-lg font-bold md:text-xl"}>
+                        {form.watch("orgType")} Information
+                    </h1>
+                    <div className="space-y-5 bg-white p-5 rounded-2xl">
+                        <h1 className="font-medium text-asi-blue text-lg">Basic Details</h1>
+                        <FormField
+                            control={form.control}
+                            name="orgName"
+                            render={({field}) => (
+                                <FormItem>
+                                    <FormLabel>Name <span className="text-destructive">*</span></FormLabel>
+                                    <FormDescription>What is the name of your {form.watch("orgType")?.toLowerCase()}?</FormDescription>
+                                    <FormControl>
+                                        <Input placeholder="" className="" {...field} />
+                                    </FormControl>
+                                    <FormMessage/>
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="orgLegalName"
+                            render={({field}) => (
+                                <FormItem>
+                                    <FormLabel>Legal name</FormLabel>
+                                    <FormDescription>Full legal name of the {form.watch("orgType")?.toLowerCase()} (if registered)</FormDescription>
+                                    <FormControl>
+                                        <Input placeholder="" className="" {...field} />
+                                    </FormControl>
+                                    <FormMessage/>
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="orgDescription"
+                            render={({field}) => (
+                                <FormItem>
+                                    <FormLabel>Description <span className="text-destructive">*</span></FormLabel>
+                                    <FormDescription>Please briefly describe what your {form.watch("orgType")?.toLowerCase()} does</FormDescription>
+                                    <FormControl>
+                                        <Input placeholder="" {...field} />
+                                    </FormControl>
+                                    <FormMessage/>
+                                </FormItem>
+                            )}
+                        />
+                    </div>
+
+                    <div className="space-y-5 bg-white p-5 rounded-2xl">
+                        <h1 className="font-medium text-asi-blue text-lg">Contact Details</h1>
+
+                    <FormField
+                        control={form.control}
+                        name="orgAddress"
+                        render={({field}) => (
+                            <FormItem>
+                                <FormLabel>Address</FormLabel>
+                                <FormDescription>Legal registered address of your {form.watch("orgType")?.toLowerCase()}</FormDescription>
+                                <FormControl>
+                                    <Input placeholder="" {...field} />
+                                </FormControl>
+                                <FormMessage/>
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="orgPostalAddress"
+                        render={({field}) => (
+                            <FormItem>
+                                <FormLabel>Postal address</FormLabel>
+                                <FormDescription>If different from legal address</FormDescription>
+                                <FormControl>
+                                    <Input placeholder="" {...field} />
+                                </FormControl>
+                                <FormMessage/>
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="orgPhone"
+                        render={({field}) => (
+                            <FormItem>
+                                <FormLabel>Phone</FormLabel>
+                                <FormControl>
+                                    <Input placeholder="" {...field} />
+                                </FormControl>
+                                <FormMessage/>
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="orgEmail"
+                        render={({field}) => (
+                            <FormItem>
+                                <FormLabel>Email <span className="text-destructive">*</span></FormLabel>
+                                <FormControl>
+                                    <Input placeholder="" {...field} />
+                                </FormControl>
+                                <FormMessage/>
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="orgWebsite"
+                        render={({field}) => (
+                            <FormItem>
+                                <FormLabel>Website</FormLabel>
+                                <FormControl>
+                                    <Input placeholder="" {...field} />
+                                </FormControl>
+                                <FormMessage/>
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="orgSocialMedia"
+                        render={({field}) => (
+                            <FormItem>
+                                <FormLabel >Social media</FormLabel>
+                                <FormDescription>Social media links for your {form.watch("orgType")?.toLowerCase()} (Instagram, Facebook, etc.)</FormDescription>
+                                <FormControl>
+                                    <Input placeholder="" {...field} />
+                                </FormControl>
+                                <FormMessage/>
+                            </FormItem>
+                        )}
+                    />
+
+                    </div>
+
+                    <div className="space-y-5 bg-white p-5 rounded-2xl">
+                        <h1 className="font-medium text-asi-blue text-lg">Other Details</h1>
+
+                    <FormField
+                        control={form.control}
+                        name="orgEmployees"
+                        render={({field}) => (
+                            <FormItem>
+                                <FormLabel>Size of {form.watch("orgType")?.toLowerCase()} <span className="text-destructive">*</span></FormLabel>
+                                <FormDescription>How many employees are part of your {form.watch("orgType")?.toLowerCase()}, including yourself?</FormDescription>
+                                <FormControl>
+                                    <Input placeholder="" {...field} />
+                                </FormControl>
+                                <FormMessage/>
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="orgYearsInOperation"
+                        render={({field}) => (
+                            <FormItem>
+                                <FormLabel>Years in operation <span className="text-destructive">*</span></FormLabel>
+                                <FormDescription>How many years has your {form.watch("orgType")?.toLowerCase()} been in operation?</FormDescription>
+                                <FormControl>
+                                    <Input placeholder="" {...field} />
+                                </FormControl>
+                                <FormMessage/>
+                            </FormItem>
+                        )}
+                    />
+                    {form.watch("orgType") === "Organisation" && (<>
+                        <FormField
+                            control={form.control}
+                            name="orgK0505IsAgreed"
+                            render={({field}) => (
+                                <FormItem className={`py-2`}>
+                                    <div className="space-y-1 leading-none">
+                                        <FormLabel>
+                                            K 05 05 compliance <span className="text-destructive">*</span>
+                                        </FormLabel>
+                                        <FormDescription>
+                                            Does the individual who owns and/or operates a religious based organisation, self-supporting ministry, or mission comply with the Seventh-day Adventist Church’s <Link href="https://drive.google.com/file/d/1gK1xGvPzyqBMXh7iigm6kbCwn99E2xUQ/view" className="underline" target="_blank" rel="noopener noreferrer">K 05 05 Criteria for Defining Supporting Ministries</Link>?
+                                        </FormDescription>
+                                    </div>
+                                    <FormControl>
+                                        <RadioGroup
+                                            onValueChange={field.onChange}
+                                            defaultValue={field.value}
+                                            className="flex flex-col space-y-1"
+                                        >
+                                            <FormItem className="flex items-center space-x-3 space-y-0">
+                                                <FormControl>
+                                                    <RadioGroupItem value="all" />
+                                                </FormControl>
+                                                <FormLabel className="font-normal">
+                                                    Yes
+                                                </FormLabel>
+                                            </FormItem>
+                                            <FormItem className="flex items-center space-x-3 space-y-0">
+                                                <FormControl>
+                                                    <RadioGroupItem value="mentions" />
+                                                </FormControl>
+                                                <FormLabel className="font-normal">
+                                                    No
+                                                </FormLabel>
+                                            </FormItem>
+                                        </RadioGroup>
+                                    </FormControl>
+                                    <FormMessage/>
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="orgIsFundedByChurch"
+                            render={({field}) => (
+                                <FormItem className={`py-2`}>
+                                    <div className="space-y-1 leading-none">
+                                        <FormLabel>
+                                            Church funding <span className="text-destructive">*</span>
+                                        </FormLabel>
+                                        <FormDescription>
+                                            Does the individual who owns and/or operates a religious based organisation, self-supporting ministry, or mission receive a salary or any subsidies from an organisation owned and/or operated by the SDA Church?
+                                        </FormDescription>
+                                    </div>
+                                    <FormControl>
+                                        <RadioGroup
+                                            onValueChange={field.onChange}
+                                            defaultValue={field.value}
+                                            className="flex flex-col space-y-1"
+                                        >
+                                            <FormItem className="flex items-center space-x-3 space-y-0">
+                                                <FormControl>
+                                                    <RadioGroupItem value="all" />
+                                                </FormControl>
+                                                <FormLabel className="font-normal">
+                                                    Yes
+                                                </FormLabel>
+                                            </FormItem>
+                                            <FormItem className="flex items-center space-x-3 space-y-0">
+                                                <FormControl>
+                                                    <RadioGroupItem value="mentions" />
+                                                </FormControl>
+                                                <FormLabel className="font-normal">
+                                                    No
+                                                </FormLabel>
+                                            </FormItem>
+                                        </RadioGroup>
+                                    </FormControl>
+                                    <FormMessage/>
+                                </FormItem>
+                            )}
+                        />
+                    </>)}
+                    </div>
+                </>)}
+
+                {form.watch("applicantDescription") && form.watch("membershipType") && (form.watch("applicantDescription") === "Individual" || form.watch("orgType") ) && (<>
+
+                    <h1 ref={personalInfoSectionRef} className={"text-asi-blue text-left pt-10 text-lg font-bold md:text-xl"}>
+                        Personal Information
+                    </h1>
+
+                <div className="space-y-5 bg-white p-5 rounded-2xl">
+                    <h1 className="font-medium text-asi-blue text-lg">About You</h1>
+
                     <FormField
                         control={form.control}
                         name="title"
@@ -255,7 +722,7 @@ export function MembershipForm() {
                                 <FormItem>
                                     <FormLabel>First name(s) <span className="text-destructive">*</span></FormLabel>
                                     <FormControl>
-                                        <Input placeholder="Ellen Gould" className="" {...field} />
+                                        <Input placeholder="" className="" {...field} />
                                     </FormControl>
                                     <FormMessage/>
                                 </FormItem>
@@ -268,19 +735,36 @@ export function MembershipForm() {
                                 <FormItem>
                                     <FormLabel>Surname <span className="text-destructive">*</span></FormLabel>
                                     <FormControl>
-                                        <Input placeholder="White" {...field} />
+                                        <Input placeholder="" {...field} />
                                     </FormControl>
                                     <FormMessage/>
                                 </FormItem>
                             )}
                         />
                     </div>
+                    {form.watch("applicantDescription") === "Organisation" && (
+                        <FormField
+                            control={form.control}
+                            name="orgApplicantRole"
+                            render={({field}) => (
+                                <FormItem>
+                                    <FormLabel>Role within {form.watch("orgType")?.toLowerCase() || "organisation"} <span className="text-destructive">*</span></FormLabel>
+                                    <FormDescription>What is your personal role within {form.watch("orgName") || "the organisation you represent"}?</FormDescription>
+                                    <FormControl>
+                                        <Input placeholder="" {...field} />
+                                    </FormControl>
+                                    <FormMessage/>
+                                </FormItem>
+                            )}
+                        />
+                    )}
+
                     <FormField
                         control={form.control}
                         name="dateOfBirth"
                         render={({field}) => (
                             <FormItem>
-                                <FormLabel>Date of Birth <span className="text-destructive">*</span></FormLabel>
+                                <FormLabel>Date of birth <span className="text-destructive">*</span></FormLabel>
                                 <DateInput
                                     value={field.value}
                                     onChange={field.onChange}
@@ -295,9 +779,10 @@ export function MembershipForm() {
                         name="address"
                         render={({field}) => (
                             <FormItem>
-                                <FormLabel>Mailing Address</FormLabel>
+                                <FormLabel>Address</FormLabel>
+                                <FormDescription>Your postal address</FormDescription>
                                 <FormControl>
-                                    <Input placeholder="Please enter your mailing address" {...field} />
+                                    <Input placeholder="" {...field} />
                                 </FormControl>
                                 <FormMessage/>
                             </FormItem>
@@ -308,9 +793,9 @@ export function MembershipForm() {
                         name="phoneNumber"
                         render={({field}) => (
                             <FormItem>
-                                <FormLabel>Phone Number</FormLabel>
+                                <FormLabel>Phone</FormLabel>
                                 <FormControl>
-                                    <Input placeholder="Phone number" {...field} />
+                                    <Input placeholder="" {...field} />
                                 </FormControl>
                                 <FormMessage/>
                             </FormItem>
@@ -323,13 +808,31 @@ export function MembershipForm() {
                             <FormItem>
                                 <FormLabel>Email <span className="text-destructive">*</span></FormLabel>
                                 <FormControl>
-                                    <Input placeholder="Email address" {...field} />
+                                    <Input placeholder="" {...field} />
                                 </FormControl>
                                 <FormMessage/>
                             </FormItem>
                         )}
                     />
-                    <Button type="submit">Submit</Button> </>)}
+                    <FormField
+                        control={form.control}
+                        name="socialMedia"
+                        render={({field}) => (
+                            <FormItem>
+                                <FormLabel>Social media links </FormLabel>
+                                <FormDescription>Your personal social media profiles (LinkedIn, Instagram, Facebook, etc.)</FormDescription>
+                                <FormControl>
+                                    <Input placeholder="" {...field} />
+                                </FormControl>
+                                <FormMessage/>
+                            </FormItem>
+                        )}
+                    />
+                </div>
+                     </>)}
+                {form.watch("applicantDescription") && form.watch("membershipType") && (form.watch("applicantDescription") === "Individual" || form.watch("orgType")) && (
+                    <Button type="submit">Submit</Button>
+                )}
             </form>
         </Form>
     )
