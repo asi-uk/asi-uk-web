@@ -180,7 +180,32 @@ const formSchema = z.object({
         .string()
         .optional(),
 
+    isChurchMember: z.enum(["Yes", "No"], {
+        required_error: "Please select an option",
+    }),
 
+    isChurchEmployed: z.enum(["Yes", "No"], {
+        required_error: "Please select an option",
+    }),
+
+    localChurchName: z.string({required_error: "Please specify where your membership is held"}),
+
+    localChurchPastorName: z.string({required_error: "Please specify the name of your pastor"}),
+    localChurchPastorPhone: z
+        .string()
+        .optional()
+        .refine(
+            (val) => !val || /^(?:\+?\d{1,4}[\s-]?)?\(?(?:\d{1,}\)?[\s-]?){6,}$/.test(val),
+            "Please enter a valid phone number"
+        )
+        .refine(
+            (val) => !val || val.length >= 10,
+            "Phone number must be at least 10 digits"
+        )
+        .refine(
+            (val) => !val || val.length <= 17,
+            "Phone number must not exceed 15 digits"
+        ),
 
 });
 
@@ -613,7 +638,7 @@ export function MembershipForm() {
                                         >
                                             <FormItem className="flex items-center space-x-3 space-y-0">
                                                 <FormControl>
-                                                    <RadioGroupItem value="all" />
+                                                    <RadioGroupItem value="Yes" />
                                                 </FormControl>
                                                 <FormLabel className="font-normal">
                                                     Yes
@@ -621,7 +646,7 @@ export function MembershipForm() {
                                             </FormItem>
                                             <FormItem className="flex items-center space-x-3 space-y-0">
                                                 <FormControl>
-                                                    <RadioGroupItem value="mentions" />
+                                                    <RadioGroupItem value="No" />
                                                 </FormControl>
                                                 <FormLabel className="font-normal">
                                                     No
@@ -654,7 +679,7 @@ export function MembershipForm() {
                                         >
                                             <FormItem className="flex items-center space-x-3 space-y-0">
                                                 <FormControl>
-                                                    <RadioGroupItem value="all" />
+                                                    <RadioGroupItem value="Yes" />
                                                 </FormControl>
                                                 <FormLabel className="font-normal">
                                                     Yes
@@ -662,7 +687,7 @@ export function MembershipForm() {
                                             </FormItem>
                                             <FormItem className="flex items-center space-x-3 space-y-0">
                                                 <FormControl>
-                                                    <RadioGroupItem value="mentions" />
+                                                    <RadioGroupItem value="No" />
                                                 </FormControl>
                                                 <FormLabel className="font-normal">
                                                     No
@@ -828,7 +853,154 @@ export function MembershipForm() {
                         )}
                     />
                 </div>
-                     </>)}
+
+                    <div className="space-y-5 bg-white p-5 rounded-2xl">
+                        <h1 className="font-medium text-asi-blue text-lg">Church Affiliation</h1>
+
+                        <FormField
+                            control={form.control}
+                            name="isChurchMember"
+                            render={({field}) => (
+                                <FormItem className={`py-2`}>
+                                    <div className="space-y-1 leading-none">
+                                        <FormLabel>
+                                            Church membership <span className="text-destructive">*</span>
+                                        </FormLabel>
+                                        <FormDescription>
+                                            Are you a baptised member of the Seventh-day Adventist church?
+                                        </FormDescription>
+                                    </div>
+                                    <FormControl>
+                                        <RadioGroup
+                                            onValueChange={(value) => {
+
+                                                if (value === "No") {
+                                                    form.setValue("isChurchEmployed", undefined);
+                                                    form.setValue("localChurchName", "");
+                                                    form.setValue("localChurchPastorPhone", "");
+                                                    form.setValue("localChurchPastorName", "");
+                                                }
+
+                                                field.onChange(value);
+                                            }}
+                                            defaultValue={field.value}
+                                            className="flex flex-col space-y-1"
+                                        >
+                                            <FormItem className="flex items-center space-x-3 space-y-0">
+                                                <FormControl>
+                                                    <RadioGroupItem value="Yes"/>
+                                                </FormControl>
+                                                <FormLabel className="font-normal">
+                                                    Yes
+                                                </FormLabel>
+                                            </FormItem>
+                                            <FormItem className="flex items-center space-x-3 space-y-0">
+                                                <FormControl>
+                                                    <RadioGroupItem value="No"/>
+                                                </FormControl>
+                                                <FormLabel className="font-normal">
+                                                    No
+                                                </FormLabel>
+                                            </FormItem>
+                                        </RadioGroup>
+                                    </FormControl>
+                                    <FormMessage/>
+                                </FormItem>
+                            )}
+                        />
+
+                        {form.watch("isChurchMember") === "Yes" && (
+                            <FormField
+                                control={form.control}
+                                name="isChurchEmployed"
+                                render={({field}) => (
+                                    <FormItem className={`py-2`}>
+                                        <div className="space-y-1 leading-none">
+                                            <FormLabel>
+                                                Church employment <span className="text-destructive">*</span>
+                                            </FormLabel>
+                                            <FormDescription>
+                                                Are you employed by the Seventh-day Adventist church or by any organisation owned or substantially controlled by the Seventh-day Adventist church?
+                                            </FormDescription>
+                                        </div>
+                                        <FormControl>
+                                            <RadioGroup
+                                                onValueChange={field.onChange}
+                                                defaultValue={field.value}
+                                                className="flex flex-col space-y-1"
+                                            >
+                                                <FormItem className="flex items-center space-x-3 space-y-0">
+                                                    <FormControl>
+                                                        <RadioGroupItem value="Yes"/>
+                                                    </FormControl>
+                                                    <FormLabel className="font-normal">
+                                                        Yes
+                                                    </FormLabel>
+                                                </FormItem>
+                                                <FormItem className="flex items-center space-x-3 space-y-0">
+                                                    <FormControl>
+                                                        <RadioGroupItem value="No"/>
+                                                    </FormControl>
+                                                    <FormLabel className="font-normal">
+                                                        No
+                                                    </FormLabel>
+                                                </FormItem>
+                                            </RadioGroup>
+                                        </FormControl>
+                                        <FormMessage/>
+                                    </FormItem>
+                                )}
+                            />
+                        )}
+
+                        {form.watch("isChurchMember") === "Yes" && form.watch("isChurchEmployed") === "No" && (<>
+                            <FormField
+                                control={form.control}
+                                name="localChurchName"
+                                render={({field}) => (
+                                    <FormItem>
+                                        <FormLabel>Local church name <span
+                                            className="text-destructive">*</span></FormLabel>
+                                        <FormDescription>What is the name of the local church where your membership is held?</FormDescription>
+                                        <FormControl>
+                                            <Input placeholder="" {...field} />
+                                        </FormControl>
+                                        <FormMessage/>
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="localChurchPastorName"
+                                render={({field}) => (
+                                    <FormItem>
+                                        <FormLabel>Pastor's name <span className="text-destructive">*</span></FormLabel>
+                                        <FormDescription>What is the name of your local church pastor?</FormDescription>
+                                        <FormControl>
+                                            <Input placeholder="" {...field} />
+                                        </FormControl>
+                                        <FormMessage/>
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="localChurchPastorPhone"
+                                render={({field}) => (
+                                    <FormItem>
+                                        <FormLabel>Pastor's phone <span className="text-destructive">*</span></FormLabel>
+                                        <FormDescription>Please provide the phone number of your pastor</FormDescription>
+                                        <FormControl>
+                                            <Input placeholder="" {...field} />
+                                        </FormControl>
+                                        <FormMessage/>
+                                    </FormItem>
+                                )}
+                            />
+                            </>
+                        )}
+                    </div>
+                </>)}
                 {form.watch("applicantDescription") && form.watch("membershipType") && (form.watch("applicantDescription") === "Individual" || form.watch("orgType")) && (
                     <Button type="submit">Submit</Button>
                 )}
