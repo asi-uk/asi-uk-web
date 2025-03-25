@@ -89,8 +89,7 @@ export default function Convention() {
                         </a>
                     </div>
                     <p>Join ASI UK for our first major event on Sabbath, June 21, 2025, featuring renowned speaker
-                        Johnny Wong, who will share powerful insights on evangelism in today's world. ASI USA
-                        President Andi Hunsaker will also be in attendance. As part of the Adventist-laymen's
+                        Johnny Wong, who will share powerful insights on evangelism in today's world. As part of the Adventist-laymen's
                         Services and Industries network, we're bringing together professionals, entrepreneurs, and
                         ministry leaders who are passionate about sharing Christ through their business and
                         professional lives.</p>
