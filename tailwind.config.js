@@ -14,6 +14,8 @@ module.exports = {
   		colors: {
   			asi: {
   				blue: '#223f99',
+				darkBlue: '#000e66',
+				extraDarkBlue: '#00062e',
   				grey: '#939598'
   			},
   			background: 'hsl(var(--background))',
