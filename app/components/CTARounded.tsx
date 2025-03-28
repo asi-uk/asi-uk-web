@@ -30,7 +30,7 @@ const CTARounded: React.FC<CTARoundedProps> = ({
         }) => {
     return (
         <div
-            className={`group bg-slate-50 transition duration-300 ease-out hover:bg-slate-100 rounded-2xl p-5 ${containerClass}`}>
+            className={`group bg-white transition duration-300 ease-out hover:bg-slate-100 rounded-2xl p-5 ${containerClass}`}>
             <Link target={target} href={href} rel={rel} className="text-center">
                 <div>
                     <div className="flex justify-center">
