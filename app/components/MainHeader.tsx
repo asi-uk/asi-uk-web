@@ -17,7 +17,7 @@ const MainHeader: React.FC = () => {
         <div>
             {/* Fixed navigation section */}
             <div className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm border-b">
-                <div className="container mx-auto px-4 py-2 flex items-center">
+                <div className="container mx-auto px-5 py-3 flex items-center justify-between max-w-5xl">
                     <div className="flex items-center mr-6">
                         <Image
                             src="/asiLogo.svg"
@@ -55,7 +55,7 @@ const MainHeader: React.FC = () => {
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link href="#" passHref legacyBehavior>
+                                            <Link href="/leadership" passHref legacyBehavior>
                                                 <NavigationMenuLink className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
                                                     <div className="text-sm font-medium leading-none">Leadership</div>
                                                     <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
@@ -65,11 +65,21 @@ const MainHeader: React.FC = () => {
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link href="#" passHref legacyBehavior>
+                                            <Link href="/constitution" passHref legacyBehavior>
                                                 <NavigationMenuLink className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
                                                     <div className="text-sm font-medium leading-none">Constitution</div>
                                                     <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
                                                         Governing document of ASI UK
+                                                    </p>
+                                                </NavigationMenuLink>
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link href="/contact-us" passHref legacyBehavior>
+                                                <NavigationMenuLink className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                                                    <div className="text-sm font-medium leading-none">Contact Us</div>
+                                                    <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                                                        Get in touch with ASI UK
                                                     </p>
                                                 </NavigationMenuLink>
                                             </Link>
@@ -84,21 +94,23 @@ const MainHeader: React.FC = () => {
                                 <NavigationMenuContent>
                                     <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
                                         <li>
-                                            <Link href="#" passHref legacyBehavior>
+                                            <Link href="/membership" passHref legacyBehavior>
                                                 <NavigationMenuLink className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
                                                     <div className="text-sm font-medium leading-none">Membership Information</div>
                                                     <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                                                        Learn more about the history and mission of ASI
+                                                        Learn how you can join the mission of sharing Christ in the marketplace
                                                     </p>
                                                 </NavigationMenuLink>
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link href="#" passHref legacyBehavior>
+                                            <Link href={"https://forms.gle/WYLiMMsVrP8qjYdj6"}
+                                                  target="_blank"
+                                                  rel="noopener noreferrer">
                                                 <NavigationMenuLink className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                                                    <div className="text-sm font-medium leading-none">Apply to be an ASI Member</div>
+                                                    <div className="text-sm font-medium leading-none">Apply to be an ASI member</div>
                                                     <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                                                        Executive Committee and leadership team
+                                                        Application form to join as a member of ASI UK
                                                     </p>
                                                 </NavigationMenuLink>
                                             </Link>
@@ -130,7 +142,7 @@ const MainHeader: React.FC = () => {
             </div>
 
             {/* This pushes content below the fixed navigation */}
-            <div className="h-20"></div>
+            <div className="h-32"></div>
         </div>
     );
 };
