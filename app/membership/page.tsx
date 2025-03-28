@@ -6,7 +6,7 @@ import {Heading1, Heading2, Heading3, Heading4} from "@/app/components/Headings"
 import {MembershipFormButton} from "@/app/components/MembershipFormButton";
 
 export const metadata = {
-  title: "ASI UK | Join",
+  title: "ASI UK | Membership",
   description:
       "Join the UK chapter of Adventist-laymen's Services and Industries",
   keywords: [
@@ -22,9 +22,9 @@ export const metadata = {
     "ministries",
   ],
   openGraph: {
-    url: "https://asiuk.org/join",
+    url: "https://asiuk.org/membership",
     type: "website",
-    title: "ASI UK | Join",
+    title: "ASI UK | Membership",
     description:
         "Apply to be a member of ASI UK",
     images: [
@@ -38,7 +38,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "ASI UK | Join",
+    title: "ASI UK | Membership",
     description:
         "Apply to be a member of ASI UK",
     images: [
@@ -52,14 +52,13 @@ export const metadata = {
   },
 }
 
-export default function About() {
+export default function Membership() {
   return (
   <div className="flex items-center justify-center w-screen">
     <div className="max-w-screen-md mx-auto">
-    <MainHeader />
       <div className="text-left p-5">
 
-      <Heading1 text={"Join"}/>
+      <Heading1 text={"Membership"}/>
       <p>The ASI UK team welcomes your interest in joining our organisation. Established officially in 1947, ASI’s ideals date back to the 19th century. We are a group of dedicated individuals using our talents in service to God to make a positive impact in our community. If you wish to become a member, please complete this application form and be prepared to share CHRIST’S MESSAGE IN YOUR MARKETPLACE.</p>
 
       <MembershipFormButton />

@@ -56,7 +56,6 @@ export default function Convention() {
     return (
         <div className="flex items-center justify-center w-screen">
             <div className="max-w-screen-md mx-auto">
-                <MainHeader/>
                 <div className="text-left p-5">
                     <Heading1 text={"Convention 2025"}/>
                     <div className="grid grid-cols-2 gap-5 my-5">
