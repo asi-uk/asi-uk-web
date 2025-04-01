@@ -10,7 +10,7 @@ export default function ContactUs() {
     return (
         <div className="flex flex-col min-h-screen">
             <main className="flex-grow">
-                <div className="max-w-screen-md mx-auto">
+                <div className="max-w-screen-md mx-auto px-8">
                     <div className="text-left mb-12">
                         <Heading1 text={"Contact Us"}/>
                         <p className="mt-4 text-lg text-gray-600 mx-auto">
