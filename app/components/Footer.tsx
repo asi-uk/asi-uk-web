@@ -67,25 +67,25 @@ const Footer: React.FC<FooterProps> = ({
 
                     {/* Quick links */}
                     <div>
-                        <h3 className="text-xl font-bold mb-4">Quick Links</h3>
-                        <ul className="space-y-2">
+                        <h3 className="text-lg md:text-xl font-bold mb-4">Quick Links</h3>
+                        <ul className="space-y-2 text-sm md:text-base">
                             <li>
                                 <Link href="/" className="text-gray-400 hover:text-white transition-colors">
                                     Home
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/about" className="text-gray-400 hover:text-white transition-colors">
+                                <Link href="/convention" className="text-gray-400 hover:text-white transition-colors">
                                     Convention
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/services" className="text-gray-400 hover:text-white transition-colors">
+                                <Link href="/projects" className="text-gray-400 hover:text-white transition-colors">
                                     Projects
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/portfolio" className="text-gray-400 hover:text-white transition-colors">
+                                <Link href="/membership" className="text-gray-400 hover:text-white transition-colors">
                                     Membership
                                 </Link>
                             </li>
@@ -94,25 +94,25 @@ const Footer: React.FC<FooterProps> = ({
 
                     {/* Services */}
                     <div>
-                        <h3 className="text-xl font-bold mb-4">About</h3>
-                        <ul className="space-y-2">
+                        <h3 className="text-lg md:text-xl font-bold mb-4">About</h3>
+                        <ul className="space-y-2 text-sm md:text-base">
                             <li>
-                                <Link href="/services/web-development" className="text-gray-400 hover:text-white transition-colors">
+                                <Link href="/about" className="text-gray-400 hover:text-white transition-colors">
                                     About ASI
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/services/mobile-apps" className="text-gray-400 hover:text-white transition-colors">
+                                <Link href="/leadership" className="text-gray-400 hover:text-white transition-colors">
                                     Leadership
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/services/ui-ux-design" className="text-gray-400 hover:text-white transition-colors">
+                                <Link href="/constitution" className="text-gray-400 hover:text-white transition-colors">
                                     Constitution
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/services/consulting" className="text-gray-400 hover:text-white transition-colors">
+                                <Link href="/contact-us" className="text-gray-400 hover:text-white transition-colors">
                                     Contact Us
                                 </Link>
                             </li>
@@ -121,8 +121,8 @@ const Footer: React.FC<FooterProps> = ({
 
                     {/* Contact info */}
                     <div>
-                        <h3 className="text-xl font-bold mb-4">Contact Info</h3>
-                        <ul className="space-y-4">
+                        <h3 className="text-lg md:text-xl font-bold mb-4">Contact Info</h3>
+                        <ul className="space-y-4 text-sm md:text-base">
                 {/*            <li className="flex items-start">*/}
                 {/*                <MapPin className="mr-2 h-5 w-5 text-gray-400 flex-shrink-0 mt-0.5" />*/}
                 {/*                <span className="text-gray-400">*/}
