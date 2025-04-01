@@ -324,7 +324,7 @@ const MainHeader: React.FC = () => {
             </div>
 
             {/* This pushes content below the fixed navigation */}
-            <div className="h-16 md:h-32"></div>
+            <div className="h-16 md:h-32 mb-10"></div>
         </div>
     );
 };
