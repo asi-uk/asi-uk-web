@@ -74,7 +74,7 @@ export default function Home() {
             <ParallaxBackground/>
 
             {/* First Section - Full height with Carousel */}
-            <section className="relative z-20 flex items-center justify-center w-full my-10 md:my-16 md:mb-36 px-4 md:py-0">
+            <section className="relative z-20 flex items-center justify-center w-full my-10 md:my-8 md:mb-36 px-4 md:py-0">
                 <div
                     className="w-full max-w-3xl mx-auto flex flex-col gap-6 md:gap-10 bg-asi-darkBlue/80 rounded-2xl backdrop-blur-md p-6 md:px-10 shadow">
                     {/* Top row with logo and countdown side by side */}
