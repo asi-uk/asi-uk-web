@@ -29,7 +29,7 @@ export default function Leadership() {
                             name="Karlene Agard"
                             title="Vice President"
                             email="karlene@asiuk.org"
-                            bio={`Karlene Agard is the VP of ASI UK, she is on the team for Envision Youth Conference and has founded a women's ministry, Ladies Lounge UK, that helps Christian women understand their worth in Christ and to pursue excellence in all areas of life.\n\nKarlene Agard is also an award-winning mega-project expert who consults and speaks at conferences internationally. She has written for Forbes, McKinsey, and Deloitte.\n\nShe has completed an Executive Masters in Major Program Management at the University of Oxford, Saïd Business School and now deliver project management training at the University of Oxford. Karlene is a Senior Consultant at ARAVUN and Oxford Global Projects, leading consulting engagements for government and private projects internationally.`}
+                            bio={`Karlene Agard is the VP of ASI UK, she is on the team for Envision Youth Conference and has founded a women's ministry, Ladies Lounge UK, that helps Christian women understand their worth in Christ and to pursue excellence in all areas of life.\n\nKarlene is also an award-winning mega-project expert who consults and speaks at conferences internationally. She  has completed an Executive Masters in Major Program Management at the University of Oxford, Saïd Business School.\n\nKarlene enjoys ice skating, running, sewing, reading and travelling.`}
                         />
 
                         <Profile
