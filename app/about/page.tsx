@@ -49,7 +49,7 @@ export default function About() {
                     <CTARounded
                         heading={"Join"}
                         subheading={"Join the movement of Adventist lay professionals in the UK"}
-                        href={"/join"}
+                        href={"/membership"}
                         containerClass="my-8"
                     />
 
