@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import {
     Sheet,
-    SheetContent,
+    SheetContent, SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet";
 import {
@@ -25,6 +25,7 @@ import {
 } from "@/components/ui/accordion";
 import {Home, Calendar, Hammer, Info, Merge, Menu} from "lucide-react";
 import {Button} from "@/components/ui/button";
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 
 const MainHeader: React.FC = () => {
     const [open, setOpen] = useState(false);
@@ -57,27 +58,31 @@ const MainHeader: React.FC = () => {
                     <div className="w-8 h-8 md:w-auto md:h-auto z-10">
                         {/* Desktop logo - visible only on md+ screens */}
                         <div className="hidden md:block">
-                            <Image
-                                src="/asiLogo.svg"
-                                alt="ASI Logo"
-                                width={120}
-                                height={120}
-                                priority
-                                className="h-[80px] object-contain"
-                            />
+                            <Link href="/">
+                                <Image
+                                    src="/asiLogo.svg"
+                                    alt="ASI Logo"
+                                    width={120}
+                                    height={120}
+                                    priority
+                                    className="h-[80px] object-contain cursor-pointer"
+                                />
+                            </Link>
                         </div>
                     </div>
 
                     {/* Centered logo for mobile */}
                     <div className="absolute left-0 right-0 mx-auto flex justify-center md:hidden">
-                        <Image
-                            src="/asiLogo.svg"
-                            alt="ASI Logo"
-                            width={80}
-                            height={80}
-                            priority
-                            className="h-[60px] object-contain"
-                        />
+                        <Link href="/">
+                            <Image
+                                src="/asiLogo.svg"
+                                alt="ASI Logo"
+                                width={80}
+                                height={80}
+                                priority
+                                className="h-[60px] object-contain cursor-pointer"
+                            />
+                        </Link>
                     </div>
 
                     <div className="flex items-center z-10">
@@ -228,6 +233,11 @@ const MainHeader: React.FC = () => {
                                     </Button>
                                 </SheetTrigger>
                                 <SheetContent side="right" className="w-[280px] sm:max-w-xs p-0">
+                                    <VisuallyHidden>
+                                        <SheetTitle>
+                                            Menu
+                                        </SheetTitle>
+                                    </VisuallyHidden>
                                     <div className="flex flex-col h-full py-4">
                                         <div className="px-4 py-2 border-b">
                                             <h2 className="text-lg font-semibold">Menu</h2>
@@ -239,7 +249,7 @@ const MainHeader: React.FC = () => {
                                             <Accordion type="single" collapsible className="w-full">
                                                 <AccordionItem value="about" className="border-b-0">
                                                     <AccordionTrigger
-                                                        className="py-2 px-3 text-sm rounded-md hover:bg-accent">
+                                                        className="py-2 px-3 text-sm font-normal rounded-md hover:bg-accent">
                                                         <div className="flex items-center">
                                                             <Info className="h-4 w-4 mr-2"/>
                                                             About
@@ -272,7 +282,7 @@ const MainHeader: React.FC = () => {
 
                                                 <AccordionItem value="join" className="border-b-0">
                                                     <AccordionTrigger
-                                                        className="py-2 px-3 text-sm rounded-md hover:bg-accent">
+                                                        className="py-2 px-3 text-sm font-normal rounded-md hover:bg-accent">
                                                         <div className="flex items-center">
                                                             <Merge className="h-4 w-4 mr-2"/>
                                                             Join
