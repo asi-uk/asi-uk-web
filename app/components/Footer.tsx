@@ -29,7 +29,7 @@ const Footer: React.FC<FooterProps> = ({
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer className="bg-gray-900 text-white relative z-50">
+        <footer className="bg-gray-900 text-white relative z-40">
             <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                 {/* Top section with columns */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
