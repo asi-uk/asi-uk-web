@@ -103,8 +103,8 @@ export default function Convention() {
                     </ul>
 
                     <p className={`font-bold my-5`}>ASI UK Members: £15<br/>
-                        Early Bird Tickets: £25 (Limited time offer)<br/>
-                        Standard Tickets: £40 (from April)</p>
+                        Early Bird Tickets: £25 (Limited time offer until 30th April)<br/>
+                        Standard Tickets: £40</p>
 
                     <p>Don't miss this chance to be part of ASI UK's growing community of business leaders and
                         professionals dedicated to sharing Christ's message through their work.</p>
