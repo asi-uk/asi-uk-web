@@ -15,7 +15,7 @@ import {
     PoundSterling,
     Hammer,
     Info,
-    Merge, Users, Coffee, Presentation, TrendingUp
+    Merge, Users, Coffee, Presentation, TrendingUp, Heading1
 } from 'lucide-react';
 import {
     NavigationMenu,
@@ -59,9 +59,9 @@ export default function Home() {
             <ParallaxBackground/>
 
             {/* First Section - Full height with Carousel */}
-            <section className="relative z-20 flex items-center justify-center w-full md:my-16">
+            <section className="relative z-20 flex items-center justify-center w-full my-10 md:my-16 md:mb-36 px-4 md:py-0">
                 <div
-                    className="w-full max-w-3xl mx-auto flex flex-col gap-6 md:gap-10 bg-asi-darkBlue/80 md:rounded-2xl backdrop-blur-md p-6 md:px-10 shadow">
+                    className="w-full max-w-3xl mx-auto flex flex-col gap-6 md:gap-10 bg-asi-darkBlue/80 rounded-2xl backdrop-blur-md p-6 md:px-10 shadow">
                     {/* Top row with logo and countdown side by side */}
                     <div className="flex flex-col md:flex-row items-center justify-between w-full gap-6">
                         {/* Logo */}
@@ -125,15 +125,15 @@ export default function Home() {
                             <h3 className="text-lg font-normal text-white mb-3 text-center">Why Attend?</h3>
                             <ul className="space-y-3 text-white font-light text-sm">
                                 <li className="flex items-start">
-                                    <Lightbulb className="h-4 w-4 text-white mr-2 mt-1" />
+                                    <Lightbulb className="h-4 w-4 text-white mr-2 mt-1"/>
                                     <span>Learn practical approaches to marketplace evangelism</span>
                                 </li>
                                 <li className="flex items-start">
-                                    <Users className="h-4 w-4 text-white mr-2 mt-1" />
+                                    <Users className="h-4 w-4 text-white mr-2 mt-1"/>
                                     <span>Connect with fellow Christian professionals</span>
                                 </li>
                                 <li className="flex items-start">
-                                    <Coffee className="h-4 w-4 text-white mr-2 mt-1" />
+                                    <Coffee className="h-4 w-4 text-white mr-2 mt-1"/>
                                     <span>Enjoy fellowship over a provided lunch and refreshments</span>
                                 </li>
                             </ul>
@@ -183,50 +183,89 @@ export default function Home() {
                             href="/convention"
                             className="bg-asi-blue hover:bg-blue-700 text-white py-2 px-8 rounded-lg inline-block font-medium transition-colors duration-200"
                         >
-                            Learn More
+                            Convention Information
                         </Link>
                     </div>
                 </div>
             </section>
 
-            {/* Second Section - Below the viewport on initial load */}
+            {/* Combined Section with Project Funding and Membership */}
             <section className="relative z-20 w-full bg-white/90 backdrop-blur-md">
-                <div className="w-full max-w-5xl mx-auto px-12 py-12 md:py-16 md:px-4">
-                    <div className="flex items-center mb-4 md:mb-6">
-                        <Hammer className="mr-2 h-5 w-5 md:h-6 md:w-6 text-asi-blue"/>
-                        <h2 className="text-2xl md:text-3xl text-asi-blue font-bold leading-none">Project Funding</h2>
+                <div className="w-full max-w-5xl mx-auto flex flex-col md:flex-row px-4 py-12 md:py-16">
+                    {/* Project Funding Column */}
+                    <div className="w-full md:w-1/2 md:pr-8 pb-8 md:pb-0 flex flex-col items-center text-center">
+                        <div className="flex items-center mb-4 md:mb-6">
+                            <Hammer className="mr-2 h-5 w-5 md:h-6 md:w-6 text-asi-blue"/>
+                            <h2 className="text-2xl md:text-3xl text-asi-blue font-bold leading-none">Project
+                                Funding</h2>
+                        </div>
+                        <p className="text-sm text-left md:text-base mb-4 max-w-md flex-grow">
+                            Do you have a ministry or evangelistic project that needs support? ASI UK has a project
+                            funding
+                            programme designed specifically to financially support laypeople with a passion for
+                            ministry.
+                            The 2025 ASI UK project funding application process is now open.
+                        </p>
+                        <div className="mt-auto">
+                            <Link
+                                href="/projects"
+                                className="bg-asi-blue hover:bg-blue-700 text-white py-2 px-4 rounded inline-block"
+                            >
+                                Project Application Information
+                            </Link>
+                        </div>
                     </div>
-                    <p className="text-sm md:text-base mb-4">
-                        Do you have a ministry or evangelistic project that needs support? ASI UK has a project funding
-                        programme designed specifically to financially support laypeople with a passion for ministry.
-                        The 2025 ASI UK project funding application process is now open.
-                    </p>
-                    <Link
-                        href="/projects"
-                        className="bg-asi-blue hover:bg-blue-700 text-white py-2 px-4 rounded mt-2 md:mt-4 inline-block"
-                    >
-                        Project Application Information
-                    </Link>
+
+                    {/* Vertical divider (visible only on md screens and up) */}
+                    <div className="hidden md:block h-auto w-px bg-asi-blue/20 self-stretch"></div>
+
+                    {/* Horizontal divider (visible only on mobile) */}
+                    <div className="md:hidden w-full h-px bg-asi-blue/20 mb-8"></div>
+
+                    {/* Membership Column */}
+                    <div className="w-full md:w-1/2 md:pl-8 flex flex-col items-center text-center">
+                        <div className="flex items-center mb-4 md:mb-6">
+                            <Merge className="mr-2 h-5 w-5 md:h-6 md:w-6 text-asi-blue"/>
+                            <h2 className="text-2xl md:text-3xl text-asi-blue font-bold leading-none">Join ASI</h2>
+                        </div>
+                        <p className="text-sm text-left md:text-base mb-4 max-w-md flex-grow">
+                            Are you an Adventist professional, entrepreneur, or ministry leader with a desire to spread
+                            the love of Christ in your sphere of influence? ASI UK is designed specifically for you.
+                        </p>
+                        <div className="mt-auto">
+                            <Link
+                                href="/membership"
+                                className="bg-asi-blue hover:bg-blue-700 text-white py-2 px-4 rounded inline-block"
+                            >
+                                Membership Information
+                            </Link>
+                        </div>
+                    </div>
                 </div>
             </section>
 
-            {/* Third Section - Even further down */}
-            <section className="relative z-20 flex items-center justify-center w-full my-20 md:my-40 px-4">
+            <section className="relative z-20 flex items-center justify-center w-full my-10 md:my-36 px-4 md:py-0">
                 <div
-                    className="w-full max-w-3xl mx-auto bg-white/80 rounded-2xl backdrop-blur-md p-6 md:p-10 shadow">
-                    <h2 className="text-2xl md:text-3xl text-asi-blue font-bold mb-4 md:mb-6">Apply for Membership</h2>
-                    <p className="text-sm md:text-base mb-4">
-                        Are you an Adventist professional, entrepreneur, or ministry leader with a desire to spread
-                        the love of Christ in your sphere of influence? ASI UK is designed specifically for you.
-                    </p>
-                    <Link
-                        href="/membership"
-                        className="bg-asi-blue hover:bg-blue-700 text-white py-2 px-4 rounded mt-2 md:mt-4 inline-block"
+                    className="w-full max-w-3xl mx-auto flex flex-col gap-6 md:gap-10 bg-white/90 rounded-2xl backdrop-blur-md p-6 md:px-10 shadow">
+
+                    <div className="flex items-center">
+                        {/*<Info className="mr-2 h-5 w-5 md:h-6 md:w-6 text-asi-blue"/>*/}
+                        <h2 className="text-2xl md:text-3xl text-asi-blue font-bold leading-none">About ASI</h2>
+                    </div>
+
+                    <p className={""}>Adventist-laymen's Services and Industries (ASI) is a dynamic organization that unites Seventh-day Adventist business owners, professionals, and supporting ministries in a shared mission. The organization is dedicated to supporting the Seventh-day Adventist Church through a unique approach that integrates faith with professional life.</p>
+
+                    {/* Call to Action Button in its own row */}
+                    <div className="flex justify-center mt-2">
+                        <Link
+                            href="/about"
+                            className="bg-asi-blue hover:bg-blue-700 text-white py-2 px-8 rounded-lg inline-block font-medium transition-colors duration-200"
                     >
-                        Membership Information
+                        Learn More
                     </Link>
                 </div>
-            </section>
         </div>
-    )
+</section>
+</div>
+)
 }
