@@ -14,8 +14,8 @@ module.exports = {
   		colors: {
   			asi: {
   				blue: '#223f99',
-				darkBlue: '#000e66',
-				extraDarkBlue: '#00062e',
+  				darkBlue: '#000e66',
+  				extraDarkBlue: '#00062e',
   				grey: '#939598'
   			},
   			background: 'hsl(var(--background))',
@@ -63,6 +63,28 @@ module.exports = {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
+  		},
+  		keyframes: {
+  			'accordion-down': {
+  				from: {
+  					height: '0'
+  				},
+  				to: {
+  					height: 'var(--radix-accordion-content-height)'
+  				}
+  			},
+  			'accordion-up': {
+  				from: {
+  					height: 'var(--radix-accordion-content-height)'
+  				},
+  				to: {
+  					height: '0'
+  				}
+  			}
+  		},
+  		animation: {
+  			'accordion-down': 'accordion-down 0.2s ease-out',
+  			'accordion-up': 'accordion-up 0.2s ease-out'
   		}
   	},
   	container: {
