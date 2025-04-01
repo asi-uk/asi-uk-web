@@ -26,7 +26,7 @@ import {
     NavigationMenuTrigger,
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
-import React from "react";
+import React, {useState, useEffect} from "react";
 import MainHeader from "@/app/components/MainHeader";
 import Footer from "@/app/components/Footer";
 import CountdownTimer from "@/app/components/CountdownTimer";
@@ -35,6 +35,21 @@ import CountdownTimer from "@/app/components/CountdownTimer";
 // This is a client component so we've removed the metadata export
 
 const ParallaxBackground = () => {
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        // Check if we're on mobile
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+
+        // Run on mount and when window resizes
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
     return (
         <>
             {/* Fixed Background Image with Parallax Effect */}
@@ -42,7 +57,7 @@ const ParallaxBackground = () => {
                 className="fixed top-0 left-0 w-full h-full bg-cover bg-center bg-no-repeat z-0"
                 style={{
                     backgroundImage: "url('https://res.cloudinary.com/disrkguox/image/upload/w_1920/v1742976209/sam-knight-jhpL88kP7Y8-unsplash_rvxhux.jpg')",
-                    backgroundAttachment: "fixed" // This creates the parallax effect
+                    backgroundAttachment: isMobile ? "scroll" : "fixed" // Use scroll on mobile
                 }}
             />
 
