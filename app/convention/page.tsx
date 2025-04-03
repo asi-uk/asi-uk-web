@@ -56,7 +56,6 @@ export default function Convention() {
     return (
         <div className="flex items-center justify-center w-screen">
             <div className="max-w-screen-md mx-auto">
-                <MainHeader/>
                 <div className="text-left p-5">
                     <Heading1 text={"Convention 2025"}/>
                     <div className="grid grid-cols-2 gap-5 my-5">
@@ -103,8 +102,8 @@ export default function Convention() {
                     </ul>
 
                     <p className={`font-bold my-5`}>ASI UK Members: £15<br/>
-                        Early Bird Tickets: £25 (Limited time offer)<br/>
-                        Standard Tickets: £40 (from April)</p>
+                        Early Bird Tickets: £25 (Limited time offer until 30th April)<br/>
+                        Standard Tickets: £40</p>
 
                     <p>Don't miss this chance to be part of ASI UK's growing community of business leaders and
                         professionals dedicated to sharing Christ's message through their work.</p>

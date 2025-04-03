@@ -56,7 +56,6 @@ const Constitution: NextPage = () => {
   return (
   <div className="flex items-center justify-center w-screen">
     <div className="max-w-screen-md mx-auto">
-    <MainHeader />
       <div className={`text-left p-5`}>
         
       <h1 className="text-asi-blue text-3xl md:text-4xl font-bold mb-6">Constitution</h1>

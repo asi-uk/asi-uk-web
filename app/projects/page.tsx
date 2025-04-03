@@ -60,11 +60,10 @@ export default function Projects() {
     return (
         <div className="flex items-center justify-center w-screen">
             <div className="max-w-screen-md mx-auto">
-                <MainHeader />
                 <div className="text-left p-5">
 
                     <Heading1 text={"Project Funding"} />
-                    <p>The 2025 ASI UK project application cycle is now open. Check in on this page for updates regarding application deadlines and more.</p>
+                    <p>The 2025 ASI UK project application cycle is now open. The project funding application deadline is the <span className={"font-bold"}>15th of May</span></p>
 
                     <div className="bg-slate-50 rounded-2xl p-5 my-5 mb-10 flex flex-col items-center">
                         <span className={`text-xl text-asi-blue font-bold`}>Application Forms</span>
