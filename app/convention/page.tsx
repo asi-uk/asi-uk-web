@@ -239,7 +239,7 @@ export default function Convention() {
                                             <div className="w-full md:w-1/3 flex justify-center">
                                                 <div className="relative aspect-[3/4] w-full max-w-[200px] shadow-md rounded-md overflow-hidden">
                                                     <Image
-                                                        src="https://res.cloudinary.com/disrkguox/image/upload/v1743022100/IMG_3649_sir8gj.jpg"
+                                                        src="https://res.cloudinary.com/disrkguox/image/upload/w_300/v1746474986/ASI-Convention-Poster_v2_oyccfb.jpg"
                                                         alt="ASI UK Convention Poster Preview"
                                                         width={500}
                                                         height={650}
@@ -255,7 +255,7 @@ export default function Convention() {
                                                 </p>
                                                 <div className="flex flex-wrap gap-3 mt-auto">
                                                     <a
-                                                        href="https://res.cloudinary.com/disrkguox/image/upload/v1743022100/ASI-Convention_nx9usl.pdf"
+                                                        href="https://res.cloudinary.com/disrkguox/image/upload/v1746474988/ASI-Convention-Poster_v2_droqoo.pdf"
                                                         target="_blank"
                                                         className="bg-asi-blue/10 hover:bg-asi-blue/20 text-asi-blue py-2 px-4 rounded flex items-center gap-2 transition-colors"
                                                     >
