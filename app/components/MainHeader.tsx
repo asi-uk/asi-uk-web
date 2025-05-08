@@ -47,7 +47,7 @@ const MainHeader: React.FC = () => {
     );
 
     return (
-        <div className="w-full">
+        <div className="w-full print:hidden">
             {/* Fixed navigation section with positioned dropdowns */}
             <div style={{position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50}}
                  className="bg-white shadow-sm border-b w-full">
