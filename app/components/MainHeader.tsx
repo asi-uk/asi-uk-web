@@ -23,7 +23,7 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion";
-import {Home, Calendar, Hammer, Info, Merge, Menu} from "lucide-react";
+import {Home, Calendar, Hammer, Info, Merge, Menu, Heart} from "lucide-react";
 import {Button} from "@/components/ui/button";
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 
@@ -85,7 +85,7 @@ const MainHeader: React.FC = () => {
                         </Link>
                     </div>
 
-                    <div className="flex items-center z-10">
+                    <div className="flex items-center gap-2 z-10">
                         {/* Desktop Navigation - hide on mobile */}
                         <div className="hidden md:block z-50">
                             <NavigationMenu>
@@ -223,6 +223,18 @@ const MainHeader: React.FC = () => {
                             </NavigationMenu>
                         </div>
 
+                        {/* Desktop Donation Button - visible only on md+ screens */}
+                        <div className="hidden md:block">
+                            <Button variant="outline" size="sm" className="ml-4 bg-white border-primary text-primary hover:bg-asi-blue hover:text-white">
+                                <Link href="https://donate.stripe.com/eVa6oNg2Ka7l21a288"
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="flex items-center gap-1">
+                                    <Heart className="h-4 w-4" /> Donate
+                                </Link>
+                            </Button>
+                        </div>
+
                         {/* Mobile Navigation - show on mobile only */}
                         <div className="block md:hidden">
                             <Sheet open={open} onOpenChange={setOpen}>
@@ -313,6 +325,21 @@ const MainHeader: React.FC = () => {
                                                 className="h-4 w-4"/>}>Convention</MobileNavItem>
                                             <MobileNavItem href="/projects"
                                                            icon={<Hammer className="h-4 w-4"/>}>Projects</MobileNavItem>
+                                        </div>
+
+                                        {/* Mobile Donation Button - at the bottom of menu */}
+                                        <div className="mt-auto px-4 py-3 border-t">
+                                            <Button className="w-full flex items-center justify-center gap-2" variant="outline">
+                                                <Link
+                                                    href="https://donate.stripe.com/eVa6oNg2Ka7l21a288"
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="flex items-center gap-2 w-full justify-center"
+                                                    onClick={() => setOpen(false)}
+                                                >
+                                                    <Heart className="h-4 w-4" /> Donate to ASI
+                                                </Link>
+                                            </Button>
                                         </div>
                                     </div>
                                 </SheetContent>
