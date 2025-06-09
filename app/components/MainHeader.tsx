@@ -225,7 +225,7 @@ const MainHeader: React.FC = () => {
 
                         {/* Desktop Donation Button - visible only on md+ screens */}
                         <div className="hidden md:block">
-                            <Button variant="outline" size="sm" className="ml-4 bg-white border-primary text-primary hover:bg-primary hover:text-white">
+                            <Button variant="outline" size="sm" className="ml-4 bg-white border-primary text-primary hover:bg-asi-blue hover:text-white">
                                 <Link href="https://donate.stripe.com/eVa6oNg2Ka7l21a288"
                                       target="_blank"
                                       rel="noopener noreferrer"
