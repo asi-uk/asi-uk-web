@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/collapsible"
 
 import CTARounded from "@/app/components/CTARounded";
-import {ChevronDown, Briefcase, Coffee, Users, Lightbulb, FileDown, MapPin, CalendarFold} from "lucide-react";
+import {ChevronDown, Briefcase, Coffee, Users, Lightbulb, FileDown, MapPin, CalendarFold, Calendar} from "lucide-react";
 import React from "react";
 
 export const metadata = {
@@ -213,6 +213,38 @@ export default function Convention() {
                             professionals dedicated to sharing Christ's message through their work.</p>
                     </div>
 
+                    {/* Schedule Link Section */}
+                    <div className="mt-12 mb-6">
+                        <h3 className="text-xl font-medium text-asi-blue mb-6 text-center">Programme Schedule</h3>
+
+                        <div className="text-center">
+                            <div className="max-w-md mx-auto">
+                                <div className="grid grid-cols-3 gap-4 mb-6 text-sm">
+                                    <div className="text-center p-3 bg-slate-50 rounded-lg">
+                                        <div className="font-semibold text-asi-blue">Morning</div>
+                                        <div className="text-slate-600">9:45-12:30</div>
+                                    </div>
+                                    <div className="text-center p-3 bg-slate-50 rounded-lg">
+                                        <div className="font-semibold text-asi-blue">Lunch</div>
+                                        <div className="text-slate-600">12:30-14:30</div>
+                                    </div>
+                                    <div className="text-center p-3 bg-slate-50 rounded-lg">
+                                        <div className="font-semibold text-asi-blue">Afternoon</div>
+                                        <div className="text-slate-600">14:30-19:00</div>
+                                    </div>
+                                </div>
+
+                                <Link
+                                    href="/convention/schedule"
+                                    className="inline-flex items-center text-asi-blue py-3 px-6 rounded-lg font-medium transition-colors gap-2"
+                                >
+                                    <Calendar className="h-5 w-5" />
+                                    <span>View Full Schedule</span>
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+
                     {/* Registration Section */}
                     <div className="bg-slate-50 rounded-2xl flex justify-center my-5 p-4">
                         <SimpleTixWidget/>
@@ -289,40 +321,119 @@ export default function Convention() {
                                     <div className="border rounded-lg p-4 bg-white shadow-sm">
                                         <h4 className="text-lg font-medium text-asi-blue mb-3">Promotional Video</h4>
                                         <p className="text-sm text-slate-600 mb-4">
-                                            Watch and share our promotional video for the ASI UK 2025 Convention.
+                                            Watch and share our promotional videos for the ASI UK 2025 Convention.
                                         </p>
-                                        <div className="w-full aspect-video rounded-md overflow-hidden shadow-md">
-                                            <iframe
-                                                className="w-full h-full"
-                                                src="https://www.youtube.com/embed/bfsRAXffX54?si=9Hp7uGju9ekU3gqS"
-                                                title="ASI UK Convention Promo Video"
-                                                frameBorder="0"
-                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                                referrerPolicy="strict-origin-when-cross-origin"
-                                                allowFullScreen>
-                                            </iframe>
+
+                                        {/*Video 1*/}
+                                        <div>
+                                            <div className="w-full aspect-video rounded-md overflow-hidden shadow-md">
+                                                <iframe
+                                                    className="w-full h-full"
+                                                    src="https://www.youtube.com/embed/bfsRAXffX54?si=9Hp7uGju9ekU3gqS"
+                                                    title="ASI UK Convention Promo Video"
+                                                    frameBorder="0"
+                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                    referrerPolicy="strict-origin-when-cross-origin"
+                                                    allowFullScreen>
+                                                </iframe>
+                                            </div>
+                                            <div className="mt-4 flex justify-end">
+                                                <a
+                                                    href="https://www.youtube.com/watch?v=bfsRAXffX54"
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="text-asi-blue hover:text-blue-700 text-sm font-medium flex items-center gap-1"
+                                                >
+                                                    <span>Watch on YouTube</span>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4"
+                                                         fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path strokeLinecap="round" strokeLinejoin="round"
+                                                              strokeWidth={2}
+                                                              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                                                    </svg>
+                                                </a>
+                                            </div>
                                         </div>
-                                        <div className="mt-4 flex justify-end">
-                                            <a
-                                                href="https://www.youtube.com/watch?v=bfsRAXffX54"
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="text-asi-blue hover:text-blue-700 text-sm font-medium flex items-center gap-1"
-                                            >
-                                                <span>Watch on YouTube</span>
-                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                                </svg>
-                                            </a>
+
+                                        {/*Video 2*/}
+                                        <div className={"mt-10"}>
+                                            <div className="w-full aspect-video rounded-md overflow-hidden shadow-md">
+                                                <iframe
+                                                    className="w-full h-full"
+                                                    src="https://www.youtube.com/embed/yllqBWrWAYY?si=9-Xj5Jtn61YutP97"
+                                                    title="ASI UK Re-Connect Conference Preview - Johnny Wong"
+                                                    frameBorder="0"
+                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                    referrerPolicy="strict-origin-when-cross-origin"
+                                                    allowFullScreen>
+                                                </iframe>
+                                            </div>
+                                            <div className="mt-4 flex justify-end">
+                                                <a
+                                                    href="https://www.youtube.com/watch?v=yllqBWrWAYY"
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="text-asi-blue hover:text-blue-700 text-sm font-medium flex items-center gap-1"
+                                                >
+                                                    <span>Watch on YouTube</span>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4"
+                                                         fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path strokeLinecap="round" strokeLinejoin="round"
+                                                              strokeWidth={2}
+                                                              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                                                    </svg>
+                                                </a>
+                                            </div>
                                         </div>
+
+                                        {/*Video 3*/}
+                                        <div className={"mt-10"}>
+                                            <div className="w-full aspect-video rounded-md overflow-hidden shadow-md">
+                                                <iframe
+                                                    className="w-full h-full"
+                                                    src="https://www.youtube.com/embed/tWmVqM7lhns?si=Mr1pkXOpqXP8RqaR"
+                                                    title="ASI UK Re-Connect Conference - Invitation from the President"
+                                                    frameBorder="0"
+                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                    referrerPolicy="strict-origin-when-cross-origin"
+                                                    allowFullScreen>
+                                                </iframe>
+                                            </div>
+                                            <div className="mt-4 flex justify-end">
+                                                <a
+                                                    href="https://www.youtube.com/watch?v=tWmVqM7lhns"
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="text-asi-blue hover:text-blue-700 text-sm font-medium flex items-center gap-1"
+                                                >
+                                                    <span>Watch on YouTube</span>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4"
+                                                         fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path strokeLinecap="round" strokeLinejoin="round"
+                                                              strokeWidth={2}
+                                                              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                                                    </svg>
+                                                </a>
+                                            </div>
+                                        </div>
+
                                     </div>
 
                                     {/* Bulletin Announcement */}
                                     <div className="border rounded-lg p-4 bg-white shadow-sm">
-                                        <h4 className="text-lg font-medium text-asi-blue mb-2">Bulletin Announcement</h4>
-                                        <p className="text-sm text-slate-600 mb-2">Copy and paste this announcement into your church bulletin:</p>
+                                        <h4 className="text-lg font-medium text-asi-blue mb-2">Bulletin
+                                            Announcement</h4>
+                                        <p className="text-sm text-slate-600 mb-2">Copy and paste this announcement into
+                                            your church bulletin:</p>
                                         <div className="bg-slate-50 p-3 rounded text-sm border border-slate-200">
-                                            <p>Join ASI UK for our first major event on Sabbath, June 21, 2025 at Mercure Daventry Court Hotel. Learn practical approaches to marketplace evangelism from renowned speaker Johnny Wong. Connect with fellow Christian professionals, entrepreneurs, and ministry leaders who are passionate about sharing Christ in the marketplace. Tickets: £25 (general), £15 (ASI members). Registration includes lunch and refreshments. For more information and to register, visit asiuk.org/convention.</p>
+                                            <p>Join ASI UK for our first major event on Sabbath, June 21, 2025 at
+                                                Mercure Daventry Court Hotel. Learn practical approaches to marketplace
+                                                evangelism from renowned speaker Johnny Wong. Connect with fellow
+                                                Christian professionals, entrepreneurs, and ministry leaders who are
+                                                passionate about sharing Christ in the marketplace. Tickets: £25
+                                                (general), £15 (ASI members). Registration includes lunch and
+                                                refreshments. For more information and to register, visit
+                                                asiuk.org/convention.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -332,15 +443,17 @@ export default function Convention() {
 
                     {/* FAQ Accordion Section */}
                     <div className="mt-12 mb-6">
-                        <h3 className="text-xl font-medium text-asi-blue mb-4 text-center">Frequently Asked Questions</h3>
+                        <h3 className="text-xl font-medium text-asi-blue mb-4 text-center">Frequently Asked
+                            Questions</h3>
 
                         <Accordion type="single" collapsible className="w-full">
                             <AccordionItem value="item-1">
-                                <AccordionTrigger className="text-left text-base font-medium text-asi-blue hover:text-asi-blue hover:no-underline">
+                                <AccordionTrigger
+                                    className="text-left text-base font-medium text-asi-blue hover:text-asi-blue hover:no-underline">
                                     What is ASI UK?
                                 </AccordionTrigger>
                                 <AccordionContent>
-                                    <p className="text-sm text-slate-600">
+                                <p className="text-sm text-slate-600">
                                         ASI UK (Adventist-laymen's Services and Industries) is an organization that unites Seventh-day Adventist business owners, professionals, and supporting ministries in a shared mission to integrate faith with professional life.
                                     </p>
                                 </AccordionContent>
