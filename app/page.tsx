@@ -219,7 +219,7 @@ export default function Home() {
                             funding
                             programme designed specifically to financially support laypeople with a passion for
                             ministry.
-                            The 2025 ASI UK project funding application process is now open.
+                            The 2025 ASI UK project funding application process is now closed - check out the approved applications for this year.
                         </p>
                         <div className="mt-auto">
                             <Link
