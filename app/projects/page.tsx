@@ -20,34 +20,50 @@ interface ProjectProps {
     title: string;
     amount: number;
     location: string;
-    description: string;
+    shortDescription: string;
+    longDescription?: string;
+    organisation?: string;
     media?: ProjectMedia[];
 }
 
-function ProjectCard({title, amount, location, description, media}: ProjectProps) {
+function ProjectCard({title, amount, location, shortDescription, longDescription, organisation, media}: ProjectProps) {
     return (
         <div className="bg-white rounded-xl p-6 shadow-sm border border-slate-200 mb-8">
             {/* Project Header */}
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4 gap-4">
-                <div>
+            <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4 gap-4">
+                <div className="flex-1">
                     <h3 className="text-xl font-bold text-asi-blue mb-2">{title}</h3>
                     <div className="flex items-center text-slate-600 mb-2">
                         <MapPin className="h-4 w-4 mr-2"/>
                         <span className="text-sm">{location}</span>
                     </div>
+                    {organisation && (
+                        <p className="text-sm text-slate-500">by {organisation}</p>
+                    )}
                 </div>
-                <div className="text-right">
-                    <div className="flex items-center gap-2 justify-end md:justify-start">
+                <div className="md:text-right md:flex-shrink-0">
+                    <div className="flex items-center gap-2 md:justify-end">
                         <Heart className="h-5 w-5 text-red-500"/>
-                        <span className="text-2xl font-bold text-asi-blue">£{amount.toLocaleString()}</span>
+                        <span className="text-xl md:text-2xl font-bold text-asi-blue">£{amount.toLocaleString()}</span>
                     </div>
-                    <p className="text-sm text-slate-500">ASI UK Support</p>
+                    <p className="text-sm text-slate-500 mt-1">ASI UK Support</p>
                 </div>
             </div>
 
             {/* Project Description */}
-            <div className="mb-6">
-                <p className="text-slate-700 leading-relaxed">{description}</p>
+            <div className="">
+                <p className="text-slate-700 leading-relaxed">{shortDescription}</p>
+                {longDescription && (
+                    <Collapsible className="mt-4">
+                        <CollapsibleTrigger className="group flex items-center space-x-1 text-sm font-medium text-asi-blue hover:text-asi-darkBlue transition-colors">
+                            <span>Read more</span>
+                            <ChevronDown className="h-3 w-3 transition-transform group-data-[state=open]:rotate-180"/>
+                        </CollapsibleTrigger>
+                        <CollapsibleContent className="mt-3">
+                            <p className="text-slate-700 leading-relaxed">{longDescription}</p>
+                        </CollapsibleContent>
+                    </Collapsible>
+                )}
             </div>
 
             {/* Project Media */}
@@ -166,28 +182,67 @@ export default function Projects() {
     // Sample projects data - you can replace these with your actual approved projects
     const approvedProjects: ProjectProps[] = [
         {
-            title: "Urban Evangelism Initiative",
-            amount: 15000,
-            location: "London, UK",
-            description: "A comprehensive urban evangelism project focused on reaching young professionals in the London area through innovative digital outreach, community events, and personal Bible studies. This initiative aims to establish sustainable relationships and create pathways for spiritual growth in urban communities.",
-            media: [
-                {
-                    type: 'image',
-                    url: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800',
-                    title: 'Community Outreach Event'
-                },
-                {
-                    type: 'video',
-                    url: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-                    title: 'Project Overview Video'
-                },
-                {
-                    type: 'flyer',
-                    url: '#',
-                    title: 'Project Information Flyer'
-                }
-            ]
-        }
+            title: "Health & Wellness Outreach Initiative",
+            organisation: "Discover Truth",
+            amount: 20000,
+            location: "Dublin, Ireland",
+            shortDescription: "Transformative community programming across Ireland, combining Adventist health principles with practical ministry support through Health Expos and ongoing wellness programmes.",
+            longDescription: "This project will bring transformative community programming across Ireland, combining Adventist health principles with practical ministry support. The project will launch with Health Expos in major cities including Dublin, Cork, Limerick, and Galway, offering free health screenings, natural remedies workshops, and plant-based cooking demonstrations. Following the expos, ongoing programmes will include weekly Cooking Clubs, Ministry of Healing reading groups, and Bible study groups that provide both physical wellness education and spiritual growth opportunities. The initiative will also feature three internationally renowned health ministry speakers who will conduct training workshops and public programmes to inspire participants and equip local volunteers. Through this comprehensive approach, the project aims to share Adventist health messages, promote holistic healing, and build meaningful connections between local communities and the Seventh-day Adventist Church across Ireland.",
+        },
+        {
+            title: "Depression and Anxiety Recovery Programme",
+            organisation: "Balm of Gilead",
+            amount: 7500,
+            location: "Cork, Ireland",
+            shortDescription: "Supports hosting Dr. Neil Nedley's Depression and Anxiety Recovery Programme in Ireland.",
+            longDescription: "This organisation's experience hosting health seminars with Barbara O'Neill and implementing programmes like the Nedley Depression and Anxiety Recovery Programme has demonstrated that health ministry provides an excellent entry point into Ireland's majority Catholic community. Participants not only attended these health-focused events but many expressed genuine interest in deepening their relationship with God, confirming the belief that health serves as the ideal foundation for carrying the Gospel message throughout Ireland. This initiative will significantly strengthen ongoing community work whilst helping achieve the Irish Mission's long-held vision of establishing a native Irish Seventh-day Adventist church. Money given to this project will support in the success of hosting another Nedley Depression and Anxiety Recovery Programme. The programme will provide health, mental wellness, and spiritual growth in a comprehensive 10-day residential event that leads participants to Christ whilst improving their overall wellbeing.",
+        },
+        {
+            title: "HopeFM Radio Relaunch",
+            organisation: "HopeFM Ministries",
+            amount: 7000,
+            location: "Birmingham, England",
+            shortDescription: "HopeFM seeks to relaunch and expand its Christian radio ministry through conference-wide promotion, radio roadshows, DAB expansion to major cities, and website development to reach more listeners.",
+            longDescription: "With 87% of UK adults tuning into radio weekly and only 26 registered Christian stations nationwide, HopeFM represents a significant opportunity to reach audiences the church might never otherwise encounter. HopeFM, the broadcasting arm of Hope FM Ministries Limited, has operated as a volunteer-led Christian radio station since 2022, broadcasting via internet and DAB to areas including South and North Birmingham with a potential reach of 1.2 million listeners. Following management changes that reduced services, dedicated presenters maintained the ministry at a minimum level whilst funding operations independently. This project aims to relaunch and expand HopeFM through comprehensive conference-wide promotion encouraging member participation in presenting, producing, and technical roles. The initiative includes radio roadshows that will broadcast from local North England Conference churches, promoting media evangelism whilst giving congregations airtime exposure. DAB expansion plans involve gradually increasing presence in major NEC cities, starting with one additional service to help regain the previously achieved potential reach of 6 million listeners. The project also includes a complete website overhaul and promotional materials for events, conferences, and roadshows to maximise the station's evangelistic impact and community engagement.",
+        },
+        {
+            title: "West Midlands Literature Outreach",
+            organisation: "Birmingham Area 5 & Streams of Light",
+            amount: 2500,
+            location: "Birmingham, England",
+            shortDescription: "Birmingham Area 5 partners with Streams of Light International to distribute 35,000 copies of The Great Controversy and health magazines, aiming to generate 700 new contact requests and engage 1,500 members in practical outreach.",
+            longDescription: "Recognising the world's extraordinary challenges including crime, natural disasters, mental health crises, and poverty, Birmingham Area 5 (19 churches) is partnering with Streams of Light International to bring hope through a comprehensive literature distribution initiative. The project aims to distribute 35,000 interactive copies of The Great Controversy alongside health magazines, with 25,000 copies distributed initially and an additional 10,000 from July 2025 onwards throughout Area 5 churches and the West Midlands. The initiative expects to engage 1,500 members across Area 5 and generate 700 new contact requests for Bible studies, prayer, and visitation from the public. A project-specific website will serve as a central hub where community members can request online or in-person Bible studies, prayer, care group information, and access free literature, courses, and Christian media. The outreach will be amplified through extensive advertising including digital billboards in Birmingham city centre, social media campaigns, local radio on UCB and Premier, public transport advertising, and newspaper adverts in regional publications. This comprehensive approach supports the global church's Total Member Involvement mission, with all community interests being directed to local churches for continued spiritual care and support through digital evangelism tools that ensure effective follow-up and local church engagement.",
+        },
+        {
+            title: "Envision Young Adult Conference",
+            amount: 1300,
+            location: "Norfolk, England",
+            shortDescription: "The Norfolk Community Outreach and Envision Conference 2025 targets young adults through distributing 5,000 health and evangelistic tracts and organizing a conference to equip participants with spiritual success tools for ministry, relationships, and careers.",
+            longDescription: "The Norfolk Community Outreach and Envision Conference 2025 seeks to transform the lives of young adults (23+) within the community by addressing their strategic needs and helping them excel in both local church involvement and personal development, whilst also reaching non-church professionals. In a world filled with competing voices and distractions, this initiative aims to empower young adults through God's Word, helping them find direction and purpose in their ministry, relationships, and careers. The project involves distributing 5,000 church-approved tracts focused on health and evangelistic messages, alongside organising a significant conference designed to bring together young adults seeking meaning and purpose. Participants will connect not only with each other but most importantly with God, receiving the power to envision their lives with hope and positivity, knowing that God is real, answers prayers, and awakens something transformative within them. The ultimate vision is for attendees to become better witnesses to the world outside, equipped with spiritual success tools for living fulfilling lives. Funding will support speaker and musician travel, accommodation, and honoraria, as well as sound equipment rental and volunteer accommodation subsidies, ensuring the event can effectively reach and impact this crucial demographic.",
+        },
+        {
+            title: "Badminton Outreach Project",
+            organisation: "ACE Association",
+            amount: 1250,
+            location: "Manchester, England",
+            shortDescription: "This badminton outreach project has already attracted diverse participants including Muslims, Atheists, and Hindus, creating networking opportunities to share God's word through sport. This project aims to continue this effort and culminate in full-day community events.",
+            longDescription: "Over the past four years, Manchester's badminton initiative has gained significant traction within the local community and beyond, successfully welcoming participants from diverse religious and cultural backgrounds including Adventists, Muslims, Atheists, and Hindus. This sports programme has proven to be an excellent networking platform for attracting individuals and sharing God's word in a natural, welcoming environment. Manchester's position as a major hub for domestic and international students and professionals provides exceptional outreach opportunities, with numerous hospitals, residential areas, shops, and universities nearby facilitating effective promotion through flyers and word-of-mouth marketing. Beyond encouraging healthy participation and physical fitness, the regular badminton sessions build towards organised full-day community events where all participants come together, creating valuable networking opportunities to reach out and share God's word. These gatherings allow attendees to witness God's character demonstrated through participants' actions and attitudes, fostering a spirit of faith, hope, and unity amongst people from vastly different backgrounds. The programme effectively combines physical wellness with spiritual outreach, using sport as a bridge to build meaningful relationships and share the Adventist message with Manchester's diverse population.",
+        },
+        {
+            title: "Elizabeth Orphan Support Centre",
+            organisation: "Curative Music Foundation",
+            amount: 1000,
+            location: "Kenya",
+            shortDescription: "This mission uses gospel music as therapy and distributes Adventist children's books to orphan families and churches in Kenya's slum areas, ensuring disadvantaged children hear God's word and improve their lives.",
+        },
+        {
+            title: "Multimedia Health Platform",
+            organisation: "Vigour",
+            amount: 180,
+            location: "Staffordshire, England",
+            shortDescription: "\"Vigour\" creates sharing cards and \"Lifestyle Prescription\" leaflets for GP surgeries and pharmacies, linking via QR codes to Adventist health content and personal coaching including Bible studies, targeting the under-reached indigenous white British population.",
+            longDescription: "Recognising that the UK represents a mission field where indigenous white British people remain largely unreached by Adventist ministry (with a ratio of 1 Adventist per 11,000 people, similar to countries in the 10/40 window like Pakistan and Mali), \"Vigour\" launches an innovative health evangelism initiative. The project leverages the growing UK wellness market (valued at over £150 billion) and people's increasing desire to seek health solutions beyond the NHS, using the health message as an entering wedge to reach this underserved population. The initiative creates a suite of literature products including sharing cards and \"Lifestyle Prescription\" leaflets designed for distribution in GP surgeries and community pharmacies nationwide. These materials feature QR codes and web links connecting to an online platform (withvigour.co) that provides access to the best Adventist health content presented as a social media-style stream, with a unified call-to-action encouraging users to contact for personal holistic health coaching that includes Bible studies. This represents the first phase of a 10-year vision to establish a network of health ministries across the UK, including clinics, health retreats, and restaurants. By demonstrating Christ's love through health service and sharing inspired understanding of health promotion, maintenance, and recovery, the project aims to draw people to want to know Him more, following Christ's method of serving people's needs whilst sharing the complete system of truth found in Adventism."
+        },
     ];
 
     return (
@@ -206,56 +261,71 @@ export default function Projects() {
 
                 {/* Approved Projects Section */}
                 <section className="mb-16">
-                    <div className="flex items-center justify-between mb-8">
-                        <div>
-                            <h2 className="text-2xl md:text-3xl font-bold text-asi-blue mb-2">Approved Projects
-                                2025</h2>
-                            <p className="text-slate-600">Projects currently supported by ASI UK funding</p>
-                        </div>
-                        <div className="text-right">
-                            <p className="text-sm text-slate-500">Total Funding</p>
-                            <p className="text-2xl font-bold text-asi-blue">
-                                £{approvedProjects.reduce((sum, project) => sum + project.amount, 0).toLocaleString()}
-                            </p>
-                        </div>
-                    </div>
-
-                    {/* Projects List */}
-                    <div className="space-y-8">
-                        {approvedProjects.length > 0 ? (
-                            approvedProjects.map((project, index) => (
-                                <ProjectCard key={index} {...project} />
-                            ))
-                        ) : (
-                            <div className="text-center py-12 bg-slate-50 rounded-xl">
-                                <Heart className="h-12 w-12 text-slate-400 mx-auto mb-4"/>
-                                <h3 className="text-lg font-medium text-slate-600 mb-2">Projects Coming Soon</h3>
-                                <p className="text-slate-500">2025 approved projects will be displayed here after the
-                                    convention.</p>
+                    <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                        {/* Projects Header */}
+                        <div className="bg-slate-50 px-8 py-6 border-b border-slate-200">
+                            <div className="flex items-center justify-between">
+                                <div>
+                                    <h2 className="text-2xl md:text-3xl font-bold text-asi-blue mb-2">Approved Projects 2025</h2>
+                                    <p className="text-slate-600">Projects currently supported by ASI UK funding</p>
+                                </div>
+                                <div className="text-right">
+                                    <p className="text-sm text-slate-500">Total Fundraising Goal</p>
+                                    <p className="text-2xl font-bold text-asi-blue">
+                                        £{approvedProjects.reduce((sum, project) => sum + project.amount, 0).toLocaleString()}
+                                    </p>
+                                </div>
                             </div>
-                        )}
+                        </div>
+
+                        {/* Projects List */}
+                        <div className="p-8">
+                            <div className="space-y-8">
+                                {approvedProjects.length > 0 ? (
+                                    approvedProjects.map((project, index) => (
+                                        <ProjectCard key={index} {...project} />
+                                    ))
+                                ) : (
+                                    <div className="text-center py-12 bg-slate-50 rounded-xl">
+                                        <Heart className="h-12 w-12 text-slate-400 mx-auto mb-4"/>
+                                        <h3 className="text-lg font-medium text-slate-600 mb-2">Projects Coming Soon</h3>
+                                        <p className="text-slate-500">2025 approved projects will be displayed here after the
+                                            convention.</p>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
                     </div>
                 </section>
 
-                {/* Application Section - Collapsible */}
+                {/* Divider */}
+                <div className="relative mb-16">
+                    <div className="absolute inset-0 flex items-center">
+                        <div className="w-full border-t border-slate-300"></div>
+                    </div>
+                    <div className="relative flex justify-center text-sm">
+                        <span className="bg-white px-4 text-slate-500 font-medium">Apply for Funding</span>
+                    </div>
+                </div>
+
+                {/* Application Section - Redesigned */}
                 <section className="mb-16">
                     <Collapsible className="w-full">
-                        <div className="bg-white rounded-xl border border-slate-200 overflow-hidden">
-                            <div className="flex items-center justify-between p-6 border-b border-slate-200">
+                        <div className="bg-gradient-to-br from-asi-blue to-asi-darkBlue rounded-2xl shadow-lg overflow-hidden">
+                            <div className="flex items-center justify-between p-8 text-white">
                                 <div>
-                                    <h2 className="text-xl font-bold text-asi-blue">Apply for Project Funding</h2>
-                                    <p className="text-slate-600 mt-2">Application forms and detailed guidelines for new
-                                        projects</p>
+                                    <h2 className="text-2xl font-bold mb-3">Apply for Project Funding</h2>
+                                    <p className="text-blue-100 text-lg leading-relaxed">Get the resources you need to bring your evangelistic vision to life</p>
                                 </div>
                                 <CollapsibleTrigger
-                                    className="group flex items-center space-x-1 rounded-md px-3 py-2 text-sm font-medium text-asi-blue hover:bg-slate-100 transition-colors">
+                                    className="group flex items-center space-x-2 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-lg px-4 py-3 text-white font-medium transition-all duration-200 border border-white/20">
                                     <span>View Application Information</span>
                                     <ChevronDown
-                                        className="h-4 w-4 transition-transform group-data-[state=open]:rotate-180"/>
+                                        className="h-5 w-5 transition-transform group-data-[state=open]:rotate-180"/>
                                 </CollapsibleTrigger>
                             </div>
 
-                            <CollapsibleContent className="p-6 space-y-8">
+                            <CollapsibleContent className="bg-white p-8 space-y-8">
                                 <div className="bg-slate-50 rounded-xl p-6">
                                     <h3 className="text-lg font-semibold text-asi-blue mb-4">2026 Project Cycle</h3>
                                     <p className="text-slate-600 mb-6">
