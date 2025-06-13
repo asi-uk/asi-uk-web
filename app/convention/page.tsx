@@ -93,7 +93,7 @@ export default function Convention() {
                             </h2>
                             <h3 className="text-2xl font-medium h-full flex items-center">21 June<span className="hidden md:inline">, 2025</span>
                             </h3>
-                            <p>9:00 am - 7:00 pm</p>
+                            <p>9:00 AM - 7:00 PM</p>
                         </div>
 
                         <a target="_blank" href="https://maps.app.goo.gl/ejgjnVKhYuz6ZyD7A" rel="noopener noreferrer">
@@ -218,19 +218,23 @@ export default function Convention() {
                         <h3 className="text-xl font-medium text-asi-blue mb-6 text-center">Programme Schedule</h3>
 
                         <div className="text-center">
-                            <div className="max-w-md mx-auto">
-                                <div className="grid grid-cols-3 gap-4 mb-6 text-sm">
+                            <div className="mx-auto">
+                                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 text-sm">
+                                    <div className="text-center p-3 bg-slate-50 rounded-lg">
+                                        <div className="font-semibold text-asi-blue">Registration</div>
+                                        <div className="text-slate-600">9:00 - 9:45 AM</div>
+                                    </div>
                                     <div className="text-center p-3 bg-slate-50 rounded-lg">
                                         <div className="font-semibold text-asi-blue">Morning</div>
-                                        <div className="text-slate-600">9:45-12:30</div>
+                                        <div className="text-slate-600">9:45 - 12:30 PM</div>
                                     </div>
                                     <div className="text-center p-3 bg-slate-50 rounded-lg">
                                         <div className="font-semibold text-asi-blue">Lunch</div>
-                                        <div className="text-slate-600">12:30-14:30</div>
+                                        <div className="text-slate-600">12:30 - 2:30 PM</div>
                                     </div>
                                     <div className="text-center p-3 bg-slate-50 rounded-lg">
                                         <div className="font-semibold text-asi-blue">Afternoon</div>
-                                        <div className="text-slate-600">14:30-19:00</div>
+                                        <div className="text-slate-600">2:30 - 7:00 PM</div>
                                     </div>
                                 </div>
 
