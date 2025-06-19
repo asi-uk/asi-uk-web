@@ -269,11 +269,11 @@ export default function Projects() {
             media: [
                 {
                     type: 'image',
-                    url: 'https://res.cloudinary.com/disrkguox/image/upload/v1750370602/Our_1st_Flyer_lwqqqd.jpg',
+                    url: 'https://res.cloudinary.com/disrkguox/image/upload/w_500/v1750370602/Our_1st_Flyer_lwqqqd.jpg',
                 },
                 {
                     type: 'image',
-                    url: 'https://res.cloudinary.com/disrkguox/image/upload/v1750370604/Lecture_in_Dublin_jg7kgi.jpg',
+                    url: 'https://res.cloudinary.com/disrkguox/image/upload/w_500/v1750370604/Lecture_in_Dublin_jg7kgi.jpg',
                 },
                 {
                     type: 'video',
@@ -297,19 +297,19 @@ export default function Projects() {
             media: [
                 {
                     type: 'image',
-                    url: 'https://res.cloudinary.com/disrkguox/image/upload/v1750367623/IMG-20240629-WA0030_wew2y3.jpg',
+                    url: 'https://res.cloudinary.com/disrkguox/image/upload/w_500/v1750367623/IMG-20240629-WA0030_wew2y3.jpg',
                 },
                 {
                     type: 'image',
-                    url: 'https://res.cloudinary.com/disrkguox/image/upload/v1750367622/IMG-20240620-WA0078_ncsshz.jpg',
+                    url: 'https://res.cloudinary.com/disrkguox/image/upload/w_500/v1750367622/IMG-20240620-WA0078_ncsshz.jpg',
                 },
                 {
                     type: 'image',
-                    url: 'https://res.cloudinary.com/disrkguox/image/upload/v1750367621/IMG-20240623-WA0035_b20znl.jpg',
+                    url: 'https://res.cloudinary.com/disrkguox/image/upload/w_500/v1750367621/IMG-20240623-WA0035_b20znl.jpg',
                 },
                 {
                     type: 'image',
-                    url: 'https://res.cloudinary.com/disrkguox/image/upload/v1750367623/IMG-20240629-WA0029_tlfcys.jpg',
+                    url: 'https://res.cloudinary.com/disrkguox/image/upload/w_500/v1750367623/IMG-20240629-WA0029_tlfcys.jpg',
                 }
             ],
         },
@@ -344,11 +344,11 @@ export default function Projects() {
             media: [
                 {
                     type: 'image',
-                    url: 'https://res.cloudinary.com/disrkguox/image/upload/v1750368724/IMG-20250616-WA0004_xsd38b.jpg',
+                    url: 'https://res.cloudinary.com/disrkguox/image/upload/w_500/v1750368724/IMG-20250616-WA0004_xsd38b.jpg',
                 },
                 {
                     type: 'image',
-                    url: 'https://res.cloudinary.com/disrkguox/image/upload/v1750368725/IMG-20250616-WA0003_nrhg9i.jpg',
+                    url: 'https://res.cloudinary.com/disrkguox/image/upload/w_500/v1750368725/IMG-20250616-WA0003_nrhg9i.jpg',
                 },
                 {
                     type: 'video',
@@ -371,11 +371,11 @@ export default function Projects() {
             media: [
                 {
                     type: 'image',
-                    url: 'https://res.cloudinary.com/disrkguox/image/upload/v1750369379/e9018ec4-a6b3-4e53-887a-143dc9cdd819_yiifyf.jpg',
+                    url: 'https://res.cloudinary.com/disrkguox/image/upload/w_500/v1750369379/e9018ec4-a6b3-4e53-887a-143dc9cdd819_yiifyf.jpg',
                 },
                 {
                     type: 'image',
-                    url: 'https://res.cloudinary.com/disrkguox/image/upload/v1750369377/eae9238f-4acb-4413-b232-8e22b6b26fc0_vfldj3.jpg',
+                    url: 'https://res.cloudinary.com/disrkguox/image/upload/w_500/v1750369377/eae9238f-4acb-4413-b232-8e22b6b26fc0_vfldj3.jpg',
                 },
             ],
         },
@@ -402,19 +402,19 @@ export default function Projects() {
             media: [
                 {
                     type: 'image',
-                    url: 'https://res.cloudinary.com/disrkguox/image/upload/v1750369742/IMG_4177_evlpbv.jpg',
+                    url: 'https://res.cloudinary.com/disrkguox/image/upload/w_500/v1750369742/IMG_4177_evlpbv.jpg',
                 },
                 {
                     type: 'image',
-                    url: 'https://res.cloudinary.com/disrkguox/image/upload/v1750369739/IMG_4167_hhvxjj.jpg',
+                    url: 'https://res.cloudinary.com/disrkguox/image/upload/w_500/v1750369739/IMG_4167_hhvxjj.jpg',
                 },
                 {
                     type: 'image',
-                    url: 'https://res.cloudinary.com/disrkguox/image/upload/v1750369740/IMG_4181_rvqnw7.jpg',
+                    url: 'https://res.cloudinary.com/disrkguox/image/upload/w_500/v1750369740/IMG_4181_rvqnw7.jpg',
                 },
                 {
                     type: 'image',
-                    url: 'https://res.cloudinary.com/disrkguox/image/upload/v1750369741/IMG_4190_bkfbnf.jpg',
+                    url: 'https://res.cloudinary.com/disrkguox/image/upload/w_500/v1750369741/IMG_4190_bkfbnf.jpg',
                 },
             ],
         },
@@ -428,17 +428,17 @@ export default function Projects() {
             media: [
                 {
                     type: 'flyer',
-                    url: 'https://res.cloudinary.com/disrkguox/image/upload/v1750369915/A_mission-focused_community_of_Adventists_in_healthcare._ljofue.png',
+                    url: 'https://res.cloudinary.com/disrkguox/image/upload/w_500/v1750369915/A_mission-focused_community_of_Adventists_in_healthcare._ljofue.png',
                     title: 'Ministry of Healing Reading Group'
                 },
                 {
                     type: 'flyer',
-                    url: 'https://res.cloudinary.com/disrkguox/image/upload/v1750369923/withvigour_promo_asi_bgxch3.png',
+                    url: 'https://res.cloudinary.com/disrkguox/image/upload/w_500/v1750369923/withvigour_promo_asi_bgxch3.png',
                     title: 'Lifestyle Prescription'
                 },
                 {
                     type: 'flyer',
-                    url: 'https://res.cloudinary.com/disrkguox/image/upload/v1750369922/mv_xframe_pnnnil.png',
+                    url: 'https://res.cloudinary.com/disrkguox/image/upload/w_500/v1750369922/mv_xframe_pnnnil.png',
                     title: 'Outpost Anatomy'
                 },
                 
