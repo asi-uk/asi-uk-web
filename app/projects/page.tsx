@@ -39,9 +39,9 @@ function ProjectCard({title, amount, location, shortDescription, longDescription
                             {/* Project Header */}
                             <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4 gap-4">
                                 <div className="flex-1">
-                                    <h3 className="text-xl font-bold text-asi-blue group-hover:text-asi-darkBlue transition-colors mb-1">{title}</h3>
+                                    <h3 className="text-lg md:text-xl font-bold text-asi-blue group-hover:text-asi-darkBlue transition-colors mb-1">{title}</h3>
                                     {(organisation || location) && (
-                                        <div className="flex items-center gap-2 mb-2">
+                                        <div className="flex flex-col md:flex-row items-start md:items-center gap-2 mb-2">
                                             {organisation && website ? (
                                                 <a href={website} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 bg-slate-100 text-asi-blue text-xs font-medium px-3 py-1 rounded-full hover:bg-slate-200 transition">
                                                     {organisation}
@@ -70,7 +70,7 @@ function ProjectCard({title, amount, location, shortDescription, longDescription
 
                             {/* Project Description */}
                             <div>
-                                <p className="text-slate-700 leading-relaxed">{shortDescription}</p>
+                                <p className="text-slate-700 leading-relaxed text-sm md:text-base">{shortDescription}</p>
                                 <div className="mt-2 text-xs text-slate-500 flex items-center gap-2">
                                     <span>Click to expand</span>
                                     {longDescription && <span>• Details</span>}
@@ -84,7 +84,7 @@ function ProjectCard({title, amount, location, shortDescription, longDescription
                         <div className="px-6 pb-6 pt-0 space-y-6 border-t border-slate-100">
                             {longDescription && (
                                 <div className="pt-4">
-                                    <p className="text-slate-700 leading-relaxed">{longDescription}</p>
+                                    <p className="text-slate-700 leading-relaxed text-sm md:text-base">{longDescription}</p>
                                 </div>
                             )}
                             
@@ -456,7 +456,7 @@ export default function Projects() {
                         <h1 className="text-4xl md:text-5xl font-bold text-asi-blue mb-4">
                             ASI UK Projects
                         </h1>
-                        <p className="text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+                        <p className="text-sm md:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
                         Supporting evangelistic initiatives across the UK through strategic funding and partnerships. Discover our approved projects making an impact in communities, and learn how to apply for funding for your ministry.
                         </p>
                     </div>
@@ -464,7 +464,7 @@ export default function Projects() {
             </div>
 
             {/* Content Container */}
-            <div className="max-w-5xl mx-auto px-4 py-8">
+            <div className="max-w-5xl mx-auto md:px-4 py-8">
                 {/* Approved Projects Section */}
                 <section className="mb-16">
                     <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
@@ -473,7 +473,7 @@ export default function Projects() {
                             <div className="flex items-center justify-between">
                                 <div>
                                     <h2 className="text-2xl md:text-3xl font-bold text-asi-blue mb-2">Approved Projects 2025</h2>
-                                    <p className="text-slate-600">Projects currently supported by ASI UK funding</p>
+                                    <p className="text-slate-600 text-sm md:text-base pr-4">Projects approved for funding in the 2025 project cycle</p>
                                 </div>
                                 <div className="text-right">
                                     <p className="text-sm text-slate-500">Total Fundraising Goal</p>
@@ -485,8 +485,8 @@ export default function Projects() {
                         </div>
 
                         {/* Projects List */}
-                        <div className="p-8">
-                            <div className="space-y-8">
+                        <div className="p-4 md:p-8">
+                            <div className="space-y-4 md:space-y-8">
                                 {approvedProjects.length > 0 ? (
                                     approvedProjects.map((project, index) => (
                                         <ProjectCard key={index} {...project} />
@@ -505,7 +505,7 @@ export default function Projects() {
                 </section>
 
                 {/* Divider */}
-                <div className="relative mb-16">
+                <div className="relative mb-8 md:mb-16">
                     <div className="absolute inset-0 flex items-center">
                         <div className="w-full border-t border-slate-300"></div>
                     </div>
@@ -516,15 +516,15 @@ export default function Projects() {
 
                 {/* Application Section - Redesigned */}
                 <section className="mb-16">
-                    <Collapsible className="w-full">
+                    <Collapsible className="px-5 md:w-full">
                         <div className="bg-gradient-to-br from-asi-blue to-asi-darkBlue rounded-2xl shadow-lg overflow-hidden">
-                            <div className="flex items-center justify-between p-8 text-white">
+                            <div className="flex flex-col md:flex-row items-center justify-between p-8 text-white">
                                 <div>
                                     <h2 className="text-2xl font-bold mb-3">Apply for Project Funding</h2>
-                                    <p className="text-blue-100 text-lg leading-relaxed">Get the resources you need to bring your evangelistic vision to life</p>
+                                    <p className="text-blue-100 text-sm md:text-lg leading-relaxed">Get the resources you need to bring your evangelistic vision to life</p>
                                 </div>
                                 <CollapsibleTrigger
-                                    className="group flex items-center space-x-2 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-lg px-4 py-3 text-white font-medium transition-all duration-200 border border-white/20">
+                                    className="group flex items-center space-x-2 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-lg px-4 py-3 mt-5 md:mt-0 text-white font-medium transition-all duration-200 border border-white/20 text-sm md:text-base">
                                     <span>View Application Information</span>
                                     <ChevronDown
                                         className="h-5 w-5 transition-transform group-data-[state=open]:rotate-180"/>
