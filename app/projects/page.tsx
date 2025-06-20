@@ -324,7 +324,7 @@ export default function Projects() {
             media: [
                 {
                     type: 'video',
-                    url: 'https://res.cloudinary.com/disrkguox/video/upload/v1750408686/HopeFM_Relaunch_and_Expand_Project_2025_pdqlqt.mp4',
+                    url: 'https://res.cloudinary.com/disrkguox/video/upload/so_7/v1750408686/HopeFM_Relaunch_and_Expand_Project_2025_pdqlqt.mp4',
                 },
             ],
         },
