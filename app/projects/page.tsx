@@ -321,18 +321,12 @@ export default function Projects() {
             location: "Birmingham, England",
             shortDescription: "HopeFM seeks to relaunch and expand its Christian radio ministry through conference-wide promotion, radio roadshows, DAB expansion to major cities, and website development to reach more listeners.",
             longDescription: "With 87% of UK adults tuning into radio weekly and only 26 registered Christian stations nationwide, HopeFM represents a significant opportunity to reach audiences the church might never otherwise encounter. HopeFM, the broadcasting arm of Hope FM Ministries Limited, has operated as a volunteer-led Christian radio station since 2022, broadcasting via internet and DAB to areas including South and North Birmingham with a potential reach of 1.2 million listeners. Following management changes that reduced services, dedicated presenters maintained the ministry at a minimum level whilst funding operations independently. This project aims to relaunch and expand HopeFM through comprehensive conference-wide promotion encouraging member participation in presenting, producing, and technical roles. The initiative includes radio roadshows that will broadcast from local North England Conference churches, promoting media evangelism whilst giving congregations airtime exposure. DAB expansion plans involve gradually increasing presence in major NEC cities, starting with one additional service to help regain the previously achieved potential reach of 6 million listeners. The project also includes a complete website overhaul and promotional materials for events, conferences, and roadshows to maximise the station's evangelistic impact and community engagement.",
-            // media: [
-            //     {
-            //         type: 'image',
-            //         url: 'https://res.cloudinary.com/disrkguox/image/upload/v1735221089/hopefm-studio_sample.jpg',
-            //         title: 'HopeFM Radio Studio - Broadcasting Christian Content'
-            //     },
-            //     {
-            //         type: 'flyer',
-            //         url: 'https://res.cloudinary.com/disrkguox/raw/upload/v1735221089/hopefm-promotional-flyer.pdf',
-            //         title: 'HopeFM Promotional Flyer - Radio Roadshow Information'
-            //     }
-            // ],
+            media: [
+                {
+                    type: 'video',
+                    url: 'https://res.cloudinary.com/disrkguox/video/upload/v1750408686/HopeFM_Relaunch_and_Expand_Project_2025_pdqlqt.mp4',
+                },
+            ],
         },
         {
             title: "West Midlands Literature Outreach",
