@@ -15,7 +15,7 @@ import {
     PoundSterling,
     Hammer,
     Info,
-    Merge, Users, Coffee, Presentation, TrendingUp, Heading1
+    Merge, Users, Coffee, Presentation, TrendingUp, Heading1, CalendarDays, FolderOpen, Heart
 } from 'lucide-react';
 import {
     NavigationMenu,
@@ -29,7 +29,6 @@ import {
 import React, {useState, useEffect} from "react";
 import MainHeader from "@/app/components/MainHeader";
 import Footer from "@/app/components/Footer";
-import CountdownTimer from "@/app/components/CountdownTimer";
 
 // Note: Metadata should be in a separate layout.tsx or page.tsx file as a server component
 // This is a client component so we've removed the metadata export
@@ -77,10 +76,10 @@ export default function Home() {
             <section className="relative z-20 flex items-center justify-center w-full my-10 md:my-8 md:mb-36 px-4 md:py-0">
                 <div
                     className="w-full max-w-3xl mx-auto flex flex-col gap-6 md:gap-10 bg-asi-darkBlue/80 rounded-2xl backdrop-blur-md p-6 md:px-10 shadow">
-                    {/* Top row with logo and countdown side by side */}
-                    <div className="flex flex-col md:flex-row items-center justify-between w-full gap-6">
+                    {/* Top row with logo and call to action buttons side by side */}
+                    <div className="flex flex-col items-center justify-center w-full gap-6">
                         {/* Logo */}
-                        <div className="w-full md:w-1/2 flex justify-center md:justify-end">
+                        <div className="w-full flex justify-center">
                             <Image
                                 src="https://res.cloudinary.com/disrkguox/image/upload/w_500/v1743532070/Logo-2_jdykpt.png"
                                 width={400}
@@ -90,117 +89,73 @@ export default function Home() {
                                 priority
                             />
                         </div>
-
-                        {/* Vertical divider (visible only on md screens and up) */}
-                        <div className="hidden md:block h-24 w-px bg-white/20"></div>
-
-                        {/* Horizontal divider (visible only on mobile) */}
-                        <div className="md:hidden w-full h-px bg-white/20"></div>
-
-                        {/* Countdown Timer */}
-                        <div className="w-full md:w-1/2 flex justify-center md:justify-start">
-                            <CountdownTimer
-                                targetDate={new Date("2025-06-21")}
-                                numberClassName="font-bold text-3xl text-white"
-                                labelClassName="text-xs text-white/70 uppercase tracking-wider"
-                                gridClassName="grid grid-cols-4 gap-2"
-                                containerClassName="w-auto"
-                            />
-                        </div>
                     </div>
 
                     {/* Horizontal divider between top and bottom sections */}
                     <div className="w-full h-px md:-mt-10 bg-white/20"></div>
 
                     {/* Date and Location */}
-                    <div className="flex flex-col sm:flex-row justify-center sm:items-center gap-2 sm:gap-6">
-                        <div className="flex items-center bg-white/10 rounded-2xl p-2">
-                            <Calendar className="h-4 w-4 text-white mr-2"/>
-                            <span className="text-base md:text-lg text-white font-light">21 June, 2025</span>
-                        </div>
-                        <div className="flex items-center bg-white/10 rounded-2xl p-2">
-                            <MapPin className="h-4 w-4 text-white mr-2"/>
-                            <span
-                                className="text-base md:text-lg text-white font-light">Daventry, Northamptonshire</span>
-                        </div>
-                    </div>
+                    {/*<div className="flex flex-col sm:flex-row justify-center sm:items-center gap-2 sm:gap-6">*/}
+                    {/*    <div className="flex items-center  rounded-2xl p-2">*/}
+                    {/*        <Calendar className="h-4 w-4 text-white mr-2"/>*/}
+                    {/*        <span className="text-base md:text-lg text-white font-light">21 June, 2025</span>*/}
+                    {/*    </div>*/}
+                    {/*    <div className="flex items-center rounded-2xl p-2">*/}
+                    {/*        <MapPin className="h-4 w-4 text-white mr-2"/>*/}
+                    {/*        <span*/}
+                    {/*            className="text-base md:text-lg text-white font-light">Daventry, Northamptonshire</span>*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
+
+
 
                     <p className="text-sm md:text-base text-white font-light">
-                        Come join us for the first annual ASI UK convention. Learn how God is working through your
-                        fellow lay members of the church to share Christ in the marketplace. Don't miss out on this
-                        opportunity to network with like-minded Adventist professionals, entrepreneurs, and ministries
-                        who share the same
-                        mission of sharing God's love and the exciting message of Jesus' soon return!
+                        We are excited to welcome those attending our first annual ASI UK convention. Learn how God is working through your fellow church members in the UK and be inspired by the exciting projects and ministries that are happening across the country.
                     </p>
 
-                    {/* Content section with conference details (1/2) and presenters (1/2) */}
-                    <div className="flex flex-col md:flex-row gap-6">
-                        {/* Conference Details - 1/2 width on desktop */}
-                        <div className="w-full md:w-1/2">
-                            <h3 className="text-lg font-normal text-white mb-3 text-center">Why Attend?</h3>
-                            <ul className="space-y-3 text-white font-light text-sm">
-                                <li className="flex items-start">
-                                    <Lightbulb className="h-4 w-4 text-white mr-2 mt-1"/>
-                                    <span>Learn practical approaches to marketplace evangelism</span>
-                                </li>
-                                <li className="flex items-start">
-                                    <Users className="h-4 w-4 text-white mr-2 mt-1"/>
-                                    <span>Connect with fellow Christian professionals</span>
-                                </li>
-                                <li className="flex items-start">
-                                    <Coffee className="h-4 w-4 text-white mr-2 mt-1"/>
-                                    <span>Enjoy fellowship over a provided lunch and refreshments</span>
-                                </li>
-                            </ul>
+                    <div>
+                        {/* Quick Links Header */}
+                        <div className="text-center">
+                            <h3 className="text-lg font-bold text-white mb-4">Quick Links</h3>
                         </div>
 
-                        {/* Vertical divider (visible only on md screens and up) */}
-                        <div className="hidden md:block h-auto w-px bg-white/20 self-stretch"></div>
-
-                        {/* Presenters - 1/2 width on desktop */}
-                        <div className="w-full md:w-1/2">
-                            <h3 className="text-lg font-normal text-white mb-3 text-center">Featured Presenters</h3>
-                            <div className="flex flex-wrap justify-center gap-10">
-                                <div className="flex flex-col items-center">
-                                    <div
-                                        className="w-24 h-24 rounded-full overflow-hidden bg-gray-300 border-2 border-white mb-2">
-                                        <Image
-                                            src="https://res.cloudinary.com/disrkguox/image/upload/w_200/v1743533994/jwong_qa4c9p_4e7a8c.jpg"
-                                            width={200}
-                                            height={200}
-                                            alt="Johnny Wong"
-                                            className="w-full h-full object-cover"
-                                        />
-                                    </div>
-                                    <span className="text-sm text-white text-center">Johnny Wong</span>
-                                </div>
-
-                                <div className="flex flex-col items-center">
-                                    <div
-                                        className="w-24 h-24 rounded-full overflow-hidden bg-gray-300 border-2 border-white mb-2">
-                                        <Image
-                                            src="https://res.cloudinary.com/disrkguox/image/upload/w_200/v1743534051/csalcianu_mlopct_dddaf5.jpg"
-                                            width={200}
-                                            height={200}
-                                            alt="Christian Salcianu"
-                                            className="w-full h-full object-cover"
-                                        />
-                                    </div>
-                                    <span className="text-sm text-white text-center">Christian Salcianu</span>
-                                </div>
-                            </div>
+                        {/* Call to Action Buttons */}
+                        <div className="w-full flex flex-col gap-3 justify-center items-center">
+                            <Link
+                                href="/convention/programme"
+                                className="bg-white/10 rounded-2xl hover:bg-white/20 text-white py-2 px-6 inline-block font-medium transition-colors duration-200 text-center w-64 flex items-center justify-center gap-2"
+                            >
+                                <CalendarDays className="h-4 w-4" />
+                                Convention Programme
+                            </Link>
+                            <Link
+                                href="/projects"
+                                className="bg-white/10 rounded-2xl hover:bg-white/20 text-white py-2 px-6 inline-block font-medium transition-colors duration-200 text-center w-64 flex items-center justify-center gap-2"
+                            >
+                                <FolderOpen className="h-4 w-4" />
+                                Projects
+                            </Link>
+                            <Link
+                                href="/donate"
+                                className="bg-white/10 rounded-2xl hover:bg-white/20 text-white py-2 px-6 inline-block font-medium transition-colors duration-200 text-center w-64 flex items-center justify-center gap-2"
+                            >
+                                <Heart className="h-4 w-4" />
+                                Donate
+                            </Link>
                         </div>
                     </div>
 
-                    {/* Call to Action Button in its own row */}
-                    <div className="flex justify-center mt-2">
-                        <Link
-                            href="/convention"
-                            className="bg-asi-blue hover:bg-blue-700 text-white py-2 px-8 rounded-lg inline-block font-medium transition-colors duration-200"
-                        >
-                            Convention Information
-                        </Link>
-                    </div>
+                 {/* Horizontal divider */}
+                 <div className="w-full h-px bg-white/20 my-2"></div>
+
+                 <div className="flex justify-center my-2">
+                     <Link
+                         href="/convention"
+                         className="inline-flex items-center gap-3 bg-white text-asi-blue hover:bg-blue-50 px-8 py-4 rounded-2xl font-semibold text-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
+                     >
+                         Convention Page
+                     </Link>
+                 </div>
                 </div>
             </section>
 
