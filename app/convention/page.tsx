@@ -239,7 +239,7 @@ export default function Convention() {
                                 </div>
 
                                 <Link
-                                    href="/convention/schedule"
+                                    href="/convention/programme"
                                     className="inline-flex items-center text-asi-blue py-3 px-6 rounded-lg font-medium transition-colors gap-2"
                                 >
                                     <Calendar className="h-5 w-5" />

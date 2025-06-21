@@ -3,20 +3,20 @@ import React from "react";
 import {ArrowLeft, Calendar, Clock, MapPin} from "lucide-react";
 
 export const metadata = {
-    title: "ASI UK | Convention 2025 Schedule",
+    title: "ASI UK | Convention 2025 Programme",
     description:
         "Detailed programme schedule for the ASI UK Convention on 21 June, 2025 in Daventry",
     keywords: [
-        "ASI UK Convention Schedule",
+        "ASI UK Convention Programme",
         "Programme",
         "Timetable",
         "ASI UK",
         "Convention 2025",
     ],
     openGraph: {
-        url: "https://asiuk.org/convention/schedule",
+        url: "https://asiuk.org/convention/programme",
         type: "website",
-        title: "ASI UK | Convention 2025 Schedule",
+        title: "ASI UK | Convention 2025 Programme",
         description:
             "Detailed programme schedule for the ASI UK Convention on 21 June, 2025 in Daventry",
         images: [
@@ -46,7 +46,7 @@ export default function ConventionSchedule() {
 
                     {/* Header */}
                     <div className="text-center mb-8">
-                        <h1 className="text-3xl md:text-4xl text-asi-blue font-bold mb-4">Convention Schedule</h1>
+                        <h1 className="text-3xl md:text-4xl text-asi-blue font-bold mb-4">Convention Programme</h1>
                         <div className="flex flex-wrap justify-center gap-6 text-sm text-slate-600">
                             <div className="flex items-center gap-2">
                                 <Calendar className="h-4 w-4 text-asi-blue" />
