@@ -8,6 +8,42 @@ import {
     CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 
+// Progress Bar Component
+interface ProgressBarProps {
+    current: number;
+    total: number;
+    className?: string;
+}
+
+function ProgressBar({ current, total, className = "" }: ProgressBarProps) {
+    const percentage = Math.min((current / total) * 100, 100);
+    
+    return (
+        <div className={`w-full ${className}`}>
+            <div className="flex justify-between items-center mb-3">
+                <span className="text-base font-semibold text-slate-700">Funding Progress</span>
+                <span className="text-base font-medium text-slate-600">
+                    £{current.toLocaleString()} of £{total.toLocaleString()}
+                </span>
+            </div>
+            <div className="w-full bg-slate-200 rounded-full h-4 overflow-hidden">
+                <div 
+                    className="bg-gradient-to-r from-asi-blue to-asi-darkBlue h-full rounded-full transition-all duration-500 ease-out"
+                    style={{ width: `${percentage}%` }}
+                />
+            </div>
+            <div className="flex justify-between items-center mt-2">
+                <span className="text-sm text-slate-500">
+                    {percentage.toFixed(1)}% Complete
+                </span>
+                <span className="text-sm text-slate-500">
+                    £{(total - current).toLocaleString()} remaining
+                </span>
+            </div>
+        </div>
+    );
+}
+
 // Reusable Project Card Component
 interface ProjectMedia {
     type: 'image' | 'video' | 'flyer';
@@ -441,6 +477,10 @@ export default function Projects() {
         },
     ];
 
+    // Funding progress data - you can update these values as funding is received
+    const totalGoal = approvedProjects.reduce((sum, project) => sum + project.amount, 0);
+    const fundingReceived = 27720; // Example: £15,000 received so far
+
     return (
         <div className="relative w-full overflow-x-hidden">
             {/* Header Section */}
@@ -448,7 +488,7 @@ export default function Projects() {
                 <div className="max-w-5xl mx-auto px-4 py-12 md:py-10">
                     <div className="text-center">
                         <h1 className="text-4xl md:text-5xl font-bold text-asi-blue mb-4">
-                            ASI UK Projects
+                            Project Funding
                         </h1>
                         <p className="text-sm md:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
                         Supporting evangelistic initiatives across the UK through strategic funding and partnerships. Discover our approved projects making an impact in communities, and learn how to apply for funding for your ministry.
@@ -459,22 +499,31 @@ export default function Projects() {
 
             {/* Content Container */}
             <div className="max-w-5xl mx-auto md:px-4 py-8">
+                {/* Funding Progress Section */}
+                <section className="mb-12">
+                    <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                        <div className="bg-slate-50 px-8 py-6 border-b border-slate-200">
+                            <h2 className="text-2xl md:text-3xl font-bold text-asi-blue mb-2">2025 Funding Progress</h2>
+                            <p className="text-slate-600 text-sm md:text-base">Track our progress towards funding all approved projects</p>
+                        </div>
+                        <div className="p-8">
+                            <ProgressBar 
+                                current={fundingReceived} 
+                                total={totalGoal}
+                                className="w-full"
+                            />
+                        </div>
+                    </div>
+                </section>
+
                 {/* Approved Projects Section */}
                 <section className="mb-16">
                     <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
                         {/* Projects Header */}
                         <div className="bg-slate-50 px-8 py-6 border-b border-slate-200">
-                            <div className="flex items-center justify-between">
-                                <div>
-                                    <h2 className="text-2xl md:text-3xl font-bold text-asi-blue mb-2">Approved Projects 2025</h2>
-                                    <p className="text-slate-600 text-sm md:text-base pr-4">Projects approved for funding in the 2025 project cycle</p>
-                                </div>
-                                <div className="text-right">
-                                    <p className="text-sm text-slate-500">Total Fundraising Goal</p>
-                                    <p className="text-2xl font-bold text-asi-blue">
-                                        £{approvedProjects.reduce((sum, project) => sum + project.amount, 0).toLocaleString()}
-                                    </p>
-                                </div>
+                            <div>
+                                <h2 className="text-2xl md:text-3xl font-bold text-asi-blue mb-2">Approved Projects 2025</h2>
+                                <p className="text-slate-600 text-sm md:text-base">Projects approved for funding in the 2025 project cycle</p>
                             </div>
                         </div>
 
