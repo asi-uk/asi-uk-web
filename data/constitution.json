@@ -133,36 +133,32 @@
         {
           "type": "section",
           "number": "4.1",
-          "text": "ASI UK shall consist of Ordinary Members, and Sponsoring Members, and is subject to the Membership Application Process prescribed in Article 5."
+          "text": "Membership in ASI UK shall be available to those who are members of the Seventh-day Adventist Church in good and regular standing and who operate a business, provide a professional service, or manage a supporting ministry."
         },
         {
           "type": "section",
           "number": "4.2",
-          "text": "\"Ordinary Membership\" status shall be granted to Businesses, Ministries, and Professionals, and shall have conferred to them one vote. They are subject to the following sub-clauses:",
+          "text": "Membership Categories: There shall be two types of membership in ASI UK:",
           "subsections": [
             {
-              "number": "4.2.1",
-              "text": "Business Membership shall be granted to Businesses. Whereby an Business consists of several subsidiaries and whereby each subsidiary is applying for membership, each subsidiary can apply for membership under its own name. The subsidiary does not receive Voting Rights and no extra votes are given to the parent entity. A Business applying for membership shall not directly or indirectly be controlled by the Seventh-day Adventist Church."
+              "number": "(a)",
+              "text": "\"Ordinary Membership\" is available for individuals and organisations. Individuals seeking Ordinary Membership shall be Business owners, Ministry leaders, or Professionals. Organisations seeking Ordinary Membership shall be Businesses or Ministries whose owner and/or head is a practicing member of the Seventh-day Adventist Church but whose organisation is not directly or indirectly controlled by the Church. The individual and/or entity shall follow the ethical, financial and spiritual principles which guide the Seventh-day Adventist Church."
             },
             {
-              "number": "4.2.2",
-              "text": "Ministry Membership shall be granted to Ministries. Whereby a Ministry consists of several subsidiaries and whereby each subsidiary is applying for membership, each subsidiary can apply for membership under its own name. The subsidiary does not receive Voting Rights and no extra votes are given to the parent entity. An Ministry applying for membership shall not directly or indirectly be controlled by the Seventh-day Adventist Church."
-            },
-            {
-              "number": "4.2.3",
-              "text": "Professional Membership shall be granted to individual Professionals."
+              "number": "(b)",
+              "text": "\"Sponsoring Membership\" status shall be granted to individuals who are practicing members of the Seventh-day Adventist Church and who are willing to support ASI UK's goals through financial and/or other means."
             }
           ]
         },
         {
           "type": "section",
           "number": "4.3",
-          "text": "\"Sponsoring Membership\" status shall be granted to individuals who are practicing members of the Seventh-day Adventist Church and who are willing to support ASI UK's goals through financial and/or other means."
+          "text": "Only Ordinary Members shall have Voting Rights."
         },
         {
           "type": "section",
           "number": "4.4",
-          "text": "Only Ordinary Members shall have Voting Rights."
+          "text": "Whereby a Business or Ministry consists of several subsidiaries and whereby each subsidiary is applying for membership, each subsidiary can apply for membership under its own name. The subsidiary does not receive Voting Rights and no extra votes are given to the parent entity."
         }
       ]
     },
