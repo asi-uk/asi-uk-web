@@ -1,8 +1,8 @@
 {
   "title": "ASI UK Constitution",
-  "subtitle": "Voted on 23 June, 2024 at ASI UK OGM",
-  "version": "1.0",
-  "lastUpdated": "2024-06-23",
+  "subtitle": "Voted on 22 June, 2025 at ASI UK OGM",
+  "version": "2.0",
+  "lastUpdated": "2025-06-22",
   "articles": [
     {
       "number": 1,
@@ -12,16 +12,20 @@
           "type": "definitionList",
           "items": [
             {
+              "term": "ASI UK",
+              "definition": "shall be named 'Adventist laymen's Services and Industries, United Kingdom'."
+            },
+            {
               "term": "Association",
-              "definition": "shall be named 'Adventist laymen's Services and Industries, United Kingdom' (shorthand 'ASI UK')"
+              "definition": "is ASI UK."
             },
             {
               "term": "Business Year",
-              "definition": "of the Association shall be the Calendar Year as observed in the United Kingdom."
+              "definition": "of ASI UK shall be the Calendar Year as observed in the United Kingdom."
             },
             {
               "term": "Business",
-              "definition": "and/or \"Businesses\" are self-employed individuals, entrepreneurs, companies, entities, and enterprises. This is not an exhaustive list and the Executive can use its discretion to add to this list."
+              "definition": "and/or \"Businesses\" are self-employed individuals, entrepreneurs, companies, or entities operating for profit. This is not an exhaustive list and the Executive can use its discretion to add to this list."
             },
             {
               "term": "Chair",
@@ -29,7 +33,7 @@
             },
             {
               "term": "Church",
-              "definition": "is defined as the 'Seventh-day Adventist Church', exercising its global mission and principles throughout the geographical region of British Union Conference together with its Conferences, Missions, and churches, all operating within the Trans-European Division."
+              "definition": "is defined as the 'Seventh-day Adventist Church', exercising its global mission and principles throughout the geographical region of the British Union Conference together with its Conferences, Missions, and churches, all operating within the Trans-European Division."
             },
             {
               "term": "Close Relative",
@@ -41,11 +45,11 @@
             },
             {
               "term": "Executive, the",
-              "definition": "is the Association's board occupied by Executive Members who exercise their authority in operating the Association in accordance with this constitution."
+              "definition": "is ASI UK's board occupied by Executive Members who exercise their authority in operating ASI UK in accordance with this constitution."
             },
             {
               "term": "Executive Member",
-              "definition": "is the officer appointed to the Association's board and upon whom authority is conferred to act in the best interests of the Association."
+              "definition": "is the officer appointed to ASI UK's board and upon whom authority is conferred to act in the best interests of ASI UK."
             },
             {
               "term": "Member",
@@ -65,7 +69,7 @@
             },
             {
               "term": "Voting Rights",
-              "definition": "are conferred to Members of the Association have the right to vote as in accordance with this constitution."
+              "definition": "are conferred to Members of ASI UK have the right to vote as in accordance with this constitution."
             }
           ]
         }
@@ -78,18 +82,18 @@
         {
           "type": "section",
           "number": "2.1",
-          "text": "The purpose of the association is to:",
+          "text": "The purpose of ASI UK is to:",
           "subsections": [
             {
-              "number": "2.1.1",
+              "number": "(a)",
               "text": "Support, promote and advise associations, businesses, charities, companies, groups, institutions, and organisations, moulded according to Adventist principles, as long as their goals are of a missionary, evangelistic, humanitarian, health, educational, outreach, or similar non-profit nature."
             },
             {
-              "number": "2.1.2",
-              "text": "Motivate members of the Church who are self-employed or who own privately-owned businesses or who own or manage non-profit associations in harmony with the goals and values of the Church, to cooperate with each other and with the entities of the Church and to work in harmony with and for the benefit of the Church in fulfilling its gospel commission and thus support the spreading of the Adventist message."
+              "number": "(b)",
+              "text": "Motivate members of the Seventh-day Adventist Church who are self-employed or who own privately-owned businesses or who own or manage non-profit associations in harmony with the goals and values of the Church, to cooperate with each other and with the entities of the Church and to work in harmony with and for the benefit of the Church in fulfilling its gospel commission and thus support the spreading of the Adventist message."
             },
             {
-              "number": "2.1.3",
+              "number": "(c)",
               "text": "Strengthen the effectiveness of individuals and associations in their work and credible Christian testimony by facilitating the exchange of information, providing inspiration, motivation and the coordination of goals and programs as well as the experience of Christian fellowship."
             }
           ]
@@ -97,12 +101,12 @@
         {
           "type": "section",
           "number": "2.2",
-          "text": "The Association primarily does not aim at earning a profit for its own benefit. It shall exclusively and directly pursue not-for-profit purposes in the sense of the national tax legislation."
+          "text": "ASI UK primarily does not aim at earning a profit for its own benefit. It shall exclusively and directly pursue not-for-profit purposes in the sense of the national tax legislation."
         },
         {
           "type": "section",
           "number": "2.3",
-          "text": "The Association's income and assets shall be used exclusively for goals defined in this Constitution. No Member or Executive Member of the Association shall receive for their work compensation from the Association."
+          "text": "ASI UK's income and assets shall be used exclusively for goals defined in this Constitution. No Member or Executive Member of ASI UK shall receive compensation from ASI UK for their work."
         }
       ]
     },
@@ -113,12 +117,12 @@
         {
           "type": "section",
           "number": "3.1",
-          "text": "Harmony and cooperation between the Association and the Church shall be ensured by the appointment of a representative of the Church on the Executive."
+          "text": "Harmony and cooperation between ASI UK and the Seventh-day Adventist Church shall be ensured by the appointment of a representative of the Church on the Executive."
         },
         {
           "type": "section",
           "number": "3.2",
-          "text": "The Church shall appoint before the General Meeting a representative to the Executive."
+          "text": "The Seventh-day Adventist Church shall appoint before the General Meeting a representative to the Executive."
         }
       ]
     },
@@ -129,36 +133,32 @@
         {
           "type": "section",
           "number": "4.1",
-          "text": "The Association shall consist of Ordinary Members, and Sponsoring Members, and is subject to the Membership Application Process prescribed in Article 5."
+          "text": "Membership in ASI UK shall be available to those who are members of the Seventh-day Adventist Church in good and regular standing and who operate a business, provide a professional service, or manage a supporting ministry."
         },
         {
           "type": "section",
           "number": "4.2",
-          "text": "\"Ordinary Membership\" status shall be granted to Businesses, Ministries, and Professionals, and shall have conferred to them one vote. They are subject to the following sub-clauses:",
+          "text": "Membership Categories: There shall be two types of membership in ASI UK:",
           "subsections": [
             {
-              "number": "4.2.1",
-              "text": "Business Membership shall be granted to Businesses. Whereby an Business consists of several subsidiaries and whereby each subsidiary is applying for membership, each subsidiary can apply for membership under its own name. The subsidiary does not receive Voting Rights and no extra votes are given to the parent entity. A Business applying for membership shall not directly or indirectly be controlled by the Church."
+              "number": "(a)",
+              "text": "\"Ordinary Membership\" is available for individuals and organisations. Individuals seeking Ordinary Membership shall be Business owners, Ministry leaders, or Professionals. Organisations seeking Ordinary Membership shall be Businesses or Ministries whose owner and/or head is a practicing member of the Seventh-day Adventist Church but whose organisation is not directly or indirectly controlled by the Church. The individual and/or entity shall follow the ethical, financial and spiritual principles which guide the Seventh-day Adventist Church."
             },
             {
-              "number": "4.2.2",
-              "text": "Ministry Membership shall be granted to Ministries. Whereby a Ministry consists of several subsidiaries and whereby each subsidiary is applying for membership, each subsidiary can apply for membership under its own name. The subsidiary does not receive Voting Rights and no extra votes are given to the parent entity. An Ministry applying for membership shall not directly or indirectly be controlled by the Church."
-            },
-            {
-              "number": "4.2.3",
-              "text": "Professional Membership shall be granted to individual Professionals."
+              "number": "(b)",
+              "text": "\"Sponsoring Membership\" status shall be granted to individuals who are practicing members of the Seventh-day Adventist Church and who are willing to support ASI UK's goals through financial and/or other means."
             }
           ]
         },
         {
           "type": "section",
           "number": "4.3",
-          "text": "\"Sponsoring Membership\" status shall be granted to individuals who are practicing members of the Church and who are willing to support the Association's goals through financial and/or other means."
+          "text": "Only Ordinary Members shall have Voting Rights."
         },
         {
           "type": "section",
           "number": "4.4",
-          "text": "Only Ordinary Members shall have Voting Rights."
+          "text": "Whereby a Business or Ministry consists of several subsidiaries and whereby each subsidiary is applying for membership, each subsidiary can apply for membership under its own name. The subsidiary does not receive Voting Rights and no extra votes are given to the parent entity."
         }
       ]
     },
@@ -177,16 +177,16 @@
           "text": "Determining criteria for Membership:",
           "subsections": [
             {
-              "number": "5.2.1",
-              "text": "The controlling individual of a Business or Ministry shall be a practicing member of the Church and be of good and regular standing, and have a positive standing in the community."
+              "number": "(a)",
+              "text": "The controlling individual of a Business or Ministry shall be a practicing member of the Seventh-day Adventist Church and be of good and regular standing, and have a positive standing in the community."
             },
             {
-              "number": "5.2.2",
-              "text": "The Business or Ministry shall operate in harmony with the mission of the Church, shall follow the ethical, financial and spiritual principles of the Church, and shall exert a positive Adventist influence within their environment."
+              "number": "(b)",
+              "text": "The Business or Ministry shall operate in harmony with the mission of the Seventh-day Adventist Church, shall follow the ethical, financial and spiritual principles of the Church, and shall exert a positive Adventist influence within their environment."
             },
             {
-              "number": "5.2.3",
-              "text": "Professionals shall be practicing members of the Church and be of good and regular standing, and have a positive standing in the community."
+              "number": "(c)",
+              "text": "Professionals shall be practicing members of the Seventh-day Adventist Church and be of good and regular standing, and have a positive standing in the community."
             }
           ]
         },
@@ -204,7 +204,7 @@
         {
           "type": "section",
           "number": "6.1",
-          "text": "Membership in the Association shall end by submitting a formal withdrawal from the Association, by dissolution of the Business or Ministry, death, expulsion, or ending Church membership."
+          "text": "Membership in ASI UK shall end by submitting a formal withdrawal from ASI UK, by dissolution of the Business or Ministry, death, expulsion, or ending Seventh-day Adventist Church membership."
         },
         {
           "type": "section",
@@ -217,15 +217,15 @@
           "text": "A Member can be terminated by a two-thirds majority vote by the Executive, provided that:",
           "subsections": [
             {
-              "number": "6.3.1",
-              "text": "After two (2) written reminders the payment of membership fees or other financial commitments are unpaid. Termination shall be voted on only after sending a second reminder and where at least nine (9) months have lapsed from that reminder."
+              "number": "(a)",
+              "text": "After two (2) written reminders the payment of membership fees or other financial commitments are unpaid. Termination shall be voted on only after sending a second reminder and where at least six (6) months have lapsed from that reminder."
             },
             {
-              "number": "6.3.2",
-              "text": "Where the member is guilty of grossly violating the interest and the principles of the Association and/or the Church as laid out in Articles 2 and 5."
+              "number": "(b)",
+              "text": "Where the member is guilty of grossly violating the interest and the principles of ASI UK and/or the Seventh-day Adventist Church as laid out in Articles 2 and 5."
             },
             {
-              "number": "6.3.3",
+              "number": "(c)",
               "text": "The Decision to terminate must state the reason for termination. The termination notice must be sent to the member in writing and be dated."
             }
           ]
@@ -236,15 +236,15 @@
           "text": "Member's appeals process. Before the decision of termination is effective, the Executive shall give the opportunity to the Member to submit an appeal regarding the termination.",
           "subsections": [
             {
-              "number": "6.4.1",
+              "number": "(a)",
               "text": "The termination notice described in article 6.3 has been sent."
             },
             {
-              "number": "6.4.2",
+              "number": "(b)",
               "text": "For the appeal to be considered the Member must lodge an appeal in writing within one month from the date of the termination notice and shall be directed to the Executive. The Member's appeal can then be considered by the Executive."
             },
             {
-              "number": "6.4.3",
+              "number": "(c)",
               "text": "After receiving and having considered the appeal, the Executive must bring the termination before a General Meeting to be considered by the Members. The appeals must be added to the General Meeting's agenda. During this meeting shall the Decision be made regarding the termination of membership."
             }
           ]
@@ -257,7 +257,7 @@
       "content": [
         {
           "type": "paragraph",
-          "text": "The organs of the Association shall consist of the General Meeting, the Extraordinary Meeting, and the Executive."
+          "text": "The organs of ASI UK shall consist of the General Meeting, the Extraordinary Meeting, and the Executive."
         }
       ]
     },
@@ -268,7 +268,7 @@
         {
           "type": "section",
           "number": "8.1",
-          "text": "The General Meeting shall be the meeting of all Ordinary Members, and Sponsoring Members of the Association. Only Members with Voting Rights are allowed to cast votes. The General Meeting shall take place annually. Written notice of the meeting shall be given four (4) weeks prior to the meeting and an agenda supplied."
+          "text": "The General Meeting shall be the meeting of Ordinary Members, and Sponsoring Members of ASI UK. Only Members with Voting Rights are allowed to cast votes. The General Meeting shall take place annually. Written notice of the meeting shall be given to all Ordinary and Sponsoring members four (4) weeks prior to the meeting and an agenda supplied."
         },
         {
           "type": "section",
@@ -278,12 +278,12 @@
         {
           "type": "section",
           "number": "8.3",
-          "text": "The General Meeting shall have the following functions: passing of the Budget for the following Business Year proposed by the Executive; presenting of the Annual Report given by the Executive; exonerating the Executive; fixing Membership Fees; electing officers to the Executive; voting changes of the Constitution; voting the dissolution of the Association; and voting of appeals by Members on their dismissal."
+          "text": "The General Meeting shall have the following functions: passing of the Budget for the following Business Year proposed by the Executive; presenting of the Annual Report given by the Executive; exonerating the Executive; fixing Membership Fees; electing officers to the Executive; voting changes of the Constitution; voting the dissolution of ASI UK; and voting of appeals by Members on their dismissal."
         },
         {
           "type": "section",
           "number": "8.4",
-          "text": "The General Meeting and Extraordinary Meeting shall be Chaired by the President or, in case he or she is incapacitated, by his or her Vice President. In the event that both are incapacitated, the General Meeting and Extraordinary Meeting shall appoint a Chair."
+          "text": "The General Meeting and Extraordinary Meeting shall be Chaired by the President or, in case he or she is incapacitated, by the Vice President. In the event that both are incapacitated, the General Meeting and Extraordinary Meeting shall appoint a Chair."
         },
         {
           "type": "section",
@@ -303,12 +303,12 @@
         {
           "type": "section",
           "number": "8.8",
-          "text": "Amendments to the Association's Constitution may be made by a two-thirds majority vote of those Members present, provided four (4) weeks' written notice of the amendment is given to Members prior to the meeting, detailing the nature and subject of the amendments for consideration."
+          "text": "Amendments to ASI UK's Constitution may be made by a two-thirds majority vote of those Members present, provided four (4) weeks' written notice of the amendment is given to Members prior to the meeting, detailing the nature and subject of the amendments for consideration."
         },
         {
           "type": "section",
           "number": "8.9",
-          "text": "Extraordinary Meetings can be called by the Executive, or if one third of the Association's Members with Voting Rights request it in writing to the Executive. The Executive cannot block the Member's request and must organise the Extraordinary Meeting within a reasonable time. Four (4) weeks' written notice for the Meeting must be given to Members and an agenda detailing the nature and subject of the Extraordinary Meeting is to be supplied."
+          "text": "Extraordinary Meetings can be called by the Executive, or if one third of ASI UK's Members with Voting Rights request it in writing to the Executive. The Executive cannot block the Member's request and must organise the Extraordinary Meeting within a reasonable time. Four (4) weeks' written notice for the Meeting must be given to Members and an agenda detailing the nature and subject of the Extraordinary Meeting is to be supplied."
         },
         {
           "type": "section",
@@ -329,12 +329,12 @@
         {
           "type": "section",
           "number": "9.2",
-          "text": "The number of officers that constitute the Executive shall be not less than five (5) and not more than seven (7) Executive Members: The President, at least one Vice President, the Executive Secretary, the Treasurer and one representative of the Church. Additional number of Executive Members can be chosen form the Association to make up the maximum number of officers."
+          "text": "The number of officers that constitute the Executive shall be not less than five (5) and not more than seven (7) Executive Members: The President, at least one Vice President, the Executive Secretary, the Treasurer and one representative of the Church. Additional numbers of Executive Members can be chosen from ASI UK to make up the maximum number of officers."
         },
         {
           "type": "section",
           "number": "9.3",
-          "text": "Each Executive Member shall be elected separately and individually, and are voted into office by a Simple Majority. Eligible for election to the Executive shall be, with the exception of the representative of the Church, only Members of the Association."
+          "text": "Each Executive Member shall be elected separately and individually, and are voted into office by a Simple Majority. Eligible for election to the Executive shall be, with the exception of the representative of the Church, only Members of ASI UK."
         },
         {
           "type": "section",
@@ -349,7 +349,7 @@
         {
           "type": "section",
           "number": "9.6",
-          "text": "The Association shall be represented by the President and bound in legal matters by the President and one additional Executive Member. Legal matters can also be bound in combination with four (4) Executive Members."
+          "text": "ASI UK shall be represented by the President and bound in legal matters by the President and one additional Executive Member. Legal matters can also be bound in combination with four (4) Executive Members."
         },
         {
           "type": "section",
@@ -364,17 +364,17 @@
         {
           "type": "section",
           "number": "9.9",
-          "text": "The Executive shall act in the best interest of the association and shall have a broad scope of authority to execute operations to fulfil the purpose as defined in this constitution."
+          "text": "The Executive shall act in the best interest of ASI UK and shall have a broad scope of authority to execute operations to fulfil the purpose as defined in this constitution."
         },
         {
           "type": "section",
           "number": "9.10",
-          "text": "The Executive can make Decisions by letter or by electronic means provided all Executive Members agree."
+          "text": "The Executive can make Decisions by letter or by electronic means provided the majority of Executive Members agree."
         },
         {
           "type": "section",
           "number": "9.11",
-          "text": "The authority to make purchases or bind the association in financial and legal matters of £10,000 (ten thousand pounds) and above shall require an express Decision passed during a General Meeting."
+          "text": "The authority to make purchases or bind ASI UK in financial and legal matters of £10,000 (ten thousand pounds) and above shall require an express Decision passed during a General Meeting, with the exception of organising the annual ASI UK convention, where the limit is £20,000 (twenty thousand pounds), and for matters above this amount requires the express Decision from Ordinary members via electronic voting."
         },
         {
           "type": "section",
@@ -389,12 +389,12 @@
         {
           "type": "section",
           "number": "9.14",
-          "text": "The Treasurer shall manage all finances of the Association, collect all Membership Fees, perform such duties that may be within scope of the authority of the office, and submit an audited report to the General Meeting. All auditing shall be done by an independent auditor. The auditor shall be appointed by the Executive."
+          "text": "The Treasurer shall manage all finances of ASI UK, collect all Membership Fees, perform such duties that may be within scope of the authority of the office, and submit an audited report to the General Meeting. All auditing shall be done by an independent auditor. The auditor shall be appointed by the Executive."
         },
         {
           "type": "section",
           "number": "9.15",
-          "text": "If an Executive Member discontinues in their office, the Executive shall elect a replacement until the following General Meeting. Each replacement shall be elected separately and individually. The Executive should take action to maintain the minimum number of Executive Members between General Meetings, except where a decision has been made not to fill a vacant position, as per clause 9.5. Discontinuation of Membership in the Association or Church membership shall also terminate their office."
+          "text": "If an Executive Member discontinues in their office, the Executive shall elect a replacement until the following General Meeting. Each replacement shall be elected separately and individually. The Executive should take action to maintain the minimum number of Executive Members between General Meetings, except where a decision has been made not to fill a vacant position, as per clause 9.5. Discontinuation of Membership in ASI UK or Seventh-day Adventist Church membership shall also terminate their office."
         },
         {
           "type": "section",
@@ -431,12 +431,12 @@
         {
           "type": "section",
           "number": "11.1",
-          "text": "The dissolution of the Association can only be raised during a General Meeting or an Extraordinary Meeting whereby at least fifty percent (50%) of all Members with Voting Rights shall be present. The vote must be carried by a two-thirds majority of all valid votes cast. The Executive shall be the liquidators of the Association provided the Members do not vote otherwise."
+          "text": "The dissolution of ASI UK can only be raised during a General Meeting or an Extraordinary Meeting whereby at least fifty percent (50%) of all Members with Voting Rights shall be present. The vote must be carried by a two-thirds majority of all valid votes cast. The Executive shall be the liquidators of ASI UK provided the Members do not vote otherwise."
         },
         {
           "type": "section",
           "number": "11.2",
-          "text": "All assets of the Association which will exist at the time of the liquidation or dissolution of the Association shall be transferred to the Church who in turn shall be under obligation to use these assets exclusively for not for profit purposes. In addition, any records relating to the dissolution together with any General Meeting or Extraordinary Meeting minutes shall be presented to the Church for record keeping."
+          "text": "All assets of ASI UK which will exist at the time of the liquidation or dissolution of ASI UK shall be transferred to the Seventh-day Adventist Church who in turn shall be under obligation to use these assets exclusively for not-for-profit purposes. In addition, any records relating to the dissolution together with any General Meeting or Extraordinary Meeting minutes shall be presented to the Seventh-day Adventist Church for record keeping."
         }
       ]
     }
