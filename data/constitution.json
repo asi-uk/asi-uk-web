@@ -12,12 +12,16 @@
           "type": "definitionList",
           "items": [
             {
+              "term": "ASI UK",
+              "definition": "shall be named 'Adventist laymen's Services and Industries, United Kingdom'."
+            },
+            {
               "term": "Association",
-              "definition": "shall be named 'Adventist laymen's Services and Industries, United Kingdom' (shorthand 'ASI UK')"
+              "definition": "is ASI UK."
             },
             {
               "term": "Business Year",
-              "definition": "of the Association shall be the Calendar Year as observed in the United Kingdom."
+              "definition": "of ASI UK shall be the Calendar Year as observed in the United Kingdom."
             },
             {
               "term": "Business",
@@ -41,11 +45,11 @@
             },
             {
               "term": "Executive, the",
-              "definition": "is the Association's board occupied by Executive Members who exercise their authority in operating the Association in accordance with this constitution."
+              "definition": "is ASI UK's board occupied by Executive Members who exercise their authority in operating ASI UK in accordance with this constitution."
             },
             {
               "term": "Executive Member",
-              "definition": "is the officer appointed to the Association's board and upon whom authority is conferred to act in the best interests of the Association."
+              "definition": "is the officer appointed to ASI UK's board and upon whom authority is conferred to act in the best interests of ASI UK."
             },
             {
               "term": "Member",
@@ -65,7 +69,7 @@
             },
             {
               "term": "Voting Rights",
-              "definition": "are conferred to Members of the Association have the right to vote as in accordance with this constitution."
+              "definition": "are conferred to Members of ASI UK have the right to vote as in accordance with this constitution."
             }
           ]
         }
@@ -78,7 +82,7 @@
         {
           "type": "section",
           "number": "2.1",
-          "text": "The purpose of the association is to:",
+          "text": "The purpose of ASI UK is to:",
           "subsections": [
             {
               "number": "2.1.1",
@@ -97,12 +101,12 @@
         {
           "type": "section",
           "number": "2.2",
-          "text": "The Association primarily does not aim at earning a profit for its own benefit. It shall exclusively and directly pursue not-for-profit purposes in the sense of the national tax legislation."
+          "text": "ASI UK primarily does not aim at earning a profit for its own benefit. It shall exclusively and directly pursue not-for-profit purposes in the sense of the national tax legislation."
         },
         {
           "type": "section",
           "number": "2.3",
-          "text": "The Association's income and assets shall be used exclusively for goals defined in this Constitution. No Member or Executive Member of the Association shall receive for their work compensation from the Association."
+          "text": "ASI UK's income and assets shall be used exclusively for goals defined in this Constitution. No Member or Executive Member of ASI UK shall receive for their work compensation from ASI UK."
         }
       ]
     },
@@ -113,7 +117,7 @@
         {
           "type": "section",
           "number": "3.1",
-          "text": "Harmony and cooperation between the Association and the Church shall be ensured by the appointment of a representative of the Church on the Executive."
+          "text": "Harmony and cooperation between ASI UK and the Church shall be ensured by the appointment of a representative of the Church on the Executive."
         },
         {
           "type": "section",
@@ -129,7 +133,7 @@
         {
           "type": "section",
           "number": "4.1",
-          "text": "The Association shall consist of Ordinary Members, and Sponsoring Members, and is subject to the Membership Application Process prescribed in Article 5."
+          "text": "ASI UK shall consist of Ordinary Members, and Sponsoring Members, and is subject to the Membership Application Process prescribed in Article 5."
         },
         {
           "type": "section",
@@ -153,7 +157,7 @@
         {
           "type": "section",
           "number": "4.3",
-          "text": "\"Sponsoring Membership\" status shall be granted to individuals who are practicing members of the Church and who are willing to support the Association's goals through financial and/or other means."
+          "text": "\"Sponsoring Membership\" status shall be granted to individuals who are practicing members of the Church and who are willing to support ASI UK's goals through financial and/or other means."
         },
         {
           "type": "section",
@@ -204,7 +208,7 @@
         {
           "type": "section",
           "number": "6.1",
-          "text": "Membership in the Association shall end by submitting a formal withdrawal from the Association, by dissolution of the Business or Ministry, death, expulsion, or ending Church membership."
+          "text": "Membership in ASI UK shall end by submitting a formal withdrawal from ASI UK, by dissolution of the Business or Ministry, death, expulsion, or ending Church membership."
         },
         {
           "type": "section",
@@ -222,7 +226,7 @@
             },
             {
               "number": "6.3.2",
-              "text": "Where the member is guilty of grossly violating the interest and the principles of the Association and/or the Church as laid out in Articles 2 and 5."
+              "text": "Where the member is guilty of grossly violating the interest and the principles of ASI UK and/or the Church as laid out in Articles 2 and 5."
             },
             {
               "number": "6.3.3",
@@ -257,7 +261,7 @@
       "content": [
         {
           "type": "paragraph",
-          "text": "The organs of the Association shall consist of the General Meeting, the Extraordinary Meeting, and the Executive."
+          "text": "The organs of ASI UK shall consist of the General Meeting, the Extraordinary Meeting, and the Executive."
         }
       ]
     },
@@ -268,7 +272,7 @@
         {
           "type": "section",
           "number": "8.1",
-          "text": "The General Meeting shall be the meeting of all Ordinary Members, and Sponsoring Members of the Association. Only Members with Voting Rights are allowed to cast votes. The General Meeting shall take place annually. Written notice of the meeting shall be given four (4) weeks prior to the meeting and an agenda supplied."
+          "text": "The General Meeting shall be the meeting of all Ordinary Members, and Sponsoring Members of ASI UK. Only Members with Voting Rights are allowed to cast votes. The General Meeting shall take place annually. Written notice of the meeting shall be given four (4) weeks prior to the meeting and an agenda supplied."
         },
         {
           "type": "section",
@@ -278,7 +282,7 @@
         {
           "type": "section",
           "number": "8.3",
-          "text": "The General Meeting shall have the following functions: passing of the Budget for the following Business Year proposed by the Executive; presenting of the Annual Report given by the Executive; exonerating the Executive; fixing Membership Fees; electing officers to the Executive; voting changes of the Constitution; voting the dissolution of the Association; and voting of appeals by Members on their dismissal."
+          "text": "The General Meeting shall have the following functions: passing of the Budget for the following Business Year proposed by the Executive; presenting of the Annual Report given by the Executive; exonerating the Executive; fixing Membership Fees; electing officers to the Executive; voting changes of the Constitution; voting the dissolution of ASI UK; and voting of appeals by Members on their dismissal."
         },
         {
           "type": "section",
@@ -303,12 +307,12 @@
         {
           "type": "section",
           "number": "8.8",
-          "text": "Amendments to the Association's Constitution may be made by a two-thirds majority vote of those Members present, provided four (4) weeks' written notice of the amendment is given to Members prior to the meeting, detailing the nature and subject of the amendments for consideration."
+          "text": "Amendments to ASI UK's Constitution may be made by a two-thirds majority vote of those Members present, provided four (4) weeks' written notice of the amendment is given to Members prior to the meeting, detailing the nature and subject of the amendments for consideration."
         },
         {
           "type": "section",
           "number": "8.9",
-          "text": "Extraordinary Meetings can be called by the Executive, or if one third of the Association's Members with Voting Rights request it in writing to the Executive. The Executive cannot block the Member's request and must organise the Extraordinary Meeting within a reasonable time. Four (4) weeks' written notice for the Meeting must be given to Members and an agenda detailing the nature and subject of the Extraordinary Meeting is to be supplied."
+          "text": "Extraordinary Meetings can be called by the Executive, or if one third of ASI UK's Members with Voting Rights request it in writing to the Executive. The Executive cannot block the Member's request and must organise the Extraordinary Meeting within a reasonable time. Four (4) weeks' written notice for the Meeting must be given to Members and an agenda detailing the nature and subject of the Extraordinary Meeting is to be supplied."
         },
         {
           "type": "section",
@@ -329,12 +333,12 @@
         {
           "type": "section",
           "number": "9.2",
-          "text": "The number of officers that constitute the Executive shall be not less than five (5) and not more than seven (7) Executive Members: The President, at least one Vice President, the Executive Secretary, the Treasurer and one representative of the Church. Additional number of Executive Members can be chosen form the Association to make up the maximum number of officers."
+          "text": "The number of officers that constitute the Executive shall be not less than five (5) and not more than seven (7) Executive Members: The President, at least one Vice President, the Executive Secretary, the Treasurer and one representative of the Church. Additional number of Executive Members can be chosen form ASI UK to make up the maximum number of officers."
         },
         {
           "type": "section",
           "number": "9.3",
-          "text": "Each Executive Member shall be elected separately and individually, and are voted into office by a Simple Majority. Eligible for election to the Executive shall be, with the exception of the representative of the Church, only Members of the Association."
+          "text": "Each Executive Member shall be elected separately and individually, and are voted into office by a Simple Majority. Eligible for election to the Executive shall be, with the exception of the representative of the Church, only Members of ASI UK."
         },
         {
           "type": "section",
@@ -349,7 +353,7 @@
         {
           "type": "section",
           "number": "9.6",
-          "text": "The Association shall be represented by the President and bound in legal matters by the President and one additional Executive Member. Legal matters can also be bound in combination with four (4) Executive Members."
+          "text": "ASI UK shall be represented by the President and bound in legal matters by the President and one additional Executive Member. Legal matters can also be bound in combination with four (4) Executive Members."
         },
         {
           "type": "section",
@@ -364,7 +368,7 @@
         {
           "type": "section",
           "number": "9.9",
-          "text": "The Executive shall act in the best interest of the association and shall have a broad scope of authority to execute operations to fulfil the purpose as defined in this constitution."
+          "text": "The Executive shall act in the best interest of ASI UK and shall have a broad scope of authority to execute operations to fulfil the purpose as defined in this constitution."
         },
         {
           "type": "section",
@@ -374,7 +378,7 @@
         {
           "type": "section",
           "number": "9.11",
-          "text": "The authority to make purchases or bind the association in financial and legal matters of £10,000 (ten thousand pounds) and above shall require an express Decision passed during a General Meeting."
+          "text": "The authority to make purchases or bind ASI UK in financial and legal matters of £10,000 (ten thousand pounds) and above shall require an express Decision passed during a General Meeting."
         },
         {
           "type": "section",
@@ -389,12 +393,12 @@
         {
           "type": "section",
           "number": "9.14",
-          "text": "The Treasurer shall manage all finances of the Association, collect all Membership Fees, perform such duties that may be within scope of the authority of the office, and submit an audited report to the General Meeting. All auditing shall be done by an independent auditor. The auditor shall be appointed by the Executive."
+          "text": "The Treasurer shall manage all finances of ASI UK, collect all Membership Fees, perform such duties that may be within scope of the authority of the office, and submit an audited report to the General Meeting. All auditing shall be done by an independent auditor. The auditor shall be appointed by the Executive."
         },
         {
           "type": "section",
           "number": "9.15",
-          "text": "If an Executive Member discontinues in their office, the Executive shall elect a replacement until the following General Meeting. Each replacement shall be elected separately and individually. The Executive should take action to maintain the minimum number of Executive Members between General Meetings, except where a decision has been made not to fill a vacant position, as per clause 9.5. Discontinuation of Membership in the Association or Church membership shall also terminate their office."
+          "text": "If an Executive Member discontinues in their office, the Executive shall elect a replacement until the following General Meeting. Each replacement shall be elected separately and individually. The Executive should take action to maintain the minimum number of Executive Members between General Meetings, except where a decision has been made not to fill a vacant position, as per clause 9.5. Discontinuation of Membership in ASI UK or Church membership shall also terminate their office."
         },
         {
           "type": "section",
@@ -431,12 +435,12 @@
         {
           "type": "section",
           "number": "11.1",
-          "text": "The dissolution of the Association can only be raised during a General Meeting or an Extraordinary Meeting whereby at least fifty percent (50%) of all Members with Voting Rights shall be present. The vote must be carried by a two-thirds majority of all valid votes cast. The Executive shall be the liquidators of the Association provided the Members do not vote otherwise."
+          "text": "The dissolution of ASI UK can only be raised during a General Meeting or an Extraordinary Meeting whereby at least fifty percent (50%) of all Members with Voting Rights shall be present. The vote must be carried by a two-thirds majority of all valid votes cast. The Executive shall be the liquidators of ASI UK provided the Members do not vote otherwise."
         },
         {
           "type": "section",
           "number": "11.2",
-          "text": "All assets of the Association which will exist at the time of the liquidation or dissolution of the Association shall be transferred to the Church who in turn shall be under obligation to use these assets exclusively for not for profit purposes. In addition, any records relating to the dissolution together with any General Meeting or Extraordinary Meeting minutes shall be presented to the Church for record keeping."
+          "text": "All assets of ASI UK which will exist at the time of the liquidation or dissolution of ASI UK shall be transferred to the Church who in turn shall be under obligation to use these assets exclusively for not for profit purposes. In addition, any records relating to the dissolution together with any General Meeting or Extraordinary Meeting minutes shall be presented to the Church for record keeping."
         }
       ]
     }
