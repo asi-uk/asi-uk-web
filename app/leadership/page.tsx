@@ -58,7 +58,7 @@ export default function Leadership() {
 
                     <Collapsible className="my-8">
                         <CollapsibleTrigger className="flex items-center justify-between w-full p-4 bg-asi-blue text-white rounded-lg hover:bg-asi-darkBlue transition-colors">
-                            <span className="text-lg font-semibold">Previous Leadership Team (2025-2026)</span>
+                            <span className="text-lg font-semibold">Previous Leadership Team (2024-2025)</span>
                             <ChevronDown className="h-5 w-5 transition-transform duration-200 data-[state=open]:rotate-180" />
                         </CollapsibleTrigger>
                         <CollapsibleContent className="pt-4">
