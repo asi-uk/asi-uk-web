@@ -202,15 +202,6 @@ const MainHeader: React.FC = () => {
                                         </NavigationMenuContent>
                                     </NavigationMenuItem>
 
-                                    {/* Convention link */}
-                                    <NavigationMenuItem>
-                                        <Link href="/convention" legacyBehavior passHref>
-                                            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                                                <Calendar className="mr-2 h-4 w-4"/> Convention
-                                            </NavigationMenuLink>
-                                        </Link>
-                                    </NavigationMenuItem>
-
                                     {/* Projects link */}
                                     <NavigationMenuItem>
                                         <Link href="/projects" legacyBehavior passHref>
@@ -318,9 +309,6 @@ const MainHeader: React.FC = () => {
                                                     </AccordionContent>
                                                 </AccordionItem>
                                             </Accordion>
-
-                                            <MobileNavItem href="/convention" icon={<Calendar
-                                                className="h-4 w-4"/>}>Convention</MobileNavItem>
                                             <MobileNavItem href="/projects"
                                                            icon={<Hammer className="h-4 w-4"/>}>Projects</MobileNavItem>
                                         </div>
