@@ -12,9 +12,8 @@ import {
     Target,
     HelpingHand,
     PoundSterling,
-    Hammer,
     Info,
-    Merge, Users, Coffee, Presentation, TrendingUp, Heading1, CalendarDays, FolderOpen, Heart
+    Merge, Users, Coffee, Presentation, TrendingUp, Heading1, CalendarDays, FolderOpen, Heart, Hammer
 } from 'lucide-react';
 import {
     NavigationMenu,
@@ -78,7 +77,7 @@ export default function Home() {
                     {/* Header */}
                     <div className="flex flex-col items-center justify-center w-full gap-6 mt-6">
                         <div className="flex items-center gap-3">
-                            <Heart className="h-8 w-8 text-white" />
+                            <Hammer className="h-8 w-8 text-white" />
                             <h1 className="text-3xl md:text-4xl text-white font-bold text-center">Support ASI Projects</h1>
                         </div>
                     </div>
@@ -96,7 +95,7 @@ export default function Home() {
                     </div>
 
                     {/* Call to Action Buttons */}
-                    <div className="w-full flex flex-col gap-3 justify-center items-center">
+                    <div className="w-full flex flex-col gap-3 justify-center items-center mb-6">
                         <Link
                             href="/donate"
                             className="bg-white text-asi-blue hover:bg-blue-50 py-3 px-8 rounded-2xl font-semibold text-lg transition-all duration-200 text-center w-64 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-105"
@@ -120,12 +119,6 @@ export default function Home() {
                         </Link>
                     </div>
 
-                    {/* Impact Statement */}
-                    <div className="text-center border-t border-white/20 pt-6">
-                        <p className="text-sm text-white/80 italic">
-                            "For where your treasure is, there your heart will be also." - Matthew 6:21
-                        </p>
-                    </div>
                 </div>
             </section>
 
