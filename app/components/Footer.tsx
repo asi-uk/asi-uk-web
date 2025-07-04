@@ -75,11 +75,6 @@ const Footer: React.FC<FooterProps> = ({
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/convention" className="text-gray-400 hover:text-white transition-colors">
-                                    Convention
-                                </Link>
-                            </li>
-                            <li>
                                 <Link href="/projects" className="text-gray-400 hover:text-white transition-colors">
                                     Projects
                                 </Link>
