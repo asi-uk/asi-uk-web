@@ -81,15 +81,15 @@ export default function Projects() {
                             </Link>
                             
                             {/* Donate Now Button */}
-                            <Link
-                                href="https://donate.stripe.com/eVa6oNg2Ka7l21a288"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2 bg-white text-asi-blue hover:bg-red-50 px-6 py-3 rounded-lg font-medium transition-colors duration-200 shadow-sm hover:shadow-md"
-                            >
-                                <Heart className="h-5 w-5 text-red-600" />
-                                Donate Now
-                            </Link>
+                            {/*<Link*/}
+                            {/*    href="https://donate.stripe.com/eVa6oNg2Ka7l21a288"*/}
+                            {/*    target="_blank"*/}
+                            {/*    rel="noopener noreferrer"*/}
+                            {/*    className="inline-flex items-center gap-2 bg-white text-asi-blue hover:bg-red-50 px-6 py-3 rounded-lg font-medium transition-colors duration-200 shadow-sm hover:shadow-md"*/}
+                            {/*>*/}
+                            {/*    <Heart className="h-5 w-5 text-red-600" />*/}
+                            {/*    Donate Now*/}
+                            {/*</Link>*/}
                         </div>
                     </div>
                 </div>
