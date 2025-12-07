@@ -32,10 +32,6 @@ export default function Leadership() {
                                         <p className="text-sm text-gray-600">Vice President for Evangelism</p>
                                     </div>
                                     <div>
-                                        <p className="font-medium">Craig Gooden</p>
-                                        <p className="text-sm text-gray-600">Vice President for Chapter Growth</p>
-                                    </div>
-                                    <div>
                                         <p className="font-medium">Silvia Garcia Portilla</p>
                                         <p className="text-sm text-gray-600">Treasurer</p>
                                     </div>
