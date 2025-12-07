@@ -45,7 +45,12 @@ export default function Leadership() {
                                 <h4 className="font-semibold text-lg mb-4 text-asi-darkBlue">Committee Members & Directors</h4>
                                 <div className="space-y-3">
                                     <div>
-                                        <p className="font-light italic text-sm">To be selected by Executive Committee</p>
+                                        <p className="font-medium">Sam Walters</p>
+                                        <p className="text-sm text-gray-600">Projects Committee</p>
+                                    </div>
+                                    <div>
+                                        <p className="font-medium">Jason Garcia Portilla</p>
+                                        <p className="text-sm text-gray-600">Projects Committee</p>
                                     </div>
                                 </div>
                             </div>
