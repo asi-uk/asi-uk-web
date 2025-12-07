@@ -1,9 +1,5 @@
-import Image from 'next/image'
-import Link from 'next/link';
-import MainHeader from '@/app/components/MainHeader';
-import {Heading1, Heading2, Heading3} from "@/app/components/Headings";
+import {Heading2} from "@/app/components/Headings";
 import CTARounded from "@/app/components/CTARounded";
-import Profile from '@/app/components/Profile';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { ChevronDown } from "lucide-react";
 
