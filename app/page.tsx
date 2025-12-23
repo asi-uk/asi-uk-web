@@ -27,6 +27,7 @@ import {
 import React, {useState, useEffect} from "react";
 import MainHeader from "@/app/components/MainHeader";
 import Footer from "@/app/components/Footer";
+import SaveTheDateBanner from "@/app/components/SaveTheDateBanner";
 
 // Note: Metadata should be in a separate layout.tsx or page.tsx file as a server component
 // This is a client component so we've removed the metadata export
@@ -70,8 +71,35 @@ export default function Home() {
             {/* Background component (stays fixed) */}
             <ParallaxBackground/>
 
+            {/* Save the Date Banner - 2026 Convention */}
+            <SaveTheDateBanner />
+
+            {/* Membership Section */}
+            <section className="relative z-20 w-full bg-white/90 backdrop-blur-md">
+                <div className="w-full max-w-3xl mx-auto flex flex-col px-4 py-12 md:py-16">
+                    <div className="flex flex-col items-center text-center">
+                        <div className="flex items-center mb-4 md:mb-6">
+                            <Merge className="mr-2 h-5 w-5 md:h-6 md:w-6 text-asi-blue"/>
+                            <h2 className="text-2xl md:text-3xl text-asi-blue font-bold leading-none">Join ASI</h2>
+                        </div>
+                        <p className="text-sm md:text-base mb-6 max-w-2xl">
+                            Are you an Adventist professional, entrepreneur, or ministry leader with a desire to spread
+                            the love of Christ in your sphere of influence? ASI UK is designed specifically for you.
+                        </p>
+                        <div>
+                            <Link
+                                href="/membership"
+                                className="bg-asi-blue hover:bg-blue-700 text-white py-2 px-6 rounded-lg font-medium transition-colors duration-200"
+                            >
+                                Membership Information
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             {/* First Section - Project Fundraising Call to Action */}
-            <section className="relative z-20 flex items-center justify-center w-full my-10 md:my-8 md:mb-36 px-4 md:py-0">
+            <section className="relative z-20 flex items-center justify-center w-full my-10 md:my-8 md:mt-12 px-4 md:py-0">
                 <div
                     className="w-full max-w-3xl mx-auto flex flex-col gap-6 md:gap-10 bg-asi-darkBlue/80 rounded-2xl backdrop-blur-md p-6 md:px-10 shadow">
                     {/* Header */}
@@ -122,31 +150,7 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* Membership Section */}
-            <section className="relative z-20 w-full bg-white/90 backdrop-blur-md">
-                <div className="w-full max-w-3xl mx-auto flex flex-col px-4 py-12 md:py-16">
-                    <div className="flex flex-col items-center text-center">
-                        <div className="flex items-center mb-4 md:mb-6">
-                            <Merge className="mr-2 h-5 w-5 md:h-6 md:w-6 text-asi-blue"/>
-                            <h2 className="text-2xl md:text-3xl text-asi-blue font-bold leading-none">Join ASI</h2>
-                        </div>
-                        <p className="text-sm md:text-base mb-6 max-w-2xl">
-                            Are you an Adventist professional, entrepreneur, or ministry leader with a desire to spread
-                            the love of Christ in your sphere of influence? ASI UK is designed specifically for you.
-                        </p>
-                        <div>
-                            <Link
-                                href="/membership"
-                                className="bg-asi-blue hover:bg-blue-700 text-white py-2 px-6 rounded-lg font-medium transition-colors duration-200"
-                            >
-                                Membership Information
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section className="relative z-20 flex items-center justify-center w-full my-10 md:my-36 px-4 md:py-0">
+            <section className="relative z-20 flex items-center justify-center w-full my-10 md:my-16 px-4 md:py-0">
                 <div
                     className="w-full max-w-3xl mx-auto flex flex-col gap-6 md:gap-10 bg-white/90 rounded-2xl backdrop-blur-md p-6 md:px-10 shadow">
 
