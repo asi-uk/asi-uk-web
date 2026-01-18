@@ -241,9 +241,9 @@ function ProjectCard({title, amount, location, shortDescription, longDescription
 }
 
 export const metadata = {
-    title: "ASI UK | Projects",
+    title: "ASI UK | Project Funding",
     description:
-        "View approved ASI UK projects and apply for funding for new evangelistic initiatives",
+        "Apply for ASI UK project funding for your evangelistic initiatives. 2026 applications now open - deadline Thursday 23rd April 2026.",
     keywords: [
         "ASI UK Projects",
         "Evangelism",
@@ -259,13 +259,17 @@ export const metadata = {
         "adventist laymen's services and industries",
         "ministry",
         "ministries",
+        "2026",
+        "project application",
+        "apply for funding",
+        "evangelistic funding",
     ],
     openGraph: {
         url: "https://asiuk.org/projects",
         type: "website",
-        title: "ASI UK | Projects",
+        title: "ASI UK | Project Funding - 2026 Applications Open",
         description:
-            "View approved ASI UK projects and apply for funding for new evangelistic initiatives",
+            "Apply for ASI UK project funding for your evangelistic initiatives. 2026 applications now open - deadline Thursday 23rd April 2026.",
         images: [
             {
                 url: "https://www.asiuk.org/thumbnail.png",
@@ -277,9 +281,9 @@ export const metadata = {
     },
     twitter: {
         card: "summary_large_image",
-        title: "ASI UK | Projects",
+        title: "ASI UK | Project Funding - 2026 Applications Open",
         description:
-            "View approved ASI UK projects and apply for funding for new evangelistic initiatives",
+            "Apply for ASI UK project funding for your evangelistic initiatives. 2026 applications now open - deadline Thursday 23rd April 2026.",
         images: [
             {
                 url: "https://www.asiuk.org/thumbnail.png",
@@ -491,7 +495,7 @@ export default function Projects() {
                             Project Funding
                         </h1>
                         <p className="text-sm md:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
-                        Supporting evangelistic initiatives across the UK through strategic funding and partnerships. Discover our approved projects making an impact in communities, and learn how to apply for funding for your ministry.
+                        Supporting evangelistic initiatives across the UK through strategic funding and partnerships. Apply for funding to bring your ministry vision to life.
                         </p>
                     </div>
                 </div>
@@ -499,232 +503,183 @@ export default function Projects() {
 
             {/* Content Container */}
             <div className="max-w-5xl mx-auto md:px-4 py-8">
-                {/* Funding Progress Section */}
-                <section className="mb-12">
-                    <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
-                        <div className="bg-slate-50 px-8 py-6 border-b border-slate-200">
-                            <h2 className="text-2xl md:text-3xl font-bold text-asi-blue mb-2">2025 Funding Progress</h2>
-                            <p className="text-slate-600 text-sm md:text-base">Track our progress towards funding all approved projects</p>
-                        </div>
-                        <div className="p-8">
-                            <ProgressBar 
-                                current={fundingReceived} 
-                                total={totalGoal}
-                                className="w-full"
-                            />
-                        </div>
-                    </div>
-                </section>
+                {/* 2026 Application Section - Prominent */}
+                <section className="mb-12 px-4 md:px-0">
+                    <div className="bg-gradient-to-br from-asi-blue to-asi-darkBlue rounded-2xl shadow-lg overflow-hidden">
+                        <div className="p-6 md:p-8 text-white">
+                            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+                                <div>
+                                    <div className="flex items-center gap-3 mb-2">
+                                        <h2 className="text-2xl md:text-3xl font-bold">2026 Project Funding Cycle</h2>
+                                        <span className="bg-green-500 text-white text-xs font-semibold px-3 py-1 rounded-full">Applications Open</span>
+                                    </div>
+                                    <p className="text-blue-100 text-sm md:text-lg leading-relaxed">Get the resources you need to bring your evangelistic vision to life</p>
+                                </div>
+                            </div>
 
-                {/* Approved Projects Section */}
-                <section className="mb-16">
-                    <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
-                        {/* Projects Header */}
-                        <div className="bg-slate-50 px-8 py-6 border-b border-slate-200">
-                            <div>
-                                <h2 className="text-2xl md:text-3xl font-bold text-asi-blue mb-2">Approved Projects 2025</h2>
-                                <p className="text-slate-600 text-sm md:text-base">Projects approved for funding in the 2025 project cycle</p>
+                            {/* Deadline Banner */}
+                            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 mb-6 border border-white/20">
+                                <p className="text-white text-center font-medium">
+                                    Application Deadline: <span className="font-bold">Thursday 23rd April 2026</span>
+                                </p>
+                            </div>
+
+                            {/* Application Forms */}
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                                <CTARounded
+                                    heading={"Main Application Form"}
+                                    href={"https://c1crerc0h1fs4ljz.public.blob.vercel-storage.com/asi-uk-project-funding-application-form.docx"}
+                                    containerClass={"bg-white hover:bg-slate-100 transition-colors p-4 rounded-lg"}
+                                    headingClass={"text-sm font-medium text-asi-blue"}
+                                    Icon={FileDown}
+                                />
+                                <CTARounded
+                                    heading={"Budget Form"}
+                                    href={"https://c1crerc0h1fs4ljz.public.blob.vercel-storage.com/asi-uk-project-funding-budget-form.xlsx"}
+                                    containerClass={"bg-white hover:bg-slate-100 transition-colors p-4 rounded-lg"}
+                                    headingClass={"text-sm font-medium text-asi-blue"}
+                                    Icon={FileDown}
+                                />
+                            </div>
+
+                            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                                <p className="text-white text-sm md:text-base text-center">
+                                    Submit completed applications to{' '}
+                                    <a href="mailto:evangelism@asiuk.org" className="font-semibold underline hover:text-blue-200">
+                                        evangelism@asiuk.org
+                                    </a>
+                                </p>
                             </div>
                         </div>
 
-                        {/* Projects List */}
-                        <div className="p-4 md:p-8">
-                            <div className="space-y-4 md:space-y-8">
-                                {approvedProjects.length > 0 ? (
-                                    approvedProjects.map((project, index) => (
-                                        <ProjectCard key={index} {...project} />
-                                    ))
-                                ) : (
-                                    <div className="text-center py-12 bg-slate-50 rounded-xl">
-                                        <Heart className="h-12 w-12 text-slate-400 mx-auto mb-4"/>
-                                        <h3 className="text-lg font-medium text-slate-600 mb-2">Projects Coming Soon</h3>
-                                        <p className="text-slate-500">2025 approved projects will be displayed here after the
-                                            convention.</p>
-                                    </div>
-                                )}
+                        {/* Application Guidelines */}
+                        <div className="bg-white p-6 md:p-8">
+                            <h3 className="text-xl font-semibold text-asi-blue mb-6">Application Guidelines</h3>
+
+                            <div className="space-y-6">
+                                <div>
+                                    <h4 className="text-base font-medium text-asi-blue mb-3">Project Criteria</h4>
+                                    <ol className="list-decimal ml-6 space-y-2 text-slate-700 text-sm md:text-base">
+                                        <li>The project must be primarily evangelistic in nature.</li>
+                                        <li>The applicant must supply a budget for the project.</li>
+                                        <li>Applications must be submitted in English on the official ASI Application form.</li>
+                                    </ol>
+                                </div>
+
+                                <div>
+                                    <h4 className="text-base font-medium text-asi-blue mb-3">Application Criteria</h4>
+                                    <ol className="list-decimal ml-6 space-y-2 text-slate-700 text-sm md:text-base" start={4}>
+                                        <li>Applications are only accepted from ASI UK members.</li>
+                                        <li>The Applicant must be in good and regular standing with the Seventh-day Adventist Church.</li>
+                                        <li>Applications are only accepted from organisations and groups that work not for profit or from individuals applying for funding to join evangelistic campaigns.</li>
+                                        <li>ASI UK funding must not be available for profit-making purposes.</li>
+                                        <li>Seventh-day Adventist entities will be considered for funding for special evangelistic projects, but not for regular church budget items unless ASI UK is directly involved with the project.</li>
+                                    </ol>
+                                </div>
+
+                                <div>
+                                    <h4 className="text-base font-medium text-asi-blue mb-3">Funding</h4>
+                                    <ol className="list-decimal ml-6 space-y-2 text-slate-700 text-sm md:text-base" start={9}>
+                                        <li>Funding will be limited to not more than 50% of the total project cost.</li>
+                                        <li>In most cases funding will be released in interim payments upon receipt of progress reports.</li>
+                                    </ol>
+                                </div>
+
+                                <div>
+                                    <h4 className="text-base font-medium text-asi-blue mb-3">Recommended Additional Criteria</h4>
+                                    <p className="text-slate-600 mb-3 text-sm md:text-base">All applications will be considered. Below is a list of recommended criteria (not compulsory), which will give the application a higher chance of approval.</p>
+                                    <ul className="list-disc ml-6 space-y-2 text-slate-700 text-sm md:text-base">
+                                        <li>If an organization is applying for funding, its Board of Directors should be comprised of less than 50% family members.</li>
+                                        <li>If the Applicant invested some of their own funds in their project or at least invested &quot;service time&quot; in their project, that will show that the Applicant is committed to their own project.</li>
+                                        <li>If the project has already started that may show that the project is more feasible and achievable.</li>
+                                        <li>Priority will be given to projects run in the territory of the UK.</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div className="text-center mt-8">
+                                <CTARounded
+                                    heading={"Download Complete Application Guidelines"}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    href={"https://c1crerc0h1fs4ljz.public.blob.vercel-storage.com/asi-uk-project-funding-guidelines.pdf"}
+                                    containerClass={"inline-flex bg-asi-blue hover:bg-asi-darkBlue text-white py-3 px-6 rounded-lg transition-colors"}
+                                    headingClass={"text-base font-medium"}
+                                    Icon={FileDown}
+                                />
                             </div>
                         </div>
                     </div>
                 </section>
 
                 {/* Divider */}
-                <div className="relative mb-8 md:mb-16">
+                <div className="relative mb-8 md:mb-12">
                     <div className="absolute inset-0 flex items-center">
                         <div className="w-full border-t border-slate-300"></div>
                     </div>
                     <div className="relative flex justify-center text-sm">
-                        <span className="bg-white px-4 text-slate-500 font-medium">Apply for Funding</span>
+                        <span className="bg-slate-100 px-4 text-slate-500 font-medium">2025 Funded Projects</span>
                     </div>
                 </div>
 
-                {/* Application Section - Redesigned */}
-                <section className="mb-16">
-                    <Collapsible className="px-5 md:w-full">
-                        <div className="bg-gradient-to-br from-asi-blue to-asi-darkBlue rounded-2xl shadow-lg overflow-hidden">
-                            <div className="flex flex-col md:flex-row items-center justify-between p-8 text-white">
-                                <div>
-                                    <h2 className="text-2xl font-bold mb-3">Apply for Project Funding</h2>
-                                    <p className="text-blue-100 text-sm md:text-lg leading-relaxed">Get the resources you need to bring your evangelistic vision to life</p>
-                                </div>
-                                <CollapsibleTrigger
-                                    className="group flex items-center space-x-2 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-lg px-4 py-3 mt-5 md:mt-0 text-white font-medium transition-all duration-200 border border-white/20 text-sm md:text-base">
-                                    <span>View Application Information</span>
-                                    <ChevronDown
-                                        className="h-5 w-5 transition-transform group-data-[state=open]:rotate-180"/>
-                                </CollapsibleTrigger>
-                            </div>
-
-                            <CollapsibleContent className="bg-white p-8 space-y-8">
-                                <div className="bg-slate-50 rounded-xl p-6">
-                                    <h3 className="text-lg font-semibold text-asi-blue mb-4">2026 Project Cycle</h3>
-                                    <p className="text-slate-600 mb-6">
-                                        Do you have an evangelistic project that needs funding? The 2026 ASI UK project
-                                        application details will be posted here before the end of this year.
-                                        If you have any questions about the project funding process, please reach out
-                                        to <a
-                                        href="mailto:evangelism@asiuk.org"
-                                        className="text-asi-blue underline hover:text-asi-darkBlue"
-                                    >
-                                        evangelism@asiuk.org
-                                    </a>.
-                                    </p>
-                                </div>
-
-
-                                {/* Application Process */}
-                                <div className="bg-slate-50 rounded-xl p-6">
-                                    <h3 className="text-lg font-semibold text-asi-blue mb-4">2025 Project Cycle</h3>
-                                    <p className="text-slate-600 mb-6">
-                                        <span className="font-semibold">The 2025 ASI UK project application cycle is now closed.</span> Approved
-                                        projects have been posted on the top of this page.
-                                    </p>
-
-                                    <p className="text-slate-600 mb-6">
-                                        For reference, the application resources and guidelines from the 2025 project cycle are available below:
-                                    </p>
-
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                                        <CTARounded
-                                            heading={"Main Application Form"}
-                                            href={"https://c1crerc0h1fs4ljz.public.blob.vercel-storage.com/asi-uk-project-funding-application-form.docx"}
-                                            containerClass={"bg-asi-blue/10 hover:bg-asi-blue/20 transition-colors p-4 rounded-lg border border-asi-blue/20"}
-                                            headingClass={"text-sm font-medium text-asi-blue"}
-                                            Icon={FileDown}
-                                        />
-                                        <CTARounded
-                                            heading={"Budget Form"}
-                                            href={"https://c1crerc0h1fs4ljz.public.blob.vercel-storage.com/asi-uk-project-funding-budget-form.xlsx"}
-                                            containerClass={"bg-asi-blue/10 hover:bg-asi-blue/20 transition-colors p-4 rounded-lg border border-asi-blue/20"}
-                                            headingClass={"text-sm font-medium text-asi-blue"}
-                                            Icon={FileDown}
-                                        />
+                {/* 2025 Projects Section - Collapsible */}
+                <section className="mb-16 px-4 md:px-0">
+                    <Collapsible className="w-full">
+                        <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                            <CollapsibleTrigger className="group w-full">
+                                <div className="flex flex-col md:flex-row md:items-center md:justify-between p-6 md:p-8 bg-slate-50 border-b border-slate-200 hover:bg-slate-100 transition-colors">
+                                    <div className="text-left">
+                                        <h2 className="text-xl md:text-2xl font-bold text-asi-blue mb-1">2025 Approved Projects</h2>
+                                        <p className="text-slate-600 text-sm md:text-base">View projects funded in the 2025 cycle</p>
                                     </div>
+                                    <div className="flex items-center gap-2 mt-4 md:mt-0 text-asi-blue font-medium">
+                                        <span className="text-sm">View Projects</span>
+                                        <ChevronDown className="h-5 w-5 transition-transform group-data-[state=open]:rotate-180" />
+                                    </div>
+                                </div>
+                            </CollapsibleTrigger>
 
-
-                                    {/* Detailed Guidelines */}
-                                    <div>
-                                        <h3 className="text-lg font-normal text-asi-blue mb-6">Application
-                                            Guidelines</h3>
-
-                                        <div className="space-y-8">
-                                            <div>
-                                                <h4 className="text-base font-normal text-asi-blue mb-4">Project
-                                                    Criteria</h4>
-                                                <ol className="list-decimal ml-6 space-y-2 text-slate-700">
-                                                    <li>The project must be primarily evangelistic in nature.</li>
-                                                    <li>The applicant must supply a budget for the project.</li>
-                                                    <li>Applications must be submitted in English on the official
-                                                        ASI
-                                                        Application form.
-                                                    </li>
-                                                </ol>
-                                            </div>
-
-                                            <div>
-                                                <h4 className="text-base font-normal text-asi-blue mb-4">Application
-                                                    Criteria</h4>
-                                                <ol className="list-decimal ml-6 space-y-2 text-slate-700"
-                                                    start={4}>
-                                                    <li>Applications are only accepted from ASI UK members.</li>
-                                                    <li>The Applicant must be in good and regular standing with the
-                                                        Seventh-day Adventist Church.
-                                                    </li>
-                                                    <li>Applications are only accepted from organisations and groups
-                                                        that
-                                                        work not for profit or from individuals applying for funding
-                                                        to join
-                                                        evangelistic campaigns.
-                                                    </li>
-                                                    <li>ASI UK funding must not be available for profit-making
-                                                        purposes.
-                                                    </li>
-                                                    <li>Seventh-day Adventist entities will be considered for
-                                                        funding for
-                                                        special evangelistic projects, but not for regular church
-                                                        budget
-                                                        items unless ASI UK is directly involved with the project.
-                                                    </li>
-                                                </ol>
-                                            </div>
-
-                                            <div>
-                                                <h4 className="text-base font-normal text-asi-blue mb-4">Funding</h4>
-                                                <ol className="list-decimal ml-6 space-y-2 text-slate-700"
-                                                    start={9}>
-                                                    <li>Funding will be limited to not more than 50% of the total
-                                                        project
-                                                        cost.
-                                                    </li>
-                                                    <li>In most cases funding will be released in interim payments
-                                                        upon
-                                                        receipt of progress reports.
-                                                    </li>
-                                                </ol>
-                                            </div>
-
-                                            <div>
-                                                <h4 className="text-base font-normal text-asi-blue mb-4">Recommended
-                                                    Additional Criteria</h4>
-                                                <p className="text-slate-600 mb-4">All applications will be
-                                                    considered.
-                                                    Below is a list of recommended criteria (not compulsory), which
-                                                    will
-                                                    give the application a higher chance of approval.</p>
-                                                <ul className="list-disc ml-6 space-y-2 text-slate-700">
-                                                    <li>If an organization is applying for funding, its Board of
-                                                        Directors
-                                                        should be comprised of less than 50% family members.
-                                                    </li>
-                                                    <li>If the Applicant invested some of their own funds in their
-                                                        project
-                                                        or at least invested "service time" in their project, that
-                                                        will show
-                                                        that the Applicant is committed to their own project.
-                                                    </li>
-                                                    <li>If the project has already started that may show that the
-                                                        project is
-                                                        more feasible and achievable.
-                                                    </li>
-                                                    <li>Priority will be given to projects run in the territory of
-                                                        the UK.
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-
-                                        <div className="text-center mt-6">
-                                            <CTARounded
-                                                heading={"Download Complete Application Guidelines"}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                href={"https://c1crerc0h1fs4ljz.public.blob.vercel-storage.com/asi-uk-project-funding-guidelines.pdf"}
-                                                containerClass={"inline-flex bg-asi-blue hover:bg-asi-darkBlue text-white py-3 px-6 rounded-lg transition-colors"}
-                                                headingClass={"text-base font-medium"}
-                                                Icon={FileDown}
-                                            />
+                            <CollapsibleContent>
+                                <div className="p-4 md:p-8">
+                                    {/* Info Banner */}
+                                    <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-8">
+                                        <div className="flex flex-col md:flex-row items-center justify-center gap-3 md:gap-4">
+                                            <p className="text-blue-800 text-sm md:text-base text-center">
+                                                Fundraising for 2025 projects is still ongoing and funds are being disbursed to approved projects.
+                                            </p>
+                                            <Link
+                                                href="/donate"
+                                                className="inline-flex items-center gap-2 bg-asi-blue hover:bg-asi-darkBlue text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors whitespace-nowrap"
+                                            >
+                                                <Heart className="h-4 w-4" />
+                                                Donate
+                                            </Link>
                                         </div>
                                     </div>
 
+                                    {/* Funding Progress */}
+                                    <div className="mb-8">
+                                        <ProgressBar
+                                            current={fundingReceived}
+                                            total={totalGoal}
+                                            className="w-full"
+                                        />
+                                    </div>
+
+                                    {/* Projects List */}
+                                    <div className="space-y-4 md:space-y-8">
+                                        {approvedProjects.length > 0 ? (
+                                            approvedProjects.map((project, index) => (
+                                                <ProjectCard key={index} {...project} />
+                                            ))
+                                        ) : (
+                                            <div className="text-center py-12 bg-slate-50 rounded-xl">
+                                                <Heart className="h-12 w-12 text-slate-400 mx-auto mb-4"/>
+                                                <h3 className="text-lg font-medium text-slate-600 mb-2">Projects Coming Soon</h3>
+                                                <p className="text-slate-500">2025 approved projects will be displayed here after the convention.</p>
+                                            </div>
+                                        )}
+                                    </div>
                                 </div>
                             </CollapsibleContent>
                         </div>
