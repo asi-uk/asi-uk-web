@@ -98,52 +98,50 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* First Section - Project Fundraising Call to Action */}
+            {/* First Section - 2026 Project Funding Call to Action */}
             <section className="relative z-20 flex items-center justify-center w-full my-10 md:my-8 md:mt-12 px-4 md:py-0">
                 <div
-                    className="w-full max-w-3xl mx-auto flex flex-col gap-6 md:gap-10 bg-asi-darkBlue/80 rounded-2xl backdrop-blur-md p-6 md:px-10 shadow">
+                    className="w-full max-w-3xl mx-auto flex flex-col gap-6 md:gap-8 bg-asi-darkBlue/80 rounded-2xl backdrop-blur-md p-6 md:px-10 shadow">
                     {/* Header */}
-                    <div className="flex flex-col items-center justify-center w-full gap-6 mt-6">
+                    <div className="flex flex-col items-center justify-center w-full gap-4 mt-6">
                         <div className="flex items-center gap-3">
-                            <Hammer className="h-8 w-8 text-white" />
-                            <h1 className="text-3xl md:text-4xl text-white font-bold text-center">Support ASI Projects</h1>
+                            <Lightbulb className="h-8 w-8 text-white" />
+                            <h1 className="text-3xl md:text-4xl text-white font-bold text-center">2026 Project Funding</h1>
                         </div>
+                        <span className="bg-green-500 text-white text-sm font-semibold px-4 py-1 rounded-full">Applications Open</span>
                     </div>
 
-                    {/* Horizontal divider */}
-                    <div className="w-full h-px bg-white/20"></div>
+                    {/* Deadline Banner */}
+                    <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                        <p className="text-white text-center font-medium">
+                            Application Deadline: <span className="font-bold">Thursday 23rd April 2026</span>
+                        </p>
+                    </div>
 
                     <div className="text-center">
                         <p className="text-lg md:text-xl text-white font-medium mb-4">
-                            Help fund life-changing ministry projects across the UK
+                            Get funding for your evangelistic ministry
                         </p>
-                        <p className="text-sm md:text-base text-white/90 font-light mb-6">
-                            Your donation directly supports ASI UK members who are making a difference in their communities through evangelism, outreach, and ministry initiatives. Every contribution helps spread the Gospel and transforms lives.
+                        <p className="text-sm md:text-base text-white/90 font-light">
+                            Do you have an evangelistic project that needs funding? ASI UK provides grants to support members who are making a difference through evangelism, outreach, and ministry initiatives.
                         </p>
                     </div>
 
                     {/* Call to Action Buttons */}
                     <div className="w-full flex flex-col gap-3 justify-center items-center mb-6">
                         <Link
-                            href="/donate"
-                            className="bg-white text-asi-blue hover:bg-blue-50 py-3 px-8 rounded-2xl font-semibold text-lg transition-all duration-200 text-center w-64 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-105"
-                        >
-                            <Heart className="h-5 w-5" />
-                            Donate Now
-                        </Link>
-                        <Link
                             href="/projects"
-                            className="bg-white/10 rounded-2xl hover:bg-white/20 text-white py-2 px-6 inline-block font-medium transition-colors duration-200 text-center w-64 flex items-center justify-center gap-2"
+                            className="bg-white text-asi-blue hover:bg-blue-50 py-3 px-8 rounded-2xl font-semibold text-lg transition-all duration-200 text-center w-72 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-105"
                         >
-                            <FolderOpen className="h-4 w-4" />
-                            View Projects
+                            <FolderOpen className="h-5 w-5" />
+                            Learn More & Apply
                         </Link>
                         <Link
-                            href="/convention"
-                            className="bg-white/10 rounded-2xl hover:bg-white/20 text-white py-2 px-6 inline-block font-medium transition-colors duration-200 text-center w-64 flex items-center justify-center gap-2"
+                            href="/donate"
+                            className="bg-white/10 rounded-2xl hover:bg-white/20 text-white py-2 px-6 inline-block font-medium transition-colors duration-200 text-center w-72 flex items-center justify-center gap-2"
                         >
-                            <CalendarDays className="h-4 w-4" />
-                            Convention Info
+                            <Heart className="h-4 w-4" />
+                            Donate to Projects
                         </Link>
                     </div>
 
