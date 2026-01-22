@@ -36,11 +36,11 @@ import {BriefcaseBusiness, Building, Building2, ChartCandlestick, HandHeart, Hea
 
 const formSchema = z.object({
 
-    applicantDescription: z.enum(["Individual", "Entity"]),
+    membershipCategory: z.enum(["Ordinary", "Sponsoring"]),
 
-    membershipType: z.enum(["Ordinary-Individual", "Ordinary-Organisation", "Supporting"]),
+    membershipType: z.enum(["Individual", "Organisation"]),
 
-    orgType: z.enum(["Business", "Organisation"]),
+    orgType: z.enum(["ForProfit", "NonProfit"]),
 
     title: z.enum(["Mr", "Mrs", "Miss", "Dr"], {
         required_error: "Please select a title",
@@ -217,6 +217,12 @@ const capitalizeFirstWord = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 };
 
+const getOrgTypeLabel = (orgType: string | undefined) => {
+    if (orgType === "ForProfit") return "business";
+    if (orgType === "NonProfit") return "organisation";
+    return "organisation";
+};
+
 export function MembershipForm() {
     // 1. Define your form.
 
@@ -226,7 +232,7 @@ export function MembershipForm() {
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            applicantDescription: undefined,
+            membershipCategory: undefined,
             membershipType: undefined,
             orgType: undefined,
             title: undefined,
@@ -261,7 +267,8 @@ export function MembershipForm() {
     })
 
     function getConditionalSchema() {
-        const applicantDescription = form.watch("applicantDescription");
+        const membershipCategory = form.watch("membershipCategory");
+        const membershipType = form.watch("membershipType");
         const isChurchMember = form.watch("isChurchMember");
         const isChurchEmployed = form.watch("isChurchEmployed");
         const orgType = form.watch("orgType");
@@ -269,8 +276,8 @@ export function MembershipForm() {
         // Start with the base schema
         const baseSchema = z.object({
             // Base fields that are always required
-            applicantDescription: z.enum(["Individual", "Entity"]),
-            membershipType: z.enum(["Ordinary-Individual", "Ordinary-Organisation", "Supporting"]),
+            membershipCategory: z.enum(["Ordinary", "Sponsoring"]),
+            membershipType: z.enum(["Individual", "Organisation"]),
             title: z.enum(["Mr", "Mrs", "Miss", "Dr"], {
                 required_error: "Please select a title",
             }),
@@ -294,7 +301,7 @@ export function MembershipForm() {
 
             // Fields that may be optional based on conditions
             orgType: z.union([
-                z.enum(["Business", "Organisation"]),
+                z.enum(["ForProfit", "NonProfit"]),
                 z.null(),
                 z.undefined()
             ]),
@@ -354,7 +361,7 @@ export function MembershipForm() {
         }> = [];
 
         // Add refinements based on conditions
-        if (applicantDescription === "Entity") {
+        if (membershipCategory === "Ordinary" && membershipType === "Organisation") {
             // Organization fields become required
             refinements.push({
                 check: (data) => data.orgType !== undefined,
@@ -399,7 +406,7 @@ export function MembershipForm() {
             });
 
             // If it's a non-profit organization
-            if (orgType === "Organisation") {
+            if (orgType === "NonProfit") {
                 refinements.push({
                     check: (data) => data.orgK0505IsAgreed !== undefined,
                     message: "Please specify K 05 05 compliance",
@@ -538,13 +545,13 @@ export function MembershipForm() {
     }
 
     // Watch for changes in key form values that trigger conditional rendering
-    const applicantDescription = form.watch("applicantDescription");
+    const membershipCategory = form.watch("membershipCategory");
     const membershipType = form.watch("membershipType");
     const orgType = form.watch("orgType");
 
-    // Scroll to entity section when it appears
+    // Scroll to organisation section when it appears
     useEffect(() => {
-        if (applicantDescription === "Entity" && membershipType && orgType && orgSectionRef.current) {
+        if (membershipCategory === "Ordinary" && membershipType === "Organisation" && orgType && orgSectionRef.current) {
             setTimeout(() => {
                 orgSectionRef.current.scrollIntoView({
                     behavior: "smooth",
@@ -552,14 +559,14 @@ export function MembershipForm() {
                 });
             }, 100); // Small delay to ensure DOM has updated
         }
-    }, [applicantDescription, orgType]);
+    }, [membershipCategory, membershipType, orgType]);
 
     // Scroll to personal info section when it appears
     useEffect(() => {
         if (
             personalInfoSectionRef.current &&
-            applicantDescription == "Individual" &&
-            membershipType
+            membershipCategory &&
+            (membershipCategory === "Sponsoring" || membershipType === "Individual")
         ) {
             setTimeout(() => {
                 personalInfoSectionRef.current.scrollIntoView({
@@ -568,62 +575,58 @@ export function MembershipForm() {
                 });
             }, 100); // Small delay to ensure DOM has updated
         }
-    }, [applicantDescription, membershipType, orgType]);
+    }, [membershipCategory, membershipType]);
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full max-w-full overflow-hidden">
                 <FormField
                     control={form.control}
-                    name="applicantDescription"
+                    name="membershipCategory"
                     render={({field}) => (
                         <FormItem>
                             <FormLabel>Membership category</FormLabel>
-                            <FormDescription>Which best describes the type of membership you wish to apply for?</FormDescription>
+                            <FormDescription>Which type of membership do you wish to apply for?</FormDescription>
                             <FormControl>
                                 <RadioCards
-                                    className="grid-cols-2"
                                     options={[
                                         {
-                                            value: "Individual",
-                                            label: "Individual",
+                                            value: "Ordinary",
+                                            label: "Ordinary",
+                                            description: "Full membership for individuals or organisations",
                                             icon: User,
+                                            annualFee: 100
                                         },
                                         {
-                                            value: "Entity",
-                                            label: "Organisation",
-                                            icon: Building2,
+                                            value: "Sponsoring",
+                                            label: "Sponsoring",
+                                            description: "For those wanting to support ASI UK",
+                                            icon: HeartHandshake,
+                                            annualFee: 20
                                         },
                                     ]}
                                     value={field.value}
-                                    layout={"horizontal"}
+                                    layout={"vertical"}
                                     onChange={(value) => {
-
-                                        if (value === "Individual") {
-                                            form.setValue("orgName", "");
-                                            form.setValue("orgLegalName", "");
-                                            form.setValue("orgApplicantRole", "");
-                                            form.setValue("orgDescription", "");
-                                            form.setValue("orgAddress", "");
-                                            form.setValue("orgPostalAddress", "");
-                                            form.setValue("orgPhone", "");
-                                            form.setValue("orgEmail", "");
-                                            form.setValue("orgEmployees", "");
-                                            form.setValue("orgYearsInOperation", "");
-                                            form.setValue("orgWebsite", "");
-                                            form.setValue("orgSocialMedia", "");
-                                            form.setValue("orgK0505IsAgreed", null);
-                                            form.setValue("orgIsFundedByChurch", null);
-                                        }
-
-                                        if (value === "Entity") {
-                                            form.setValue("membershipType", "Ordinary-Organisation")
-                                        } else {
-                                            form.setValue('membershipType', null);
-                                        }
+                                        // Reset membership type and org fields when category changes
+                                        form.setValue('membershipType', undefined);
+                                        form.setValue('orgType', undefined);
+                                        form.setValue("orgName", "");
+                                        form.setValue("orgLegalName", "");
+                                        form.setValue("orgApplicantRole", "");
+                                        form.setValue("orgDescription", "");
+                                        form.setValue("orgAddress", "");
+                                        form.setValue("orgPostalAddress", "");
+                                        form.setValue("orgPhone", "");
+                                        form.setValue("orgEmail", "");
+                                        form.setValue("orgEmployees", "");
+                                        form.setValue("orgYearsInOperation", "");
+                                        form.setValue("orgWebsite", "");
+                                        form.setValue("orgSocialMedia", "");
+                                        form.setValue("orgK0505IsAgreed", undefined);
+                                        form.setValue("orgIsFundedByChurch", undefined);
 
                                         field.onChange(value);
-                                        form.setValue('orgType', null);
                                         form.clearErrors();
                                     }}
                                 />
@@ -632,56 +635,52 @@ export function MembershipForm() {
                         </FormItem>
                     )}
                 />
-                {form.watch("applicantDescription") && (<FormField
+                {form.watch("membershipCategory") === "Ordinary" && (<FormField
                     control={form.control}
                     name="membershipType"
                     render={({field}) => {
-                        // Get the current applicant type
-                        const applicantType = form.watch("applicantDescription");
-
-                        // Define which membership types are available for each applicant type
-                        const membershipOptions = {
-                            "Individual": ["Ordinary-Individual", "Supporting"],
-                            "Entity": ["Ordinary-Organisation"],
-                        };
-
-                        // Filter the options based on the selected applicant type
-                        const filteredOptions = [
-                            {
-                                value: "Ordinary-Individual",
-                                label: "Ordinary",
-                                description: "Ordinary membership as an individual",
-                                icon: User,
-                                annualFee: 100
-                            },
-                            {
-                                value: "Ordinary-Organisation",
-                                label: "Ordinary",
-                                description: "Ordinary membership as a business, organisation or self-supporting ministry",
-                                icon: Building2,
-                                annualFee: 100
-                            },
-                            {
-                                value: "Supporting",
-                                label: "Supporting",
-                                description: "For those wanting to support ASI UK, but not as full members",
-                                icon: HeartHandshake,
-                                annualFee: 20
-                            }
-                        ].filter(option =>
-                            !applicantType || // Show all options if no applicant type selected
-                            membershipOptions[applicantType]?.includes(option.value)
-                        );
-
                         return (
                             <FormItem>
                                 <FormLabel>Membership type</FormLabel>
-                                <FormDescription>Please select your desired membership type</FormDescription>
+                                <FormDescription>Are you applying as an individual or on behalf of an organisation?</FormDescription>
                                 <FormControl>
                                     <RadioCards
-                                        options={filteredOptions}
+                                        className="grid-cols-2"
+                                        options={[
+                                            {
+                                                value: "Individual",
+                                                label: "Individual",
+                                                description: "Membership as an individual person",
+                                                icon: User,
+                                            },
+                                            {
+                                                value: "Organisation",
+                                                label: "Organisation",
+                                                description: "Membership as a business, organisation or self-supporting ministry",
+                                                icon: Building2,
+                                            }
+                                        ]}
                                         value={field.value}
+                                        layout={"horizontal"}
                                         onChange={(value) => {
+                                            // Reset org fields when switching between Individual and Organisation
+                                            if (value === "Individual") {
+                                                form.setValue('orgType', undefined);
+                                                form.setValue("orgName", "");
+                                                form.setValue("orgLegalName", "");
+                                                form.setValue("orgApplicantRole", "");
+                                                form.setValue("orgDescription", "");
+                                                form.setValue("orgAddress", "");
+                                                form.setValue("orgPostalAddress", "");
+                                                form.setValue("orgPhone", "");
+                                                form.setValue("orgEmail", "");
+                                                form.setValue("orgEmployees", "");
+                                                form.setValue("orgYearsInOperation", "");
+                                                form.setValue("orgWebsite", "");
+                                                form.setValue("orgSocialMedia", "");
+                                                form.setValue("orgK0505IsAgreed", undefined);
+                                                form.setValue("orgIsFundedByChurch", undefined);
+                                            }
                                             field.onChange(value);
                                             form.clearErrors();
                                         }}
@@ -692,7 +691,7 @@ export function MembershipForm() {
                         );
                     }}
                 />)}
-                {form.watch("applicantDescription") === "Entity" && form.watch("membershipType") && (
+                {form.watch("membershipCategory") === "Ordinary" && form.watch("membershipType") === "Organisation" && (
                     <FormField
                         control={form.control}
                         name="orgType"
@@ -705,12 +704,12 @@ export function MembershipForm() {
                                         className="grid-cols-2"
                                         options={[
                                             {
-                                                value: "Business",
+                                                value: "ForProfit",
                                                 label: "For-profit",
                                                 icon: BriefcaseBusiness,
                                             },
                                             {
-                                                value: "Organisation",
+                                                value: "NonProfit",
                                                 label: "Not-for-profit",
                                                 icon: HandHeart,
                                             }
@@ -726,9 +725,9 @@ export function MembershipForm() {
                     />
                 )}
 
-                {form.watch("applicantDescription") === "Entity" && form.watch("orgType") && (<>
+                {form.watch("membershipCategory") === "Ordinary" && form.watch("membershipType") === "Organisation" && form.watch("orgType") && (<>
                     <h1 ref={orgSectionRef} className={"text-asi-blue text-left pt-10 text-lg font-bold md:text-xl"}>
-                        {form.watch("orgType")} Information
+                        {form.watch("orgType") === "ForProfit" ? "Business" : "Organisation"} Information
                     </h1>
                     <div className="space-y-5 bg-white p-5 rounded-2xl">
                         <h1 className="font-medium text-asi-blue text-lg">Basic Details</h1>
@@ -738,7 +737,7 @@ export function MembershipForm() {
                             render={({field}) => (
                                 <FormItem>
                                     <FormLabel>Name <span className="text-destructive">*</span></FormLabel>
-                                    <FormDescription>What is the name of your {form.watch("orgType")?.toLowerCase()}?</FormDescription>
+                                    <FormDescription>What is the name of your {getOrgTypeLabel(form.watch("orgType"))}?</FormDescription>
                                     <FormControl>
                                         <Input placeholder="" className="" {...field} />
                                     </FormControl>
@@ -752,7 +751,7 @@ export function MembershipForm() {
                             render={({field}) => (
                                 <FormItem>
                                     <FormLabel>Legal name</FormLabel>
-                                    <FormDescription>Full legal name of the {form.watch("orgType")?.toLowerCase()} (if registered)</FormDescription>
+                                    <FormDescription>Full legal name of the {getOrgTypeLabel(form.watch("orgType"))} (if registered)</FormDescription>
                                     <FormControl>
                                         <Input placeholder="" className="" {...field} />
                                     </FormControl>
@@ -766,7 +765,7 @@ export function MembershipForm() {
                             render={({field}) => (
                                 <FormItem>
                                     <FormLabel>Description <span className="text-destructive">*</span></FormLabel>
-                                    <FormDescription>Please briefly describe what your {form.watch("orgType")?.toLowerCase()} does</FormDescription>
+                                    <FormDescription>Please briefly describe what your {getOrgTypeLabel(form.watch("orgType"))} does</FormDescription>
                                     <FormControl>
                                         <Input placeholder="" {...field} />
                                     </FormControl>
@@ -785,7 +784,7 @@ export function MembershipForm() {
                         render={({field}) => (
                             <FormItem>
                                 <FormLabel>Address</FormLabel>
-                                <FormDescription>Legal registered address of your {form.watch("orgType")?.toLowerCase()}</FormDescription>
+                                <FormDescription>Legal registered address of your {getOrgTypeLabel(form.watch("orgType"))}</FormDescription>
                                 <FormControl>
                                     <Input placeholder="" {...field} />
                                 </FormControl>
@@ -852,7 +851,7 @@ export function MembershipForm() {
                         render={({field}) => (
                             <FormItem>
                                 <FormLabel >Social media</FormLabel>
-                                <FormDescription>Social media links for your {form.watch("orgType")?.toLowerCase()} (Instagram, Facebook, etc.)</FormDescription>
+                                <FormDescription>Social media links for your {getOrgTypeLabel(form.watch("orgType"))} (Instagram, Facebook, etc.)</FormDescription>
                                 <FormControl>
                                     <Input placeholder="" {...field} />
                                 </FormControl>
@@ -871,8 +870,8 @@ export function MembershipForm() {
                         name="orgEmployees"
                         render={({field}) => (
                             <FormItem>
-                                <FormLabel>Size of {form.watch("orgType")?.toLowerCase()} <span className="text-destructive">*</span></FormLabel>
-                                <FormDescription>How many employees are part of your {form.watch("orgType")?.toLowerCase()}, including yourself?</FormDescription>
+                                <FormLabel>Size of {getOrgTypeLabel(form.watch("orgType"))} <span className="text-destructive">*</span></FormLabel>
+                                <FormDescription>How many employees are part of your {getOrgTypeLabel(form.watch("orgType"))}, including yourself?</FormDescription>
                                 <FormControl>
                                     <Input placeholder="" {...field} />
                                 </FormControl>
@@ -886,7 +885,7 @@ export function MembershipForm() {
                         render={({field}) => (
                             <FormItem>
                                 <FormLabel>Years in operation <span className="text-destructive">*</span></FormLabel>
-                                <FormDescription>How many years has your {form.watch("orgType")?.toLowerCase()} been in operation?</FormDescription>
+                                <FormDescription>How many years has your {getOrgTypeLabel(form.watch("orgType"))} been in operation?</FormDescription>
                                 <FormControl>
                                     <Input placeholder="" {...field} />
                                 </FormControl>
@@ -894,7 +893,7 @@ export function MembershipForm() {
                             </FormItem>
                         )}
                     />
-                    {form.watch("orgType") === "Organisation" && (<>
+                    {form.watch("orgType") === "NonProfit" && (<>
                         <FormField
                             control={form.control}
                             name="orgK0505IsAgreed"
@@ -981,7 +980,12 @@ export function MembershipForm() {
                     </div>
                 </>)}
 
-                {form.watch("applicantDescription") && form.watch("membershipType") && (form.watch("applicantDescription") === "Individual" || form.watch("orgType") ) && (<>
+                {form.watch("membershipCategory") && (
+                    form.watch("membershipCategory") === "Sponsoring" ||
+                    (form.watch("membershipCategory") === "Ordinary" && form.watch("membershipType") &&
+                        (form.watch("membershipType") === "Individual" || form.watch("orgType"))
+                    )
+                ) && (<>
 
                     <h1 ref={personalInfoSectionRef} className={"text-asi-blue text-left pt-10 text-lg font-bold md:text-xl"}>
                         Personal Information
@@ -1044,7 +1048,7 @@ export function MembershipForm() {
                             )}
                         />
                     </div>
-                    {form.watch("applicantDescription") === "Entity" && (
+                    {form.watch("membershipCategory") === "Ordinary" && form.watch("membershipType") === "Organisation" && (
                         <FormField
                             control={form.control}
                             name="orgApplicantRole"
@@ -1279,7 +1283,12 @@ export function MembershipForm() {
                         )}
                     </div>
                 </>)}
-                {form.watch("applicantDescription") && form.watch("membershipType") && (form.watch("applicantDescription") === "Individual" || form.watch("orgType")) && (
+                {form.watch("membershipCategory") && (
+                    form.watch("membershipCategory") === "Sponsoring" ||
+                    (form.watch("membershipCategory") === "Ordinary" && form.watch("membershipType") &&
+                        (form.watch("membershipType") === "Individual" || form.watch("orgType"))
+                    )
+                ) && (
                     <Button
                         type="button"
                         onClick={() => {

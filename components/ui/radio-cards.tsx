@@ -48,7 +48,7 @@ const RadioCards = ({
                     />
                     <Label
                         htmlFor={option.value}
-                        className="flex flex-col rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary cursor-pointer w-full h-full"
+                        className="flex flex-col rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-asi-blue [&:has([data-state=checked])]:border-asi-blue cursor-pointer w-full h-full"
                     >
                         <div className={cn(
                             "flex justify-between",
@@ -59,7 +59,7 @@ const RadioCards = ({
                                 layout === "horizontal" ? "flex-col items-center" : "flex-row items-center"
                             )}>
                                 {option.icon && (
-                                    <div className="text-primary">
+                                    <div className="text-asi-blue">
                                         <option.icon size={24} />
                                     </div>
                                 )}

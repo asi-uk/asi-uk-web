@@ -5,6 +5,9 @@
   html, body {
     overscroll-behavior-y: none;
   }
+}
+
+@layer components {
   :root {
     --background: 210 50% 98%;
     --foreground: 240 10% 3.9%;

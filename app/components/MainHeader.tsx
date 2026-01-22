@@ -47,10 +47,7 @@ const MainHeader: React.FC = () => {
     );
 
     return (
-        <div className="w-full print:hidden">
-            {/* Fixed navigation section with positioned dropdowns */}
-            <div style={{position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50}}
-                 className="bg-white shadow-sm border-b w-full">
+        <div className="fixed top-0 z-50 w-full print:hidden bg-white border-b shadow-sm">
                 <div
                     className="px-3 py-3 flex items-center justify-between w-full my-2 md:my-0 md:container md:mx-auto md:max-w-5xl">
 
@@ -332,11 +329,8 @@ const MainHeader: React.FC = () => {
                     </div>
 
                 </div>
-            </div>
 
-            {/* This pushes content below the fixed navigation */}
-            <div className="h-16 md:h-32 mb-10"></div>
-        </div>
+                    </div>
     );
 };
 
