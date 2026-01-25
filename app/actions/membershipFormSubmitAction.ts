@@ -79,7 +79,7 @@ export async function membershipFormSubmitAction(formData: FormData): Promise<Su
         return {
             success: true,
             errors: null,
-            redirectTo: "/membership-form/confirmation",
+            redirectTo: "/membership/application-form/confirmation",
             emailStatus: {
                 applicantEmailSent: emailResult.applicantEmailSent,
                 adminEmailSent: emailResult.adminEmailSent,
