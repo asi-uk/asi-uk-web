@@ -4,16 +4,14 @@ import {zodResolver} from "@hookform/resolvers/zod"
 import {useForm} from "react-hook-form"
 import Link from 'next/link';
 import {z} from "zod"
-import { useEffect, useRef } from "react"
 import { membershipFormSubmitAction } from "@/app/actions/membershipFormSubmitAction";
 import { useState } from "react";
 import { toast, useToast } from "@/components/hooks/use-toast";
 
 import {Button} from "@/components/ui/button"
 import {Input} from "@/components/ui/input"
-import DateInput from "@/components/ui/date"
+import {Textarea} from "@/components/ui/textarea"
 import RadioCards from "@/components/ui/radio-cards"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import {Label} from "@/components/ui/label"
 import {
     Form,
@@ -32,7 +30,7 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 
-import {BriefcaseBusiness, Building, Building2, ChartCandlestick, HandHeart, HeartHandshake, User} from "lucide-react";
+import {AlertCircle, BriefcaseBusiness, Building, Building2, ChartCandlestick, Check, HandHeart, HeartHandshake, User, X} from "lucide-react";
 
 const formSchema = z.object({
 
@@ -59,14 +57,6 @@ const formSchema = z.object({
         .min(2, "Surname must be at least 2 characters")
         .max(50, "Surname must not exceed 50 characters")
         .regex(/^[a-zA-Z\s'-]+$/, "Surname can only contain letters, spaces, hyphens and apostrophes"),
-
-    dateOfBirth: z
-        .date({
-            required_error: "Please enter a valid date of birth",
-            invalid_type_error: "That's not a valid date",
-        })
-        .min(new Date("1900-01-01"), "Date of birth cannot be before 1900")
-        .max(new Date(), "Date of birth cannot be in the future"),
 
     orgName: z
         .string({required_error: "Please enter the name of your organisation",}),
@@ -131,45 +121,23 @@ const formSchema = z.object({
 
     orgWebsite: z.string().url().optional(),
 
-    orgSocialMedia: z
-        .string()
-        .optional(),
-
     orgK0505IsAgreed: z.enum(["Yes", "No"], {
         required_error: "Please select an option",
     }),
 
-    orgIsFundedByChurch: z.enum(["Yes", "No"], {
+    orgIsReligiousMission: z.enum(["Yes", "No"], {
         required_error: "Please select an option",
     }),
 
-    address: z
-        .string()
-        .optional()
-        .refine(
-            (val) => !val || val.length >= 5,
-            "Address must be at least 5 characters"
-        )
-        .refine(
-            (val) => !val || val.length <= 200,
-            "Address must not exceed 200 characters"
-        ),
+    orgIsChurchControlled: z.enum(["Yes", "No"], {
+        required_error: "Please select an option",
+    }),
 
     phoneNumber: z
-        .string()
-        .optional()
-        .refine(
-            (val) => !val || /^(?:\+?\d{1,4}[\s-]?)?\(?(?:\d{1,}\)?[\s-]?){6,}$/.test(val),
-            "Please enter a valid phone number"
-        )
-        .refine(
-            (val) => !val || val.length >= 10,
-            "Phone number must be at least 10 digits"
-        )
-        .refine(
-            (val) => !val || val.length <= 17,
-            "Phone number must not exceed 15 digits"
-        ),
+        .string({required_error: "Please enter a phone number"})
+        .min(10, "Phone number must be at least 10 digits")
+        .max(17, "Phone number must not exceed 15 digits")
+        .regex(/^(?:\+?\d{1,4}[\s-]?)?\(?(?:\d{1,}\)?[\s-]?){6,}$/, "Please enter a valid phone number"),
 
     email: z
         .string({required_error: "Please provide a contact email"})
@@ -178,10 +146,6 @@ const formSchema = z.object({
         .max(100, "Email must not exceed 100 characters"),
 
     website: z.string().url().optional(),
-
-    socialMedia: z
-        .string()
-        .optional(),
 
     isChurchMember: z.enum(["Yes", "No"], {
         required_error: "Please select an option",
@@ -212,23 +176,7 @@ const formSchema = z.object({
 
 });
 
-const capitalizeFirstWord = (str) => {
-    if (!str) return str;
-    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
-};
-
-const getOrgTypeLabel = (orgType: string | undefined) => {
-    if (orgType === "ForProfit") return "business";
-    if (orgType === "NonProfit") return "organisation";
-    return "organisation";
-};
-
 export function MembershipForm() {
-    // 1. Define your form.
-
-    const orgSectionRef = useRef(null);
-    const personalInfoSectionRef = useRef(null);
-
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -238,7 +186,6 @@ export function MembershipForm() {
             title: undefined,
             firstName: "",
             surname: "",
-            dateOfBirth: undefined,
             orgName: "",
             orgLegalName: "",
             orgApplicantRole: "",
@@ -250,14 +197,12 @@ export function MembershipForm() {
             orgEmployees: "",
             orgYearsInOperation: "",
             orgWebsite: "",
-            orgSocialMedia: "",
             orgK0505IsAgreed: undefined,
-            orgIsFundedByChurch: undefined,
-            address: "",
+            orgIsReligiousMission: undefined,
+            orgIsChurchControlled: undefined,
             phoneNumber: "",
             email: "",
             website: "",
-            socialMedia: "",
             isChurchMember: undefined,
             isChurchEmployed: undefined,
             localChurchName: "",
@@ -272,12 +217,18 @@ export function MembershipForm() {
         const isChurchMember = form.watch("isChurchMember");
         const isChurchEmployed = form.watch("isChurchEmployed");
         const orgType = form.watch("orgType");
+        const orgIsReligiousMission = form.watch("orgIsReligiousMission");
+        const orgIsChurchControlled = form.watch("orgIsChurchControlled");
 
         // Start with the base schema
         const baseSchema = z.object({
             // Base fields that are always required
             membershipCategory: z.enum(["Ordinary", "Sponsoring"]),
-            membershipType: z.enum(["Individual", "Organisation"]),
+            membershipType: z.union([
+                z.enum(["Individual", "Organisation"]),
+                z.null(),
+                z.undefined()
+            ]),
             title: z.enum(["Mr", "Mrs", "Miss", "Dr"], {
                 required_error: "Please select a title",
             }),
@@ -287,11 +238,6 @@ export function MembershipForm() {
             surname: z
                 .string()
                 .min(2, "Surname must be at least 2 characters"),
-            dateOfBirth: z
-                .date({
-                    required_error: "Please enter a valid date of birth",
-                    invalid_type_error: "That's not a valid date",
-                }),
             email: z
                 .string({required_error: "Please provide a contact email"})
                 .email("Please enter a valid email address"),
@@ -320,13 +266,17 @@ export function MembershipForm() {
             ]).optional(),
             orgEmployees: z.string().optional(),
             orgYearsInOperation: z.string().optional(),
-            orgSocialMedia: z.string().optional(),
             orgK0505IsAgreed: z.union([
                 z.enum(["Yes", "No"]),
                 z.null(),
                 z.undefined()
             ]),
-            orgIsFundedByChurch: z.union([
+            orgIsReligiousMission: z.union([
+                z.enum(["Yes", "No"]),
+                z.null(),
+                z.undefined()
+            ]),
+            orgIsChurchControlled: z.union([
                 z.enum(["Yes", "No"]),
                 z.null(),
                 z.undefined()
@@ -336,8 +286,7 @@ export function MembershipForm() {
             localChurchPastorName: z.string().optional(),
             localChurchPastorPhone: z.string().optional(),
             // Add all other fields as optional by default
-            address: z.string().optional(),
-            phoneNumber: z.string().optional(),
+            phoneNumber: z.string().min(10, "Phone number must be at least 10 digits"),
             orgWebsite: z.union([
                 z.string().url(),  // Valid URL
                 z.string().length(0),  // Empty string
@@ -350,7 +299,6 @@ export function MembershipForm() {
                 z.null(),  // Null
                 z.undefined()  // Undefined
             ]).optional(),
-            socialMedia: z.string().optional(),
         });
 
         // Define all our refinements in an array
@@ -359,6 +307,15 @@ export function MembershipForm() {
             message: string,
             path: string[]
         }> = [];
+
+        // Membership type required for Ordinary membership
+        if (membershipCategory === "Ordinary") {
+            refinements.push({
+                check: (data) => data.membershipType !== undefined && data.membershipType !== null,
+                message: "Please select a membership type",
+                path: ["membershipType"]
+            });
+        }
 
         // Add refinements based on conditions
         if (membershipCategory === "Ordinary" && membershipType === "Organisation") {
@@ -408,28 +365,50 @@ export function MembershipForm() {
             // If it's a non-profit organization
             if (orgType === "NonProfit") {
                 refinements.push({
-                    check: (data) => data.orgK0505IsAgreed !== undefined,
-                    message: "Please specify K 05 05 compliance",
-                    path: ["orgK0505IsAgreed"]
+                    check: (data) => data.orgIsReligiousMission !== undefined,
+                    message: "Please specify if your organisation's mission is religious",
+                    path: ["orgIsReligiousMission"]
                 });
 
-                refinements.push({
-                    check: (data) => data.orgIsFundedByChurch !== undefined,
-                    message: "Please specify church funding status",
-                    path: ["orgIsFundedByChurch"]
-                });
+                // Only require church affiliation fields if religious mission
+                if (orgIsReligiousMission === "Yes") {
+                    refinements.push({
+                        check: (data) => data.orgIsChurchControlled !== undefined,
+                        message: "Please specify church involvement",
+                        path: ["orgIsChurchControlled"]
+                    });
+
+                    // Only require K 05 05 if not church controlled
+                    if (orgIsChurchControlled === "No") {
+                        refinements.push({
+                            check: (data) => data.orgK0505IsAgreed !== undefined,
+                            message: "Please specify K 05 05 compliance",
+                            path: ["orgK0505IsAgreed"]
+                        });
+                    }
+                }
             }
         }
 
         // Church membership related fields
         if (isChurchMember === "Yes") {
-            refinements.push({
-                check: (data) => data.isChurchEmployed !== undefined,
-                message: "Please specify if you are employed by the church",
-                path: ["isChurchEmployed"]
-            });
+            // Church employment question only required for Ordinary membership
+            if (membershipCategory === "Ordinary") {
+                refinements.push({
+                    check: (data) => data.isChurchEmployed !== undefined,
+                    message: "Please specify if you are employed by the church",
+                    path: ["isChurchEmployed"]
+                });
+            }
 
-            if (isChurchEmployed === "No") {
+            // Local church details required when eligible to proceed
+            // For Ordinary: isChurchMember === "Yes" && isChurchEmployed === "No"
+            // For Sponsoring: isChurchMember === "Yes"
+            const shouldRequireLocalChurchDetails =
+                membershipCategory === "Sponsoring" ||
+                (membershipCategory === "Ordinary" && isChurchEmployed === "No");
+
+            if (shouldRequireLocalChurchDetails) {
                 refinements.push({
                     check: (data) => data.localChurchName !== undefined && data.localChurchName !== "",
                     message: "Local church name is required",
@@ -462,11 +441,69 @@ export function MembershipForm() {
         return finalSchema;
     }
 
+    // Watch form values for conditional rendering
+    const membershipCategory = form.watch("membershipCategory");
+    const membershipType = form.watch("membershipType");
+    const orgType = form.watch("orgType");
+    const orgIsReligiousMission = form.watch("orgIsReligiousMission");
+    const orgIsChurchControlled = form.watch("orgIsChurchControlled");
+    const orgK0505IsAgreed = form.watch("orgK0505IsAgreed");
+    const isChurchMember = form.watch("isChurchMember");
+    const isChurchEmployed = form.watch("isChurchEmployed");
+
+    // Compute disqualification flags
+    const disqualifications = {
+        churchControlled: orgIsChurchControlled === "Yes",
+        k0505NonCompliant: orgIsChurchControlled === "No" && orgK0505IsAgreed === "No",
+        notChurchMember: isChurchMember === "No",
+        churchEmployedIndividual:
+            membershipCategory === "Ordinary" &&
+            membershipType === "Individual" &&
+            isChurchEmployed === "Yes",
+    };
+
+    const isDisqualified = Object.values(disqualifications).some(Boolean);
+
+    // Disqualification alert component
+    const DisqualificationAlert = ({ message, action }: {
+        message: string;
+        action?: { label: string; onClick: () => void }
+    }) => (
+        <div className="flex flex-col gap-3 rounded-lg border border-destructive bg-destructive/10 p-4 mt-5">
+            <div className="flex items-start gap-3">
+                <AlertCircle className="h-5 w-5 text-destructive shrink-0 mt-0.5" />
+                <p className="text-sm text-destructive font-medium">{message}</p>
+            </div>
+            {action && (
+                <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={action.onClick}
+                    className="self-start border-destructive text-destructive hover:bg-destructive hover:text-destructive-foreground"
+                >
+                    {action.label}
+                </Button>
+            )}
+        </div>
+    );
+
     // 2. Define a submit handler.
     const [submitting, setSubmitting] = useState(false);
 
     async function onSubmit(values: z.infer<typeof formSchema>) {
         console.log("Form submitted with values:", values);
+
+        if (isDisqualified) {
+            toast({
+                title: "Cannot submit",
+                description: "Please resolve the eligibility issues before submitting.",
+                variant: "destructive",
+            });
+            return;
+        }
+
+        setSubmitting(true);
 
         try {
             // Get the conditional schema based on current form state
@@ -483,12 +520,7 @@ export function MembershipForm() {
                 const formData = new FormData();
                 Object.entries(validatedData).forEach(([key, value]) => {
                     if (value !== undefined && value !== null) {
-                        // Handle date objects
-                        if (value instanceof Date) {
-                            formData.append(key, value.toISOString().split('T')[0]);
-                        } else {
-                            formData.append(key, String(value));
-                        }
+                        formData.append(key, String(value));
                     }
                 });
 
@@ -541,45 +573,16 @@ export function MembershipForm() {
                 description: "An unexpected error occurred.",
                 variant: "destructive",
             });
+        } finally {
+            setSubmitting(false);
         }
     }
 
-    // Watch for changes in key form values that trigger conditional rendering
-    const membershipCategory = form.watch("membershipCategory");
-    const membershipType = form.watch("membershipType");
-    const orgType = form.watch("orgType");
-
-    // Scroll to organisation section when it appears
-    useEffect(() => {
-        if (membershipCategory === "Ordinary" && membershipType === "Organisation" && orgType && orgSectionRef.current) {
-            setTimeout(() => {
-                orgSectionRef.current.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
-            }, 100); // Small delay to ensure DOM has updated
-        }
-    }, [membershipCategory, membershipType, orgType]);
-
-    // Scroll to personal info section when it appears
-    useEffect(() => {
-        if (
-            personalInfoSectionRef.current &&
-            membershipCategory &&
-            (membershipCategory === "Sponsoring" || membershipType === "Individual")
-        ) {
-            setTimeout(() => {
-                personalInfoSectionRef.current.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
-            }, 100); // Small delay to ensure DOM has updated
-        }
-    }, [membershipCategory, membershipType]);
 
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full max-w-full overflow-hidden">
+                {/* Membership Category */}
                 <FormField
                     control={form.control}
                     name="membershipCategory"
@@ -608,26 +611,10 @@ export function MembershipForm() {
                                     value={field.value}
                                     layout={"vertical"}
                                     onChange={(value) => {
-                                        // Reset membership type and org fields when category changes
-                                        form.setValue('membershipType', undefined);
-                                        form.setValue('orgType', undefined);
-                                        form.setValue("orgName", "");
-                                        form.setValue("orgLegalName", "");
-                                        form.setValue("orgApplicantRole", "");
-                                        form.setValue("orgDescription", "");
-                                        form.setValue("orgAddress", "");
-                                        form.setValue("orgPostalAddress", "");
-                                        form.setValue("orgPhone", "");
-                                        form.setValue("orgEmail", "");
-                                        form.setValue("orgEmployees", "");
-                                        form.setValue("orgYearsInOperation", "");
-                                        form.setValue("orgWebsite", "");
-                                        form.setValue("orgSocialMedia", "");
-                                        form.setValue("orgK0505IsAgreed", undefined);
-                                        form.setValue("orgIsFundedByChurch", undefined);
-
                                         field.onChange(value);
-                                        form.clearErrors();
+                                        form.setValue("membershipType", undefined);
+                                        form.setValue("orgType", undefined);
+                                        form.setValue("orgIsReligiousMission", undefined);
                                     }}
                                 />
                             </FormControl>
@@ -635,11 +622,13 @@ export function MembershipForm() {
                         </FormItem>
                     )}
                 />
-                {form.watch("membershipCategory") === "Ordinary" && (<FormField
-                    control={form.control}
-                    name="membershipType"
-                    render={({field}) => {
-                        return (
+
+                {/* Membership Type */}
+                {membershipCategory === "Ordinary" && (
+                    <FormField
+                        control={form.control}
+                        name="membershipType"
+                        render={({field}) => (
                             <FormItem>
                                 <FormLabel>Membership type</FormLabel>
                                 <FormDescription>Are you applying as an individual or on behalf of an organisation?</FormDescription>
@@ -663,35 +652,20 @@ export function MembershipForm() {
                                         value={field.value}
                                         layout={"horizontal"}
                                         onChange={(value) => {
-                                            // Reset org fields when switching between Individual and Organisation
-                                            if (value === "Individual") {
-                                                form.setValue('orgType', undefined);
-                                                form.setValue("orgName", "");
-                                                form.setValue("orgLegalName", "");
-                                                form.setValue("orgApplicantRole", "");
-                                                form.setValue("orgDescription", "");
-                                                form.setValue("orgAddress", "");
-                                                form.setValue("orgPostalAddress", "");
-                                                form.setValue("orgPhone", "");
-                                                form.setValue("orgEmail", "");
-                                                form.setValue("orgEmployees", "");
-                                                form.setValue("orgYearsInOperation", "");
-                                                form.setValue("orgWebsite", "");
-                                                form.setValue("orgSocialMedia", "");
-                                                form.setValue("orgK0505IsAgreed", undefined);
-                                                form.setValue("orgIsFundedByChurch", undefined);
-                                            }
                                             field.onChange(value);
-                                            form.clearErrors();
+                                            form.setValue("orgType", undefined);
+                                            form.setValue("orgIsReligiousMission", undefined);
                                         }}
                                     />
                                 </FormControl>
                                 <FormMessage/>
                             </FormItem>
-                        );
-                    }}
-                />)}
-                {form.watch("membershipCategory") === "Ordinary" && form.watch("membershipType") === "Organisation" && (
+                        )}
+                    />
+                )}
+
+                {/* Organisation Type */}
+                {membershipType === "Organisation" && (
                     <FormField
                         control={form.control}
                         name="orgType"
@@ -715,7 +689,10 @@ export function MembershipForm() {
                                             }
                                         ]}
                                         value={field.value}
-                                        onChange={field.onChange}
+                                        onChange={(value) => {
+                                            field.onChange(value);
+                                            form.setValue("orgIsReligiousMission", undefined);
+                                        }}
                                         layout="horizontal"
                                     />
                                 </FormControl>
@@ -725,524 +702,483 @@ export function MembershipForm() {
                     />
                 )}
 
-                {form.watch("membershipCategory") === "Ordinary" && form.watch("membershipType") === "Organisation" && form.watch("orgType") && (<>
-                    <h1 ref={orgSectionRef} className={"text-asi-blue text-left pt-10 text-lg font-bold md:text-xl"}>
-                        {form.watch("orgType") === "ForProfit" ? "Business" : "Organisation"} Information
-                    </h1>
-                    <div className="space-y-5 bg-white p-5 rounded-2xl">
-                        <h1 className="font-medium text-asi-blue text-lg">Basic Details</h1>
-                        <FormField
-                            control={form.control}
-                            name="orgName"
-                            render={({field}) => (
-                                <FormItem>
-                                    <FormLabel>Name <span className="text-destructive">*</span></FormLabel>
-                                    <FormDescription>What is the name of your {getOrgTypeLabel(form.watch("orgType"))}?</FormDescription>
-                                    <FormControl>
-                                        <Input placeholder="" className="" {...field} />
-                                    </FormControl>
-                                    <FormMessage/>
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="orgLegalName"
-                            render={({field}) => (
-                                <FormItem>
-                                    <FormLabel>Legal name</FormLabel>
-                                    <FormDescription>Full legal name of the {getOrgTypeLabel(form.watch("orgType"))} (if registered)</FormDescription>
-                                    <FormControl>
-                                        <Input placeholder="" className="" {...field} />
-                                    </FormControl>
-                                    <FormMessage/>
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="orgDescription"
-                            render={({field}) => (
-                                <FormItem>
-                                    <FormLabel>Description <span className="text-destructive">*</span></FormLabel>
-                                    <FormDescription>Please briefly describe what your {getOrgTypeLabel(form.watch("orgType"))} does</FormDescription>
-                                    <FormControl>
-                                        <Input placeholder="" {...field} />
-                                    </FormControl>
-                                    <FormMessage/>
-                                </FormItem>
-                            )}
-                        />
-                    </div>
-
-                    <div className="space-y-5 bg-white p-5 rounded-2xl">
-                        <h1 className="font-medium text-asi-blue text-lg">Contact Details</h1>
-
+                {/* Religious Mission Question */}
+                {orgType === "NonProfit" && (
                     <FormField
                         control={form.control}
-                        name="orgAddress"
+                        name="orgIsReligiousMission"
                         render={({field}) => (
                             <FormItem>
-                                <FormLabel>Address</FormLabel>
-                                <FormDescription>Legal registered address of your {getOrgTypeLabel(form.watch("orgType"))}</FormDescription>
+                                <FormLabel>Religious mission <span className="text-destructive">*</span></FormLabel>
+                                <FormDescription>Is the mission of your not-for-profit organisation religious in nature?</FormDescription>
                                 <FormControl>
-                                    <Input placeholder="" {...field} />
-                                </FormControl>
-                                <FormMessage/>
-                            </FormItem>
-                        )}
-                    />
-                    <FormField
-                        control={form.control}
-                        name="orgPostalAddress"
-                        render={({field}) => (
-                            <FormItem>
-                                <FormLabel>Postal address</FormLabel>
-                                <FormDescription>If different from legal address</FormDescription>
-                                <FormControl>
-                                    <Input placeholder="" {...field} />
-                                </FormControl>
-                                <FormMessage/>
-                            </FormItem>
-                        )}
-                    />
-                    <FormField
-                        control={form.control}
-                        name="orgPhone"
-                        render={({field}) => (
-                            <FormItem>
-                                <FormLabel>Phone</FormLabel>
-                                <FormControl>
-                                    <Input placeholder="" {...field} />
-                                </FormControl>
-                                <FormMessage/>
-                            </FormItem>
-                        )}
-                    />
-                    <FormField
-                        control={form.control}
-                        name="orgEmail"
-                        render={({field}) => (
-                            <FormItem>
-                                <FormLabel>Email <span className="text-destructive">*</span></FormLabel>
-                                <FormControl>
-                                    <Input placeholder="" {...field} />
-                                </FormControl>
-                                <FormMessage/>
-                            </FormItem>
-                        )}
-                    />
-                    <FormField
-                        control={form.control}
-                        name="orgWebsite"
-                        render={({field}) => (
-                            <FormItem>
-                                <FormLabel>Website</FormLabel>
-                                <FormControl>
-                                    <Input placeholder="" {...field} />
-                                </FormControl>
-                                <FormMessage/>
-                            </FormItem>
-                        )}
-                    />
-                    <FormField
-                        control={form.control}
-                        name="orgSocialMedia"
-                        render={({field}) => (
-                            <FormItem>
-                                <FormLabel >Social media</FormLabel>
-                                <FormDescription>Social media links for your {getOrgTypeLabel(form.watch("orgType"))} (Instagram, Facebook, etc.)</FormDescription>
-                                <FormControl>
-                                    <Input placeholder="" {...field} />
-                                </FormControl>
-                                <FormMessage/>
-                            </FormItem>
-                        )}
-                    />
-
-                    </div>
-
-                    <div className="space-y-5 bg-white p-5 rounded-2xl">
-                        <h1 className="font-medium text-asi-blue text-lg">Other Details</h1>
-
-                    <FormField
-                        control={form.control}
-                        name="orgEmployees"
-                        render={({field}) => (
-                            <FormItem>
-                                <FormLabel>Size of {getOrgTypeLabel(form.watch("orgType"))} <span className="text-destructive">*</span></FormLabel>
-                                <FormDescription>How many employees are part of your {getOrgTypeLabel(form.watch("orgType"))}, including yourself?</FormDescription>
-                                <FormControl>
-                                    <Input placeholder="" {...field} />
-                                </FormControl>
-                                <FormMessage/>
-                            </FormItem>
-                        )}
-                    />
-                    <FormField
-                        control={form.control}
-                        name="orgYearsInOperation"
-                        render={({field}) => (
-                            <FormItem>
-                                <FormLabel>Years in operation <span className="text-destructive">*</span></FormLabel>
-                                <FormDescription>How many years has your {getOrgTypeLabel(form.watch("orgType"))} been in operation?</FormDescription>
-                                <FormControl>
-                                    <Input placeholder="" {...field} />
-                                </FormControl>
-                                <FormMessage/>
-                            </FormItem>
-                        )}
-                    />
-                    {form.watch("orgType") === "NonProfit" && (<>
-                        <FormField
-                            control={form.control}
-                            name="orgK0505IsAgreed"
-                            render={({field}) => (
-                                <FormItem className={`py-2`}>
-                                    <div className="space-y-1 leading-none">
-                                        <FormLabel>
-                                            K 05 05 compliance <span className="text-destructive">*</span>
-                                        </FormLabel>
-                                        <FormDescription>
-                                            Does the individual who owns and/or operates a religious based organisation, self-supporting ministry, or mission comply with the Seventh-day Adventist Church’s <Link href="https://drive.google.com/file/d/1gK1xGvPzyqBMXh7iigm6kbCwn99E2xUQ/view" className="underline" target="_blank" rel="noopener noreferrer">K 05 05 Criteria for Defining Supporting Ministries</Link>?
-                                        </FormDescription>
+                                    <div className="max-w-full">
+                                        <RadioCards
+                                            className="grid-cols-2"
+                                            options={[
+                                                { value: "Yes", label: "Yes", icon: Check },
+                                                { value: "No", label: "No", icon: X },
+                                            ]}
+                                            value={field.value}
+                                            onChange={field.onChange}
+                                            layout="inline"
+                                        />
                                     </div>
-                                    <FormControl>
-                                        <RadioGroup
-                                            onValueChange={field.onChange}
-                                            defaultValue={field.value}
-                                            className="flex flex-col space-y-1"
-                                        >
-                                            <FormItem className="flex items-center space-x-3 space-y-0">
-                                                <FormControl>
-                                                    <RadioGroupItem value="Yes" />
-                                                </FormControl>
-                                                <FormLabel className="font-normal">
-                                                    Yes
-                                                </FormLabel>
-                                            </FormItem>
-                                            <FormItem className="flex items-center space-x-3 space-y-0">
-                                                <FormControl>
-                                                    <RadioGroupItem value="No" />
-                                                </FormControl>
-                                                <FormLabel className="font-normal">
-                                                    No
-                                                </FormLabel>
-                                            </FormItem>
-                                        </RadioGroup>
-                                    </FormControl>
-                                    <FormMessage/>
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="orgIsFundedByChurch"
-                            render={({field}) => (
-                                <FormItem className={`py-2`}>
-                                    <div className="space-y-1 leading-none">
-                                        <FormLabel>
-                                            Church funding <span className="text-destructive">*</span>
-                                        </FormLabel>
-                                        <FormDescription>
-                                            Does the individual who owns and/or operates a religious based organisation, self-supporting ministry, or mission receive a salary or any subsidies from an organisation owned and/or operated by the SDA Church?
-                                        </FormDescription>
-                                    </div>
-                                    <FormControl>
-                                        <RadioGroup
-                                            onValueChange={field.onChange}
-                                            defaultValue={field.value}
-                                            className="flex flex-col space-y-1"
-                                        >
-                                            <FormItem className="flex items-center space-x-3 space-y-0">
-                                                <FormControl>
-                                                    <RadioGroupItem value="Yes" />
-                                                </FormControl>
-                                                <FormLabel className="font-normal">
-                                                    Yes
-                                                </FormLabel>
-                                            </FormItem>
-                                            <FormItem className="flex items-center space-x-3 space-y-0">
-                                                <FormControl>
-                                                    <RadioGroupItem value="No" />
-                                                </FormControl>
-                                                <FormLabel className="font-normal">
-                                                    No
-                                                </FormLabel>
-                                            </FormItem>
-                                        </RadioGroup>
-                                    </FormControl>
-                                    <FormMessage/>
-                                </FormItem>
-                            )}
-                        />
-                    </>)}
-                    </div>
-                </>)}
-
-                {form.watch("membershipCategory") && (
-                    form.watch("membershipCategory") === "Sponsoring" ||
-                    (form.watch("membershipCategory") === "Ordinary" && form.watch("membershipType") &&
-                        (form.watch("membershipType") === "Individual" || form.watch("orgType"))
-                    )
-                ) && (<>
-
-                    <h1 ref={personalInfoSectionRef} className={"text-asi-blue text-left pt-10 text-lg font-bold md:text-xl"}>
-                        Personal Information
-                    </h1>
-
-                <div className="space-y-5 bg-white p-5 rounded-2xl">
-                    <h1 className="font-medium text-asi-blue text-lg">About You</h1>
-
-                    <FormField
-                        control={form.control}
-                        name="title"
-                        render={({field}) => (
-                            <FormItem>
-                                <FormLabel>Title <span className="text-destructive">*</span></FormLabel>
-                                <FormControl>
-                                    <Select onValueChange={field.onChange}
-                                            defaultValue={field.value || ""}
-                                            value={field.value || ""}>
-                                        <SelectTrigger className="w-[180px]">
-                                            <SelectValue placeholder="Choose"/>
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            <SelectItem value="Mr">Mr</SelectItem>
-                                            <SelectItem value="Mrs">Mrs</SelectItem>
-                                            <SelectItem value="Miss">Miss</SelectItem>
-                                            <SelectItem value="Dr">Dr</SelectItem>
-                                        </SelectContent>
-                                    </Select>
-
                                 </FormControl>
                                 <FormMessage/>
                             </FormItem>
                         )}
                     />
-                    <div className="flex grid grid-cols-2 space-x-8">
-                        <FormField
-                            control={form.control}
-                            name="firstName"
-                            render={({field}) => (
-                                <FormItem>
-                                    <FormLabel>First name(s) <span className="text-destructive">*</span></FormLabel>
-                                    <FormControl>
-                                        <Input placeholder="" className="" {...field} />
-                                    </FormControl>
-                                    <FormMessage/>
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="surname"
-                            render={({field}) => (
-                                <FormItem>
-                                    <FormLabel>Surname <span className="text-destructive">*</span></FormLabel>
-                                    <FormControl>
-                                        <Input placeholder="" {...field} />
-                                    </FormControl>
-                                    <FormMessage/>
-                                </FormItem>
-                            )}
-                        />
-                    </div>
-                    {form.watch("membershipCategory") === "Ordinary" && form.watch("membershipType") === "Organisation" && (
-                        <FormField
-                            control={form.control}
-                            name="orgApplicantRole"
-                            render={({field}) => (
-                                <FormItem>
-                                    <FormLabel>Role within {form.watch("orgType")?.toLowerCase() || "organisation"} <span className="text-destructive">*</span></FormLabel>
-                                    <FormDescription>What is your personal role within {form.watch("orgName") || "the organisation you represent"}?</FormDescription>
-                                    <FormControl>
-                                        <Input placeholder="" {...field} />
-                                    </FormControl>
-                                    <FormMessage/>
-                                </FormItem>
-                            )}
-                        />
-                    )}
+                )}
 
-                    <FormField
-                        control={form.control}
-                        name="dateOfBirth"
-                        render={({field}) => (
-                            <FormItem>
-                                <FormLabel>Date of birth <span className="text-destructive">*</span></FormLabel>
-                                <DateInput
-                                    value={field.value}
-                                    onChange={field.onChange}
-                                    error={!!form.formState.errors.dateOfBirth}
+                {/* Organisation Information Section */}
+                {membershipType === "Organisation" && (
+                    <>
+                        <h1 className={"text-asi-blue text-left pt-10 text-lg font-bold md:text-xl"}>
+                            Organisation Information
+                        </h1>
+
+                        {/* Organisation Church Affiliation Subsection - only when religious mission */}
+                        {orgIsReligiousMission === "Yes" && (
+                            <div className="space-y-5 bg-white p-5 rounded-2xl">
+                                <h1 className="font-medium text-asi-blue text-lg">Church Affiliation</h1>
+
+                                <FormField
+                                    control={form.control}
+                                    name="orgIsChurchControlled"
+                                    render={({field}) => (
+                                        <FormItem>
+                                            <FormLabel>Church involvement <span className="text-destructive">*</span></FormLabel>
+                                            <FormDescription>Is your organisation directly or indirectly owned, operated or controlled by the Seventh-day Adventist Church?</FormDescription>
+                                            <FormControl>
+                                                <div className="max-w-full">
+                                                    <RadioCards
+                                                        className="grid-cols-2"
+                                                        options={[
+                                                            { value: "Yes", label: "Yes", icon: Check },
+                                                            { value: "No", label: "No", icon: X },
+                                                        ]}
+                                                        value={field.value}
+                                                        onChange={field.onChange}
+                                                        layout="inline"
+                                                    />
+                                                </div>
+                                            </FormControl>
+                                            <FormMessage/>
+                                            {orgIsChurchControlled === "Yes" && (
+                                                <DisqualificationAlert
+                                                    message="ASI UK membership is only available to organisations that are not controlled by the Seventh-day Adventist church"
+                                                />
+                                            )}
+                                        </FormItem>
+                                    )}
                                 />
-                                <FormMessage/>
-                            </FormItem>
-                        )}
-                    />
-                    <FormField
-                        control={form.control}
-                        name="address"
-                        render={({field}) => (
-                            <FormItem>
-                                <FormLabel>Address</FormLabel>
-                                <FormDescription>Your postal address</FormDescription>
-                                <FormControl>
-                                    <Input placeholder="" {...field} />
-                                </FormControl>
-                                <FormMessage/>
-                            </FormItem>
-                        )}
-                    />
-                    <FormField
-                        control={form.control}
-                        name="phoneNumber"
-                        render={({field}) => (
-                            <FormItem>
-                                <FormLabel>Phone</FormLabel>
-                                <FormControl>
-                                    <Input placeholder="" {...field} />
-                                </FormControl>
-                                <FormMessage/>
-                            </FormItem>
-                        )}
-                    />
-                    <FormField
-                        control={form.control}
-                        name="email"
-                        render={({field}) => (
-                            <FormItem>
-                                <FormLabel>Email <span className="text-destructive">*</span></FormLabel>
-                                <FormControl>
-                                    <Input placeholder="" {...field} />
-                                </FormControl>
-                                <FormMessage/>
-                            </FormItem>
-                        )}
-                    />
-                    <FormField
-                        control={form.control}
-                        name="socialMedia"
-                        render={({field}) => (
-                            <FormItem>
-                                <FormLabel>Social media links </FormLabel>
-                                <FormDescription>Your personal social media profiles (LinkedIn, Instagram, Facebook, etc.)</FormDescription>
-                                <FormControl>
-                                    <Input placeholder="" {...field} />
-                                </FormControl>
-                                <FormMessage/>
-                            </FormItem>
-                        )}
-                    />
-                </div>
 
-                    <div className="space-y-5 bg-white p-5 rounded-2xl">
-                        <h1 className="font-medium text-asi-blue text-lg">Church Affiliation</h1>
+                                {orgIsChurchControlled === "No" && (
+                                    <FormField
+                                        control={form.control}
+                                        name="orgK0505IsAgreed"
+                                        render={({field}) => (
+                                            <FormItem className="py-2">
+                                                <FormLabel>
+                                                    K 05 05 compliance <span className="text-destructive">*</span>
+                                                </FormLabel>
+                                                <FormDescription>
+                                                    Does the individual who owns and/or operates this religious-based organisation, self-supporting ministry, or mission comply with the Seventh-day Adventist Church's <Link href="https://drive.google.com/file/d/1gK1xGvPzyqBMXh7iigm6kbCwn99E2xUQ/view" className="underline" target="_blank" rel="noopener noreferrer">K 05 05 Criteria for Defining Supporting Ministries</Link>?
+                                                </FormDescription>
+                                                <FormControl>
+                                                    <div className="max-w-full">
+                                                        <RadioCards
+                                                            className="grid-cols-2"
+                                                            options={[
+                                                                { value: "Yes", label: "Yes", icon: Check },
+                                                                { value: "No", label: "No", icon: X },
+                                                            ]}
+                                                            value={field.value}
+                                                            onChange={field.onChange}
+                                                            layout="inline"
+                                                        />
+                                                    </div>
+                                                </FormControl>
+                                                <FormMessage/>
+                                                {orgK0505IsAgreed === "No" && (
+                                                    <DisqualificationAlert
+                                                        message="Your organisation must comply with the K 05 05 criteria to qualify for ASI UK membership"
+                                                    />
+                                                )}
+                                            </FormItem>
+                                        )}
+                                    />
+                                )}
+                            </div>
+                        )}
 
-                        <FormField
-                            control={form.control}
-                            name="isChurchMember"
-                            render={({field}) => (
-                                <FormItem className={`py-2`}>
-                                    <div className="space-y-1 leading-none">
+                        {/* Organisation Basic Details Subsection */}
+                        <div className="space-y-5 bg-white p-5 rounded-2xl">
+                            <h1 className="font-medium text-asi-blue text-lg">Basic Details</h1>
+                            <FormField
+                                control={form.control}
+                                name="orgName"
+                                render={({field}) => (
+                                    <FormItem>
+                                        <FormLabel>Name <span className="text-destructive">*</span></FormLabel>
+                                        <FormDescription>What is the name of your organisation?</FormDescription>
+                                        <FormControl>
+                                            <Input placeholder="" className="" {...field} />
+                                        </FormControl>
+                                        <FormMessage/>
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="orgLegalName"
+                                render={({field}) => (
+                                    <FormItem>
+                                        <FormLabel>Legal name</FormLabel>
+                                        <FormDescription>Full legal name of the organisation (if registered)</FormDescription>
+                                        <FormControl>
+                                            <Input placeholder="" className="" {...field} />
+                                        </FormControl>
+                                        <FormMessage/>
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="orgDescription"
+                                render={({field}) => (
+                                    <FormItem>
+                                        <FormLabel>Description <span className="text-destructive">*</span></FormLabel>
+                                        <FormDescription>Please briefly describe what your organisation does</FormDescription>
+                                        <FormControl>
+                                            <Textarea placeholder="" rows={4} {...field} />
+                                        </FormControl>
+                                        <FormMessage/>
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+
+                        {/* Organisation Contact Details Subsection */}
+                        <div className="space-y-5 bg-white p-5 rounded-2xl">
+                            <h1 className="font-medium text-asi-blue text-lg">Contact Details</h1>
+                            <FormField
+                                control={form.control}
+                                name="orgAddress"
+                                render={({field}) => (
+                                    <FormItem>
+                                        <FormLabel>Address</FormLabel>
+                                        <FormDescription>Legal registered address of your organisation</FormDescription>
+                                        <FormControl>
+                                            <Input placeholder="" {...field} />
+                                        </FormControl>
+                                        <FormMessage/>
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="orgPostalAddress"
+                                render={({field}) => (
+                                    <FormItem>
+                                        <FormLabel>Postal address</FormLabel>
+                                        <FormDescription>If different from legal address</FormDescription>
+                                        <FormControl>
+                                            <Input placeholder="" {...field} />
+                                        </FormControl>
+                                        <FormMessage/>
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="orgPhone"
+                                render={({field}) => (
+                                    <FormItem>
+                                        <FormLabel>Phone</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="" {...field} />
+                                        </FormControl>
+                                        <FormMessage/>
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="orgEmail"
+                                render={({field}) => (
+                                    <FormItem>
+                                        <FormLabel>Email <span className="text-destructive">*</span></FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="" {...field} />
+                                        </FormControl>
+                                        <FormMessage/>
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="orgWebsite"
+                                render={({field}) => (
+                                    <FormItem>
+                                        <FormLabel>Website</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="" {...field} />
+                                        </FormControl>
+                                        <FormMessage/>
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+
+                        {/* Organisation Other Details Subsection */}
+                        <div className="space-y-5 bg-white p-5 rounded-2xl">
+                            <h1 className="font-medium text-asi-blue text-lg">Other Details</h1>
+                            <FormField
+                                control={form.control}
+                                name="orgEmployees"
+                                render={({field}) => (
+                                    <FormItem>
+                                        <FormLabel>Size of organisation <span className="text-destructive">*</span></FormLabel>
+                                        <FormDescription>How many people work for your organisation, including yourself?</FormDescription>
+                                        <FormControl>
+                                            <Input placeholder="" {...field} />
+                                        </FormControl>
+                                        <FormMessage/>
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="orgYearsInOperation"
+                                render={({field}) => (
+                                    <FormItem>
+                                        <FormLabel>Years in operation <span className="text-destructive">*</span></FormLabel>
+                                        <FormDescription>How many years has your organisation been in operation?</FormDescription>
+                                        <FormControl>
+                                            <Input placeholder="" {...field} />
+                                        </FormControl>
+                                        <FormMessage/>
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+                    </>
+                )}
+
+                {/* Personal Information Section */}
+                {membershipCategory && (
+                    <>
+
+                        <div>
+                            <h1 className={"text-asi-blue text-left pt-10 text-lg font-bold md:text-xl"}>
+                                Personal Information
+                            </h1>
+
+                            {membershipType === "Organisation" && (
+                                <p className="text-gray-600 text-sm ">
+                                    Information about the individual representing the organisation for ASI UK membership
+                                </p>
+                            )}
+                        </div>
+
+                        {/* Personal Church Affiliation Subsection */}
+                        <div className="space-y-5 bg-white p-5 rounded-2xl">
+                            <h1 className="font-medium text-asi-blue text-lg">Church Affiliation</h1>
+
+                            <FormField
+                                control={form.control}
+                                name="isChurchMember"
+                                render={({field}) => (
+                                    <FormItem>
                                         <FormLabel>
                                             Church membership <span className="text-destructive">*</span>
                                         </FormLabel>
                                         <FormDescription>
                                             Are you a baptised member of the Seventh-day Adventist church?
                                         </FormDescription>
-                                    </div>
-                                    <FormControl>
-                                        <RadioGroup
-                                            onValueChange={(value) => {
+                                        <FormControl>
+                                            <div className="max-w-full">
+                                                <RadioCards
+                                                    className="grid-cols-2"
+                                                    options={[
+                                                        { value: "Yes", label: "Yes", icon: Check },
+                                                        { value: "No", label: "No", icon: X },
+                                                    ]}
+                                                    value={field.value}
+                                                    onChange={field.onChange}
+                                                    layout="inline"
+                                                />
+                                            </div>
+                                        </FormControl>
+                                        <FormMessage/>
+                                        {isChurchMember === "No" && (
+                                            <DisqualificationAlert
+                                                message="You must be an SDA church member to qualify for ASI UK membership"
+                                            />
+                                        )}
+                                    </FormItem>
+                                )}
+                            />
 
-                                                if (value === "No") {
-                                                    form.setValue("isChurchEmployed", undefined);
-                                                    form.setValue("localChurchName", "");
-                                                    form.setValue("localChurchPastorPhone", "");
-                                                    form.setValue("localChurchPastorName", "");
-                                                }
-
-                                                field.onChange(value);
-                                            }}
-                                            defaultValue={field.value}
-                                            className="flex flex-col space-y-1"
-                                        >
-                                            <FormItem className="flex items-center space-x-3 space-y-0">
-                                                <FormControl>
-                                                    <RadioGroupItem value="Yes"/>
-                                                </FormControl>
-                                                <FormLabel className="font-normal">
-                                                    Yes
-                                                </FormLabel>
-                                            </FormItem>
-                                            <FormItem className="flex items-center space-x-3 space-y-0">
-                                                <FormControl>
-                                                    <RadioGroupItem value="No"/>
-                                                </FormControl>
-                                                <FormLabel className="font-normal">
-                                                    No
-                                                </FormLabel>
-                                            </FormItem>
-                                        </RadioGroup>
-                                    </FormControl>
-                                    <FormMessage/>
-                                </FormItem>
-                            )}
-                        />
-
-                        {form.watch("isChurchMember") === "Yes" && (
-                            <FormField
-                                control={form.control}
-                                name="isChurchEmployed"
-                                render={({field}) => (
-                                    <FormItem className={`py-2`}>
-                                        <div className="space-y-1 leading-none">
+                            {/* Church employment - shown when church member */}
+                            {membershipCategory && (
+                                <FormField
+                                    control={form.control}
+                                    name="isChurchEmployed"
+                                    render={({field}) => (
+                                        <FormItem>
                                             <FormLabel>
                                                 Church employment <span className="text-destructive">*</span>
                                             </FormLabel>
                                             <FormDescription>
                                                 Are you employed by the Seventh-day Adventist church or by any organisation owned or substantially controlled by the Seventh-day Adventist church?
                                             </FormDescription>
-                                        </div>
+                                            <FormControl>
+                                                <div className="max-w-full">
+                                                    <RadioCards
+                                                        className="grid-cols-2"
+                                                        options={[
+                                                            { value: "Yes", label: "Yes", icon: Check },
+                                                            { value: "No", label: "No", icon: X },
+                                                        ]}
+                                                        value={field.value}
+                                                        onChange={field.onChange}
+                                                        layout="inline"
+                                                    />
+                                                </div>
+                                            </FormControl>
+                                            <FormMessage/>
+                                            {membershipType === "Individual" && isChurchEmployed === "Yes" && (
+                                                <DisqualificationAlert
+                                                    message="Employees of the church do not qualify for ASI UK Ordinary membership. Sponsoring membership is available if desired"
+                                                    action={{
+                                                        label: "Switch to Sponsoring membership",
+                                                        onClick: () => {
+                                                            form.setValue("membershipCategory", "Sponsoring");
+                                                            form.setValue("membershipType", undefined);
+                                                            form.setValue("isChurchEmployed", undefined);
+                                                        }
+                                                    }}
+                                                />
+                                            )}
+                                        </FormItem>
+                                    )}
+                                />
+                            )}
+                        </div>
+
+                        {/* About You Subsection */}
+                        <div className="space-y-5 bg-white p-5 rounded-2xl">
+                            <h1 className="font-medium text-asi-blue text-lg">About You</h1>
+
+                            <FormField
+                                control={form.control}
+                                name="title"
+                                render={({field}) => (
+                                    <FormItem>
+                                        <FormLabel>Title <span className="text-destructive">*</span></FormLabel>
                                         <FormControl>
-                                            <RadioGroup
-                                                onValueChange={field.onChange}
-                                                defaultValue={field.value}
-                                                className="flex flex-col space-y-1"
-                                            >
-                                                <FormItem className="flex items-center space-x-3 space-y-0">
-                                                    <FormControl>
-                                                        <RadioGroupItem value="Yes"/>
-                                                    </FormControl>
-                                                    <FormLabel className="font-normal">
-                                                        Yes
-                                                    </FormLabel>
-                                                </FormItem>
-                                                <FormItem className="flex items-center space-x-3 space-y-0">
-                                                    <FormControl>
-                                                        <RadioGroupItem value="No"/>
-                                                    </FormControl>
-                                                    <FormLabel className="font-normal">
-                                                        No
-                                                    </FormLabel>
-                                                </FormItem>
-                                            </RadioGroup>
+                                            <Select onValueChange={field.onChange}
+                                                    defaultValue={field.value || ""}
+                                                    value={field.value || ""}>
+                                                <SelectTrigger className="w-[180px]">
+                                                    <SelectValue placeholder="Choose"/>
+                                                </SelectTrigger>
+                                                <SelectContent>
+                                                    <SelectItem value="Mr">Mr</SelectItem>
+                                                    <SelectItem value="Mrs">Mrs</SelectItem>
+                                                    <SelectItem value="Miss">Miss</SelectItem>
+                                                    <SelectItem value="Dr">Dr</SelectItem>
+                                                </SelectContent>
+                                            </Select>
                                         </FormControl>
                                         <FormMessage/>
                                     </FormItem>
                                 )}
                             />
-                        )}
+                            <div className="grid grid-cols-2 space-x-8">
+                                <FormField
+                                    control={form.control}
+                                    name="firstName"
+                                    render={({field}) => (
+                                        <FormItem>
+                                            <FormLabel>First name(s) <span className="text-destructive">*</span></FormLabel>
+                                            <FormControl>
+                                                <Input placeholder="" className="" {...field} />
+                                            </FormControl>
+                                            <FormMessage/>
+                                        </FormItem>
+                                    )}
+                                />
+                                <FormField
+                                    control={form.control}
+                                    name="surname"
+                                    render={({field}) => (
+                                        <FormItem>
+                                            <FormLabel>Surname <span className="text-destructive">*</span></FormLabel>
+                                            <FormControl>
+                                                <Input placeholder="" {...field} />
+                                            </FormControl>
+                                            <FormMessage/>
+                                        </FormItem>
+                                    )}
+                                />
+                            </div>
+                            {membershipType === "Organisation" && (
+                                <FormField
+                                    control={form.control}
+                                    name="orgApplicantRole"
+                                    render={({field}) => (
+                                        <FormItem>
+                                            <FormLabel>Role within organisation <span className="text-destructive">*</span></FormLabel>
+                                            <FormDescription>What is your personal role within the organisation you represent?</FormDescription>
+                                            <FormControl>
+                                                <Input placeholder="" {...field} />
+                                            </FormControl>
+                                            <FormMessage/>
+                                        </FormItem>
+                                    )}
+                                />
+                            )}
+                            <FormField
+                                control={form.control}
+                                name="phoneNumber"
+                                render={({field}) => (
+                                    <FormItem>
+                                        <FormLabel>Phone <span className="text-destructive">*</span></FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="" {...field} />
+                                        </FormControl>
+                                        <FormMessage/>
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="email"
+                                render={({field}) => (
+                                    <FormItem>
+                                        <FormLabel>Email <span className="text-destructive">*</span></FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="" {...field} />
+                                        </FormControl>
+                                        <FormMessage/>
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
 
-                        {form.watch("isChurchMember") === "Yes" && form.watch("isChurchEmployed") === "No" && (<>
+                        {/* Church Details Subsection */}
+                        <div className="space-y-5 bg-white p-5 rounded-2xl">
+                            <h1 className="font-medium text-asi-blue text-lg">Church Details</h1>
                             <FormField
                                 control={form.control}
                                 name="localChurchName"
                                 render={({field}) => (
                                     <FormItem>
-                                        <FormLabel>Local church name <span
-                                            className="text-destructive">*</span></FormLabel>
+                                        <FormLabel>Local church name <span className="text-destructive">*</span></FormLabel>
                                         <FormDescription>What is the name of the local church where your membership is held?</FormDescription>
                                         <FormControl>
                                             <Input placeholder="" {...field} />
@@ -1279,16 +1215,12 @@ export function MembershipForm() {
                                     </FormItem>
                                 )}
                             />
-                            </>
-                        )}
-                    </div>
-                </>)}
-                {form.watch("membershipCategory") && (
-                    form.watch("membershipCategory") === "Sponsoring" ||
-                    (form.watch("membershipCategory") === "Ordinary" && form.watch("membershipType") &&
-                        (form.watch("membershipType") === "Individual" || form.watch("orgType"))
-                    )
-                ) && (
+                        </div>
+                    </>
+                )}
+
+                {/* Submit Button */}
+                {membershipCategory && (
                     <Button
                         type="button"
                         onClick={() => {
@@ -1296,8 +1228,9 @@ export function MembershipForm() {
                             onSubmit(form.getValues());
                         }}
                         className="mt-4"
+                        disabled={isDisqualified || submitting}
                     >
-                        Submit
+                        {submitting ? "Submitting..." : "Submit Application"}
                     </Button>
                 )}
             </form>

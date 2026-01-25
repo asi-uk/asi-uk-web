@@ -2,6 +2,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
 import { cn } from "@/lib/utils"
 import { LucideIcon } from "lucide-react"
+import { useId } from "react"
 
 interface RadioCardProps {
     options: {
@@ -15,7 +16,7 @@ interface RadioCardProps {
     value?: string
     onChange?: (value: string) => void
     className?: string
-    layout?: "vertical" | "horizontal"
+    layout?: "vertical" | "horizontal" | "inline"
 }
 
 const RadioCards = ({
@@ -26,6 +27,7 @@ const RadioCards = ({
                         className,
                         layout = "vertical"
                     }: RadioCardProps) => {
+    const uniqueId = useId()
     return (
         <RadioGroup
             defaultValue={defaultValue}
@@ -33,7 +35,7 @@ const RadioCards = ({
             onValueChange={onChange}
             className={cn(
                 "gap-4",
-                layout === "horizontal" ? "grid grid-cols-3" : "flex flex-col",
+                layout === "vertical" ? "flex flex-col" : "grid grid-cols-3",
                 className
             )}
         >
@@ -43,12 +45,15 @@ const RadioCards = ({
                 >
                     <RadioGroupItem
                         value={option.value}
-                        id={option.value}
+                        id={`${uniqueId}-${option.value}`}
                         className="peer sr-only"
                     />
                     <Label
-                        htmlFor={option.value}
-                        className="flex flex-col rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-asi-blue [&:has([data-state=checked])]:border-asi-blue cursor-pointer w-full h-full"
+                        htmlFor={`${uniqueId}-${option.value}`}
+                        className={cn(
+                            "flex rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-asi-blue [&:has([data-state=checked])]:border-asi-blue cursor-pointer w-full h-full",
+                            layout === "inline" ? "items-center justify-center" : "flex-col"
+                        )}
                     >
                         <div className={cn(
                             "flex justify-between",
