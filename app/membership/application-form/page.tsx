@@ -10,7 +10,7 @@ const MembershipPage : React.FC = () => {
         <div className="w-full min-h-full bg-slate-50 overflow-x-hidden">
             <div className="max-w-screen-md mx-auto">
                 <div className="p-5 pt-10 pb-20">
-                    <Heading2 text={"Membership Form"}/>
+                    <Heading2 text={"Membership Application Form"}/>
                     <MembershipForm />
                 </div>
             </div>

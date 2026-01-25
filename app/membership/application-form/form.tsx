@@ -101,7 +101,7 @@ export function MembershipForm() {
         message: string;
         action?: { label: string; onClick: () => void }
     }) => (
-        <div className="flex flex-col gap-3 rounded-lg border border-destructive bg-destructive/10 p-4 mt-5">
+        <div className="flex flex-col gap-3 rounded-lg p-4 mt-5">
             <div className="flex items-start gap-3">
                 <AlertCircle className="h-5 w-5 text-destructive shrink-0 mt-0.5" />
                 <p className="text-sm text-destructive font-medium">{message}</p>
@@ -389,7 +389,7 @@ export function MembershipForm() {
                                                     K 05 05 compliance <span className="text-destructive">*</span>
                                                 </FormLabel>
                                                 <FormDescription>
-                                                    Does the individual who owns and/or operates this religious-based organisation, self-supporting ministry, or mission comply with the Seventh-day Adventist Church's <Link href="https://drive.google.com/file/d/1gK1xGvPzyqBMXh7iigm6kbCwn99E2xUQ/view" className="underline" target="_blank" rel="noopener noreferrer">K 05 05 Criteria for Defining Supporting Ministries</Link>?
+                                                    Does your organisation comply with the Seventh-day Adventist Church's <Link href="https://drive.google.com/file/d/1gK1xGvPzyqBMXh7iigm6kbCwn99E2xUQ/view" className="underline" target="_blank" rel="noopener noreferrer">K 05 05 Criteria for Defining Supporting Ministries</Link>?
                                                 </FormDescription>
                                                 <FormControl>
                                                     <div className="max-w-full">
@@ -658,7 +658,7 @@ export function MembershipForm() {
                                             <FormMessage/>
                                             {membershipType === "Individual" && isChurchEmployed === "Yes" && (
                                                 <DisqualificationAlert
-                                                    message="Employees of the church do not qualify for ASI UK Ordinary membership. Sponsoring membership is available if desired"
+                                                    message="Church employees do not qualify for ASI UK Ordinary membership. Sponsoring membership is available, if desired"
                                                     action={{
                                                         label: "Switch to Sponsoring membership",
                                                         onClick: () => {
