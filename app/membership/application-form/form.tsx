@@ -643,7 +643,10 @@ export function MembershipForm() {
                                                         onClick: () => {
                                                             form.setValue("membershipCategory", "Sponsoring");
                                                             form.setValue("membershipType", undefined);
+                                                            // Reset eligibility questions
                                                             form.setValue("isProfessionalOrBusinessOwner", undefined);
+                                                            form.setValue("isChurchMember", undefined);
+                                                            form.setValue("isChurchEmployed", undefined);
                                                         }
                                                     }}
                                                 />
@@ -724,6 +727,9 @@ export function MembershipForm() {
                                                         onClick: () => {
                                                             form.setValue("membershipCategory", "Sponsoring");
                                                             form.setValue("membershipType", undefined);
+                                                            // Reset eligibility questions
+                                                            form.setValue("isProfessionalOrBusinessOwner", undefined);
+                                                            form.setValue("isChurchMember", undefined);
                                                             form.setValue("isChurchEmployed", undefined);
                                                         }
                                                     }}
