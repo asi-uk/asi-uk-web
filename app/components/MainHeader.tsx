@@ -290,9 +290,7 @@ const MainHeader: React.FC = () => {
                                                                 Membership Information
                                                             </Link>
                                                             <Link
-                                                                href="https://forms.gle/WYLiMMsVrP8qjYdj6"
-                                                                target="_blank"
-                                                                rel="noopener noreferrer"
+                                                                href="/membership/application-form"
                                                                 className="py-2 text-sm hover:underline"
                                                                 onClick={() => setOpen(false)}
                                                             >
