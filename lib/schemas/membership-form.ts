@@ -22,6 +22,9 @@ export const membershipFormSchema = z
     phoneNumber: z.string().optional().or(z.literal("")),
     website: z.string().optional().or(z.literal("")),
 
+    // Eligibility
+    isProfessionalOrBusinessOwner: z.enum(["Yes", "No"]).optional().nullable(),
+
     // Church info
     isChurchMember: z.enum(["Yes", "No"]).optional().nullable(),
     isChurchEmployed: z.enum(["Yes", "No"]).optional().nullable(),
@@ -163,7 +166,11 @@ export const membershipFormSchema = z
 
     // Church membership
     validateRequired("isChurchMember", data.isChurchMember, "Please select an option for church membership");
-    validateRequired("isChurchEmployed", data.isChurchEmployed, "Please specify if you are employed by the church");
+
+    // Church employment - only required for Ordinary members
+    if (data.membershipCategory === "Ordinary") {
+      validateRequired("isChurchEmployed", data.isChurchEmployed, "Please specify if you are employed by the church");
+    }
 
     // Church details (always required)
     if (validateRequired("localChurchName", data.localChurchName, "Local church name is required")) {
@@ -187,6 +194,12 @@ export const membershipFormSchema = z
       if (!membershipType) {
         addError("membershipType", "Please select a membership type");
       }
+    }
+
+    // Occupation validation for Ordinary Individual members
+    if (membershipCategory === "Ordinary" && membershipType === "Individual") {
+      validateRequired("isProfessionalOrBusinessOwner", data.isProfessionalOrBusinessOwner,
+        "Please select an option for occupation eligibility");
     }
 
     // Organisation fields required for Ordinary + Organisation
@@ -294,6 +307,9 @@ export interface MembershipFormDataForServices {
   email: string;
   phoneNumber: string;
 
+  // Eligibility
+  isProfessionalOrBusinessOwner?: "Yes" | "No" | null;
+
   // Church info
   isChurchMember: "Yes" | "No";
   isChurchEmployed?: "Yes" | "No" | null;
@@ -339,6 +355,7 @@ export function toServiceData(data: MembershipFormData): MembershipFormDataForSe
     surname: data.surname || "",
     email: data.email || "",
     phoneNumber: data.phoneNumber || "",
+    isProfessionalOrBusinessOwner: data.isProfessionalOrBusinessOwner || null,
     isChurchMember: data.isChurchMember as "Yes" | "No",
     isChurchEmployed: data.isChurchEmployed || null,
     localChurchName: data.localChurchName || undefined,

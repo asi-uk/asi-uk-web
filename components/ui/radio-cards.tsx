@@ -31,7 +31,7 @@ const RadioCards = ({
     return (
         <RadioGroup
             defaultValue={defaultValue}
-            value={value}
+            value={value ?? ""}
             onValueChange={onChange}
             className={cn(
                 "gap-4",

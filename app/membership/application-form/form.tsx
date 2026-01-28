@@ -62,6 +62,7 @@ export function MembershipForm() {
             phoneNumber: "",
             email: "",
             website: "",
+            isProfessionalOrBusinessOwner: undefined,
             isChurchMember: undefined,
             isChurchEmployed: undefined,
             localChurchName: "",
@@ -80,6 +81,7 @@ export function MembershipForm() {
     const orgIsReligiousMission = form.watch("orgIsReligiousMission");
     const orgIsChurchControlled = form.watch("orgIsChurchControlled");
     const orgK0505IsAgreed = form.watch("orgK0505IsAgreed");
+    const isProfessionalOrBusinessOwner = form.watch("isProfessionalOrBusinessOwner");
     const isChurchMember = form.watch("isChurchMember");
     const isChurchEmployed = form.watch("isChurchEmployed");
 
@@ -92,6 +94,10 @@ export function MembershipForm() {
             membershipCategory === "Ordinary" &&
             membershipType === "Individual" &&
             isChurchEmployed === "Yes",
+        notProfessionalOrBusinessOwner:
+            membershipCategory === "Ordinary" &&
+            membershipType === "Individual" &&
+            isProfessionalOrBusinessOwner === "No",
     };
 
     const isDisqualified = Object.values(disqualifications).some(Boolean);
@@ -220,6 +226,10 @@ export function MembershipForm() {
                                         form.setValue("membershipType", undefined);
                                         form.setValue("orgType", undefined);
                                         form.setValue("orgIsReligiousMission", undefined);
+                                        // Reset eligibility questions
+                                        form.setValue("isProfessionalOrBusinessOwner", undefined);
+                                        form.setValue("isChurchMember", undefined);
+                                        form.setValue("isChurchEmployed", undefined);
                                     }}
                                 />
                             </FormControl>
@@ -260,6 +270,10 @@ export function MembershipForm() {
                                             field.onChange(value);
                                             form.setValue("orgType", undefined);
                                             form.setValue("orgIsReligiousMission", undefined);
+                                            // Reset eligibility questions
+                                            form.setValue("isProfessionalOrBusinessOwner", undefined);
+                                            form.setValue("isChurchMember", undefined);
+                                            form.setValue("isChurchEmployed", undefined);
                                         }}
                                     />
                                 </FormControl>
@@ -589,9 +603,55 @@ export function MembershipForm() {
                             )}
                         </div>
 
-                        {/* Personal Church Affiliation Subsection */}
+                        {/* Eligibility Subsection */}
                         <div className="space-y-5 bg-white p-5 rounded-2xl">
-                            <h1 className="font-medium text-asi-blue text-lg">Church Affiliation</h1>
+                            <h1 className="font-medium text-asi-blue text-lg">Eligibility</h1>
+
+                            {/* Occupation - only for Ordinary Individual */}
+                            {membershipCategory === "Ordinary" && membershipType === "Individual" && (
+                                <FormField
+                                    control={form.control}
+                                    name="isProfessionalOrBusinessOwner"
+                                    render={({field}) => (
+                                        <FormItem>
+                                            <FormLabel>
+                                                Occupation <span className="text-destructive">*</span>
+                                            </FormLabel>
+                                            <FormDescription>
+                                                Are you a professional, business owner, or ministry leader?
+                                            </FormDescription>
+                                            <FormControl>
+                                                <div className="max-w-full">
+                                                    <RadioCards
+                                                        className="grid-cols-2"
+                                                        options={[
+                                                            { value: "Yes", label: "Yes", icon: Check },
+                                                            { value: "No", label: "No", icon: X },
+                                                        ]}
+                                                        value={field.value}
+                                                        onChange={field.onChange}
+                                                        layout="inline"
+                                                    />
+                                                </div>
+                                            </FormControl>
+                                            <FormMessage/>
+                                            {isProfessionalOrBusinessOwner === "No" && (
+                                                <DisqualificationAlert
+                                                    message="Only professionals, business owners, and ministry leaders qualify for Ordinary membership in ASI UK. Sponsoring membership is available, if desired"
+                                                    action={{
+                                                        label: "Switch to Sponsoring membership",
+                                                        onClick: () => {
+                                                            form.setValue("membershipCategory", "Sponsoring");
+                                                            form.setValue("membershipType", undefined);
+                                                            form.setValue("isProfessionalOrBusinessOwner", undefined);
+                                                        }
+                                                    }}
+                                                />
+                                            )}
+                                        </FormItem>
+                                    )}
+                                />
+                            )}
 
                             <FormField
                                 control={form.control}
@@ -628,8 +688,8 @@ export function MembershipForm() {
                                 )}
                             />
 
-                            {/* Church employment - shown when church member */}
-                            {membershipCategory && (
+                            {/* Church employment - only for Ordinary members */}
+                            {membershipCategory === "Ordinary" && (
                                 <FormField
                                     control={form.control}
                                     name="isChurchEmployed"
