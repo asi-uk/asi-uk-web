@@ -47,10 +47,7 @@ const MainHeader: React.FC = () => {
     );
 
     return (
-        <div className="w-full print:hidden">
-            {/* Fixed navigation section with positioned dropdowns */}
-            <div style={{position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50}}
-                 className="bg-white shadow-sm border-b w-full">
+        <div className="fixed top-0 z-50 w-full print:hidden bg-white border-b shadow-sm">
                 <div
                     className="px-3 py-3 flex items-center justify-between w-full my-2 md:my-0 md:container md:mx-auto md:max-w-5xl">
 
@@ -92,11 +89,11 @@ const MainHeader: React.FC = () => {
                                 <NavigationMenuList className="flex items-center gap-1">
                                     {/* Home link */}
                                     <NavigationMenuItem>
-                                        <Link href="/" legacyBehavior passHref>
-                                            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                                        <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+                                            <Link href="/">
                                                 <Home className="mr-2 h-4 w-4"/> Home
-                                            </NavigationMenuLink>
-                                        </Link>
+                                            </Link>
+                                        </NavigationMenuLink>
                                     </NavigationMenuItem>
 
                                     {/* About dropdown */}
@@ -106,56 +103,56 @@ const MainHeader: React.FC = () => {
                                         <NavigationMenuContent>
                                             <ul className="grid gap-3 p-4 w-[280px] md:w-[500px] lg:w-[600px] md:grid-cols-2">
                                                 <li>
-                                                    <Link href="/about" passHref legacyBehavior>
-                                                        <NavigationMenuLink
-                                                            className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                                                    <NavigationMenuLink asChild
+                                                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                                                        <Link href="/about">
                                                             <div className="text-sm font-medium leading-none">About
                                                                 ASI
                                                             </div>
                                                             <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
                                                                 Learn more about the history and mission of ASI
                                                             </p>
-                                                        </NavigationMenuLink>
-                                                    </Link>
+                                                        </Link>
+                                                    </NavigationMenuLink>
                                                 </li>
                                                 <li>
-                                                    <Link href="/leadership" passHref legacyBehavior>
-                                                        <NavigationMenuLink
-                                                            className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                                                    <NavigationMenuLink asChild
+                                                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                                                        <Link href="/leadership">
                                                             <div
                                                                 className="text-sm font-medium leading-none">Leadership
                                                             </div>
                                                             <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
                                                                 Executive Committee and leadership team
                                                             </p>
-                                                        </NavigationMenuLink>
-                                                    </Link>
+                                                        </Link>
+                                                    </NavigationMenuLink>
                                                 </li>
                                                 <li>
-                                                    <Link href="/constitution" passHref legacyBehavior>
-                                                        <NavigationMenuLink
-                                                            className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                                                    <NavigationMenuLink asChild
+                                                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                                                        <Link href="/constitution">
                                                             <div
                                                                 className="text-sm font-medium leading-none">Constitution
                                                             </div>
                                                             <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
                                                                 Governing document of ASI UK
                                                             </p>
-                                                        </NavigationMenuLink>
-                                                    </Link>
+                                                        </Link>
+                                                    </NavigationMenuLink>
                                                 </li>
                                                 <li>
-                                                    <Link href="/contact-us" passHref legacyBehavior>
-                                                        <NavigationMenuLink
-                                                            className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                                                    <NavigationMenuLink asChild
+                                                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                                                        <Link href="/contact-us">
                                                             <div className="text-sm font-medium leading-none">Contact
                                                                 Us
                                                             </div>
                                                             <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
                                                                 Get in touch with ASI UK
                                                             </p>
-                                                        </NavigationMenuLink>
-                                                    </Link>
+                                                        </Link>
+                                                    </NavigationMenuLink>
                                                 </li>
                                             </ul>
                                         </NavigationMenuContent>
@@ -168,9 +165,9 @@ const MainHeader: React.FC = () => {
                                         <NavigationMenuContent>
                                             <ul className="grid gap-3 p-4 w-[280px] md:w-[500px] lg:w-[600px] md:grid-cols-2">
                                                 <li>
-                                                    <Link href="/membership" passHref legacyBehavior>
-                                                        <NavigationMenuLink
-                                                            className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                                                    <NavigationMenuLink asChild
+                                                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                                                        <Link href="/membership">
                                                             <div className="text-sm font-medium leading-none">Membership
                                                                 Information
                                                             </div>
@@ -178,17 +175,13 @@ const MainHeader: React.FC = () => {
                                                                 Learn how you can join the mission of sharing Christ in
                                                                 the marketplace
                                                             </p>
-                                                        </NavigationMenuLink>
-                                                    </Link>
+                                                        </Link>
+                                                    </NavigationMenuLink>
                                                 </li>
                                                 <li>
                                                     <NavigationMenuLink asChild
                                                                         className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                                                        <Link
-                                                            href="https://forms.gle/WYLiMMsVrP8qjYdj6"
-                                                            target="_blank"
-                                                            rel="noopener noreferrer"
-                                                        >
+                                                        <Link href="/membership/application-form">
                                                             <div className="text-sm font-medium leading-none">Apply to
                                                                 be an ASI member
                                                             </div>
@@ -204,11 +197,11 @@ const MainHeader: React.FC = () => {
 
                                     {/* Projects link */}
                                     <NavigationMenuItem>
-                                        <Link href="/projects" legacyBehavior passHref>
-                                            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                                        <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+                                            <Link href="/projects">
                                                 <Hammer className="mr-2 h-4 w-4"/> Projects
-                                            </NavigationMenuLink>
-                                        </Link>
+                                            </Link>
+                                        </NavigationMenuLink>
                                     </NavigationMenuItem>
                                 </NavigationMenuList>
                             </NavigationMenu>
@@ -297,9 +290,7 @@ const MainHeader: React.FC = () => {
                                                                 Membership Information
                                                             </Link>
                                                             <Link
-                                                                href="https://forms.gle/WYLiMMsVrP8qjYdj6"
-                                                                target="_blank"
-                                                                rel="noopener noreferrer"
+                                                                href="/membership/application-form"
                                                                 className="py-2 text-sm hover:underline"
                                                                 onClick={() => setOpen(false)}
                                                             >
@@ -332,11 +323,8 @@ const MainHeader: React.FC = () => {
                     </div>
 
                 </div>
-            </div>
 
-            {/* This pushes content below the fixed navigation */}
-            <div className="h-16 md:h-32 mb-10"></div>
-        </div>
+                    </div>
     );
 };
 
