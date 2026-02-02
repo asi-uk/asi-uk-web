@@ -89,8 +89,8 @@ export async function createConventionRegistration(
         return { success: true, pageId: undefined };
     }
 
-    if (!process.env.NOTION_API_KEY) {
-        return { success: false, error: "Notion API key not configured" };
+    if (!process.env.NOTION_CONVENTION_REGISTRATION_API_KEY) {
+        return { success: false, error: "Notion Convention Registration API key not configured" };
     }
 
     try {
@@ -150,8 +150,8 @@ export async function updateConventionRegistrationStatus(
     status: RegistrationStatus,
     stripeSessionId?: string
 ): Promise<{ success: boolean; error?: string }> {
-    if (!process.env.NOTION_API_KEY) {
-        return { success: false, error: "Notion API key not configured" };
+    if (!process.env.NOTION_CONVENTION_REGISTRATION_API_KEY) {
+        return { success: false, error: "Notion Convention Registration API key not configured" };
     }
 
     try {

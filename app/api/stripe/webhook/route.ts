@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
-import { markConventionRegistrationPaid } from "@/lib/notion-convention";
+import { markConventionRegistrationPaid, getNotionPageUrl } from "@/lib/notion-convention";
 import { sendConventionConfirmationEmail } from "@/lib/email-convention";
+import { sendConventionDiscordNotification } from "@/lib/discord-convention";
 
 const stripe = process.env.STRIPE_SECRET_KEY
     ? new Stripe(process.env.STRIPE_SECRET_KEY)
@@ -79,6 +80,18 @@ export async function POST(request: NextRequest) {
                 if (!emailResult.success) {
                     console.error("Failed to send confirmation email:", emailResult.error);
                 }
+            }
+
+            // Send Discord notification for paid registration
+            if (notionPageId) {
+                const notionPageUrl = getNotionPageUrl(notionPageId);
+                await sendConventionDiscordNotification({
+                    email: email || "Unknown",
+                    attendeeCount,
+                    orderTotal: (session.amount_total || 0) / 100,
+                    notionPageUrl,
+                    status: "Paid",
+                });
             }
 
             break;

@@ -58,19 +58,19 @@ export async function conventionRegistrationAction(
             ? getNotionPageUrl(notionResult.pageId)
             : undefined;
 
-        // Send Discord notification
-        if (notionPageUrl) {
-            await sendConventionDiscordNotification({
-                email: serviceData.email,
-                attendeeCount: serviceData.attendeeCount,
-                orderTotal: serviceData.orderTotal,
-                notionPageUrl,
-                status,
-            });
-        }
-
-        // If free registration, send confirmation email and return success
+        // If free registration, send confirmation email, Discord notification, and return success
         if (isFree) {
+            // Send Discord notification for free registrations only
+            // Paid registrations get Discord notification after Stripe webhook confirms payment
+            if (notionPageUrl) {
+                await sendConventionDiscordNotification({
+                    email: serviceData.email,
+                    attendeeCount: serviceData.attendeeCount,
+                    orderTotal: serviceData.orderTotal,
+                    notionPageUrl,
+                    status,
+                });
+            }
             // Send confirmation email for free registrations
             await sendFreeRegistrationConfirmationEmail({
                 email: serviceData.email,
