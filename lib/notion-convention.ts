@@ -7,6 +7,45 @@ const notion = new Client({
     auth: process.env.NOTION_CONVENTION_REGISTRATION_API_KEY,
 });
 
+// Cache for data source IDs (mapped from database IDs)
+const dataSourceIdCache: Map<string, string> = new Map();
+
+/**
+ * Get the data_source_id for a database
+ * In Notion API 2025-09-03, databases contain data_sources which are used for queries
+ */
+async function getDataSourceId(databaseId: string): Promise<string> {
+    // Check cache first
+    const cached = dataSourceIdCache.get(databaseId);
+    if (cached) {
+        return cached;
+    }
+
+    // Retrieve database to get its data sources
+    const response = await notion.databases.retrieve({ database_id: databaseId });
+
+    // In API 2025-09-03, DatabaseObjectResponse has data_sources array
+    if ('data_sources' in response && Array.isArray(response.data_sources) && response.data_sources.length > 0) {
+        const dataSourceId = response.data_sources[0].id;
+        dataSourceIdCache.set(databaseId, dataSourceId);
+        return dataSourceId;
+    }
+
+    throw new Error(`No data sources found for database ${databaseId}`);
+}
+
+/**
+ * Query a Notion database using the dataSources API
+ * Note: Notion SDK v5.x with API 2025-09-03 requires using dataSources.query()
+ */
+async function queryDatabase(databaseId: string, filter: Record<string, any>): Promise<{ results: any[] }> {
+    const dataSourceId = await getDataSourceId(databaseId);
+    return notion.dataSources.query({
+        data_source_id: dataSourceId,
+        filter: filter as any,
+    });
+}
+
 // Re-export the getNotionPageUrl helper
 export function getNotionPageUrl(pageId: string): string {
     const idWithoutDashes = pageId.replace(/-/g, "");
@@ -90,8 +129,11 @@ async function createAttendee(
             };
         }
 
+        // Get data source ID for the attendees database
+        const dataSourceId = await getDataSourceId(attendeesDatabaseId);
+
         const response = await notion.pages.create({
-            parent: { database_id: attendeesDatabaseId },
+            parent: { data_source_id: dataSourceId },
             properties,
         });
 
@@ -150,8 +192,11 @@ export async function createConventionRegistration(
             "Newsletter Opt-in": { checkbox: data.newsletterOptIn },
         };
 
+        // Get data source ID for the registrations database
+        const registrationsDataSourceId = await getDataSourceId(databaseId);
+
         const registrationResponse = await notion.pages.create({
-            parent: { database_id: databaseId },
+            parent: { data_source_id: registrationsDataSourceId },
             properties: registrationProperties,
         });
 
@@ -256,13 +301,10 @@ export async function getAttendeeByToken(token: string): Promise<{ success: bool
     }
 
     try {
-        const response = await notion.dataSources.query({
-            data_source_id: attendeesDatabaseId,
-            filter: {
-                property: "Check-In Token",
-                rich_text: {
-                    equals: token,
-                },
+        const response = await queryDatabase(attendeesDatabaseId, {
+            property: "Check-In Token",
+            rich_text: {
+                equals: token,
             },
         });
 
@@ -358,13 +400,10 @@ export async function getAttendeesForRegistration(registrationPageId: string): P
     }
 
     try {
-        const response = await notion.dataSources.query({
-            data_source_id: attendeesDatabaseId,
-            filter: {
-                property: "Registration",
-                relation: {
-                    contains: registrationPageId,
-                },
+        const response = await queryDatabase(attendeesDatabaseId, {
+            property: "Registration",
+            relation: {
+                contains: registrationPageId,
             },
         });
 
@@ -408,13 +447,10 @@ export async function getRegistrationByStripeSession(stripeSessionId: string): P
     }
 
     try {
-        const response = await notion.dataSources.query({
-            data_source_id: registrationsDatabaseId,
-            filter: {
-                property: "Stripe Session ID",
-                rich_text: {
-                    equals: stripeSessionId,
-                },
+        const response = await queryDatabase(registrationsDatabaseId, {
+            property: "Stripe Session ID",
+            rich_text: {
+                equals: stripeSessionId,
             },
         });
 

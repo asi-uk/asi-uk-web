@@ -61,8 +61,24 @@ export default function AttendeeQRCodes({ sessionId }: AttendeeQRCodesProps) {
         );
     }
 
-    if (error || attendees.length === 0) {
-        return null; // Don't show anything if no QR codes available
+    if (error) {
+        return (
+            <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                <div className="flex items-center gap-3 mb-4">
+                    <div className="rounded-full bg-red-100 p-2 shrink-0">
+                        <QrCode className="h-5 w-5 text-red-600" />
+                    </div>
+                    <h2 className="font-semibold text-xl text-red-600">Unable to Load QR Codes</h2>
+                </div>
+                <p className="text-gray-600">
+                    {error}. Please check your confirmation email for your QR codes, or contact us if the issue persists.
+                </p>
+            </div>
+        );
+    }
+
+    if (attendees.length === 0) {
+        return null;
     }
 
     return (
