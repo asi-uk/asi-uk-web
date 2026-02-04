@@ -71,10 +71,15 @@ export async function conventionRegistrationAction(
                     status,
                 });
             }
-            // Send confirmation email for free registrations
+            // Send confirmation email for free registrations (with QR codes if available)
             await sendFreeRegistrationConfirmationEmail({
                 email: serviceData.email,
                 attendeeCount: serviceData.attendeeCount,
+                attendees: notionResult.attendeesWithTokens?.map((a) => ({
+                    name: a.name,
+                    ticketType: a.ticketType,
+                    checkInUrl: a.checkInUrl,
+                })),
             });
 
             return {

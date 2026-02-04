@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
-import { markConventionRegistrationPaid, getNotionPageUrl } from "@/lib/notion-convention";
+import { markConventionRegistrationPaid, getNotionPageUrl, getAttendeesForRegistration } from "@/lib/notion-convention";
 import { sendConventionConfirmationEmail } from "@/lib/email-convention";
 import { sendConventionDiscordNotification } from "@/lib/discord-convention";
 
@@ -70,12 +70,26 @@ export async function POST(request: NextRequest) {
                 }
             }
 
-            // Send confirmation email
+            // Fetch attendees for QR codes in confirmation email
+            let attendeesForEmail: { name: string; ticketType: string; checkInUrl: string }[] | undefined;
+            if (notionPageId) {
+                const attendeesResult = await getAttendeesForRegistration(notionPageId);
+                if (attendeesResult.success && attendeesResult.attendees) {
+                    attendeesForEmail = attendeesResult.attendees.map((a) => ({
+                        name: a.name,
+                        ticketType: a.ticketType,
+                        checkInUrl: a.checkInUrl,
+                    }));
+                }
+            }
+
+            // Send confirmation email with QR codes
             if (email) {
                 const emailResult = await sendConventionConfirmationEmail({
                     email,
                     attendeeCount,
                     orderTotal: (session.amount_total || 0) / 100, // Convert from pence
+                    attendees: attendeesForEmail,
                 });
                 if (!emailResult.success) {
                     console.error("Failed to send confirmation email:", emailResult.error);

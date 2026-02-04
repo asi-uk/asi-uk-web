@@ -1,19 +1,76 @@
 import { Resend } from "resend";
+import { generateQRCodeDataUrl, AttendeeQRCode } from "@/lib/qr-code";
+import { TICKET_LABELS, TicketType } from "@/lib/schemas/convention-registration";
 
 // Initialize Resend client (will be undefined if API key not set)
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
 const FROM_EMAIL = "ASI UK <noreply@asiuk.org>";
 
+interface AttendeeWithQRInfo {
+    name: string;
+    ticketType: string;
+    checkInUrl: string;
+}
+
 interface ConventionEmailParams {
     email: string;
     attendeeCount: number;
     orderTotal: number;
+    attendees?: AttendeeWithQRInfo[];
+}
+
+// Generate QR code HTML blocks for each attendee
+async function generateAttendeeQRCodesHtml(attendees: AttendeeWithQRInfo[]): Promise<string> {
+    if (!attendees || attendees.length === 0) {
+        return "";
+    }
+
+    const qrCodesHtml = await Promise.all(
+        attendees.map(async (attendee) => {
+            try {
+                const qrDataUrl = await generateQRCodeDataUrl(attendee.checkInUrl);
+                const ticketLabel = TICKET_LABELS[attendee.ticketType as TicketType] || attendee.ticketType;
+
+                return `
+                <div style="background-color: #fff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 20px; margin-bottom: 16px; text-align: center;">
+                    <h4 style="color: #1e3a5f; margin: 0 0 5px 0; font-size: 18px;">${attendee.name}</h4>
+                    <p style="color: #666; margin: 0 0 15px 0; font-size: 14px;">${ticketLabel}</p>
+                    <img src="${qrDataUrl}" alt="Check-in QR Code for ${attendee.name}" style="width: 180px; height: 180px; margin: 0 auto; display: block;" />
+                    <p style="color: #888; font-size: 12px; margin-top: 10px;">Scan at event check-in</p>
+                </div>
+                `;
+            } catch (error) {
+                console.error(`Failed to generate QR code for ${attendee.name}:`, error);
+                return `
+                <div style="background-color: #fff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 20px; margin-bottom: 16px; text-align: center;">
+                    <h4 style="color: #1e3a5f; margin: 0 0 5px 0; font-size: 18px;">${attendee.name}</h4>
+                    <p style="color: #666; margin: 0; font-size: 14px;">${TICKET_LABELS[attendee.ticketType as TicketType] || attendee.ticketType}</p>
+                </div>
+                `;
+            }
+        })
+    );
+
+    return `
+    <div style="background-color: #f5f7fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
+        <h3 style="color: #1e3a5f; margin-top: 0; text-align: center;">Your Check-In QR Codes</h3>
+        <p style="color: #666; text-align: center; margin-bottom: 20px; font-size: 14px;">
+            Show these QR codes at the event for quick check-in. Each attendee has their own unique code.
+        </p>
+        ${qrCodesHtml.join("")}
+    </div>
+    `;
 }
 
 // Generate HTML email for convention confirmation
-export function generateConventionConfirmationEmailHtml(params: ConventionEmailParams): string {
-    const { attendeeCount, orderTotal } = params;
+export async function generateConventionConfirmationEmailHtml(params: ConventionEmailParams): Promise<string> {
+    const { attendeeCount, orderTotal, attendees } = params;
+
+    // Generate QR codes section if attendees with check-in URLs are provided
+    const qrCodesSection = attendees && attendees.length > 0
+        ? await generateAttendeeQRCodesHtml(attendees)
+        : "";
 
     return `
 <!DOCTYPE html>
@@ -44,6 +101,8 @@ export function generateConventionConfirmationEmailHtml(params: ConventionEmailP
         ${orderTotal > 0 ? `<p><strong>Amount Paid:</strong> £${orderTotal}</p>` : ""}
     </div>
 
+    ${qrCodesSection}
+
     <h3 style="color: #1e3a5f;">What to Expect</h3>
 
     <ul style="padding-left: 20px;">
@@ -56,7 +115,7 @@ export function generateConventionConfirmationEmailHtml(params: ConventionEmailP
 
     <ul style="padding-left: 20px;">
         <li style="margin-bottom: 10px;">Please arrive at least 15 minutes before the start time for registration</li>
-        <li style="margin-bottom: 10px;">Bring a valid photo ID for verification</li>
+        <li style="margin-bottom: 10px;">Show your QR code at check-in for fast entry</li>
         <li style="margin-bottom: 10px;">Free parking is available on site</li>
     </ul>
 
@@ -87,11 +146,13 @@ export async function sendConventionConfirmationEmail(
     }
 
     try {
+        const html = await generateConventionConfirmationEmailHtml(params);
+
         const { error } = await resend.emails.send({
             from: FROM_EMAIL,
             to: params.email,
             subject: "ASI UK Convention 2026 - Registration Confirmed",
-            html: generateConventionConfirmationEmailHtml(params),
+            html,
         });
 
         if (error) {
