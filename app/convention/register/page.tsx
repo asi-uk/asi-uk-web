@@ -42,7 +42,7 @@ export default async function ConventionRegistrationPage({ searchParams }: PageP
 
     return (
         <div className="w-full min-h-full bg-slate-50 overflow-x-hidden">
-            <div className="max-w-screen-md mx-auto">
+            <div className="md:max-w-5xl mx-auto">
                 <div className="p-5 pt-10 pb-20">
                     <Heading2 text="Convention Registration" />
 

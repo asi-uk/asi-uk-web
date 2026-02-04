@@ -1,7 +1,7 @@
 "use client";
 
 import { UseFormReturn } from "react-hook-form";
-import { User, GraduationCap, Baby, Users, Trash2, Info } from "lucide-react";
+import { UserCheck, GraduationCap, UserRound, UserPlus, Trash2, Info } from "lucide-react";
 import {
     FormControl,
     FormField,
@@ -11,7 +11,6 @@ import {
     FormDescription,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
@@ -37,31 +36,31 @@ interface AttendeeCardProps {
 
 const ticketOptions = [
     {
-        value: "member",
-        label: "ASI Member",
-        description: "Current ASI UK members",
-        icon: User,
-        price: TICKET_PRICES.member,
-    },
-    {
         value: "non-member",
         label: "Non-member",
         description: "General admission",
-        icon: Users,
+        icon: UserPlus,
         price: TICKET_PRICES["non-member"],
+    },
+    {
+        value: "member",
+        label: "ASI Member",
+        description: "Current ASI UK members",
+        icon: UserCheck,
+        price: TICKET_PRICES.member,
     },
     {
         value: "student",
         label: "Student",
-        description: "Full-time students with valid ID",
+        description: "Ages 16-25",
         icon: GraduationCap,
         price: TICKET_PRICES.student,
     },
     {
         value: "child",
-        label: "Child",
-        description: "Under 12 years old",
-        icon: Baby,
+        label: "Youth",
+        description: "Under 16s",
+        icon: UserRound,
         price: 0,
     },
 ];
@@ -123,6 +122,9 @@ export default function AttendeeCard({ form, index, onRemove, canRemove }: Atten
                                                         <span className="text-sm font-medium text-center leading-tight">
                                                             {option.label}
                                                         </span>
+                                                        <span className="text-xs text-gray-500 text-center leading-tight">
+                                                            {option.description}
+                                                        </span>
                                                         <span className="text-sm font-bold text-asi-blue mt-1">
                                                             {option.price === 0 ? "Free" : `£${option.price}`}
                                                         </span>
@@ -180,9 +182,8 @@ export default function AttendeeCard({ form, index, onRemove, canRemove }: Atten
                             <FormLabel>Dietary requirements</FormLabel>
                             <FormDescription>Please list any allergies or dietary requirements (optional)</FormDescription>
                             <FormControl>
-                                <Textarea
+                                <Input
                                     placeholder="E.g., vegetarian, gluten-free, nut allergy..."
-                                    rows={2}
                                     {...field}
                                 />
                             </FormControl>
