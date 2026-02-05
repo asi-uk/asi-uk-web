@@ -99,11 +99,8 @@ export async function conventionRegistrationAction(
             };
         }
 
-        // Use Vercel's auto-generated URL for previews, or explicit BASE_URL, or fallback to production
-        const baseUrl =
-            process.env.NEXT_PUBLIC_BASE_URL ||
-            (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : null) ||
-            "https://asiuk.org";
+        // Use explicit BASE_URL if set, otherwise fallback to production domain
+        const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://www.asiuk.org";
 
         // Build line items for Stripe
         const lineItems = buildStripeLineItems(validatedData.attendees);

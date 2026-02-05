@@ -57,7 +57,7 @@ const ticketOptions = [
         price: TICKET_PRICES.student,
     },
     {
-        value: "child",
+        value: "youth",
         label: "Youth",
         description: "Under 16s",
         icon: UserRound,
