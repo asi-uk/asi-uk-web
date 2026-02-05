@@ -11,6 +11,7 @@ interface RadioCardProps {
         description?: string
         icon?: LucideIcon
         annualFee?: string | number
+        priceLabel?: string // Optional label below the price (defaults to "per year")
     }[]
     defaultValue?: string
     value?: string
@@ -77,12 +78,18 @@ const RadioCards = ({
                                     )}
                                 </div>
                             </div>
-                            {option.annualFee && (
+                            {option.annualFee !== undefined && (
                                 <div className={cn(
                                     layout === "horizontal" ? "mt-4" : "text-right"
                                 )}>
-                                    <div className="font-semibold">£{option.annualFee}</div>
-                                    <div className="text-sm text-muted-foreground">per year</div>
+                                    <div className="font-semibold">
+                                        {typeof option.annualFee === "string" ? option.annualFee : `£${option.annualFee}`}
+                                    </div>
+                                    {option.priceLabel !== undefined ? (
+                                        option.priceLabel && <div className="text-sm text-muted-foreground">{option.priceLabel}</div>
+                                    ) : (
+                                        <div className="text-sm text-muted-foreground">per year</div>
+                                    )}
                                 </div>
                             )}
                         </div>
