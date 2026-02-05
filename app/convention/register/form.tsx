@@ -32,7 +32,7 @@ import { conventionRegistrationAction } from "@/app/actions/conventionRegistrati
 const MAX_ATTENDEES = 10;
 
 const defaultAttendee = {
-    ticketType: undefined as unknown as "member" | "non-member" | "student" | "child",
+    ticketType: undefined as unknown as "member" | "non-member" | "student" | "youth",
     firstName: "",
     lastName: "",
     dietaryRequirements: "",

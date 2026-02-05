@@ -11,14 +11,14 @@ export const TICKET_PRICES = {
     member: 20,
     "non-member": 30,
     student: 10,
-    child: 0,
+    youth: 0,
 } as const;
 
 export const TICKET_LABELS = {
     member: "ASI Member",
     "non-member": "Non-member",
-    student: "Student",
-    child: "Child (under 12)",
+    student: "Student (16-25)",
+    youth: "Youth (Under 16)",
 } as const;
 
 export type TicketType = keyof typeof TICKET_PRICES;
@@ -26,7 +26,7 @@ export type TicketType = keyof typeof TICKET_PRICES;
 // ============ ATTENDEE SCHEMA ============
 
 export const attendeeSchema = z.object({
-    ticketType: z.enum(["member", "non-member", "student", "child"], {
+    ticketType: z.enum(["member", "non-member", "student", "youth"], {
         required_error: "Please select a ticket type",
     }),
     firstName: z
