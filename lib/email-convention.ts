@@ -82,7 +82,7 @@ export async function generateConventionConfirmationEmailHtml(params: Convention
 </head>
 <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
     <div style="text-align: center; margin-bottom: 30px;">
-        <img src="https://asiuk.org/asiLogo.png" alt="ASI UK" style="max-width: 180px; height: auto; margin-bottom: 10px;" />
+        <img src="https://www.asiuk.org/asiLogo.png" alt="ASI UK" style="max-width: 180px; height: auto; margin-bottom: 10px;" />
         <p style="color: #666; margin-top: 0;">Adventist-laymen's Services and Industries</p>
     </div>
 
@@ -135,7 +135,7 @@ export async function generateConventionConfirmationEmailHtml(params: Convention
 
     <p style="color: #666; font-size: 14px;">
         ASI UK<br>
-        <a href="https://asiuk.org" style="color: #1e3a5f;">www.asiuk.org</a>
+        <a href="https://www.asiuk.org" style="color: #1e3a5f;">www.asiuk.org</a>
     </p>
 </body>
 </html>

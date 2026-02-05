@@ -84,12 +84,11 @@ export function validateCheckInToken(token: string): { valid: boolean; attendeeI
 
 /**
  * Generate the full check-in URL for a token
+ * Always uses the production domain since QR codes are printed/emailed
+ * to attendees and scanned at physical events.
  */
 export function generateCheckInUrl(token: string): string {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ||
-        (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : null) ||
-        "https://asiuk.org";
-
+    const baseUrl = "https://www.asiuk.org";
     return `${baseUrl}/api/convention/check-in?token=${encodeURIComponent(token)}`;
 }
 
