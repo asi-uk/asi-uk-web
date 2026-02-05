@@ -6,6 +6,7 @@ import {
     Calendar,
     MapPin,
     Coffee,
+    UtensilsCrossed,
     ArrowLeft,
     Info,
     Clock,
@@ -52,9 +53,6 @@ export default async function ConventionConfirmationPage({ searchParams }: Confi
                     </p>
                 </div>
 
-                {/* QR Codes Section - Only show for confirmed registrations with session ID */}
-                {isConfirmed && sessionId && <AttendeeQRCodes sessionId={sessionId} />}
-
                 {/* Check Your Email Card */}
                 <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 print:hidden">
                     <div className="flex items-start gap-4">
@@ -71,6 +69,9 @@ export default async function ConventionConfirmationPage({ searchParams }: Confi
                         </div>
                     </div>
                 </div>
+
+                {/* QR Codes Section - Only show for confirmed registrations with session ID */}
+                {isConfirmed && sessionId && <AttendeeQRCodes sessionId={sessionId} />}
 
                 {/* Event Details Card */}
                 <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 print:shadow-none print:border-0 print:p-4">
@@ -97,16 +98,26 @@ export default async function ConventionConfirmationPage({ searchParams }: Confi
                             </div>
                         </div>
 
-                        <div className="flex items-start gap-4 print:hidden">
-                            <div className="rounded-full bg-asi-blue/10 p-2 shrink-0">
-                                <Coffee className="h-5 w-5 text-asi-blue" />
-                            </div>
-                            <div>
-                                <h3 className="font-medium text-gray-900">Refreshments</h3>
-                                <p className="text-gray-600">Light refreshments included</p>
-                            </div>
-                        </div>
                     </div>
+                </div>
+
+                {/* Meals & Refreshments Card */}
+                <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 print:hidden">
+                    <h2 className="font-semibold text-xl text-asi-blue mb-4">Meals & Refreshments</h2>
+                    <ul className="space-y-3 text-gray-600">
+                        <li className="flex items-start gap-2">
+                            <span className="text-asi-blue">•</span>
+                            <span>Light refreshments will be provided on both Sabbath and Sunday (drinks, cakes, snacks, etc.)</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                            <span className="text-asi-blue">•</span>
+                            <span>Main meals are available in the dining hall but need to be arranged separately with Newbold College</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                            <span className="text-asi-blue">•</span>
+                            <span>You are also welcome to bring packed lunches or food from home</span>
+                        </li>
+                    </ul>
                 </div>
 
                 {/* What to Bring Card */}
@@ -114,16 +125,8 @@ export default async function ConventionConfirmationPage({ searchParams }: Confi
                     <h2 className="font-semibold text-xl text-asi-blue mb-4">What to Bring</h2>
                     <ul className="space-y-3 text-gray-600">
                         <li className="flex items-start gap-2">
-                            <span className="text-asi-blue mt-1">•</span>
+                            <span className="text-asi-blue">•</span>
                             <span>Your QR code (on your phone or printed)</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                            <span className="text-asi-blue mt-1">•</span>
-                            <span>Valid photo ID for verification if needed</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                            <span className="text-asi-blue mt-1">•</span>
-                            <span>A notebook and pen for session notes</span>
                         </li>
                     </ul>
                 </div>

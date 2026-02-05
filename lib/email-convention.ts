@@ -82,7 +82,7 @@ export async function generateConventionConfirmationEmailHtml(params: Convention
 </head>
 <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
     <div style="text-align: center; margin-bottom: 30px;">
-        <h1 style="color: #1e3a5f; margin-bottom: 5px;">ASI UK</h1>
+        <img src="https://asiuk.org/asiLogo.png" alt="ASI UK" style="max-width: 180px; height: auto; margin-bottom: 10px;" />
         <p style="color: #666; margin-top: 0;">Adventist-laymen's Services and Industries</p>
     </div>
 
@@ -108,13 +108,19 @@ export async function generateConventionConfirmationEmailHtml(params: Convention
     <ul style="padding-left: 20px;">
         <li style="margin-bottom: 10px;">Inspiring sessions from Christian professionals and ministry leaders</li>
         <li style="margin-bottom: 10px;">Networking opportunities with like-minded individuals</li>
-        <li style="margin-bottom: 10px;">Light refreshments provided throughout the event</li>
+    </ul>
+
+    <h3 style="color: #1e3a5f;">Meals & Refreshments</h3>
+
+    <ul style="padding-left: 20px;">
+        <li style="margin-bottom: 10px;">Light refreshments will be provided on both Sabbath and Sunday (drinks, cakes, snacks, etc.)</li>
+        <li style="margin-bottom: 10px;">Main meals are available in the dining hall but need to be arranged separately with Newbold College</li>
+        <li style="margin-bottom: 10px;">You are also welcome to bring packed lunches or food from home</li>
     </ul>
 
     <h3 style="color: #1e3a5f;">Important Information</h3>
 
     <ul style="padding-left: 20px;">
-        <li style="margin-bottom: 10px;">Please arrive at least 15 minutes before the start time for registration</li>
         <li style="margin-bottom: 10px;">Show your QR code at check-in for fast entry</li>
         <li style="margin-bottom: 10px;">Free parking is available on site</li>
     </ul>

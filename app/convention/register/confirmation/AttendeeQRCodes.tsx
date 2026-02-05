@@ -125,12 +125,6 @@ export default function AttendeeQRCodes({ sessionId }: AttendeeQRCodesProps) {
                     );
                 })}
             </div>
-
-            <div className="mt-6 p-4 bg-blue-50 rounded-lg print:hidden">
-                <p className="text-sm text-blue-800">
-                    <strong>Tip:</strong> Save this page or take a screenshot of your QR codes for easy access at the event.
-                </p>
-            </div>
         </div>
     );
 }
