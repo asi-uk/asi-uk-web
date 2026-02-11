@@ -26,6 +26,32 @@ interface CountdownTimerProps {
   secondsLabel?: string;
 }
 
+const calculateTimeRemaining = (targetDate: Date): TimeRemaining => {
+  if (!targetDate || !(targetDate instanceof Date) || isNaN(targetDate.getTime())) {
+    return { days: "00", hours: "00", minutes: "00", seconds: "00" };
+  }
+
+  const now = new Date();
+  const difference = targetDate.getTime() - now.getTime();
+
+  // Handle case where target date is in the past
+  if (difference < 0) {
+    return { days: "00", hours: "00", minutes: "00", seconds: "00" };
+  }
+
+  const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+  return {
+    days: days < 10 ? `0${days}` : days.toString(),
+    hours: hours < 10 ? `0${hours}` : hours.toString(),
+    minutes: minutes < 10 ? `0${minutes}` : minutes.toString(),
+    seconds: seconds < 10 ? `0${seconds}` : seconds.toString(),
+  };
+};
+
 const CountdownTimer: React.FC<CountdownTimerProps> = ({
                                                          targetDate,
                                                          // Default styling and text values
@@ -39,37 +65,15 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
                                                          minutesLabel = "min",
                                                          secondsLabel = "sec"
                                                        }) => {
-  const calculateTimeRemaining = (): TimeRemaining => {
-    if (!targetDate || !(targetDate instanceof Date) || isNaN(targetDate.getTime())) {
-      return { days: "00", hours: "00", minutes: "00", seconds: "00" };
-    }
 
-    const now = new Date();
-    const difference = targetDate.getTime() - now.getTime();
-
-    // Handle case where target date is in the past
-    if (difference < 0) {
-      return { days: "00", hours: "00", minutes: "00", seconds: "00" };
-    }
-
-    const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-    return {
-      days: days < 10 ? `0${days}` : days.toString(),
-      hours: hours < 10 ? `0${hours}` : hours.toString(),
-      minutes: minutes < 10 ? `0${minutes}` : minutes.toString(),
-      seconds: seconds < 10 ? `0${seconds}` : seconds.toString(),
-    };
-  };
-
-  const [timeRemaining, setTimeRemaining] = useState<TimeRemaining>(calculateTimeRemaining());
+  // Initialize with real time - suppressHydrationWarning on display spans handles the minor server/client mismatch
+  const [timeRemaining, setTimeRemaining] = useState<TimeRemaining>(
+    calculateTimeRemaining(targetDate)
+  );
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setTimeRemaining(calculateTimeRemaining());
+      setTimeRemaining(calculateTimeRemaining(targetDate));
     }, 1000);
 
     return () => clearInterval(timer);
@@ -79,19 +83,19 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
       <div className={`${containerClassName}`}>
         <div className={`${gridClassName}`}>
           <div className={`${itemClassName}`}>
-            <span className={`${numberClassName}`}>{timeRemaining.days}</span>
+            <span suppressHydrationWarning className={`${numberClassName}`}>{timeRemaining.days}</span>
             <br/><span className={`${labelClassName}`}>{daysLabel}</span>
           </div>
           <div className={`${itemClassName}`}>
-            <span className={`${numberClassName}`}>{timeRemaining.hours}</span>
+            <span suppressHydrationWarning className={`${numberClassName}`}>{timeRemaining.hours}</span>
             <br/><span className={`${labelClassName}`}>{hoursLabel}</span>
           </div>
           <div className={`${itemClassName}`}>
-            <span className={`${numberClassName}`}>{timeRemaining.minutes}</span>
+            <span suppressHydrationWarning className={`${numberClassName}`}>{timeRemaining.minutes}</span>
             <br/><span className={`${labelClassName}`}>{minutesLabel}</span>
           </div>
           <div className={`${itemClassName}`}>
-            <span className={`${numberClassName}`}>{timeRemaining.seconds}</span>
+            <span suppressHydrationWarning className={`${numberClassName}`}>{timeRemaining.seconds}</span>
             <br/><span className={`${labelClassName}`}>{secondsLabel}</span>
           </div>
         </div>
