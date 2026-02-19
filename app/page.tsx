@@ -1,69 +1,12 @@
-'use client';
-
 import Link from 'next/link';
 import {
-    Calendar,
-    MapPin,
-    Clock,
-    UserPlus,
-    MessageSquare,
-    Music,
+    Merge,
     Lightbulb,
-    Target,
-    HelpingHand,
-    PoundSterling,
-    Info,
-    Merge, Users, Coffee, Presentation, TrendingUp, Heading1, CalendarDays, FolderOpen, Heart, Hammer
+    FolderOpen,
+    Heart,
 } from 'lucide-react';
-import {
-    NavigationMenu,
-    NavigationMenuContent,
-    NavigationMenuItem,
-    NavigationMenuLink,
-    NavigationMenuList,
-    NavigationMenuTrigger,
-    navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu"
-import React, {useState, useEffect} from "react";
-import MainHeader from "@/app/components/MainHeader";
-import Footer from "@/app/components/Footer";
 import SaveTheDateBanner from "@/app/components/SaveTheDateBanner";
-
-// Note: Metadata should be in a separate layout.tsx or page.tsx file as a server component
-// This is a client component so we've removed the metadata export
-
-const ParallaxBackground = () => {
-    const [isMobile, setIsMobile] = useState(false);
-
-    useEffect(() => {
-        // Check if we're on mobile
-        const checkMobile = () => {
-            setIsMobile(window.innerWidth <= 768);
-        };
-
-        // Run on mount and when window resizes
-        checkMobile();
-        window.addEventListener('resize', checkMobile);
-
-        return () => window.removeEventListener('resize', checkMobile);
-    }, []);
-
-    return (
-        <>
-            {/* Fixed Background Image with Parallax Effect */}
-            <div
-                className="fixed top-0 left-0 w-full h-full bg-cover bg-center bg-no-repeat z-0"
-                style={{
-                    backgroundImage: "url('https://res.cloudinary.com/disrkguox/image/upload/w_1920/v1742976209/sam-knight-jhpL88kP7Y8-unsplash_rvxhux.jpg')",
-                    backgroundAttachment: isMobile ? "scroll" : "fixed" // Use scroll on mobile
-                }}
-            />
-
-            {/* Semi-transparent overlay to improve content readability */}
-            <div className="fixed top-0 left-0 w-full h-full bg-white/10 z-10"/>
-        </>
-    );
-};
+import ParallaxBackground from "@/app/components/ParallaxBackground";
 
 export default function Home() {
     return (
@@ -153,7 +96,6 @@ export default function Home() {
                     className="w-full max-w-3xl mx-auto flex flex-col gap-6 md:gap-10 bg-white/90 rounded-2xl backdrop-blur-md p-6 md:px-10 shadow">
 
                     <div className="flex items-center">
-                        {/*<Info className="mr-2 h-5 w-5 md:h-6 md:w-6 text-asi-blue"/>*/}
                         <h2 className="text-2xl md:text-3xl text-asi-blue font-bold leading-none">About ASI</h2>
                     </div>
 

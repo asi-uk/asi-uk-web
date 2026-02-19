@@ -130,8 +130,6 @@ export function MembershipForm() {
     const [submitting, setSubmitting] = useState(false);
 
     async function onSubmit(values: MembershipFormData) {
-        console.log("Form submitted with values:", values);
-
         if (isDisqualified) {
             toast({
                 title: "Cannot submit",
@@ -153,12 +151,9 @@ export function MembershipForm() {
             });
 
             // Submit the form
-            console.log("Calling server action with FormData");
             const result = await membershipFormSubmitAction(formData);
-            console.log("Server action result:", result);
 
             if (result.success) {
-                console.log("Success");
                 toast({
                     title: "Success!",
                     description: "Your membership application has been submitted.",
@@ -170,7 +165,6 @@ export function MembershipForm() {
                     form.reset();
                 }
             } else {
-                console.log("Error");
                 toast({
                     title: "Error",
                     description: result.errors?.[0] || "There was an error submitting your application.",

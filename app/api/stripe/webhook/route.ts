@@ -47,20 +47,12 @@ export async function POST(request: NextRequest) {
 
             // Check if this is a convention registration
             if (session.metadata?.type !== "convention_registration") {
-                console.log("Ignoring non-convention checkout session:", session.id);
                 break;
             }
 
             const notionPageId = session.metadata?.notionPageId;
             const email = session.metadata?.email || session.customer_email;
             const attendeeCount = parseInt(session.metadata?.attendeeCount || "0", 10);
-
-            console.log("Convention payment completed:", {
-                sessionId: session.id,
-                notionPageId,
-                email,
-                attendeeCount,
-            });
 
             // Update Notion status to Paid
             if (notionPageId) {
@@ -118,13 +110,12 @@ export async function POST(request: NextRequest) {
                 break;
             }
 
-            console.log("Convention checkout expired:", session.id);
             // Optionally update Notion status to "Expired" or "Cancelled"
             break;
         }
 
         default:
-            console.log(`Unhandled event type: ${event.type}`);
+            break;
     }
 
     return NextResponse.json({ received: true });
