@@ -61,6 +61,20 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
                     Back to News
                 </Link>
 
+                {/* Featured image */}
+                {post.image && (
+                    <div className="mb-8 max-w-xl">
+                        <Image
+                            src={urlFor(post.image).width(600).height(340).url()}
+                            alt={post.title}
+                            width={600}
+                            height={340}
+                            priority
+                            className="w-full rounded-xl object-cover"
+                        />
+                    </div>
+                )}
+
                 {/* Title */}
                 <h1 className="text-3xl md:text-4xl font-bold text-asi-blue mb-4">
                     {post.title}
@@ -88,20 +102,6 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
                         </>
                     )}
                 </div>
-
-                {/* Featured image */}
-                {post.image && (
-                    <div className="mb-8">
-                        <Image
-                            src={urlFor(post.image).width(800).height(450).url()}
-                            alt={post.title}
-                            width={800}
-                            height={450}
-                            priority
-                            className="w-full rounded-xl object-cover"
-                        />
-                    </div>
-                )}
 
                 {/* Body */}
                 {post.body && <PostBody body={post.body} />}
