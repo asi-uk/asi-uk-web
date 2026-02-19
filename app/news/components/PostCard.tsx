@@ -62,7 +62,7 @@ export default function PostCard({ post }: { post: Post }) {
 
                     {/* Preview */}
                     {plainTextPreview && (
-                        <p className="text-sm text-slate-600 line-clamp-3 flex-1">
+                        <p className="text-sm text-slate-600 line-clamp-3 flex-1 leading-relaxed">
                             {plainTextPreview}
                         </p>
                     )}
