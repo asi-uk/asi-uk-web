@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { MapPin, Heart, Download, ExternalLink } from "lucide-react";
+import { MapPin, Heart, Download, ExternalLink, CheckCircle2, Clock } from "lucide-react";
 import {
     Collapsible,
     CollapsibleContent,
@@ -7,11 +7,34 @@ import {
 } from "@/components/ui/collapsible";
 import type { Project } from "@/data/projects";
 
-export default function ProjectCard({ title, amount, location, shortDescription, longDescription, organisation, website, media }: Project) {
-    const hasExpandableContent = longDescription || (media && media.length > 0);
+function formatDisbursementDate(date: string): string {
+    const [day, month, year] = date.split('.');
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    return `${parseInt(day)} ${months[parseInt(month) - 1]} 20${year}`;
+}
+
+function DisbursementBadge({ disbursement }: { disbursement: NonNullable<Project['disbursement']> }) {
+    if (disbursement.firstInstalmentPaid) {
+        return (
+            <span className="inline-flex items-center gap-1.5 bg-green-50 text-green-700 text-xs font-medium px-2.5 py-1 rounded-full border border-green-200">
+                <CheckCircle2 className="h-3.5 w-3.5" />
+                £{disbursement.firstInstalment.toLocaleString()} paid {formatDisbursementDate(disbursement.firstInstalmentPaid)}
+            </span>
+        );
+    }
+    return (
+        <span className="inline-flex items-center gap-1.5 bg-amber-50 text-amber-700 text-xs font-medium px-2.5 py-1 rounded-full border border-amber-200">
+            <Clock className="h-3.5 w-3.5" />
+            £{disbursement.firstInstalment.toLocaleString()} pending
+        </span>
+    );
+}
+
+export default function ProjectCard({ title, amount, location, shortDescription, longDescription, organisation, website, media, cancelled, disbursement }: Project) {
+    const hasExpandableContent = !cancelled && (longDescription || (media && media.length > 0));
 
     return (
-        <div className="mb-8">
+        <div className={`mb-8${cancelled ? ' opacity-60' : ''}`}>
             {hasExpandableContent ? (
                 <Collapsible className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
                     <CollapsibleTrigger className="group w-full text-left hover:bg-slate-50 transition-colors">
@@ -45,6 +68,11 @@ export default function ProjectCard({ title, amount, location, shortDescription,
                                         <span className="text-xl md:text-2xl font-bold text-asi-blue">£{amount.toLocaleString()}</span>
                                     </div>
                                     <p className="text-sm text-slate-500 mt-1">ASI UK Support</p>
+                                    {disbursement && (
+                                        <div className="mt-2">
+                                            <DisbursementBadge disbursement={disbursement} />
+                                        </div>
+                                    )}
                                 </div>
                             </div>
 
@@ -139,12 +167,19 @@ export default function ProjectCard({ title, amount, location, shortDescription,
                     </CollapsibleContent>
                 </Collapsible>
             ) : (
-                // Static card for projects without expandable content
+                // Static card for projects without expandable content or cancelled projects
                 <div className="bg-white rounded-xl p-6 shadow-sm border border-slate-200">
                     {/* Project Header */}
                     <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4 gap-4">
                         <div className="flex-1">
-                            <h3 className="text-xl font-bold text-asi-blue mb-1">{title}</h3>
+                            <div className="flex items-center gap-3 mb-1 flex-wrap">
+                                <h3 className={`text-xl font-bold${cancelled ? ' line-through text-slate-400' : ' text-asi-blue'}`}>{title}</h3>
+                                {cancelled && (
+                                    <span className="inline-flex items-center bg-red-50 text-red-700 text-xs font-medium px-2.5 py-1 rounded-full border border-red-200">
+                                        Project Cancelled
+                                    </span>
+                                )}
+                            </div>
                             {(organisation || location) && (
                                 <div className="flex items-center gap-2 mb-2">
                                     {organisation && website ? (
@@ -170,6 +205,11 @@ export default function ProjectCard({ title, amount, location, shortDescription,
                                 <span className="text-xl md:text-2xl font-bold text-asi-blue">£{amount.toLocaleString()}</span>
                             </div>
                             <p className="text-sm text-slate-500 mt-1">ASI UK Support</p>
+                            {!cancelled && disbursement && (
+                                <div className="mt-2">
+                                    <DisbursementBadge disbursement={disbursement} />
+                                </div>
+                            )}
                         </div>
                     </div>
 

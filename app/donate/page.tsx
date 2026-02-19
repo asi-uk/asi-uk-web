@@ -1,10 +1,10 @@
 import { Heart, FileText, Hammer } from 'lucide-react';
 import Link from 'next/link';
 import ProgressBar from "@/app/components/ProgressBar";
-import { approvedProjects2025, FUNDING_RECEIVED_2025 } from "@/data/projects";
+import { approvedProjects2025, FUNDING_RECEIVED_2025, FUNDING_PLEDGED_2025 } from "@/data/projects";
 
 export default function Projects() {
-    const totalGoal = approvedProjects2025.reduce((sum, project) => sum + project.amount, 0);
+    const totalGoal = approvedProjects2025.filter(project => !project.cancelled).reduce((sum, project) => sum + project.amount, 0);
 
     return (
         <div className="relative w-full overflow-x-hidden">
@@ -27,6 +27,7 @@ export default function Projects() {
                             <ProgressBar
                                 current={FUNDING_RECEIVED_2025}
                                 total={totalGoal}
+                                pledged={FUNDING_PLEDGED_2025}
                                 variant="light"
                                 className="text-white"
                             />

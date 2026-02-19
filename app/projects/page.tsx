@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/collapsible";
 import ProgressBar from "@/app/components/ProgressBar";
 import ProjectCard from "@/app/projects/components/ProjectCard";
-import { approvedProjects2025, FUNDING_RECEIVED_2025 } from "@/data/projects";
+import { approvedProjects2025, FUNDING_RECEIVED_2025, FUNDING_PLEDGED_2025 } from "@/data/projects";
 
 export const metadata = {
     title: "ASI UK | Project Funding",
@@ -66,7 +66,7 @@ export const metadata = {
 }
 
 export default function Projects() {
-    const totalGoal = approvedProjects2025.reduce((sum, project) => sum + project.amount, 0);
+    const totalGoal = approvedProjects2025.filter(project => !project.cancelled).reduce((sum, project) => sum + project.amount, 0);
 
     return (
         <div className="relative w-full overflow-x-hidden">
@@ -228,7 +228,7 @@ export default function Projects() {
                                     <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-8">
                                         <div className="flex flex-col md:flex-row items-center justify-center gap-3 md:gap-4">
                                             <p className="text-blue-800 text-sm md:text-base text-center">
-                                                Fundraising for 2025 projects is still ongoing and funds are being disbursed to approved projects.
+                                                Fundraising for 2025 projects is still ongoing. First instalments have been disbursed to approved projects.
                                             </p>
                                             <Link
                                                 href="/donate"
@@ -245,6 +245,7 @@ export default function Projects() {
                                         <ProgressBar
                                             current={FUNDING_RECEIVED_2025}
                                             total={totalGoal}
+                                            pledged={FUNDING_PLEDGED_2025}
                                             className="w-full"
                                         />
                                     </div>
