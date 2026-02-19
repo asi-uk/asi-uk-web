@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Mail, ArrowRight, CheckCircle, Loader2 } from "lucide-react";
 
 interface NewsletterSignupProps {
-  variant: "compact" | "full";
+  variant: "compact" | "full" | "homepage";
 }
 
 export default function NewsletterSignup({ variant }: NewsletterSignupProps) {
@@ -56,6 +56,10 @@ export default function NewsletterSignup({ variant }: NewsletterSignupProps) {
 
   if (variant === "compact") {
     return <CompactVariant status={status} errorMessage={errorMessage} errors={errors} register={register} handleSubmit={handleSubmit} onSubmit={onSubmit} />;
+  }
+
+  if (variant === "homepage") {
+    return <HomepageVariant status={status} errorMessage={errorMessage} errors={errors} register={register} handleSubmit={handleSubmit} onSubmit={onSubmit} />;
   }
 
   return <FullVariant status={status} errorMessage={errorMessage} errors={errors} register={register} handleSubmit={handleSubmit} onSubmit={onSubmit} />;
@@ -126,6 +130,81 @@ function CompactVariant({ status, errorMessage, errors, register, handleSubmit, 
         <p className="text-red-400 text-xs mt-1.5">{errorMessage}</p>
       )}
     </div>
+  );
+}
+
+function HomepageVariant({ status, errorMessage, errors, register, handleSubmit, onSubmit }: VariantProps) {
+  if (status === "success") {
+    return (
+      <section className="w-full bg-asi-extraDarkBlue">
+        <div className="max-w-5xl mx-auto px-4 py-16 md:py-20">
+          <div className="flex flex-col items-center text-center">
+            <div className="flex items-center gap-2 text-green-400 mb-3">
+              <CheckCircle className="h-6 w-6" />
+              <h2 className="text-2xl md:text-3xl text-green-400 font-bold leading-none">You&apos;re signed up!</h2>
+            </div>
+            <p className="text-sm md:text-base text-white/80">Check your email to confirm your subscription.</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (status === "already-subscribed") {
+    return (
+      <section className="w-full bg-asi-extraDarkBlue">
+        <div className="max-w-5xl mx-auto px-4 py-16 md:py-20">
+          <div className="flex flex-col items-center text-center">
+            <div className="flex items-center gap-2 text-blue-400 mb-3">
+              <CheckCircle className="h-6 w-6" />
+              <h2 className="text-2xl md:text-3xl text-blue-400 font-bold leading-none">Already subscribed!</h2>
+            </div>
+            <p className="text-sm md:text-base text-white/80">You&apos;re already on our mailing list.</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  return (
+    <section className="w-full bg-asi-extraDarkBlue">
+      <div className="max-w-5xl mx-auto px-4 py-16 md:py-20">
+        <div className="flex flex-col items-center text-center">
+          <div className="flex items-center mb-4 md:mb-6">
+            <Mail className="mr-2 h-5 w-5 md:h-6 md:w-6 text-white/80" />
+            <h2 className="text-2xl md:text-3xl text-white font-bold leading-none">Stay Connected</h2>
+          </div>
+          <p className="text-sm md:text-base mb-6 max-w-2xl text-white/70">
+            Subscribe to our newsletter for the latest news, events, and updates from ASI UK.
+          </p>
+          <form onSubmit={handleSubmit(onSubmit)} className="flex gap-2 w-full max-w-md">
+            <Input
+              type="email"
+              placeholder="Enter your email"
+              {...register("email")}
+              className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-500 flex-1 h-10"
+            />
+            <Button
+              type="submit"
+              disabled={status === "loading"}
+              className="bg-asi-blue hover:bg-blue-700 text-white h-10 px-6"
+            >
+              {status === "loading" ? (
+                <Loader2 className="h-4 w-4 animate-spin" />
+              ) : (
+                "Subscribe"
+              )}
+            </Button>
+          </form>
+          {errors.email && (
+            <p className="text-red-400 text-sm mt-2">{errors.email.message}</p>
+          )}
+          {status === "error" && (
+            <p className="text-red-400 text-sm mt-2">{errorMessage}</p>
+          )}
+        </div>
+      </div>
+    </section>
   );
 }
 
