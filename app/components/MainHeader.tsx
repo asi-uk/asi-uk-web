@@ -23,7 +23,7 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion";
-import {Home, Calendar, Hammer, Info, Merge, Menu, Heart} from "lucide-react";
+import {Home, Calendar, Hammer, Info, Merge, Menu, Heart, Newspaper} from "lucide-react";
 import {Button} from "@/components/ui/button";
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 
@@ -215,6 +215,15 @@ const MainHeader: React.FC = () => {
                                             </Link>
                                         </NavigationMenuLink>
                                     </NavigationMenuItem>
+
+                                    {/* News link */}
+                                    <NavigationMenuItem>
+                                        <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+                                            <Link href="/news">
+                                                <Newspaper className="mr-2 h-4 w-4"/> News
+                                            </Link>
+                                        </NavigationMenuLink>
+                                    </NavigationMenuItem>
                                 </NavigationMenuList>
                             </NavigationMenu>
                         </div>
@@ -319,6 +328,8 @@ const MainHeader: React.FC = () => {
                                             </Accordion>
                                             <MobileNavItem href="/projects"
                                                            icon={<Hammer className="h-4 w-4"/>}>Projects</MobileNavItem>
+                                            <MobileNavItem href="/news"
+                                                           icon={<Newspaper className="h-4 w-4"/>}>News</MobileNavItem>
                                         </div>
 
                                         {/* Mobile Donation Button - at the bottom of menu */}

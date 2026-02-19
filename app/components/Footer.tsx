@@ -80,6 +80,11 @@ const Footer: React.FC<FooterProps> = ({
                                 </Link>
                             </li>
                             <li>
+                                <Link href="/news" className="text-gray-400 hover:text-white transition-colors">
+                                    News
+                                </Link>
+                            </li>
+                            <li>
                                 <Link href="/membership" className="text-gray-400 hover:text-white transition-colors">
                                     Membership
                                 </Link>
