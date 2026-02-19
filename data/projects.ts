@@ -213,3 +213,45 @@ export const approvedProjects2025: Project[] = [
 
 export const FUNDING_RECEIVED_2025 = 13941.95;
 export const FUNDING_PLEDGED_2025 = 27894;
+
+export type CycleStatus = 'applications-open' | 'funding-in-progress' | 'completed';
+
+export interface ProjectCycle {
+    year: number;
+    status: CycleStatus;
+    statusLabel: string;
+    projects: Project[];
+    fundingReceived?: number;
+    fundingPledged?: number;
+    applicationDeadline?: string;
+    applicationFormUrl?: string;
+    budgetFormUrl?: string;
+    guidelinesUrl?: string;
+    submitEmail?: string;
+    infoBanner?: string;
+    showDonateLink?: boolean;
+}
+
+export const projectCycles: ProjectCycle[] = [
+    {
+        year: 2026,
+        status: 'applications-open',
+        statusLabel: 'Applications Open',
+        projects: [],
+        applicationDeadline: 'Thursday 23rd April 2026',
+        applicationFormUrl: 'https://c1crerc0h1fs4ljz.public.blob.vercel-storage.com/asi-uk-project-funding-application-form.docx',
+        budgetFormUrl: 'https://c1crerc0h1fs4ljz.public.blob.vercel-storage.com/asi-uk-project-funding-budget-form.xlsx',
+        guidelinesUrl: 'https://c1crerc0h1fs4ljz.public.blob.vercel-storage.com/asi-uk-project-funding-guidelines.pdf',
+        submitEmail: 'evangelism@asiuk.org',
+    },
+    {
+        year: 2025,
+        status: 'funding-in-progress',
+        statusLabel: 'Funding In Progress',
+        projects: approvedProjects2025,
+        fundingReceived: FUNDING_RECEIVED_2025,
+        fundingPledged: FUNDING_PLEDGED_2025,
+        infoBanner: 'Fundraising for 2025 projects is still ongoing. First instalments have been disbursed to approved projects.',
+        showDonateLink: true,
+    },
+];
