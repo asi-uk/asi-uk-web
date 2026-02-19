@@ -118,6 +118,18 @@ const MainHeader: React.FC = () => {
                                                 <li>
                                                     <NavigationMenuLink asChild
                                                         className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                                                        <Link href="/about/history">
+                                                            <div className="text-sm font-medium leading-none">History
+                                                            </div>
+                                                            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                                                                The story of ASI from Madison College to the UK
+                                                            </p>
+                                                        </Link>
+                                                    </NavigationMenuLink>
+                                                </li>
+                                                <li>
+                                                    <NavigationMenuLink asChild
+                                                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
                                                         <Link href="/leadership">
                                                             <div
                                                                 className="text-sm font-medium leading-none">Leadership
@@ -254,6 +266,11 @@ const MainHeader: React.FC = () => {
                                                             <Link href="/about" className="py-2 text-sm hover:underline"
                                                                   onClick={() => setOpen(false)}>
                                                                 About ASI
+                                                            </Link>
+                                                            <Link href="/about/history"
+                                                                  className="py-2 text-sm hover:underline"
+                                                                  onClick={() => setOpen(false)}>
+                                                                History
                                                             </Link>
                                                             <Link href="/leadership"
                                                                   className="py-2 text-sm hover:underline"

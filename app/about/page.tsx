@@ -1,9 +1,5 @@
-import Image from 'next/image'
-import Link from 'next/link';
-import MainHeader from '@/app/components/MainHeader';
-import {Heading1, Heading2, Heading3} from "@/app/components/Headings";
+import {Heading1, Heading2} from "@/app/components/Headings";
 import CTARounded from "@/app/components/CTARounded";
-import Profile from '@/app/components/Profile';
 
 export default function About() {
     return (
@@ -13,8 +9,8 @@ export default function About() {
 
                     <Heading1 text={"What is ASI?"}/>
                     <p className="pb-5">Adventist-laymen&lsquo;s Services and Industries (ASI) is an organisation
-                        comprised of members of the Seventh-day Adventist Church who are either employed in the private
-                        business, are self-employed, or hold managerial positions. The uniqueness of the organisation
+                        comprised of members of the Seventh-day Adventist Church who are business owners, professionals,
+                        or ministry leaders. The uniqueness of the organisation
                         can be described in two parts:</p>
                     <p className="pb-5">Firstly, we acknowledge that our time, talents, wealth, and our bodies belong to
                         God, and we are merely stewards of these gifts. With this understanding, we are committed to
@@ -29,15 +25,24 @@ export default function About() {
                         and share it with the millions of people they encounter in their business or professional
                         engagements each year. ASI&lsquo;s motto is: SHARING CHRIST IN THE MARKETPLACE!</p>
 
-                    <Heading2 text={"History"}/>
-                    <p>ASI’s history is rooted in Madison College, an Adventist self-supporting institution established
-                        in 1904 near Nashville, with Ellen White a stern supporter of the concept. The organisation grew
-                        and during its official formation meeting in 1947 frequent reference was made to Ellen
-                        White&lsquo;s statement “The work of God in this earth can never be finished until the men and
-                        women comprising our church membership rally to the work, and unite their efforts with those of
-                        ministers and church officers” Gospel Workers, p. 352. That is what ASI is all about - lay
-                        people inspiring each other for mission work and serving hand in hand with the church ministers
-                        and officers. Togetherness and inspiration!</p>
+                    <Heading2 text={"Our History"}/>
+                    <p className="pb-5">ASI UK was formed in 1983 when the British Union Conference President, Harold
+                        Calkins, invited ASI members from the United States to meet with interested business and
+                        professional lay people in Leicester. That weekend, the first overseas chapter of ASI was
+                        established &mdash; a historic milestone for the movement.</p>
+                    <p className="pb-5">Initially known as the Adventist Business and Professionals Association from
+                        1990, the UK chapter was renamed back to ASI UK in 2006, aligning with other European chapters
+                        following the formation of ASI Europe in 1998. Today, ASI UK continues to network, equip, and
+                        empower Adventist lay professionals through evangelistic initiatives, humanitarian projects,
+                        workshops, and seminars &mdash; maintaining strong links with ADRA and the British Union
+                        Conference of Seventh-day Adventists.</p>
+
+                    <CTARounded
+                        heading={"Our History"}
+                        subheading={"From Madison College in 1904 to ASI UK today"}
+                        href={"/about/history"}
+                        containerClass="my-8"
+                    />
 
                     <CTARounded
                         heading={"Constitution"}
