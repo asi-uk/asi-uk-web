@@ -1,4 +1,3 @@
-import {Heading2} from "@/app/components/Headings";
 import CTARounded from "@/app/components/CTARounded";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { ChevronDown } from "lucide-react";
@@ -8,7 +7,7 @@ export default function Leadership() {
         <div className="flex items-center justify-center w-screen">
             <div className="max-w-screen-md mx-auto">
                 <div className="text-left p-5">
-                    <Heading2 text={"Leadership Team"}/>
+                    <h2 className="heading-section">Leadership Team</h2>
 
                     <div className="bg-white rounded-2xl p-10">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

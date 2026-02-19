@@ -1,4 +1,3 @@
-import {Heading1, Heading2} from "@/app/components/Headings";
 import CTARounded from "@/app/components/CTARounded";
 
 export default function About() {
@@ -7,7 +6,7 @@ export default function About() {
             <div className="max-w-screen-md mx-auto">
                 <div className="text-left p-5">
 
-                    <Heading1 text={"What is ASI?"}/>
+                    <h1 className="heading-page">What is ASI?</h1>
                     <p className="pb-5">Adventist-laymen&lsquo;s Services and Industries (ASI) is an organisation
                         comprised of members of the Seventh-day Adventist Church who are business owners, professionals,
                         or ministry leaders. The uniqueness of the organisation
@@ -25,7 +24,7 @@ export default function About() {
                         and share it with the millions of people they encounter in their business or professional
                         engagements each year. ASI&lsquo;s motto is: SHARING CHRIST IN THE MARKETPLACE!</p>
 
-                    <Heading2 text={"Our History"}/>
+                    <h2 className="heading-section">Our History</h2>
                     <p className="pb-5">ASI UK was formed in 1983 when the British Union Conference President, Harold
                         Calkins, invited ASI members from the United States to meet with interested business and
                         professional lay people in Leicester. That weekend, the first overseas chapter of ASI was

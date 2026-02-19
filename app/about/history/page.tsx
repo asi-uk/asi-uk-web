@@ -1,14 +1,12 @@
-import {Heading1, Heading2, Heading3} from "@/app/components/Headings";
-
 export default function History() {
     return (
         <div className="flex items-center justify-center w-screen">
             <div className="max-w-screen-md mx-auto">
                 <div className="text-left p-5">
 
-                    <Heading1 text={"Our History"}/>
+                    <h1 className="heading-page">Our History</h1>
 
-                    <Heading3 text={"The Roots of ASI: Madison College"}/>
+                    <h3 className="heading-sub">The Roots of ASI: Madison College</h3>
                     <p className="pb-5">The story of ASI begins on a warm summer&lsquo;s day in June 1904, when a
                         steamboat called the <em>Morning Star</em> pushed away from the landing dock in Nashville,
                         Tennessee, and headed up the Cumberland River. On board was a small group of explorers, among
@@ -29,7 +27,7 @@ export default function History() {
                         Madison
                         College &mdash; opened its doors to its first cohort of just eleven students.</p>
 
-                    <Heading3 text={"A New Model for Mission"}/>
+                    <h3 className="heading-sub">A New Model for Mission</h3>
                     <p className="pb-5">Madison College was unlike anything the Adventist Church had seen. It combined
                         education, healthcare, and agriculture into a single self-supporting operation. The school
                         functioned like a large family: it was not unusual to see Magan, the college dean, ploughing
@@ -49,7 +47,7 @@ export default function History() {
                         entrepreneurship within the context of mission, and the vital importance of an empowered and
                         engaged church membership sharing Christ in everyday life.</p>
 
-                    <Heading3 text={"The Formation of ASI"}/>
+                    <h3 className="heading-sub">The Formation of ASI</h3>
                     <p className="pb-5">In 1947, the expanding network of self-supporting institutions inspired by
                         Madison College joined together under the guidance of the General Conference to form the
                         Association of Seventh-day Adventist Self-Supporting Institutions, or ASI. At the time, ASI
@@ -66,7 +64,7 @@ export default function History() {
                         membership, the organisation&lsquo;s name was changed in 1979 to Adventist-laymen&lsquo;s
                         Services and Industries, with the motto: <em>Sharing Christ in the Marketplace</em>.</p>
 
-                    <Heading3 text={"ASI Today"}/>
+                    <h3 className="heading-sub">ASI Today</h3>
                     <p className="pb-5">Today, ASI is a global force for mission. From banana farms in Zambia that fund
                         education and evangelism, to lifestyle health centres in Tennessee and Georgia, to small
                         businesses in Kentucky and Minnesota whose owners see every customer interaction as a divine
@@ -93,7 +91,7 @@ export default function History() {
                         </p>
                     </div>
 
-                    <Heading3 text={"ASI in the United Kingdom"}/>
+                    <h3 className="heading-sub">ASI in the United Kingdom</h3>
                     <p className="pb-5">The ASI concept was introduced to the Adventist Church in the British Isles in
                         1983 by the then British Union Conference President, Harold Calkins, and his Vice-President,
                         John
@@ -115,7 +113,7 @@ export default function History() {
                         marketplaces.</p>
 
                     {/* Timeline */}
-                    <Heading2 text={"Key Dates"}/>
+                    <h2 className="heading-section">Key Dates</h2>
                     <div className="relative my-8 ml-4">
                         {/* Vertical line */}
                         <div className="absolute left-[7px] top-2 bottom-2 w-0.5 bg-asi-blue/30"/>
@@ -147,7 +145,7 @@ export default function History() {
                     </div>
 
                     {/* Sources */}
-                    <Heading2 text={"Sources"}/>
+                    <h2 className="heading-section">Sources</h2>
                     <ul className="list-disc pl-5 pb-5 space-y-1 text-gray-600">
                         <li><em>God&lsquo;s Beautiful Farm</em> &mdash; a history of Madison College</li>
                         <li><em>ASI Story</em> &mdash; official ASI history</li>

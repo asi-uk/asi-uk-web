@@ -1,10 +1,4 @@
-import Image from 'next/image'
-import Link from 'next/link';
-import MainHeader from '@/app/components/MainHeader';
-import {Heading1, Heading2, Heading3} from "@/app/components/Headings";
-import CTARounded from "@/app/components/CTARounded";
-import Profile from '@/app/components/Profile';
-import {Mail, Phone, MapPin, Clock, ExternalLink} from 'lucide-react';
+import {Mail} from 'lucide-react';
 
 export default function ContactUs() {
     return (
@@ -12,7 +6,7 @@ export default function ContactUs() {
             <main className="flex-grow">
                 <div className="max-w-screen-md mx-auto px-8">
                     <div className="text-left mb-12">
-                        <Heading1 text={"Contact Us"}/>
+                        <h1 className="heading-page">Contact Us</h1>
                         <p className="mt-4 text-lg text-gray-600 mx-auto">
                             We'd love to hear from you. Currently, the best way to get in contact with us is via email
                         </p>
