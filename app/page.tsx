@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import SaveTheDateBanner from "@/app/components/SaveTheDateBanner";
 import ParallaxBackground from "@/app/components/ParallaxBackground";
+import NewsletterSignup from "@/app/components/NewsletterSignup";
 
 export default function Home() {
     return (
@@ -112,6 +113,9 @@ export default function Home() {
                 </div>
         </div>
 </section>
+
+            {/* Newsletter Signup */}
+            <NewsletterSignup variant="full" />
 </div>
 )
 }
