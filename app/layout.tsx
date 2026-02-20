@@ -3,6 +3,7 @@ import { Source_Sans_3 } from 'next/font/google'
 import Footer from "@/app/components/Footer";
 import MainHeader from "@/app/components/MainHeader";
 import React from "react";
+import ScrollToTop from "@/app/components/ScrollToTop";
 
 const sourceSans = Source_Sans_3({ subsets: ['latin'] })
 
@@ -38,6 +39,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
       <html lang="en">
       <body className={`${sourceSans.className} min-h-screen flex flex-col`}>
+      <ScrollToTop />
       <MainHeader/>
       <main className="pt-[100px] md:pt-[110px] flex-grow">
         {children}
