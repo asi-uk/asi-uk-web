@@ -4,6 +4,8 @@ import Link from "next/link";
 import { ArrowLeft, Calendar } from "lucide-react";
 import { getPostBySlug, getAllPostSlugs } from "@/lib/sanity/queries";
 import { urlFor } from "@/lib/sanity/image";
+import { getCloudinaryFolderImages } from "@/lib/cloudinary";
+import type { CloudinaryImage } from "@/lib/cloudinary";
 import PostBody from "../components/PostBody";
 
 export async function generateStaticParams() {
@@ -42,6 +44,27 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
     const post = await getPostBySlug(slug);
 
     if (!post) notFound();
+
+    // Pre-fetch Cloudinary images for any gallery embeds in the post body
+    let galleryImages: Record<string, CloudinaryImage[]> | undefined;
+    if (post.body) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const blocks = post.body as any[];
+        const galleryEmbeds = blocks.filter(
+            (block) => block._type === "galleryEmbed" && block.cloudinaryFolder
+        );
+
+        if (galleryEmbeds.length > 0) {
+            const folders = [...new Set(galleryEmbeds.map((b: any) => b.cloudinaryFolder as string))];
+            const results = await Promise.all(
+                folders.map(async (folder) => ({
+                    folder,
+                    images: await getCloudinaryFolderImages(folder),
+                }))
+            );
+            galleryImages = Object.fromEntries(results.map((r) => [r.folder, r.images]));
+        }
+    }
 
     const formattedDate = new Date(post.publishedAt).toLocaleDateString("en-GB", {
         day: "numeric",
@@ -104,7 +127,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
                 </div>
 
                 {/* Body */}
-                {post.body && <PostBody body={post.body} />}
+                {post.body && <PostBody body={post.body} galleryImages={galleryImages} />}
             </div>
         </div>
     );

@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    serverExternalPackages: ['qrcode'],
+    serverExternalPackages: ['qrcode', 'cloudinary'],
     images: {
         remotePatterns: [
             {
