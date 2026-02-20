@@ -21,6 +21,16 @@ export default function About() {
             <section className="w-full">
                 <div className="max-w-5xl mx-auto px-4 py-12 md:py-16">
                     <h2 className="text-3xl font-bold text-asi-blue text-center mb-10">Our Mission</h2>
+
+                    <p className="text-slate-600 leading-relaxed max-w-3xl mx-auto text-center mb-10">
+                        At its core, ASI believes that each of us is called to ministry&mdash;wherever we
+                        live, work, or study. Sharing our faith is not confined to the four walls of the
+                        church or its official programmes. ASI exists to inspire and equip laypeople to get
+                        personally involved in the worldwide proclamation of the Gospel, not waiting for the
+                        organised church to prescribe every step, but supporting the church through our own
+                        inspired initiatives.
+                    </p>
+
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         {/* Stewardship */}
                         <div className="bg-white rounded-2xl p-6 border border-slate-200">
