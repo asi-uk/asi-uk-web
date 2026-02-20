@@ -6,20 +6,6 @@ export default function History() {
 
                     <h1 className="heading-page">Our History</h1>
 
-                    {/* YouTube video embed */}
-                    <div className="my-8 rounded-xl overflow-hidden shadow-lg">
-                        <iframe
-                            className="aspect-video w-full"
-                            src="https://www.youtube.com/embed/4aKu0X9pgJM"
-                            title="The History of ASI"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                        />
-                        <p className="text-sm text-gray-500 text-center py-2 bg-gray-50">
-                            Watch: The story of ASI and its mission
-                        </p>
-                    </div>
-
                     <h3 className="heading-sub">The Roots of ASI: Madison College</h3>
                     <p className="pb-5">The story of ASI begins on a warm summer&lsquo;s day in June 1904, when a
                         steamboat called the <em>Morning Star</em> pushed away from the landing dock in Nashville,
@@ -111,7 +97,7 @@ export default function History() {
                         next
                         generation of Adventist lay people are equipped and inspired to share Christ in their
                         marketplaces.</p>
-                    <p className="pb-5">On 2 March 2024, ASI UK was officially relaunched at Newbold College
+                    <p className="pb-5">After a few years of dormancy, ASI UK was officially relaunched on 2 March 2024 at Newbold College
                         during the ASI Europe board meeting weekend, with Dr. Daniel Duda (TED President),
                         Pr. Eglan Brooks (BUC President), and other church leaders present for the inauguration.</p>
                     <p className="pb-5">In June 2024, the chapter held its first General Meeting in Birmingham.
@@ -151,9 +137,51 @@ export default function History() {
                         ))}
                     </div>
 
+                    {/* References */}
+                    <h2 className="heading-section">Related Content</h2>
 
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
+                        <div className="rounded-xl overflow-hidden shadow-lg">
+                            <iframe
+                                className="aspect-video w-full"
+                                src="https://www.youtube.com/embed/4aKu0X9pgJM"
+                                title="The History of ASI"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                            />
+                            <p className="text-sm text-gray-500 text-center py-2 bg-gray-50">
+                                Watch: The story of ASI and its mission
+                            </p>
+                        </div>
+
+                        <div className="rounded-xl overflow-hidden shadow-lg">
+                            <iframe
+                                className="aspect-video w-full"
+                                src="https://www.youtube.com/embed/JWjaG_pQWqc?si=YyjHCOZ7VS6_dx3J"
+                                title="The History of Supporting Ministries"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                            />
+                            <p className="text-sm text-gray-500 text-center py-2 bg-gray-50">
+                                Watch: Podcast discussion on the origins of ASI
+                            </p>
+                        </div>
+
+                        <div className="rounded-xl overflow-hidden shadow-lg">
+                            <iframe
+                                className="aspect-video w-full"
+                                src="https://www.youtube.com/embed/wbE6_9-TAI0?si=dLuGYe_VWHav8dZy"
+                                title="ASI History: How Madison College Started a Movement"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                            />
+                            <p className="text-sm text-gray-500 text-center py-2 bg-gray-50">
+                                Watch: Discover the origins of the modern lay ministry movement
+                            </p>
+                        </div>
+                    </div>
+                </div>
                 </div>
             </div>
-        </div>
     )
 }
