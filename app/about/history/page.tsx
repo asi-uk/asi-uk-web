@@ -6,6 +6,20 @@ export default function History() {
 
                     <h1 className="heading-page">Our History</h1>
 
+                    {/* YouTube video embed */}
+                    <div className="my-8 rounded-xl overflow-hidden shadow-lg">
+                        <iframe
+                            className="aspect-video w-full"
+                            src="https://www.youtube.com/embed/4aKu0X9pgJM"
+                            title="The History of ASI"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                        />
+                        <p className="text-sm text-gray-500 text-center py-2 bg-gray-50">
+                            Watch: The story of ASI and its mission
+                        </p>
+                    </div>
+
                     <h3 className="heading-sub">The Roots of ASI: Madison College</h3>
                     <p className="pb-5">The story of ASI begins on a warm summer&lsquo;s day in June 1904, when a
                         steamboat called the <em>Morning Star</em> pushed away from the landing dock in Nashville,
@@ -77,20 +91,6 @@ export default function History() {
                         values that were the hallmarks of Madison College and its founders: faith, innovation,
                         self-sacrifice, and a deep commitment to sharing Christ wherever life takes you.</p>
 
-                    {/* YouTube video embed */}
-                    <div className="my-8 rounded-xl overflow-hidden shadow-lg">
-                        <iframe
-                            className="aspect-video w-full"
-                            src="https://www.youtube.com/embed/4aKu0X9pgJM"
-                            title="The History of ASI"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                        />
-                        <p className="text-sm text-gray-500 text-center py-2 bg-gray-50">
-                            Watch: The story of ASI and its mission
-                        </p>
-                    </div>
-
                     <h3 className="heading-sub">ASI in the United Kingdom</h3>
                     <p className="pb-5">The ASI concept was introduced to the Adventist Church in the British Isles in
                         1983 by the then British Union Conference President, Harold Calkins, and his Vice-President,
@@ -111,6 +111,12 @@ export default function History() {
                         next
                         generation of Adventist lay people are equipped and inspired to share Christ in their
                         marketplaces.</p>
+                    <p className="pb-5">On 2 March 2024, ASI UK was officially relaunched at Newbold College
+                        during the ASI Europe board meeting weekend, with Dr. Daniel Duda (TED President),
+                        Pr. Eglan Brooks (BUC President), and other church leaders present for the inauguration.</p>
+                    <p className="pb-5">In June 2024, the chapter held its first General Meeting in Birmingham.
+                        Members adopted the ASI UK Constitution and elected the executive committee, laying the
+                        organisational foundation for the chapter&lsquo;s work going forward.</p>
 
                     {/* Timeline */}
                     <h2 className="heading-section">Key Dates</h2>
@@ -131,6 +137,7 @@ export default function History() {
                             },
                             {year: "1998", text: "ASI Europe formed"},
                             {year: "2006", text: "UK chapter renamed back to ASI UK"},
+                            {year: "2024", text: "ASI UK relaunched at Newbold College"},
                         ].map((item) => (
                             <div key={item.year} className="relative flex items-start gap-4 pb-6">
                                 {/* Dot */}
@@ -144,13 +151,6 @@ export default function History() {
                         ))}
                     </div>
 
-                    {/* Sources */}
-                    <h2 className="heading-section">Sources</h2>
-                    <ul className="list-disc pl-5 pb-5 space-y-1 text-gray-600">
-                        <li><em>God&lsquo;s Beautiful Farm</em> &mdash; a history of Madison College</li>
-                        <li><em>ASI Story</em> &mdash; official ASI history</li>
-                        <li>ASI UK archives</li>
-                    </ul>
 
                 </div>
             </div>
