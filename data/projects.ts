@@ -251,7 +251,7 @@ export const projectCycles: ProjectCycle[] = [
         projects: approvedProjects2025,
         fundingReceived: FUNDING_RECEIVED_2025,
         fundingPledged: FUNDING_PLEDGED_2025,
-        infoBanner: 'Fundraising for 2025 projects is still ongoing. First instalments have been disbursed to approved projects.',
+        infoBanner: 'Fundraising for 2025 projects is still ongoing. First instalments have been disbursed to approved projects based on the current amount of funds received .',
         showDonateLink: true,
     },
 ];
