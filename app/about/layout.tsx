@@ -1,18 +1,22 @@
 
 
+
 export const metadata = {
     title: "ASI UK | About",
     description:
-        "Learn more about ASI UK",
+        "Learn more about the UK chapter of Adventist Laymen's Services and Industries",
     keywords: [
         "About ASI UK",
         "About ASI",
         "ASI",
         "ASI UK",
         "ASI-UK",
+        "ASI history",
+        "Madison College",
         "adventist",
         "adventist uk",
         "adventist laymen's services and industries",
+        "self-supporting missions",
         "ministry",
         "ministries",
     ],

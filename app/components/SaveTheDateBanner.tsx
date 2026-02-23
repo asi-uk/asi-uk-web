@@ -4,10 +4,10 @@ import React from 'react';
 import Link from 'next/link';
 import { Calendar, MapPin, CalendarDays } from 'lucide-react';
 import CountdownTimer from '@/app/components/CountdownTimer';
+import { CONVENTION_2026 } from '@/data/convention';
 
 const SaveTheDateBanner: React.FC = () => {
-    // Convention starts June 20, 2026 at 9:00 AM UK time
-    const conventionDate = new Date('2026-06-20T09:00:00');
+    const conventionDate = CONVENTION_2026.startDate;
 
     return (
         <section className="relative z-20 flex items-center justify-center w-full my-8 md:my-12 md:mb-16 px-4 md:py-0">
@@ -23,7 +23,7 @@ const SaveTheDateBanner: React.FC = () => {
                 {/* Event Title */}
                 <div className="text-center">
                     <h2 className="text-3xl md:text-4xl text-white font-bold">
-                        ASI UK Convention 2026
+                        {CONVENTION_2026.title}
                     </h2>
                 </div>
 
@@ -36,8 +36,8 @@ const SaveTheDateBanner: React.FC = () => {
                     <div className="flex items-center justify-center gap-3 text-white">
                         <Calendar className="h-6 w-6 text-white/80" />
                         <div>
-                            <p className="text-lg md:text-xl font-semibold">20-21 June 2026</p>
-                            <p className="text-sm text-white/70">Saturday - Sunday</p>
+                            <p className="text-lg md:text-xl font-semibold">{CONVENTION_2026.dates}</p>
+                            <p className="text-sm text-white/70">{CONVENTION_2026.daysOfWeek}</p>
                         </div>
                     </div>
 
@@ -45,8 +45,8 @@ const SaveTheDateBanner: React.FC = () => {
                     <div className="flex items-center justify-center gap-3 text-white">
                         <MapPin className="h-6 w-6 text-white/80" />
                         <div>
-                            <p className="text-lg md:text-xl font-semibold">Newbold College</p>
-                            <p className="text-sm text-white/70">Bracknell, England</p>
+                            <p className="text-lg md:text-xl font-semibold">{CONVENTION_2026.venue}</p>
+                            <p className="text-sm text-white/70">{CONVENTION_2026.venueLocation}</p>
                         </div>
                     </div>
                 </div>

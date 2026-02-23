@@ -1,6 +1,6 @@
 /* nested-counters.module.css */
 .nestedCounters {
-    list-style-type: none !important; /* Higher specificity */
+    list-style-type: none;
     counter-reset: item;
     margin: 0;
     padding: 0;
@@ -17,7 +17,7 @@
 .nestedCounters > li:before {
     content: counters(item, ".") ". ";
     display: table-cell;
-    color: #223f99;
+    color: #223f99; /* ASI blue - matches tailwind asi-blue */
     padding-right: 0.6em;
 }
 

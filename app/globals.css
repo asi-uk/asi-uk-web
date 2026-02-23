@@ -70,3 +70,9 @@
     @apply bg-background text-foreground;
   }
 }
+@layer components {
+  .heading-page    { @apply text-3xl md:text-4xl text-asi-blue font-bold mb-6 text-center md:text-left; }
+  .heading-section { @apply text-2xl md:text-3xl text-asi-blue font-bold mb-6 text-center md:text-left; }
+  .heading-sub     { @apply text-xl md:text-2xl text-asi-blue font-bold mb-6 text-center md:text-left; }
+  .heading-minor   { @apply text-lg md:text-xl text-asi-blue font-bold mb-6 text-center md:text-left; }
+}

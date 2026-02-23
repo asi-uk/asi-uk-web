@@ -1,8 +1,9 @@
 // components/Footer.tsx
 import Link from 'next/link';
-import { Mail, Phone, MapPin, Facebook, X, Instagram, Linkedin, Youtube } from 'lucide-react';
+import { Mail } from 'lucide-react';
 import React from 'react';
 import Image from "next/image";
+import NewsletterSignup from "@/app/components/NewsletterSignup";
 
 interface FooterProps {
     companyName?: string;
@@ -43,26 +44,12 @@ const Footer: React.FC<FooterProps> = ({
                             priority
                             className="object-contain h-[50px] md:h-[120px]"
                         />
-                        {/*<p className="text-gray-400 mb-4">*/}
-                        {/*    {companyDescription}*/}
-                        {/*</p>*/}
-                        {/*<div className="flex space-x-4">*/}
-                        {/*    <a href="https://facebook.com" aria-label="Facebook" className="text-gray-400 hover:text-white transition-colors">*/}
-                        {/*        <Facebook size={20} />*/}
-                        {/*    </a>*/}
-                        {/*    <a href="https://x.com" aria-label="X" className="text-gray-400 hover:text-white transition-colors">*/}
-                        {/*        <X size={20} />*/}
-                        {/*    </a>*/}
-                        {/*    <a href="https://instagram.com" aria-label="Instagram" className="text-gray-400 hover:text-white transition-colors">*/}
-                        {/*        <Instagram size={20} />*/}
-                        {/*    </a>*/}
-                        {/*    <a href="https://linkedin.com" aria-label="LinkedIn" className="text-gray-400 hover:text-white transition-colors">*/}
-                        {/*        <Linkedin size={20} />*/}
-                        {/*    </a>*/}
-                        {/*    <a href="https://youtube.com" aria-label="YouTube" className="text-gray-400 hover:text-white transition-colors">*/}
-                        {/*        <Youtube size={20} />*/}
-                        {/*    </a>*/}
-                        {/*</div>*/}
+                        <div className="flex items-center mt-4">
+                            <Mail className="mr-2 h-4 w-4 text-gray-400" />
+                            <a href={`mailto:${email}`} className="text-gray-400 hover:text-white transition-colors text-sm">
+                                {email}
+                            </a>
+                        </div>
                     </div>
 
                     {/* Quick links */}
@@ -77,6 +64,11 @@ const Footer: React.FC<FooterProps> = ({
                             <li>
                                 <Link href="/projects" className="text-gray-400 hover:text-white transition-colors">
                                     Projects
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/news" className="text-gray-400 hover:text-white transition-colors">
+                                    News
                                 </Link>
                             </li>
                             <li>
@@ -114,25 +106,8 @@ const Footer: React.FC<FooterProps> = ({
                         </ul>
                     </div>
 
-                    {/* Contact info */}
-                    <div>
-                        <h3 className="text-lg md:text-xl font-bold mb-4">Contact Info</h3>
-                        <ul className="space-y-4 text-sm md:text-base">
-                {/*            <li className="flex items-start">*/}
-                {/*                <MapPin className="mr-2 h-5 w-5 text-gray-400 flex-shrink-0 mt-0.5" />*/}
-                {/*                <span className="text-gray-400">*/}
-                {/*  {address.street}<br />*/}
-                {/*                    {address.city}, {address.stateZip}*/}
-                {/*</span>*/}
-                {/*            </li>*/}
-                            <li className="flex items-center">
-                                <Mail className="mr-2 h-5 w-5 text-gray-400" />
-                                <a href={`mailto:${email}`} className="text-gray-400 hover:text-white transition-colors">
-                                    {email}
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+                    {/* Newsletter signup */}
+                    <NewsletterSignup variant="compact" />
                 </div>
 
                 {/* Divider */}

@@ -1,10 +1,11 @@
 import './globals.css'
-import { Inter } from 'next/font/google'
+import { Source_Sans_3 } from 'next/font/google'
 import Footer from "@/app/components/Footer";
 import MainHeader from "@/app/components/MainHeader";
 import React from "react";
+import ScrollToTop from "@/app/components/ScrollToTop";
 
-const inter = Inter({ subsets: ['latin'] })
+const sourceSans = Source_Sans_3({ subsets: ['latin'] })
 
 export const metadata = {
   title: "ASI UK | Adventist-laymen‘s Services and Industries",
@@ -34,10 +35,11 @@ export const metadata = {
   },
 }
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
       <html lang="en">
-      <body className={`${inter.className} min-h-screen flex flex-col`}>
+      <body className={`${sourceSans.className} min-h-screen flex flex-col`}>
+      <ScrollToTop />
       <MainHeader/>
       <main className="pt-[100px] md:pt-[110px] flex-grow">
         {children}

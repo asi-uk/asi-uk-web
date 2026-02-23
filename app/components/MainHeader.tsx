@@ -23,7 +23,7 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion";
-import {Home, Calendar, Hammer, Info, Merge, Menu, Heart} from "lucide-react";
+import {Home, Calendar, Hammer, Info, Merge, Menu, Heart, Newspaper} from "lucide-react";
 import {Button} from "@/components/ui/button";
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 
@@ -118,6 +118,18 @@ const MainHeader: React.FC = () => {
                                                 <li>
                                                     <NavigationMenuLink asChild
                                                         className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                                                        <Link href="/about/history">
+                                                            <div className="text-sm font-medium leading-none">History
+                                                            </div>
+                                                            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                                                                The story of ASI from Madison College to the UK
+                                                            </p>
+                                                        </Link>
+                                                    </NavigationMenuLink>
+                                                </li>
+                                                <li>
+                                                    <NavigationMenuLink asChild
+                                                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
                                                         <Link href="/leadership">
                                                             <div
                                                                 className="text-sm font-medium leading-none">Leadership
@@ -203,6 +215,16 @@ const MainHeader: React.FC = () => {
                                             </Link>
                                         </NavigationMenuLink>
                                     </NavigationMenuItem>
+
+                                    {/* News link */}
+                                    <NavigationMenuItem>
+                                        <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+                                            <Link href="/news">
+                                                <Newspaper className="mr-2 h-4 w-4"/> News
+                                            </Link>
+                                        </NavigationMenuLink>
+                                    </NavigationMenuItem>
+
                                 </NavigationMenuList>
                             </NavigationMenu>
                         </div>
@@ -255,6 +277,11 @@ const MainHeader: React.FC = () => {
                                                                   onClick={() => setOpen(false)}>
                                                                 About ASI
                                                             </Link>
+                                                            <Link href="/about/history"
+                                                                  className="py-2 text-sm hover:underline"
+                                                                  onClick={() => setOpen(false)}>
+                                                                History
+                                                            </Link>
                                                             <Link href="/leadership"
                                                                   className="py-2 text-sm hover:underline"
                                                                   onClick={() => setOpen(false)}>
@@ -302,6 +329,8 @@ const MainHeader: React.FC = () => {
                                             </Accordion>
                                             <MobileNavItem href="/projects"
                                                            icon={<Hammer className="h-4 w-4"/>}>Projects</MobileNavItem>
+                                            <MobileNavItem href="/news"
+                                                           icon={<Newspaper className="h-4 w-4"/>}>News</MobileNavItem>
                                         </div>
 
                                         {/* Mobile Donation Button - at the bottom of menu */}

@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    serverExternalPackages: ['qrcode'],
+    serverExternalPackages: ['qrcode', 'cloudinary'],
     images: {
         remotePatterns: [
             {
@@ -11,6 +11,11 @@ const nextConfig = {
             {
                 protocol: 'https',
                 hostname: 'images.unsplash.com',
+                pathname: '/**',
+            },
+            {
+                protocol: 'https',
+                hostname: 'cdn.sanity.io',
                 pathname: '/**',
             }
         ],

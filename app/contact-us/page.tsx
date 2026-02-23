@@ -1,40 +1,37 @@
-import Image from 'next/image'
-import Link from 'next/link';
-import MainHeader from '@/app/components/MainHeader';
-import {Heading1, Heading2, Heading3} from "@/app/components/Headings";
-import CTARounded from "@/app/components/CTARounded";
-import Profile from '@/app/components/Profile';
-import {Mail, Phone, MapPin, Clock, ExternalLink} from 'lucide-react';
+import {Mail, Clock} from 'lucide-react';
 
 export default function ContactUs() {
     return (
-        <div className="flex flex-col min-h-screen">
-            <main className="flex-grow">
-                <div className="max-w-screen-md mx-auto px-8">
-                    <div className="text-left mb-12">
-                        <Heading1 text={"Contact Us"}/>
-                        <p className="mt-4 text-lg text-gray-600 mx-auto">
-                            We'd love to hear from you. Currently, the best way to get in contact with us is via email
-                        </p>
-                    </div>
+        <div>
+            {/* Hero */}
+            <section className="w-full border-b border-slate-200">
+                <div className="max-w-5xl mx-auto px-4 py-12 md:py-16 text-center">
+                    <h1 className="text-4xl md:text-5xl font-bold text-asi-blue mb-4">Contact Us</h1>
+                    <p className="text-sm md:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+                        We'd love to hear from you. Currently, the best way to get in contact with us is via email
+                    </p>
+                </div>
+            </section>
 
-                    <div className="bg-white rounded-lg shadow-md p-8 mx-auto">
-                        <div className="space-y-8">
-                            <div className="flex items-start">
-                                <Mail className="h-8 w-8 text-asi-blue mr-4 mt-1 flex-shrink-0"/>
-                                <div>
-                                    <h3 className="font-semibold text-lg">Email</h3>
-                                    <a href="mailto:info@asiuk.org"
-                                       className="text-asi-blue hover:underline text-lg">info@asiuk.org</a>
-                                    <p className="text-gray-600 mt-1">We aim to respond within 48 hours</p>
-                                </div>
+            {/* Email Card */}
+            <section className="w-full">
+                <div className="max-w-xl mx-auto px-4 py-12 md:py-16">
+                    <div className="bg-white rounded-2xl p-6 border border-slate-200">
+                        <div className="flex flex-col items-center text-center space-y-4">
+                            <div className="rounded-full bg-asi-blue/10 p-3">
+                                <Mail className="h-6 w-6 text-asi-blue"/>
+                            </div>
+                            <h2 className="text-xl font-semibold text-asi-blue">Email</h2>
+                            <a href="mailto:info@asiuk.org"
+                               className="text-asi-blue hover:underline text-lg">info@asiuk.org</a>
+                            <div className="flex items-center gap-2 text-slate-500 text-sm">
+                                <Clock className="h-4 w-4"/>
+                                <p>We aim to respond within 48 hours</p>
                             </div>
                         </div>
                     </div>
                 </div>
-            </main>
-
-            {/* You can add your Footer component here */}
+            </section>
         </div>
     )
 }

@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import { Heading2 } from "@/app/components/Headings";
 import { ConventionRegistrationForm } from "./form";
 import { AlertCircle } from "lucide-react";
 
@@ -44,7 +43,7 @@ export default async function ConventionRegistrationPage({ searchParams }: PageP
         <div className="w-full min-h-full bg-slate-50 overflow-x-hidden">
             <div className="md:max-w-5xl mx-auto">
                 <div className="p-5 pt-10 pb-20">
-                    <Heading2 text="Convention Registration" />
+                    <h2 className="heading-section">Convention Registration</h2>
 
                     {wasCancelled && (
                         <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6 flex items-start gap-3">

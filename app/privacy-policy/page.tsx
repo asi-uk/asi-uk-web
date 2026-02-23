@@ -1,4 +1,3 @@
-import {Heading1, Heading2, Heading3} from "@/app/components/Headings";
 import Link from 'next/link';
 
 export default function PrivacyPolicy() {
@@ -7,11 +6,11 @@ export default function PrivacyPolicy() {
             <div className="max-w-screen-md mx-auto">
                 <div className="text-left p-5">
 
-                    <Heading1 text={"Privacy Policy"}/>
+                    <h1 className="heading-page">Privacy Policy</h1>
 
                     <p className="pb-5 text-gray-600">Last updated: January 2025</p>
 
-                    <Heading2 text={"1. Data Controller"}/>
+                    <h2 className="heading-section">1. Data Controller</h2>
                     <p className="pb-5">
                         Your personal data is controlled by <strong>Adventist-laymen's Services and Industries, United Kingdom (ASI UK)</strong>.
                     </p>
@@ -20,7 +19,7 @@ export default function PrivacyPolicy() {
                         <Link href="mailto:info@asiuk.org" className="text-asi-blue underline">info@asiuk.org</Link>
                     </p>
 
-                    <Heading2 text={"2. What Personal Data We Collect"}/>
+                    <h2 className="heading-section">2. What Personal Data We Collect</h2>
                     <p className="pb-3">When you apply for membership with ASI UK, we collect the following personal information:</p>
                     <ul className="list-disc pl-6 pb-5 space-y-1">
                         <li>Name and title</li>
@@ -39,7 +38,7 @@ export default function PrivacyPolicy() {
                         <li>Church affiliation status of the organisation</li>
                     </ul>
 
-                    <Heading2 text={"3. Purpose of Processing"}/>
+                    <h2 className="heading-section">3. Purpose of Processing</h2>
                     <p className="pb-3">We process your personal data for the following purposes:</p>
                     <ul className="list-disc pl-6 pb-5 space-y-1">
                         <li><strong>Membership administration:</strong> To process your membership application, verify eligibility, maintain membership records, and communicate with you about your membership status</li>
@@ -47,7 +46,7 @@ export default function PrivacyPolicy() {
                         <li><strong>Marketing communications:</strong> If you have consented, to send you newsletters, updates about ASI UK activities, events, and member news</li>
                     </ul>
 
-                    <Heading2 text={"4. Legal Basis for Processing"}/>
+                    <h2 className="heading-section">4. Legal Basis for Processing</h2>
                     <p className="pb-3">We process your personal data on the following legal bases:</p>
                     <ul className="list-disc pl-6 pb-5 space-y-1">
                         <li><strong>Contract:</strong> Processing is necessary for the performance of the membership agreement between you and ASI UK</li>
@@ -55,17 +54,17 @@ export default function PrivacyPolicy() {
                         <li><strong>Legitimate interests:</strong> For operational purposes such as improving our services and ensuring the security of our systems</li>
                     </ul>
 
-                    <Heading2 text={"5. How We Store Your Data"}/>
+                    <h2 className="heading-section">5. How We Store Your Data</h2>
                     <p className="pb-5">
                         Your membership application data is stored securely in Notion, which is protected by industry-standard security measures including encryption in transit and at rest. Notion is SOC 2 Type II certified and complies with GDPR requirements. Access to this data is restricted to authorised ASI UK administrators only.
                     </p>
 
-                    <Heading2 text={"6. Data Retention"}/>
+                    <h2 className="heading-section">6. Data Retention</h2>
                     <p className="pb-5">
                         We retain your personal data for as long as you remain a member of ASI UK. If your membership lapses or is terminated, we will retain your data for a period of up to 3 years for administrative purposes and to allow for membership renewal. After this period, your data will be securely deleted unless we are required by law to retain it for longer.
                     </p>
 
-                    <Heading2 text={"7. Third-Party Sharing"}/>
+                    <h2 className="heading-section">7. Third-Party Sharing</h2>
                     <p className="pb-3">We may share your personal data with:</p>
                     <ul className="list-disc pl-6 pb-5 space-y-1">
                         <li><strong>Notion Labs, Inc.:</strong> For data storage and membership management</li>
@@ -76,7 +75,7 @@ export default function PrivacyPolicy() {
                         We will never sell your personal data to third parties. We may share aggregated, anonymised data for statistical purposes.
                     </p>
 
-                    <Heading2 text={"8. Your Rights"}/>
+                    <h2 className="heading-section">8. Your Rights</h2>
                     <p className="pb-3">Under the UK General Data Protection Regulation (UK GDPR), you have the following rights:</p>
                     <ul className="list-disc pl-6 pb-5 space-y-1">
                         <li><strong>Right of access:</strong> You can request a copy of the personal data we hold about you</li>
@@ -93,7 +92,7 @@ export default function PrivacyPolicy() {
                         We will respond to your request within one month.
                     </p>
 
-                    <Heading2 text={"9. Complaints"}/>
+                    <h2 className="heading-section">9. Complaints</h2>
                     <p className="pb-5">
                         If you are not satisfied with how we handle your personal data, you have the right to lodge a complaint with the Information Commissioner's Office (ICO), the UK supervisory authority for data protection issues.
                     </p>
@@ -104,12 +103,12 @@ export default function PrivacyPolicy() {
                         <li>Post: Information Commissioner's Office, Wycliffe House, Water Lane, Wilmslow, Cheshire, SK9 5AF</li>
                     </ul>
 
-                    <Heading2 text={"10. Changes to This Policy"}/>
+                    <h2 className="heading-section">10. Changes to This Policy</h2>
                     <p className="pb-5">
                         We may update this privacy policy from time to time. Any changes will be posted on this page with an updated revision date. We encourage you to review this policy periodically.
                     </p>
 
-                    <Heading2 text={"Contact Us"}/>
+                    <h2 className="heading-section">Contact Us</h2>
                     <p className="pb-5">
                         If you have any questions about this privacy policy or our data practices, please contact us at:{' '}
                         <Link href="mailto:info@asiuk.org" className="text-asi-blue underline">info@asiuk.org</Link>

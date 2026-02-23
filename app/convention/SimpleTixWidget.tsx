@@ -22,7 +22,6 @@ const SimpleTixWidget = () => {
                 strategy="lazyOnload"
                 onLoad={() => {
                     // Script is loaded and ready to use
-                    console.log('SimpleTix script loaded');
                 }}
             />
             <link

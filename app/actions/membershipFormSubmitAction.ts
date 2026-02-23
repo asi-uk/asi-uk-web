@@ -21,14 +21,9 @@ export interface SubmissionResult {
 }
 
 export async function membershipFormSubmitAction(formData: FormData): Promise<SubmissionResult> {
-    // Log the data received to help with debugging
-    const receivedData = Object.fromEntries(formData.entries());
-    console.log("Received form data:", receivedData);
-
     try {
         // Validate and parse the form data using the shared schema
         const validatedData = parseFormData(formData);
-        console.log("Validated data:", validatedData);
 
         // Convert to service format for Notion and email
         const serviceData = toServiceData(validatedData);
@@ -43,8 +38,6 @@ export async function membershipFormSubmitAction(formData: FormData): Promise<Su
                 errors: [notionResult.error || "Failed to save application. Please try again."],
             };
         }
-
-        console.log("Notion entry created:", notionResult.pageId);
 
         // Construct Notion page URL for notifications
         const notionPageUrl = notionResult.pageId ? getNotionPageUrl(notionResult.pageId) : undefined;
