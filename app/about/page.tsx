@@ -102,20 +102,33 @@ export default function About() {
                             <h3 className="font-semibold text-lg text-asi-darkBlue">Our Story</h3>
                         </div>
                         <div className="space-y-4 text-slate-600 leading-relaxed">
-                            <p>ASI traces its roots to Madison College, founded near Nashville, Tennessee in 1904
-                                as a pioneering self-supporting missionary training school. The network of lay-driven
-                                institutions it inspired was formally organised in 1947 as the Association of
-                                Seventh-day
-                                Adventist Self-Supporting Institutions, later renamed Adventist-laymen&lsquo;s Services
-                                and Industries in 1979.</p>
-                            <p>ASI UK was formed in Leicester, UK in 1983 as the first overseas ASI chapter.
-                                Unfortunately, after decades of spirit-led ministry, the chapter went into a period of
-                                dormancy. On 2 March 2024, ASI UK was officially relaunched at Newbold College with
-                                church leaders present for the inauguration. Today, ASI UK continues to network, equip, and empower Adventist
-                                lay professionals to share Christ in the marketplace through networking, financial support, and training.</p>
+                            <p>The story of ASI begins with two young educators &mdash; E.A. Sutherland and Percy
+                                Magan &mdash; who left their positions at Emmanuel Missionary College to launch a
+                                self-supporting training school in the American South. In June 1904, a steamboat
+                                expedition led by Ellen White discovered the future site of Madison College near
+                                Nashville, Tennessee. Despite rocky land and meagre funds, Sutherland and Magan
+                                purchased the property in faith, and in October 1904 Madison College opened its doors
+                                to its first eleven students.</p>
+                            <p>Madison pioneered a model that combined education, healthcare, and agriculture into a
+                                single self-supporting operation. Graduates fanned out across the South to establish
+                                their own outposts &mdash; by 1915 there were 39 self-supporting groups across
+                                Tennessee, Alabama, and North Carolina. At the heart of Madison were the principles
+                                that would come to define ASI: faith, innovation, self-sacrifice, and an empowered
+                                laity sharing Christ in everyday life.</p>
+                            <p>In March 1947, representatives from approximately 25 self-supporting institutions met
+                                in Cincinnati, Ohio, to formally organise the Association of Seventh-day Adventist
+                                Self-Supporting Institutions. Ellen White&lsquo;s conviction that <em>&ldquo;the work
+                                of God in this earth can never be finished until the men and women comprising our church
+                                membership rally to the work&rdquo;</em> became its founding principle. In 1979, the
+                                organisation broadened its vision and was renamed Adventist-laymen&lsquo;s Services and
+                                Industries, with the motto: <em>Sharing Christ in the Marketplace.</em></p>
+                            <p>ASI UK was formed in Leicester in 1983 as the first overseas ASI chapter. After a
+                                period of dormancy, it was officially relaunched on 2 March 2024 at Newbold College
+                                with church leaders present for the inauguration. Today, ASI UK continues to network,
+                                equip, and empower Adventist lay professionals to share Christ in the marketplace.</p>
                         </div>
                         <Link href="/about/history"
-                              className="inline-flex items-center gap-1.5 text-asi-blue hover:underline text-sm font-medium mt-4">
+                              className="inline-flex items-center gap-2 mt-6 px-5 py-2.5 bg-asi-blue text-white text-sm font-medium rounded-lg hover:bg-asi-darkBlue transition-colors">
                             Read the full history
                             <ArrowRight className="h-4 w-4"/>
                         </Link>
@@ -127,21 +140,16 @@ export default function About() {
             <section className="w-full">
                 <div className="max-w-5xl mx-auto px-4 py-12 md:py-16">
                     <h2 className="text-3xl font-bold text-asi-blue text-center mb-10">Explore More</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <CTARounded
-                            heading={"Our History"}
-                            subheading={"From Madison College in 1904 to ASI UK today"}
-                            href={"/about/history"}
-                        />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
                         <CTARounded
                             heading={"Constitution"}
                             subheading={"Fundamental principles, structure, and rules that govern ASI UK operations"}
                             href={"/constitution"}
                         />
                         <CTARounded
-                            heading={"Join"}
-                            subheading={"Join the movement of Adventist lay professionals in the UK"}
-                            href={"/membership"}
+                            heading={"Leadership"}
+                            subheading={"Meet the people behind ASI UK"}
+                            href={"/leadership"}
                         />
                     </div>
                 </div>
