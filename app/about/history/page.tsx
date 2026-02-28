@@ -33,12 +33,12 @@ export default function History() {
                 of His purpose&rdquo;</em> (Welfare Ministry, p. 63).<Ref n={4}/>
             </p>
 
-            <div className="flex gap-10">
+            <div className="flex flex-col gap-6 lg:flex-row lg:gap-10">
                 <TableOfContents sections={sections}/>
 
-                <div className="flex-1 max-w-3xl">
+                <div className="flex-1 lg:max-w-3xl">
                     {/* The Roots of ASI */}
-                    <h2 id="roots" className="heading-sub scroll-mt-[120px]">
+                    <h2 id="roots" className="heading-sub scroll-mt-[160px] lg:scroll-mt-[120px]">
                         The Roots of ASI: Two Young Pioneers
                     </h2>
                     <p className="pb-5">
@@ -76,7 +76,7 @@ export default function History() {
                     </p>
 
                     {/* A Revolutionary Approach to Education */}
-                    <h2 id="education" className="heading-sub scroll-mt-[120px]">
+                    <h2 id="education" className="heading-sub scroll-mt-[160px] lg:scroll-mt-[120px]">
                         A Revolutionary Approach to Education
                     </h2>
                     <p className="pb-5">
@@ -141,7 +141,7 @@ export default function History() {
                     </p>
 
                     {/* The Birth of Madison College */}
-                    <h2 id="madison" className="heading-sub scroll-mt-[120px]">
+                    <h2 id="madison" className="heading-sub scroll-mt-[160px] lg:scroll-mt-[120px]">
                         The Birth of Madison College
                     </h2>
                     <p className="pb-5">
@@ -217,7 +217,7 @@ export default function History() {
                     </p>
 
                     {/* A New Model for Mission */}
-                    <h2 id="mission-model" className="heading-sub scroll-mt-[120px]">
+                    <h2 id="mission-model" className="heading-sub scroll-mt-[160px] lg:scroll-mt-[120px]">
                         A New Model for Mission
                     </h2>
                     <p className="pb-5">
@@ -273,7 +273,7 @@ export default function History() {
                     </p>
 
                     {/* Growth and Impact */}
-                    <h2 id="growth" className="heading-sub scroll-mt-[120px]">
+                    <h2 id="growth" className="heading-sub scroll-mt-[160px] lg:scroll-mt-[120px]">
                         Growth and Impact
                     </h2>
                     <p className="pb-5">
@@ -316,7 +316,7 @@ export default function History() {
                     </p>
 
                     {/* The Loma Linda Sacrifice */}
-                    <h3 id="loma-linda" className="heading-minor scroll-mt-[120px]">
+                    <h3 id="loma-linda" className="heading-minor scroll-mt-[160px] lg:scroll-mt-[120px]">
                         The Loma Linda Sacrifice
                     </h3>
                     <p className="pb-5">
@@ -344,7 +344,7 @@ export default function History() {
                     </p>
 
                     {/* Thriving Through the Great Depression */}
-                    <h3 id="depression" className="heading-minor scroll-mt-[120px]">
+                    <h3 id="depression" className="heading-minor scroll-mt-[160px] lg:scroll-mt-[120px]">
                         Thriving Through the Great Depression
                     </h3>
                     <p className="pb-5">
@@ -374,7 +374,7 @@ export default function History() {
                     </p>
 
                     {/* The Formation of ASI */}
-                    <h2 id="formation" className="heading-sub scroll-mt-[120px]">
+                    <h2 id="formation" className="heading-sub scroll-mt-[160px] lg:scroll-mt-[120px]">
                         The Formation of ASI
                     </h2>
                     <p className="pb-5">
@@ -430,7 +430,7 @@ export default function History() {
                     </p>
 
                     {/* The Growth of ASI */}
-                    <h2 id="asi-growth" className="heading-sub scroll-mt-[120px]">
+                    <h2 id="asi-growth" className="heading-sub scroll-mt-[160px] lg:scroll-mt-[120px]">
                         The Growth of ASI
                     </h2>
                     <p className="pb-5">
@@ -453,7 +453,7 @@ export default function History() {
                     </p>
 
                     {/* The End of an Era */}
-                    <h3 id="end-of-era" className="heading-minor scroll-mt-[120px]">
+                    <h3 id="end-of-era" className="heading-minor scroll-mt-[160px] lg:scroll-mt-[120px]">
                         The End of an Era
                     </h3>
                     <p className="pb-5">
@@ -478,7 +478,7 @@ export default function History() {
                     </p>
 
                     {/* ASI Today */}
-                    <h2 id="today" className="heading-sub scroll-mt-[120px]">
+                    <h2 id="today" className="heading-sub scroll-mt-[160px] lg:scroll-mt-[120px]">
                         ASI Today
                     </h2>
                     <p className="pb-5">
@@ -508,7 +508,7 @@ export default function History() {
                     </p>
 
                     {/* ASI in the United Kingdom */}
-                    <h2 id="uk" className="heading-sub scroll-mt-[120px]">
+                    <h2 id="uk" className="heading-sub scroll-mt-[160px] lg:scroll-mt-[120px]">
                         ASI in the United Kingdom
                     </h2>
                     <p className="pb-5">
@@ -543,7 +543,7 @@ export default function History() {
                     </p>
 
                     {/* Related Content */}
-                    <h2 id="related" className="heading-section scroll-mt-[120px]">Related Content</h2>
+                    <h2 id="related" className="heading-section scroll-mt-[160px] lg:scroll-mt-[120px]">Related Content</h2>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
                         <div className="rounded-xl overflow-hidden shadow-lg">
