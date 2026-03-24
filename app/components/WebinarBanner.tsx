@@ -14,7 +14,7 @@ export default function WebinarBanner() {
                         src="https://res.cloudinary.com/disrkguox/image/upload/v1774383034/friday-webinar-keith-square_xk9maf.png"
                         width={600}
                         height={600}
-                        alt="From the Ground Up — Session #1 with Keith Detweiler"
+                        alt="From the Ground Up — Session #1 with Keith Detwieler"
                         className="w-full h-auto rounded-xl shadow-md"
                     />
                 </div>
@@ -34,7 +34,7 @@ export default function WebinarBanner() {
                     </p>
 
                     <p className="text-slate-800 font-semibold">
-                        Session #1: Keith Detweiler — Little Light Studios
+                        Session #1: Keith Detwieler — Little Light Studios
                     </p>
 
                     <div className="flex items-center gap-2 text-slate-600">
