@@ -15,7 +15,7 @@ export default function WebinarBanner() {
                         width={600}
                         height={600}
                         alt="From the Ground Up — Session #1 with Keith Detweiler"
-                        className="w-full h-auto rounded-xl"
+                        className="w-full h-auto rounded-xl shadow-md"
                     />
                 </div>
 
