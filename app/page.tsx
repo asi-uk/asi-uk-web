@@ -2,6 +2,7 @@ import { Suspense } from 'react';
 import Link from 'next/link';
 import { ArrowRight, FolderOpen, Heart, Lightbulb } from 'lucide-react';
 import ConventionBanner from '@/app/components/ConventionBanner';
+import WebinarBanner from '@/app/components/WebinarBanner';
 import NewsletterSignup from '@/app/components/NewsletterSignup';
 import PostCard from '@/app/news/components/PostCard';
 import { getRecentPosts } from '@/lib/sanity/queries';
@@ -91,6 +92,13 @@ export default function Home() {
                             Learn More
                         </Link>
                     </div>
+                </div>
+            </section>
+
+            {/* Webinar Banner */}
+            <section className="w-full bg-white">
+                <div className="max-w-5xl mx-auto px-4 py-16 md:py-20">
+                    <WebinarBanner />
                 </div>
             </section>
 
