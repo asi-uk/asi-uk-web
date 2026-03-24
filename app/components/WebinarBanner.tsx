@@ -11,7 +11,7 @@ export default function WebinarBanner() {
                 {/* Poster */}
                 <div className="w-full md:w-1/3 flex-shrink-0">
                     <Image
-                        src="https://res.cloudinary.com/disrkguox/image/upload/v1774340380/friday-webinar-keith-square_xk9maf.png"
+                        src="https://res.cloudinary.com/disrkguox/image/upload/v1774383034/friday-webinar-keith-square_xk9maf.png"
                         width={600}
                         height={600}
                         alt="From the Ground Up — Session #1 with Keith Detweiler"
