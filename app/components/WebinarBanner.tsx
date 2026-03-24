@@ -39,7 +39,7 @@ export default function WebinarBanner() {
 
                     <div className="flex items-center gap-2 text-slate-600">
                         <Calendar className="h-5 w-5 text-asi-blue" />
-                        <span>10th April 2026, 7:00 PM</span>
+                        <span>10th April 2026, 7:00 PM BST</span>
                         <span className="text-slate-300">|</span>
                         <Video className="h-5 w-5 text-asi-blue" />
                         <span>Online</span>
