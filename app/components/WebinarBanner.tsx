@@ -11,10 +11,10 @@ export default function WebinarBanner() {
                 {/* Poster */}
                 <div className="w-full md:w-1/3 flex-shrink-0">
                     <Image
-                        src="https://res.cloudinary.com/disrkguox/image/upload/v1774383034/friday-webinar-keith-square_xk9maf.png"
+                        src="https://res.cloudinary.com/disrkguox/image/upload/v1774513138/friday-webinar-little-light-square_pmg548.png"
                         width={600}
                         height={600}
-                        alt="From the Ground Up — Session #1 with Keith Detwieler"
+                        alt="From the Ground Up — Session #1 with Little Light Studios"
                         className="w-full h-auto rounded-xl shadow-md"
                     />
                 </div>
@@ -34,7 +34,7 @@ export default function WebinarBanner() {
                     </p>
 
                     <p className="text-slate-800 font-semibold">
-                        Session #1: Keith Detwieler — Little Light Studios
+                        Session #1: Scotty Mayer & Keith Detwieler — Little Light Studios
                     </p>
 
                     <div className="flex items-center gap-2 text-slate-600">
