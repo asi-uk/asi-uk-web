@@ -168,6 +168,131 @@ export function generateAdminEmailHtml(data: MembershipFormData, notionPageUrl?:
 `;
 }
 
+// Generate HTML email for admin when Notion push fails
+export function generateFallbackAdminEmailHtml(data: MembershipFormData, notionError: string): string {
+    const fullName = `${data.title} ${data.firstName} ${data.surname}`;
+    const submissionDate = new Date().toLocaleDateString("en-GB", {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+    });
+
+    let orgSection = "";
+    if (data.membershipType === "Organisation") {
+        orgSection = `
+        <h3 style="color: #1e3a5f; margin-top: 25px;">Organisation Details</h3>
+        <table style="width: 100%; border-collapse: collapse;">
+            ${data.orgName ? `<tr><td style="padding: 8px 0; border-bottom: 1px solid #eee;"><strong>Name:</strong></td><td style="padding: 8px 0; border-bottom: 1px solid #eee;">${data.orgName}</td></tr>` : ""}
+            ${data.orgLegalName ? `<tr><td style="padding: 8px 0; border-bottom: 1px solid #eee;"><strong>Legal Name:</strong></td><td style="padding: 8px 0; border-bottom: 1px solid #eee;">${data.orgLegalName}</td></tr>` : ""}
+            ${data.orgType ? `<tr><td style="padding: 8px 0; border-bottom: 1px solid #eee;"><strong>Type:</strong></td><td style="padding: 8px 0; border-bottom: 1px solid #eee;">${data.orgType === "ForProfit" ? "For-Profit" : "Not-for-Profit"}</td></tr>` : ""}
+            ${data.orgDescription ? `<tr><td style="padding: 8px 0; border-bottom: 1px solid #eee;"><strong>Description:</strong></td><td style="padding: 8px 0; border-bottom: 1px solid #eee;">${data.orgDescription}</td></tr>` : ""}
+            ${data.orgApplicantRole ? `<tr><td style="padding: 8px 0; border-bottom: 1px solid #eee;"><strong>Applicant's Role:</strong></td><td style="padding: 8px 0; border-bottom: 1px solid #eee;">${data.orgApplicantRole}</td></tr>` : ""}
+            ${data.orgEmail ? `<tr><td style="padding: 8px 0; border-bottom: 1px solid #eee;"><strong>Email:</strong></td><td style="padding: 8px 0; border-bottom: 1px solid #eee;">${data.orgEmail}</td></tr>` : ""}
+            ${data.orgPhone ? `<tr><td style="padding: 8px 0; border-bottom: 1px solid #eee;"><strong>Phone:</strong></td><td style="padding: 8px 0; border-bottom: 1px solid #eee;">${data.orgPhone}</td></tr>` : ""}
+            ${data.orgAddress ? `<tr><td style="padding: 8px 0; border-bottom: 1px solid #eee;"><strong>Address:</strong></td><td style="padding: 8px 0; border-bottom: 1px solid #eee;">${data.orgAddress}</td></tr>` : ""}
+            ${data.orgPostalAddress ? `<tr><td style="padding: 8px 0; border-bottom: 1px solid #eee;"><strong>Postal Address:</strong></td><td style="padding: 8px 0; border-bottom: 1px solid #eee;">${data.orgPostalAddress}</td></tr>` : ""}
+            ${data.orgWebsite ? `<tr><td style="padding: 8px 0; border-bottom: 1px solid #eee;"><strong>Website:</strong></td><td style="padding: 8px 0; border-bottom: 1px solid #eee;">${data.orgWebsite}</td></tr>` : ""}
+            ${data.orgEmployees ? `<tr><td style="padding: 8px 0; border-bottom: 1px solid #eee;"><strong>Employees:</strong></td><td style="padding: 8px 0; border-bottom: 1px solid #eee;">${data.orgEmployees}</td></tr>` : ""}
+            ${data.orgYearsInOperation ? `<tr><td style="padding: 8px 0; border-bottom: 1px solid #eee;"><strong>Years in Operation:</strong></td><td style="padding: 8px 0; border-bottom: 1px solid #eee;">${data.orgYearsInOperation}</td></tr>` : ""}
+            ${data.orgIsReligiousMission ? `<tr><td style="padding: 8px 0; border-bottom: 1px solid #eee;"><strong>Religious Mission:</strong></td><td style="padding: 8px 0; border-bottom: 1px solid #eee;">${data.orgIsReligiousMission}</td></tr>` : ""}
+            ${data.orgIsChurchControlled ? `<tr><td style="padding: 8px 0; border-bottom: 1px solid #eee;"><strong>Church Controlled:</strong></td><td style="padding: 8px 0; border-bottom: 1px solid #eee;">${data.orgIsChurchControlled}</td></tr>` : ""}
+            ${data.orgK0505IsAgreed ? `<tr><td style="padding: 8px 0; border-bottom: 1px solid #eee;"><strong>K 05 05 Compliant:</strong></td><td style="padding: 8px 0; border-bottom: 1px solid #eee;">${data.orgK0505IsAgreed}</td></tr>` : ""}
+        </table>
+        `;
+    }
+
+    return `
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACTION REQUIRED: Membership Application - Manual Entry Needed</title>
+</head>
+<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 700px; margin: 0 auto; padding: 20px;">
+    <div style="background-color: #dc2626; color: white; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+        <h1 style="margin: 0 0 10px 0; font-size: 20px;">ACTION REQUIRED: NOTION PUSH FAILED</h1>
+        <p style="margin: 0 0 10px 0;">This membership application was submitted successfully by the applicant, but it was <strong>NOT saved to Notion automatically</strong>.</p>
+        <p style="margin: 0 0 10px 0;">Please manually enter the application data below into the Notion database.</p>
+        <p style="margin: 0; font-size: 14px; opacity: 0.9;"><strong>Error:</strong> ${notionError}</p>
+    </div>
+
+    <div style="border: 1px solid #ddd; padding: 20px; border-radius: 8px;">
+        <p style="color: #666; font-size: 14px; margin-top: 0;">Submitted: ${submissionDate}</p>
+
+        <h3 style="color: #1e3a5f;">Application Type</h3>
+        <p>${formatMembershipTypeDisplay(data)}</p>
+
+        <h3 style="color: #1e3a5f;">Applicant Details</h3>
+        <table style="width: 100%; border-collapse: collapse;">
+            <tr><td style="padding: 8px 0; border-bottom: 1px solid #eee; width: 150px;"><strong>Name:</strong></td><td style="padding: 8px 0; border-bottom: 1px solid #eee;">${fullName}</td></tr>
+            <tr><td style="padding: 8px 0; border-bottom: 1px solid #eee;"><strong>Email:</strong></td><td style="padding: 8px 0; border-bottom: 1px solid #eee;"><a href="mailto:${data.email}">${data.email}</a></td></tr>
+            <tr><td style="padding: 8px 0; border-bottom: 1px solid #eee;"><strong>Phone:</strong></td><td style="padding: 8px 0; border-bottom: 1px solid #eee;">${data.phoneNumber}</td></tr>
+        </table>
+
+        <h3 style="color: #1e3a5f; margin-top: 25px;">Church Information</h3>
+        <table style="width: 100%; border-collapse: collapse;">
+            <tr><td style="padding: 8px 0; border-bottom: 1px solid #eee; width: 150px;"><strong>Church Member:</strong></td><td style="padding: 8px 0; border-bottom: 1px solid #eee;">${data.isChurchMember}</td></tr>
+            ${data.isChurchEmployed ? `<tr><td style="padding: 8px 0; border-bottom: 1px solid #eee;"><strong>Church Employed:</strong></td><td style="padding: 8px 0; border-bottom: 1px solid #eee;">${data.isChurchEmployed}</td></tr>` : ""}
+            ${data.localChurchName ? `<tr><td style="padding: 8px 0; border-bottom: 1px solid #eee;"><strong>Local Church:</strong></td><td style="padding: 8px 0; border-bottom: 1px solid #eee;">${data.localChurchName}</td></tr>` : ""}
+            ${data.localChurchPastorName ? `<tr><td style="padding: 8px 0; border-bottom: 1px solid #eee;"><strong>Pastor Name:</strong></td><td style="padding: 8px 0; border-bottom: 1px solid #eee;">${data.localChurchPastorName}</td></tr>` : ""}
+            ${data.localChurchPastorPhone ? `<tr><td style="padding: 8px 0; border-bottom: 1px solid #eee;"><strong>Pastor Phone:</strong></td><td style="padding: 8px 0; border-bottom: 1px solid #eee;">${data.localChurchPastorPhone}</td></tr>` : ""}
+        </table>
+
+        ${orgSection}
+
+        <h3 style="color: #1e3a5f; margin-top: 25px;">Consent</h3>
+        <table style="width: 100%; border-collapse: collapse;">
+            <tr><td style="padding: 8px 0; border-bottom: 1px solid #eee; width: 150px;"><strong>Privacy Policy:</strong></td><td style="padding: 8px 0; border-bottom: 1px solid #eee;">${data.privacyPolicyAccepted ? "Accepted" : "Not Accepted"}</td></tr>
+            <tr><td style="padding: 8px 0; border-bottom: 1px solid #eee;"><strong>Marketing:</strong></td><td style="padding: 8px 0; border-bottom: 1px solid #eee;">${data.marketingConsent ? "Opted In" : "Opted Out"}</td></tr>
+        </table>
+
+        ${data.comments ? `
+        <h3 style="color: #1e3a5f; margin-top: 25px;">Comments</h3>
+        <p>${data.comments}</p>
+        ` : ""}
+
+        <div style="margin-top: 30px; padding: 15px; background-color: #fef2f2; border: 1px solid #dc2626; border-radius: 8px;">
+            <p style="margin: 0; font-size: 14px;"><strong>Next Steps:</strong> Manually create this application entry in the Notion database, then investigate why the automatic push failed (likely a renamed property).</p>
+        </div>
+    </div>
+</body>
+</html>
+`;
+}
+
+// Send fallback admin email when Notion push fails
+export async function sendFallbackAdminEmail(data: MembershipFormData, notionError: string): Promise<{ success: boolean; error?: string }> {
+    if (!resend) {
+        console.warn("Resend not configured - skipping fallback admin email");
+        return { success: false, error: "Email service not configured" };
+    }
+
+    const fullName = `${data.title} ${data.firstName} ${data.surname}`;
+
+    try {
+        const { error } = await resend.emails.send({
+            from: FROM_EMAIL,
+            to: ADMIN_EMAIL,
+            subject: `[ACTION REQUIRED] Membership Application - Manual Entry Needed: ${fullName}`,
+            html: generateFallbackAdminEmailHtml(data, notionError),
+        });
+
+        if (error) {
+            console.error("Failed to send fallback admin email:", error);
+            return { success: false, error: error.message };
+        }
+
+        return { success: true };
+    } catch (error) {
+        console.error("Error sending fallback admin email:", error);
+        return { success: false, error: error instanceof Error ? error.message : "Unknown error" };
+    }
+}
+
 // Send confirmation email to applicant
 export async function sendApplicantConfirmationEmail(data: MembershipFormData): Promise<{ success: boolean; error?: string }> {
     if (!resend) {
