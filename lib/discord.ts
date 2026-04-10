@@ -4,7 +4,8 @@ interface DiscordNotificationParams {
     applicantName: string;
     membershipType: string;
     email: string;
-    notionPageUrl: string;
+    notionPageUrl?: string;
+    notionFailed?: boolean;
 }
 
 export async function sendDiscordNotification(params: DiscordNotificationParams): Promise<{ success: boolean; error?: string }> {
@@ -15,31 +16,44 @@ export async function sendDiscordNotification(params: DiscordNotificationParams)
         return { success: false, error: "Discord webhook not configured" };
     }
 
+    const fields = [
+        {
+            name: "Applicant",
+            value: params.applicantName,
+            inline: true,
+        },
+        {
+            name: "Type",
+            value: params.membershipType,
+            inline: true,
+        },
+        {
+            name: "Email",
+            value: params.email,
+            inline: false,
+        },
+    ];
+
+    if (params.notionFailed) {
+        fields.push({
+            name: "Notion",
+            value: "FAILED - check email for details",
+            inline: false,
+        });
+    } else if (params.notionPageUrl) {
+        fields.push({
+            name: "Notion",
+            value: `[View Application](${params.notionPageUrl})`,
+            inline: false,
+        });
+    }
+
     const embed = {
-        title: "New Membership Application",
-        color: 0x1e3a5f, // ASI blue color
-        fields: [
-            {
-                name: "Applicant",
-                value: params.applicantName,
-                inline: true,
-            },
-            {
-                name: "Type",
-                value: params.membershipType,
-                inline: true,
-            },
-            {
-                name: "Email",
-                value: params.email,
-                inline: false,
-            },
-            {
-                name: "Notion",
-                value: `[View Application](${params.notionPageUrl})`,
-                inline: false,
-            },
-        ],
+        title: params.notionFailed
+            ? "[MANUAL ENTRY NEEDED] New Membership Application"
+            : "New Membership Application",
+        color: params.notionFailed ? 0xcc0000 : 0x1e3a5f,
+        fields,
         timestamp: new Date().toISOString(),
     };
 

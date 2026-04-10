@@ -2,12 +2,11 @@
 
 import { z } from "zod";
 import { createMembershipApplication, getNotionPageUrl } from "@/lib/notion";
-import { sendMembershipEmails } from "@/lib/email";
+import { sendApplicantConfirmationEmail, sendAdminNotificationEmail, sendFallbackAdminEmail } from "@/lib/email";
 import { sendDiscordNotification } from "@/lib/discord";
 import {
     parseFormData,
     toServiceData,
-    type MembershipFormData
 } from "@/lib/schemas/membership-form";
 
 export interface SubmissionResult {
@@ -28,19 +27,16 @@ export async function membershipFormSubmitAction(formData: FormData): Promise<Su
         // Convert to service format for Notion and email
         const serviceData = toServiceData(validatedData);
 
-        // Create entry in Notion (primary - must succeed)
+        // Attempt Notion push (best-effort - failure is non-fatal)
         const notionResult = await createMembershipApplication(serviceData);
+        const notionPageUrl = notionResult.success && notionResult.pageId
+            ? getNotionPageUrl(notionResult.pageId)
+            : undefined;
+        const notionFailed = !notionResult.success;
 
-        if (!notionResult.success) {
-            console.error("Notion creation failed:", notionResult.error);
-            return {
-                success: false,
-                errors: [notionResult.error || "Failed to save application. Please try again."],
-            };
+        if (notionFailed) {
+            console.error("Notion creation failed (non-fatal):", notionResult.error);
         }
-
-        // Construct Notion page URL for notifications
-        const notionPageUrl = notionResult.pageId ? getNotionPageUrl(notionResult.pageId) : undefined;
 
         // Format membership type for Discord notification
         const membershipTypeDisplay = serviceData.membershipCategory === "Sponsoring"
@@ -49,33 +45,46 @@ export async function membershipFormSubmitAction(formData: FormData): Promise<Su
                 ? `Organisation (${serviceData.orgType === "ForProfit" ? "For-Profit" : "Not-for-Profit"})`
                 : "Individual";
 
-        // Send emails and Discord notification in parallel (secondary - don't fail submission if they fail)
-        const [emailResult, discordResult] = await Promise.all([
-            sendMembershipEmails(serviceData, notionPageUrl),
-            notionPageUrl ? sendDiscordNotification({
+        // Send all notifications in parallel (none should fail the submission)
+        const [applicantEmailResult, adminEmailResult, discordResult] = await Promise.allSettled([
+            // 1. Applicant confirmation email - always
+            sendApplicantConfirmationEmail(serviceData),
+            // 2. Admin email - fallback version if Notion failed, normal version otherwise
+            notionFailed
+                ? sendFallbackAdminEmail(serviceData, notionResult.error || "Unknown Notion error")
+                : sendAdminNotificationEmail(serviceData, notionPageUrl),
+            // 3. Discord notification - always
+            sendDiscordNotification({
                 applicantName: `${serviceData.firstName} ${serviceData.surname}`,
                 membershipType: membershipTypeDisplay,
                 email: serviceData.email,
                 notionPageUrl,
-            }) : Promise.resolve({ success: false, error: "No Notion page URL" }),
+                notionFailed,
+            }),
         ]);
 
-        if (emailResult.errors.length > 0) {
-            console.warn("Email sending had issues:", emailResult.errors);
+        // Log any notification failures for debugging
+        if (applicantEmailResult.status === "rejected") {
+            console.warn("Applicant email failed:", applicantEmailResult.reason);
+        }
+        if (adminEmailResult.status === "rejected") {
+            console.warn("Admin email failed:", adminEmailResult.reason);
+        }
+        if (discordResult.status === "rejected") {
+            console.warn("Discord notification failed:", discordResult.reason);
         }
 
-        if (!discordResult.success && discordResult.error !== "Discord webhook not configured") {
-            console.warn("Discord notification had issues:", discordResult.error);
-        }
+        const applicantEmailSent = applicantEmailResult.status === "fulfilled" && applicantEmailResult.value.success;
+        const adminEmailSent = adminEmailResult.status === "fulfilled" && adminEmailResult.value.success;
 
-        // Return success with redirect
+        // Always return success to the user
         return {
             success: true,
             errors: null,
             redirectTo: "/membership/application-form/confirmation",
             emailStatus: {
-                applicantEmailSent: emailResult.applicantEmailSent,
-                adminEmailSent: emailResult.adminEmailSent,
+                applicantEmailSent,
+                adminEmailSent,
             },
         };
 
