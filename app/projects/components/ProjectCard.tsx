@@ -13,20 +13,41 @@ function formatDisbursementDate(date: string): string {
     return `${parseInt(day)} ${months[parseInt(month) - 1]} 20${year}`;
 }
 
-function DisbursementBadge({ disbursement }: { disbursement: NonNullable<Project['disbursement']> }) {
-    if (disbursement.firstInstalmentPaid) {
+function InstalmentBadge({ label, amount, paidDate }: { label?: string; amount: number; paidDate?: string }) {
+    const prefix = label ? `${label}: ` : '';
+    if (paidDate) {
         return (
             <span className="inline-flex items-center gap-1.5 bg-green-50 text-green-700 text-xs font-medium px-2.5 py-1 rounded-full border border-green-200">
                 <CheckCircle2 className="h-3.5 w-3.5" />
-                £{disbursement.firstInstalment.toLocaleString()} paid {formatDisbursementDate(disbursement.firstInstalmentPaid)}
+                {prefix}£{amount.toLocaleString()} paid {formatDisbursementDate(paidDate)}
             </span>
         );
     }
     return (
         <span className="inline-flex items-center gap-1.5 bg-amber-50 text-amber-700 text-xs font-medium px-2.5 py-1 rounded-full border border-amber-200">
             <Clock className="h-3.5 w-3.5" />
-            £{disbursement.firstInstalment.toLocaleString()} pending
+            {prefix}£{amount.toLocaleString()} pending
         </span>
+    );
+}
+
+function DisbursementBadge({ disbursement }: { disbursement: NonNullable<Project['disbursement']> }) {
+    const hasSecond = disbursement.secondInstalment != null;
+    return (
+        <div className="flex flex-wrap gap-1.5">
+            <InstalmentBadge
+                label={hasSecond ? "1st" : undefined}
+                amount={disbursement.firstInstalment}
+                paidDate={disbursement.firstInstalmentPaid}
+            />
+            {hasSecond && (
+                <InstalmentBadge
+                    label="2nd"
+                    amount={disbursement.secondInstalment!}
+                    paidDate={disbursement.secondInstalmentPaid}
+                />
+            )}
+        </div>
     );
 }
 
