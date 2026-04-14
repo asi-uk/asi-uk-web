@@ -1,216 +1,382 @@
-import Image from 'next/image'
 import Link from 'next/link';
-import SimpleTixWidget from "@/app/convention/SimpleTixWidget";
-import CTARounded from "@/app/components/CTARounded";
-import YouTubeEmbed from "@/app/components/YouTubeEmbed";
-import PresenterGrid from "@/app/convention/components/PresenterGrid";
-import FAQSection from "@/app/convention/components/FAQSection";
-import MarketingMaterials from "@/app/convention/components/MarketingMaterials";
-import { Lightbulb, Coffee, Users, MapPin, CalendarFold, Calendar } from "lucide-react";
-import { CONVENTION_2025 } from "@/data/convention";
+import {
+    CalendarDays,
+    MapPin,
+    Ticket,
+    ArrowRight,
+    Compass,
+    Users,
+    HeartHandshake,
+    ArrowUpRight,
+    Sparkles,
+    PlayCircle,
+} from 'lucide-react';
+import ConventionHero from '@/app/convention/components/ConventionHero';
+import SpeakerCard from '@/app/convention/components/SpeakerCard';
+import FAQSection from '@/app/convention/components/FAQSection';
+import { CONVENTION_2026 } from '@/data/convention';
+import {
+    TICKET_PRICES,
+    TICKET_LABELS,
+    type TicketType,
+} from '@/lib/schemas/convention-registration';
+
+const TICKET_ORDER: TicketType[] = ['member', 'non-member', 'student', 'youth'];
 
 export const metadata = {
-    title: "ASI UK | Convention 2025",
+    title: 'ASI UK | Faith at Work — Convention 2026',
     description:
-        "Join us for the annual ASI UK Convention on 21 June, 2025 in Daventry",
+        'Join ASI UK on 20–21 June 2026 at Newbold College for the Faith at Work convention — a weekend for Adventist professionals, entrepreneurs, and ministry leaders.',
     keywords: [
-        "ASI UK Convention",
-        "Convention",
-        "Conference",
-        "Convocation",
-        "ASI Ministries",
-        "ASI",
-        "ASI UK",
-        "ASI-UK",
+        'ASI UK Convention',
+        'Faith at Work',
+        'ASI Convention 2026',
+        'Newbold College',
+        'Adventist Convention UK',
+        'ASI UK',
+        'ASI',
     ],
     openGraph: {
-        url: "https://asiuk.org/convention",
-        type: "website",
-        title: "ASI UK | Convention 2025",
+        url: 'https://asiuk.org/convention',
+        type: 'website',
+        title: 'ASI UK | Faith at Work — Convention 2026',
         description:
-            "Join us for the annual ASI UK Convention on 21 June, 2025 in Daventry",
+            'Join ASI UK on 20–21 June 2026 at Newbold College for the Faith at Work convention.',
         images: [
             {
-                url: "https://www.asiuk.org/thumbnail.png",
+                url: 'https://www.asiuk.org/thumbnail.png',
                 width: 1200,
                 height: 630,
-                alt: "ASIUK"
-            }
-        ]
+                alt: 'ASI UK Convention 2026 — Faith at Work',
+            },
+        ],
     },
     twitter: {
-        card: "summary_large_image",
-        title: "ASI UK | Projects",
+        card: 'summary_large_image',
+        title: 'ASI UK | Faith at Work — Convention 2026',
         description:
-            "Join us for the annual ASI UK Convention on 21 June, 2025 in Daventry",
+            'Join ASI UK on 20–21 June 2026 at Newbold College for the Faith at Work convention.',
         images: [
             {
-                url: "https://www.asiuk.org/thumbnail.png",
+                url: 'https://www.asiuk.org/thumbnail.png',
                 width: 1200,
                 height: 630,
-                alt: "ASIUK"
-            }
-        ]
+                alt: 'ASI UK Convention 2026 — Faith at Work',
+            },
+        ],
     },
-}
+};
 
-export default function Convention() {
+export default function ConventionPage() {
     return (
-        <div className="relative w-full overflow-x-hidden">
-            <div className="flex items-center justify-center w-full my-10 md:my-8 md:mb-36 px-4 md:py-0">
-                <div className="w-full max-w-3xl mx-auto flex flex-col gap-2 md:gap-3 bg-white/90 rounded-2xl backdrop-blur-md p-6 md:px-10 shadow">
-                    {/* Logo */}
-                    <div className="w-full flex justify-center">
-                        <Image
-                            src={CONVENTION_2025.logoUrl}
-                            width={600}
-                            height={600}
-                            alt={"ASI Convention Logo"}
-                            className="w-auto h-auto pb-10 max-h-[150px] object-contain"
-                            priority
-                        />
-                    </div>
+        <div className="w-full">
+            {/* 1 — Hero */}
+            <ConventionHero variant="page" />
 
-                    <div className="flex items-center mb-4">
-                        <h2 className="text-2xl md:text-3xl text-asi-blue font-bold leading-none">{CONVENTION_2025.title}</h2>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5 my-5">
-                        <div className="flex flex-col items-center text-center border-2 border-slate-100 rounded-2xl p-5 bg-white/10">
-                            <h2 className="flex items-center gap-2 text-asi-blue">
-                                <CalendarFold className="h-5 w-5 inline-block"/>
-                                <span className="text-lg md:text-xl font-bold">When</span>
-                            </h2>
-                            <h3 className="text-2xl font-medium h-full flex items-center">{CONVENTION_2025.date.replace(', 2025', '')}<span className="hidden md:inline">, 2025</span></h3>
-                            <p>{CONVENTION_2025.time}</p>
+            {/* 2 — At a glance */}
+            <section className="w-full bg-white">
+                <div className="mx-auto max-w-6xl px-6 py-12 md:px-8 md:py-16">
+                    <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+                        <div className="flex items-start gap-4 rounded-2xl border border-slate-200 p-6">
+                            <div className="rounded-xl bg-asi-blue/10 p-3 text-asi-blue">
+                                <CalendarDays className="h-6 w-6" />
+                            </div>
+                            <div>
+                                <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">Dates</p>
+                                <p className="mt-1 text-lg font-semibold text-asi-darkBlue">
+                                    {CONVENTION_2026.dates}
+                                </p>
+                                <p className="text-sm text-slate-500">{CONVENTION_2026.daysOfWeek}</p>
+                            </div>
                         </div>
 
-                        <a target="_blank" href={CONVENTION_2025.venueMapUrl} rel="noopener noreferrer">
-                            <div className="flex flex-col items-center text-center border-2 border-slate-100 rounded-2xl p-5 transition duration-300 ease-out hover:bg-slate-100 bg-white/10">
-                                <h2 className="flex items-center gap-2 text-asi-blue">
-                                    <MapPin className="h-5 w-5 inline-block"/>
-                                    <span className="text-lg md:text-xl font-bold">Where</span>
-                                </h2>
-                                <h3 className="text-2xl font-medium h-full">Daventry</h3>
-                                <p className="text-base font-medium">{CONVENTION_2025.venue}</p>
-                                <p className="font-light">{CONVENTION_2025.venueAddress}</p>
+                        <a
+                            href={CONVENTION_2026.venueMapUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group flex items-start gap-4 rounded-2xl border border-slate-200 p-6 transition hover:border-asi-blue/50 hover:bg-slate-50"
+                        >
+                            <div className="rounded-xl bg-asi-blue/10 p-3 text-asi-blue">
+                                <MapPin className="h-6 w-6" />
+                            </div>
+                            <div className="flex-1">
+                                <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">Venue</p>
+                                <p className="mt-1 flex items-center gap-1 text-lg font-semibold text-asi-darkBlue">
+                                    {CONVENTION_2026.venue}
+                                    <ArrowUpRight className="h-4 w-4 text-slate-400 transition group-hover:text-asi-blue" />
+                                </p>
+                                <p className="text-sm text-slate-500">{CONVENTION_2026.venueLocation}</p>
                             </div>
                         </a>
-                    </div>
 
-                    <div className="text-sm md:text-base mb-4">
-                        <p>Join ASI UK for our first major event on Sabbath, June 21, 2025, featuring renowned speaker
-                            Johnny Wong, who will share powerful insights on evangelism in today's world. As part of the Adventist-laymen's
-                            Services and Industries network, we're bringing together professionals, entrepreneurs, and
-                            ministry leaders who are passionate about sharing Christ through their business and
-                            professional lives.</p>
-                    </div>
-
-                    {/* Presenters Section */}
-                    <PresenterGrid presenters={CONVENTION_2025.presenters} />
-
-                    <div className="w-full">
-                        <h3 className="text-lg font-normal text-asi-blue mb-3">This full-day event offers valuable opportunities to:</h3>
-                        <ul className="space-y-3 text-sm md:text-base">
-                            <li className="flex items-start">
-                                <Lightbulb className="h-4 w-4 text-asi-blue mr-2 mt-1"/>
-                                <span>Learn practical approaches to marketplace evangelism</span>
-                            </li>
-                            <li className="flex items-start">
-                                <Users className="h-4 w-4 text-asi-blue mr-2 mt-1"/>
-                                <span>Connect with fellow Christian professionals</span>
-                            </li>
-                            <li className="flex items-start">
-                                <Coffee className="h-4 w-4 text-asi-blue mr-2 mt-1"/>
-                                <span>Enjoy fellowship over a provided lunch and refreshments</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    {/* Video Embed Section */}
-                    <div className="my-8 flex justify-center">
-                        <div className="w-full max-w-lg">
-                            <YouTubeEmbed
-                                embedUrl={CONVENTION_2025.promoVideos[0].embedUrl}
-                                title="YouTube video player"
-                            />
-                        </div>
-                    </div>
-
-                    <div className="w-full py-4">
-                        <h3 className="text-lg font-normal text-asi-blue mb-3 text-center">Ticket Options</h3>
-
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-6 max-w-lg mx-auto">
-                            {/* General Admission Ticket */}
-                            <div className="flex flex-col border-2 border-slate-100 rounded-2xl p-5 bg-white/10 text-center">
-                                <h4 className="text-asi-blue font-bold text-xl mb-2">{CONVENTION_2025.tickets.general.label}</h4>
-                                <div className="text-3xl font-bold mb-2 text-slate-700">£{CONVENTION_2025.tickets.general.price}</div>
-                                <p className="text-sm text-slate-600 mb-2">{CONVENTION_2025.tickets.general.description}</p>
+                        <Link
+                            href={CONVENTION_2026.registrationUrl}
+                            className="group flex items-start gap-4 rounded-2xl bg-asi-blue p-6 text-white transition hover:bg-asi-darkBlue"
+                        >
+                            <div className="rounded-xl bg-white/15 p-3 text-white">
+                                <Ticket className="h-6 w-6" />
                             </div>
-
-                            {/* ASI Member Ticket */}
-                            <div className="flex flex-col border-2 border-asi-blue rounded-2xl p-5 shadow-md bg-white text-center relative">
-                                <div className="absolute -top-3 left-0 right-0 mx-auto w-max bg-asi-blue text-white text-xs py-1 px-3 rounded-full">
-                                    MEMBER DISCOUNT
-                                </div>
-                                <h4 className="text-asi-blue font-bold text-xl mb-2">{CONVENTION_2025.tickets.member.label}</h4>
-                                <div className="text-3xl font-bold mb-2 text-slate-700">£{CONVENTION_2025.tickets.member.price}</div>
-                                <p className="text-sm text-slate-600 mb-2">{CONVENTION_2025.tickets.member.description}</p>
+                            <div className="flex-1">
+                                <p className="text-xs font-semibold uppercase tracking-wider text-white/80">Registration</p>
+                                <p className="mt-1 flex items-center gap-1 text-lg font-semibold">
+                                    Register Now
+                                    <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+                                </p>
+                                <p className="text-sm text-white/80">Places are limited</p>
                             </div>
-                        </div>
-
-                        <p className="text-left">Don't miss this chance to be part of ASI UK's growing community of business leaders and
-                            professionals dedicated to sharing Christ's message through their work.</p>
+                        </Link>
                     </div>
-
-                    {/* Schedule Link Section */}
-                    <div className="mt-12 mb-6">
-                        <h3 className="text-xl font-medium text-asi-blue mb-6 text-center">Programme Schedule</h3>
-
-                        <div className="text-center">
-                            <div className="mx-auto">
-                                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 text-sm">
-                                    <div className="text-center p-3 bg-slate-50 rounded-lg">
-                                        <div className="font-semibold text-asi-blue">Registration</div>
-                                        <div className="text-slate-600">9:00 - 9:45 AM</div>
-                                    </div>
-                                    <div className="text-center p-3 bg-slate-50 rounded-lg">
-                                        <div className="font-semibold text-asi-blue">Morning</div>
-                                        <div className="text-slate-600">9:45 - 12:30 PM</div>
-                                    </div>
-                                    <div className="text-center p-3 bg-slate-50 rounded-lg">
-                                        <div className="font-semibold text-asi-blue">Lunch</div>
-                                        <div className="text-slate-600">12:30 - 2:30 PM</div>
-                                    </div>
-                                    <div className="text-center p-3 bg-slate-50 rounded-lg">
-                                        <div className="font-semibold text-asi-blue">Afternoon</div>
-                                        <div className="text-slate-600">2:30 - 7:00 PM</div>
-                                    </div>
-                                </div>
-
-                                <Link
-                                    href="/convention/programme"
-                                    className="inline-flex items-center text-asi-blue py-3 px-6 rounded-lg font-medium transition-colors gap-2"
-                                >
-                                    <Calendar className="h-5 w-5" />
-                                    <span>View Full Schedule</span>
-                                </Link>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Registration Section */}
-                    <div className="bg-slate-50 rounded-2xl flex justify-center my-5 p-4">
-                        <SimpleTixWidget/>
-                    </div>
-
-                    {/* Marketing Materials Section (Collapsible) */}
-                    <MarketingMaterials />
-
-                    {/* FAQ Accordion Section */}
-                    <FAQSection items={CONVENTION_2025.faq} />
                 </div>
-            </div>
+            </section>
+
+            {/* 3 — About */}
+            <section className="w-full bg-slate-50">
+                <div className="mx-auto max-w-6xl px-6 py-20 md:px-8 md:py-24">
+                    <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-16">
+                        <div>
+                            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-asi-blue">
+                                About the weekend
+                            </p>
+                            <h2 className="mt-4 text-3xl font-bold leading-tight text-asi-darkBlue md:text-4xl">
+                                A weekend to integrate faith with daily work.
+                            </h2>
+                        </div>
+                        <div className="flex flex-col gap-8">
+                            <p className="text-lg leading-relaxed text-slate-700">
+                                {CONVENTION_2026.description}
+                            </p>
+                            <ul className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                                <li className="flex flex-col gap-2 rounded-xl bg-white p-5 shadow-sm">
+                                    <Compass className="h-6 w-6 text-asi-blue" />
+                                    <p className="font-semibold text-asi-darkBlue">Learn</p>
+                                    <p className="text-sm text-slate-600">
+                                        Practical teaching on living faith in the marketplace.
+                                    </p>
+                                </li>
+                                <li className="flex flex-col gap-2 rounded-xl bg-white p-5 shadow-sm">
+                                    <Users className="h-6 w-6 text-asi-blue" />
+                                    <p className="font-semibold text-asi-darkBlue">Connect</p>
+                                    <p className="text-sm text-slate-600">
+                                        Meet fellow Adventist professionals and ministry leaders.
+                                    </p>
+                                </li>
+                                <li className="flex flex-col gap-2 rounded-xl bg-white p-5 shadow-sm">
+                                    <HeartHandshake className="h-6 w-6 text-asi-blue" />
+                                    <p className="font-semibold text-asi-darkBlue">Worship</p>
+                                    <p className="text-sm text-slate-600">
+                                        Share in fellowship, prayer, and inspired preaching.
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* 4 — Speakers */}
+            <section className="w-full bg-white">
+                <div className="mx-auto max-w-6xl px-6 py-20 md:px-8 md:py-24">
+                    <div className="mb-12 text-center">
+                        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-asi-blue">
+                            Featured speakers
+                        </p>
+                        <h2 className="mt-3 text-3xl font-bold text-asi-darkBlue md:text-4xl">
+                            Voices for the weekend
+                        </h2>
+                    </div>
+                    <div className="mx-auto grid max-w-4xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                        {CONVENTION_2026.presenters.map((presenter) => (
+                            <SpeakerCard key={presenter.name} presenter={presenter} />
+                        ))}
+                        {/* "More to come" placeholder card */}
+                        <div className="flex flex-col gap-4">
+                            <div className="relative flex aspect-[3/4] w-full items-center justify-center overflow-hidden rounded-2xl border-2 border-dashed border-slate-200 bg-slate-50">
+                                <div className="flex flex-col items-center gap-3 px-6 text-center">
+                                    <Sparkles className="h-10 w-10 text-asi-blue/60" />
+                                    <p className="text-base font-semibold text-asi-darkBlue">
+                                        More speakers coming soon
+                                    </p>
+                                    <p className="text-sm text-slate-500">
+                                        The line-up is still being finalised.
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="flex flex-col gap-1 px-1">
+                                <h3 className="text-xl md:text-2xl font-semibold text-asi-darkBlue leading-tight">
+                                    To be announced
+                                </h3>
+                                <p className="text-sm text-slate-500">
+                                    Check back soon for more names.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* 5 — Programme preview */}
+            <section className="w-full bg-asi-darkBlue text-white">
+                <div className="mx-auto max-w-6xl px-6 py-20 md:px-8 md:py-24">
+                    <div className="mb-12 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+                        <div>
+                            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-white/70">
+                                Programme
+                            </p>
+                            <h2 className="mt-3 text-3xl font-bold md:text-4xl">
+                                Two days, many moments.
+                            </h2>
+                        </div>
+                        <Link
+                            href="/convention/programme"
+                            className="inline-flex items-center gap-2 self-start rounded-lg bg-white px-5 py-3 font-semibold text-asi-darkBlue transition hover:bg-white/90 md:self-auto"
+                        >
+                            View Full Programme
+                            <ArrowRight className="h-4 w-4" />
+                        </Link>
+                    </div>
+
+                    <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                        {CONVENTION_2026.programmePreview.map((day) => (
+                            <div
+                                key={day.day}
+                                className="rounded-2xl bg-white/5 p-6 ring-1 ring-white/10 backdrop-blur"
+                            >
+                                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/70">
+                                    {day.dayShort}
+                                </p>
+                                <h3 className="mt-2 text-2xl font-bold">{day.day}</h3>
+                                <ul className="mt-6 flex flex-col divide-y divide-white/10">
+                                    {day.sessions.map((session) => (
+                                        <li
+                                            key={session.time}
+                                            className="flex items-baseline gap-4 py-3 first:pt-0"
+                                        >
+                                            <span className="w-24 shrink-0 text-sm font-semibold uppercase tracking-wider text-white/60">
+                                                {session.time}
+                                            </span>
+                                            <span className="text-base">{session.title}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* 6 — Tickets */}
+            <section className="w-full bg-slate-50">
+                <div className="mx-auto max-w-5xl px-6 py-16 md:px-8 md:py-20">
+                    <div className="mb-10 text-center">
+                        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-asi-blue">
+                            Tickets
+                        </p>
+                        <h2 className="mt-3 text-3xl font-bold text-asi-darkBlue md:text-4xl">
+                            Simple pricing
+                        </h2>
+                    </div>
+                    <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+                        {TICKET_ORDER.map((type) => {
+                            const price = TICKET_PRICES[type];
+                            return (
+                                <div
+                                    key={type}
+                                    className="flex flex-col items-center gap-2 rounded-2xl bg-white p-6 text-center shadow-sm ring-1 ring-slate-100"
+                                >
+                                    <p className="text-sm font-medium text-asi-blue">
+                                        {TICKET_LABELS[type]}
+                                    </p>
+                                    <p className="text-3xl font-bold text-asi-darkBlue">
+                                        {price === 0 ? 'Free' : `£${price}`}
+                                    </p>
+                                </div>
+                            );
+                        })}
+                    </div>
+                    <div className="mt-8 flex justify-center">
+                        <Link
+                            href={CONVENTION_2026.registrationUrl}
+                            className="inline-flex items-center gap-2 rounded-lg bg-asi-blue px-6 py-3 font-semibold text-white transition hover:bg-asi-darkBlue"
+                        >
+                            Register Now
+                            <ArrowRight className="h-4 w-4" />
+                        </Link>
+                    </div>
+                </div>
+            </section>
+
+            {/* 7 — FAQ */}
+            <section className="w-full bg-white">
+                <div className="mx-auto max-w-3xl px-6 py-20 md:px-8 md:py-24">
+                    <div className="mb-6 text-center">
+                        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-asi-blue">
+                            Questions
+                        </p>
+                        <h2 className="mt-3 text-3xl font-bold text-asi-darkBlue md:text-4xl">
+                            Frequently asked
+                        </h2>
+                    </div>
+                    <FAQSection items={CONVENTION_2026.faq} />
+                </div>
+            </section>
+
+            {/* 8 — Catch up: 2025 recordings */}
+            <section className="w-full bg-slate-50">
+                <div className="mx-auto max-w-5xl px-6 py-14 md:px-8 md:py-16">
+                    <div className="flex flex-col items-start gap-6 rounded-2xl bg-white p-8 shadow-sm ring-1 ring-slate-100 md:flex-row md:items-center md:justify-between md:p-10">
+                        <div className="flex items-start gap-4">
+                            <div className="rounded-xl bg-asi-blue/10 p-3 text-asi-blue">
+                                <PlayCircle className="h-6 w-6" />
+                            </div>
+                            <div>
+                                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-asi-blue">
+                                    Catch up
+                                </p>
+                                <h2 className="mt-2 text-2xl font-bold text-asi-darkBlue md:text-3xl">
+                                    Missed last year?
+                                </h2>
+                                <p className="mt-2 text-slate-600">
+                                    Watch recordings from the 2025 ASI UK Convention.
+                                </p>
+                            </div>
+                        </div>
+                        <Link
+                            href="/news/convention-2025-recordings"
+                            className="inline-flex items-center gap-2 self-start rounded-lg bg-asi-blue px-5 py-3 font-semibold text-white transition hover:bg-asi-darkBlue md:self-auto"
+                        >
+                            Watch Recordings
+                            <ArrowRight className="h-4 w-4" />
+                        </Link>
+                    </div>
+                </div>
+            </section>
+
+            {/* 9 — Final CTA */}
+            <section className="relative w-full overflow-hidden bg-gradient-to-br from-asi-blue to-asi-darkBlue text-white">
+                <div
+                    aria-hidden
+                    className="pointer-events-none absolute inset-0 opacity-50"
+                    style={{
+                        backgroundImage:
+                            'radial-gradient(ellipse 70% 60% at 80% 20%, rgba(244,197,55,0.2), transparent 60%)',
+                    }}
+                />
+                <div className="relative mx-auto max-w-3xl px-6 py-20 text-center md:py-24">
+                    <h2 className="text-3xl font-bold leading-tight md:text-5xl">
+                        Ready to join us in June?
+                    </h2>
+                    <p className="mt-4 text-lg text-white/80">
+                        Places are limited — early registration is recommended.
+                    </p>
+                    <Link
+                        href={CONVENTION_2026.registrationUrl}
+                        className="mt-8 inline-flex items-center gap-2 rounded-lg bg-white px-8 py-4 text-lg font-semibold text-asi-blue shadow-lg transition hover:bg-white/90"
+                    >
+                        Register Now
+                        <ArrowRight className="h-5 w-5" />
+                    </Link>
+                </div>
+            </section>
         </div>
     );
 }

@@ -1,266 +1,198 @@
 import Link from 'next/link';
-import React from "react";
-import {ArrowLeft, Calendar, Clock, MapPin} from "lucide-react";
+import { ArrowLeft, CalendarDays, MapPin } from 'lucide-react';
+import { CONVENTION_2026 } from '@/data/convention';
 
 export const metadata = {
-    title: "ASI UK | Convention 2025 Programme",
+    title: 'ASI UK | Faith at Work — Programme 2026',
     description:
-        "Detailed programme schedule for the ASI UK Convention on 21 June, 2025 in Daventry",
+        'Two-day programme schedule for the ASI UK Convention 2026 at Newbold College, 20–21 June 2026.',
     keywords: [
-        "ASI UK Convention Programme",
-        "Programme",
-        "Timetable",
-        "ASI UK",
-        "Convention 2025",
+        'ASI UK Convention Programme',
+        'Faith at Work',
+        'Programme',
+        'Schedule',
+        'Newbold College',
+        'ASI UK 2026',
     ],
     openGraph: {
-        url: "https://asiuk.org/convention/programme",
-        type: "website",
-        title: "ASI UK | Convention 2025 Programme",
+        url: 'https://asiuk.org/convention/programme',
+        type: 'website',
+        title: 'ASI UK | Faith at Work — Programme 2026',
         description:
-            "Detailed programme schedule for the ASI UK Convention on 21 June, 2025 in Daventry",
+            'Two-day programme schedule for the ASI UK Convention 2026 at Newbold College, 20–21 June 2026.',
         images: [
             {
-                url: "https://www.asiuk.org/thumbnail.png",
+                url: 'https://www.asiuk.org/thumbnail.png',
                 width: 1200,
                 height: 630,
-                alt: "ASIUK"
-            }
-        ]
+                alt: 'ASI UK Convention 2026 — Faith at Work',
+            },
+        ],
     },
+};
+
+interface SessionRow {
+    time: string;
+    title: string;
+    speaker?: string;
+    description?: string;
 }
 
-export default function ConventionSchedule() {
+interface DayBlock {
+    id: string;
+    day: string;
+    dayShort: string;
+    sessions: SessionRow[];
+}
+
+const DAYS: DayBlock[] = [
+    {
+        id: 'saturday',
+        day: 'Sabbath — Saturday 20 June',
+        dayShort: 'SAT 20 JUN',
+        sessions: [
+            { time: '10:00', title: 'Welcome & Panel Discussion' },
+            {
+                time: '11:30',
+                title: 'Main Service',
+                description: 'Ministries spotlight, offering, and sermon.',
+            },
+            { time: '13:00', title: 'Lunch' },
+            { time: '14:30', title: 'Mixer' },
+            { time: '15:15', title: 'Seminar #1 — Ministries' },
+            { time: '16:30', title: 'Seminar #2 — Professionals' },
+            { time: '17:30', title: 'Seminar #3 — Business & Entrepreneurship' },
+            { time: '18:30', title: 'Close' },
+            {
+                time: 'Evening',
+                title: 'Informal Mixers & Social',
+                description: 'Unstructured time to connect and continue the conversation.',
+            },
+        ],
+    },
+    {
+        id: 'sunday',
+        day: 'Sunday 21 June',
+        dayShort: 'SUN 21 JUN',
+        sessions: [
+            {
+                time: '10:00',
+                title: 'Parallel Breakout Training Seminars',
+                description:
+                    'Topics include setting up a ministry (financial, legal), harnessing technology in business and ministry, and leadership.',
+            },
+            { time: '12:00', title: 'Final Charge & Goodbyes' },
+            {
+                time: '14:00',
+                title: 'Annual General Meeting (AGM)',
+                description: 'Open to ASI UK members only.',
+            },
+        ],
+    },
+];
+
+export default function ConventionProgrammePage() {
     return (
-        <div className="relative w-full overflow-x-hidden">
-            <div className="flex items-center justify-center w-full my-10 md:my-8 md:mb-36 px-4 md:py-0">
-                <div className="w-full max-w-4xl mx-auto flex flex-col gap-2 md:gap-3 bg-white/90 rounded-2xl backdrop-blur-md p-6 md:px-10 shadow">
-                    
-                    {/* Back Link */}
-                    <div className="mb-6">
-                        <Link href="/convention" className="inline-flex items-center text-asi-blue hover:text-asi-darkBlue transition-colors">
-                            <ArrowLeft className="h-4 w-4 mr-2" />
-                            <span>Back to Convention</span>
-                        </Link>
+        <div className="w-full bg-slate-50" style={{ scrollBehavior: 'smooth' }}>
+            <div className="mx-auto max-w-4xl px-6 pt-10 pb-24 md:px-8">
+                {/* Back link */}
+                <Link
+                    href="/convention"
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-asi-blue hover:text-asi-darkBlue"
+                >
+                    <ArrowLeft className="h-4 w-4" />
+                    Back to Convention
+                </Link>
+
+                {/* Header */}
+                <header className="mt-6">
+                    <p className="text-sm font-semibold uppercase tracking-[0.18em] text-asi-blue">
+                        Programme
+                    </p>
+                    <h1 className="mt-3 text-4xl font-bold leading-tight text-asi-darkBlue md:text-5xl">
+                        Faith at Work — Convention 2026
+                    </h1>
+                    <div className="mt-4 flex flex-wrap gap-4 text-sm text-slate-600">
+                        <span className="inline-flex items-center gap-2">
+                            <CalendarDays className="h-4 w-4 text-asi-blue" />
+                            {CONVENTION_2026.dates}
+                        </span>
+                        <span className="inline-flex items-center gap-2">
+                            <MapPin className="h-4 w-4 text-asi-blue" />
+                            {CONVENTION_2026.venue}, {CONVENTION_2026.venueLocation}
+                        </span>
                     </div>
+                    <p className="mt-6 max-w-2xl text-base text-slate-600">
+                        A provisional outline of the weekend. Session details, speakers, and exact
+                        times will be added as the programme is finalised.
+                    </p>
+                </header>
 
-                    {/* Header */}
-                    <div className="text-center mb-8">
-                        <h1 className="text-3xl md:text-4xl text-asi-blue font-bold mb-4">Convention Programme</h1>
-                        <div className="flex flex-wrap justify-center gap-6 text-sm text-slate-600">
-                            <div className="flex items-center gap-2">
-                                <Calendar className="h-4 w-4 text-asi-blue" />
-                                <span>Saturday, 21 June 2025</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <MapPin className="h-4 w-4 text-asi-blue" />
-                                <span>Mercure Daventry Court Hotel</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <Clock className="h-4 w-4 text-asi-blue" />
-                                <span>9:00 AM - 7:00 PM</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Programme Overview */}
-                    {/*<div className="bg-white rounded-xl p-6 mb-6 border-asi-blue">*/}
-                    {/*    <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-4">*/}
-                    {/*        <div className="text-center p-4 bg-slate-50 rounded-lg border border-slate-200">*/}
-                    {/*            <h4 className="text-asi-blue text-sm font-semibold mb-1">Morning Session</h4>*/}
-                    {/*            <p className="text-sm font-medium text-slate-700">9:45 - 12:30</p>*/}
-                    {/*        </div>*/}
-                    {/*        <div className="text-center p-4 bg-slate-50 rounded-lg border border-slate-200">*/}
-                    {/*            <h4 className="text-asi-blue text-sm font-semibold mb-1">Lunch Break</h4>*/}
-                    {/*            <p className="text-sm font-medium text-slate-700">12:30 - 14:30</p>*/}
-                    {/*        </div>*/}
-                    {/*        <div className="text-center p-4 bg-slate-50 rounded-lg border border-slate-200">*/}
-                    {/*            <h4 className="text-asi-blue text-sm font-semibold mb-1">Afternoon Session</h4>*/}
-                    {/*            <p className="text-sm font-medium text-slate-700">14:30 - 19:00</p>*/}
-                    {/*        </div>*/}
-                    {/*        <div className="text-center p-4 bg-slate-50 rounded-lg border border-slate-200">*/}
-                    {/*            <h4 className="text-asi-blue text-sm font-semibold mb-1">Total Duration</h4>*/}
-                    {/*            <p className="text-sm font-medium text-slate-700">9+ Hours</p>*/}
-                    {/*        </div>*/}
-                    {/*        <div className="text-center p-4 bg-slate-50 rounded-lg border border-slate-200">*/}
-                    {/*            <h4 className="text-asi-blue text-sm font-semibold mb-1">Venue</h4>*/}
-                    {/*            <p className="text-sm font-medium text-slate-700">Main Hall</p>*/}
-                    {/*        </div>*/}
-                    {/*    </div>*/}
-                    {/*</div>*/}
-
-                    {/* Navigation */}
-                    <div className="bg-white rounded-xl p-4 mb-6 shadow-sm text-center">
-                        <div className="flex justify-center gap-4 flex-wrap">
-                            <a href="#morning" className="bg-asi-blue text-white py-2 px-4 rounded-lg font-medium hover:bg-asi-darkBlue transition-colors">
-                                Morning Programme
+                {/* Day tabs */}
+                <nav className="sticky top-[96px] z-10 mt-10 -mx-6 bg-slate-50/90 px-6 py-3 backdrop-blur md:-mx-8 md:top-[106px] md:px-8">
+                    <div className="flex gap-2">
+                        {DAYS.map((d) => (
+                            <a
+                                key={d.id}
+                                href={`#${d.id}`}
+                                className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-asi-darkBlue transition hover:border-asi-blue hover:text-asi-blue"
+                            >
+                                <span className="text-xs font-bold uppercase tracking-wider text-asi-blue">
+                                    {d.dayShort}
+                                </span>
                             </a>
-                            <a href="#afternoon" className="bg-asi-blue text-white py-2 px-4 rounded-lg font-medium hover:bg-asi-darkBlue transition-colors">
-                                Afternoon Programme
-                            </a>
-                        </div>
+                        ))}
                     </div>
+                </nav>
 
-                    {/* Morning Programme */}
-                    <div id="morning" className="bg-white rounded-xl overflow-hidden shadow-sm mb-6">
-                        <div className="bg-gradient-to-r from-asi-blue to-asi-darkBlue text-white p-4 text-center">
-                            <h4 className="text-lg font-medium">Morning Programme</h4>
-                            <p className="text-sm opacity-90">9:00 AM - 12:30 PM • Main Hall</p>
-                        </div>
-                        <div className="p-6 space-y-6">
-                            {/* Registration Block */}
-                            <div className="border-l-4 border-l-yellow-500 bg-yellow-50 p-4 rounded-r-lg">
-                                <div className="flex items-center justify-between mb-3">
-                                    <h5 className="text-lg font-semibold text-asi-blue">Registration & Welcome</h5>
-                                    <span className="text-sm font-medium text-slate-600 bg-white px-2 py-1 rounded">9:00 - 9:45 AM</span>
-                                </div>
-                                <ul className="space-y-1 text-slate-700">
-                                    <li>• Registration and check-in</li>
-                                    <li>• Pastries and drinks on arrival</li>
-                                    <li>• Networking and fellowship</li>
-                                </ul>
+                {/* Day sections */}
+                <div className="mt-10 flex flex-col gap-10">
+                    {DAYS.map((d) => (
+                        <section
+                            key={d.id}
+                            id={d.id}
+                            className="scroll-mt-[180px] overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-200"
+                        >
+                            <div className="bg-asi-darkBlue px-6 py-5 text-white md:px-8">
+                                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/70">
+                                    {d.dayShort}
+                                </p>
+                                <h2 className="mt-1 text-2xl font-bold md:text-3xl">{d.day}</h2>
                             </div>
 
-                            {/* Opening Session Block */}
-                            <div className="border-l-4 border-l-asi-blue bg-blue-50 p-4 rounded-r-lg">
-                                <div className="flex items-center justify-between mb-3">
-                                    <h5 className="text-lg font-semibold text-asi-blue">Opening Session</h5>
-                                    <span className="text-sm font-medium text-slate-600 bg-white px-2 py-1 rounded">9:45 - 11:00 AM</span>
-                                </div>
-                                <ul className="space-y-1 text-slate-700">
-                                    <li>• Welcome and opening hymn</li>
-                                    <li>• Greetings from conference representatives</li>
-                                    <li>• ASI UK President's message - Daniel Klop</li>
-                                    <li>• ASI introduction video</li>
-                                    <li>• ASI in Action testimonials (Part 1)</li>
-                                    <li>• Project presentations and offering appeal</li>
-                                </ul>
-                            </div>
-
-                            {/* Break Block */}
-                            <div className="border-l-4 border-l-yellow-500 bg-yellow-50 p-4 rounded-r-lg">
-                                <div className="flex items-center justify-between mb-3">
-                                    <h5 className="text-lg font-semibold text-asi-blue">Morning Break</h5>
-                                    <span className="text-sm font-medium text-slate-600 bg-white px-2 py-1 rounded">11:00 - 11:15 AM</span>
-                                </div>
-                                <ul className="space-y-1 text-slate-700">
-                                    <li>• Refreshments and fellowship</li>
-                                    <li>• Networking opportunity</li>
-                                </ul>
-                            </div>
-
-                            {/* Worship Service Block */}
-                            <div className="border-l-4 border-l-green-500 bg-green-50 p-4 rounded-r-lg">
-                                <div className="flex items-center justify-between mb-3">
-                                    <h5 className="text-lg font-semibold text-asi-blue">Worship Service</h5>
-                                    <span className="text-sm font-medium text-slate-600 bg-white px-2 py-1 rounded">11:15 AM - 12:30 PM</span>
-                                </div>
-                                <ul className="space-y-1 text-slate-700">
-                                    <li>• Opening hymn and prayer</li>
-                                    <li>• Scripture reading</li>
-                                    <li>• Special music</li>
-                                    <li>• Sermon by Johnny Wong</li>
-                                    <li>• Closing hymn and announcements</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Lunch Break */}
-                    <div className="bg-white rounded-xl overflow-hidden shadow-sm mb-6">
-                        <div className="bg-gradient-to-r from-green-600 to-green-500 text-white p-4 text-center">
-                            <h4 className="text-lg font-medium">Lunch Break</h4>
-                            <p className="text-sm opacity-90">12:30 - 2:30 PM • Networking & Booths</p>
-                        </div>
-                        <div className="p-6">
-                            <div className="border-l-4 border-l-green-500 bg-green-50 p-4 rounded-r-lg">
-                                <div className="flex items-center justify-between mb-3">
-                                    <h5 className="text-lg font-semibold text-asi-blue">Lunch & Networking</h5>
-                                    <span className="text-sm font-medium text-slate-600 bg-white px-2 py-1 rounded">12:30 - 2:30 PM</span>
-                                </div>
-                                <ul className="space-y-1 text-slate-700">
-                                    <li>• Lunch service</li>
-                                    <li>• Ministry booths and displays</li>
-                                    <li>• Networking and fellowship</li>
-                                    <li>• Book sales and resources</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Afternoon Programme */}
-                    <div id="afternoon" className="bg-white rounded-xl overflow-hidden shadow-sm mb-6">
-                        <div className="bg-gradient-to-r from-asi-blue to-asi-darkBlue text-white p-4 text-center">
-                            <h4 className="text-lg font-medium">Afternoon Programme</h4>
-                            <p className="text-sm opacity-90">2:30 - 7:00 PM • Main Hall</p>
-                        </div>
-                        <div className="p-6 space-y-6">
-                            {/* Interactive Session Block */}
-                            <div className="border-l-4 border-l-purple-500 bg-purple-50 p-4 rounded-r-lg">
-                                <div className="flex items-center justify-between mb-3">
-                                    <h5 className="text-lg font-semibold text-asi-blue">Interactive Session</h5>
-                                    <span className="text-sm font-medium text-slate-600 bg-white px-2 py-1 rounded">2:30 - 4:00 PM</span>
-                                </div>
-                                <ul className="space-y-1 text-slate-700">
-                                    <li>• Welcome and opening hymn</li>
-                                    <li>• ASI Mission testimonials (Part 2)</li>
-                                    <li>• Q&A panel and discussion</li>
-                                    <li>• ADRA presentation</li>
-                                    <li>• Stewardship presentation by Cathy Boldeau</li>
-                                </ul>
-                            </div>
-
-                            {/* Break & Networking Block */}
-                            <div className="border-l-4 border-l-yellow-500 bg-yellow-50 p-4 rounded-r-lg">
-                                <div className="flex items-center justify-between mb-3">
-                                    <h5 className="text-lg font-semibold text-asi-blue">Break & Ministry Networking</h5>
-                                    <span className="text-sm font-medium text-slate-600 bg-white px-2 py-1 rounded">4:00 - 5:00 PM</span>
-                                </div>
-                                <ul className="space-y-1 text-slate-700">
-                                    <li>• Refreshments and fellowship</li>
-                                    <li>• Ministry speed networking session</li>
-                                    <li>• Connect with other ASI members</li>
-                                    <li>• Ministry collaboration opportunities</li>
-                                </ul>
-                            </div>
-
-                            {/* Leadership Seminar Block */}
-                            <div className="border-l-4 border-l-orange-500 bg-orange-50 p-4 rounded-r-lg">
-                                <div className="flex items-center justify-between mb-3">
-                                    <h5 className="text-lg font-semibold text-asi-blue">Leadership Seminar</h5>
-                                    <span className="text-sm font-medium text-slate-600 bg-white px-2 py-1 rounded">5:00 - 5:45 PM</span>
-                                </div>
-                                <ul className="space-y-1 text-slate-700">
-                                    <li>• Leadership seminar by Christian Salcianu</li>
-                                    <li>• Practical ministry leadership skills</li>
-                                    <li>• Building effective ASI organisations</li>
-                                </ul>
-                            </div>
-
-                            {/* Closing Worship Block */}
-                            <div className="border-l-4 border-l-green-500 bg-green-50 p-4 rounded-r-lg">
-                                <div className="flex items-center justify-between mb-3">
-                                    <h5 className="text-lg font-semibold text-asi-blue">Closing Worship</h5>
-                                    <span className="text-sm font-medium text-slate-600 bg-white px-2 py-1 rounded">5:45 - 7:00 PM</span>
-                                </div>
-                                <ul className="space-y-1 text-slate-700">
-                                    <li>• Special music</li>
-                                    <li>• Sermon by Johnny Wong</li>
-                                    <li>• Prayer for ASI UK members and ministries</li>
-                                    <li>• Closing hymn and final announcements</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Programme Info */}
-                    <div className="bg-white rounded-xl p-6 shadow-sm text-center border-t-4 border-t-asi-blue">
-                        <h4 className="text-asi-blue text-lg font-medium mb-3">About This Programme</h4>
-                        <p className="text-sm text-slate-600 mb-2">Join us for a full day of spiritual growth, networking, and inspiration with the ASI UK community.</p>
-                        <p className="text-sm text-slate-600 mb-2">Experience powerful testimonials, interactive sessions, ministry networking, and uplifting worship throughout the day.</p>
-                        <p className="text-sm text-slate-600"><strong>Location:</strong> Main Hall | <strong>Morning:</strong> 9:45 AM-12:30 PM | <strong>Afternoon:</strong> 2:30-7:00 PM</p>
-                    </div>
+                            <ol className="divide-y divide-slate-100">
+                                {d.sessions.map((session, i) => (
+                                    <li
+                                        key={`${d.id}-${i}`}
+                                        className="grid grid-cols-[80px_1fr] gap-4 px-6 py-5 md:grid-cols-[110px_1fr] md:gap-8 md:px-8"
+                                    >
+                                        <span className="font-mono text-sm font-semibold text-asi-blue md:text-base">
+                                            {session.time}
+                                        </span>
+                                        <div className="min-w-0">
+                                            <p className="text-base font-semibold text-asi-darkBlue md:text-lg">
+                                                {session.title}
+                                            </p>
+                                            {session.speaker && (
+                                                <p className="mt-1 text-sm text-asi-blue">{session.speaker}</p>
+                                            )}
+                                            {session.description && (
+                                                <p className="mt-1 text-sm text-slate-600">
+                                                    {session.description}
+                                                </p>
+                                            )}
+                                        </div>
+                                    </li>
+                                ))}
+                            </ol>
+                        </section>
+                    ))}
                 </div>
+
+                <p className="mt-10 text-center text-sm text-slate-500">
+                    Programme subject to change. Final schedule will be shared with registered
+                    attendees ahead of the event.
+                </p>
             </div>
         </div>
     );

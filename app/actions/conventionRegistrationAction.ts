@@ -19,6 +19,7 @@ import {
 } from "@/lib/notion-convention";
 import { sendConventionDiscordNotification } from "@/lib/discord-convention";
 import { sendFreeRegistrationConfirmationEmail } from "@/lib/email-convention";
+import { subscribeToNewsletter } from "@/lib/mailchimp";
 
 // Initialize Stripe (will be undefined if not configured)
 const stripe = process.env.STRIPE_SECRET_KEY
@@ -57,6 +58,18 @@ export async function conventionRegistrationAction(
         const notionPageUrl = notionResult.pageId
             ? getNotionPageUrl(notionResult.pageId)
             : undefined;
+
+        // Subscribe to the marketing newsletter if the user opted in.
+        // Best-effort — a Mailchimp failure must not fail the registration.
+        if (validatedData.newsletterOptIn) {
+            const mailchimpResult = await subscribeToNewsletter(serviceData.email);
+            if (!mailchimpResult.success) {
+                console.warn(
+                    "Newsletter subscription failed for convention registrant (continuing):",
+                    mailchimpResult.error,
+                );
+            }
+        }
 
         // If free registration, send confirmation email, Discord notification, and return success
         if (isFree) {

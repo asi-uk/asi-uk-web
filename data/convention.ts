@@ -1,6 +1,9 @@
 export interface Presenter {
     name: string;
     imageUrl: string;
+    title?: string;
+    organization?: string;
+    bio?: string;
 }
 
 export interface ConventionVideo {
@@ -18,11 +21,100 @@ export interface FAQItem {
 
 export const CONVENTION_2026 = {
     title: "ASI UK Convention 2026",
-    dates: "20-21 June 2026",
-    daysOfWeek: "Saturday - Sunday",
+    theme: "Faith at Work",
+    dates: "20–21 June 2026",
+    datesShort: "20–21 JUNE",
+    daysOfWeek: "Saturday – Sunday",
     startDate: new Date('2026-06-20T09:00:00'),
     venue: "Newbold College",
+    venueShort: "NEWBOLD COLLEGE",
     venueLocation: "Bracknell, England",
+    venueAddress: "St Mark's Road, Binfield, Bracknell RG42 4AN",
+    venueMapUrl: "https://maps.app.goo.gl/eeoNP3RPthnxMV4m8",
+    posterUrl: "https://res.cloudinary.com/disrkguox/image/upload/v1776197755/convention2026-poster-v2_cxlwty.png",
+    heroImageUrl: "https://res.cloudinary.com/disrkguox/image/upload/v1776197755/convention2026-poster-v2_cxlwty.png",
+    registrationUrl: "/convention/register",
+    description:
+        "Join ASI UK on 20–21 June 2026 at Newbold College for Faith at Work — a weekend exploring how Adventist professionals, entrepreneurs, and ministry leaders can integrate faith with daily work and mission.",
+    presenters: [
+        {
+            name: "Jesse Zwiker",
+            title: "Founder & President",
+            organization: "Hyve International",
+            imageUrl: "https://res.cloudinary.com/disrkguox/image/upload/v1776201860/Jesse-Zwiker-1_kp2lc8.jpg",
+        },
+        {
+            name: "Dusanka Rancic",
+            title: "Editor-in-Chief",
+            organization: "Stanborough Press",
+            imageUrl: "https://res.cloudinary.com/disrkguox/image/upload/v1776202193/Stanborough-Press-Dusanka-Rancic-scaled_3_l7awvc.png",
+        },
+    ] satisfies Presenter[],
+    programmePreview: [
+        {
+            day: "Saturday 20 June",
+            dayShort: "SAT 20 JUN",
+            sessions: [
+                { time: "10:00", title: "Welcome & Panel Discussion" },
+                { time: "11:30", title: "Main Service" },
+                { time: "14:30", title: "Seminars & Mixer" },
+                { time: "Evening", title: "Informal Gathering" },
+            ],
+        },
+        {
+            day: "Sunday 21 June",
+            dayShort: "SUN 21 JUN",
+            sessions: [
+                { time: "10:00", title: "Breakout Training Seminars" },
+                { time: "12:00", title: "Final Charge & Goodbyes" },
+                { time: "14:00", title: "AGM (Members only)" },
+            ],
+        },
+    ],
+    faq: [
+        {
+            question: "What is Faith at Work?",
+            answer: "Faith at Work is the theme of the ASI UK Convention 2026 — a weekend gathering focused on how Adventist professionals, entrepreneurs, and ministry leaders can live out their faith in daily work and mission.",
+        },
+        {
+            question: "When and where is the convention?",
+            answer: "Saturday 20 to Sunday 21 June 2026 at Newbold College, Bracknell, England.",
+        },
+        {
+            question: "How do I register?",
+            answer: "Registration is open on our website — click any Register Now button or visit the registration page directly.",
+            linkHref: "/convention/register",
+            linkText: "registration page",
+        },
+        {
+            question: "Is accommodation available?",
+            answer: "Yes — accommodation is available at Newbold College and should be booked directly with the college.",
+        },
+        {
+            question: "Is parking available?",
+            answer: "Yes — parking is available on-site at Newbold College free of charge.",
+        },
+        {
+            question: "What's included with my ticket?",
+            answer: "Light refreshments throughout each day are included with your ticket. Meals can be arranged separately at the Newbold dining hall by direct arrangement with the college.",
+        },
+        {
+            question: "How do I qualify for the member discount?",
+            answer: "The member discount is automatically available to current ASI UK members. If you're not yet a member, visit our membership page to learn more.",
+            linkHref: "/membership",
+            linkText: "membership page",
+        },
+        {
+            question: "Can my ministry or organisation have a booth?",
+            answer: "Ministries and organisations interested in having a booth at the convention should contact our VP for Evangelism, Tashana Samuels, at evangelism@asiuk.org.",
+            linkHref: "mailto:evangelism@asiuk.org",
+            linkText: "evangelism@asiuk.org",
+        },
+        {
+            question: "What is ASI UK?",
+            answer: "ASI UK (Adventist-laymen's Services and Industries) unites Seventh-day Adventist business owners, professionals, and supporting ministries in a shared mission to integrate faith with professional life.",
+        },
+    ] satisfies FAQItem[],
 } as const;
 
 export const CONVENTION_2025 = {
