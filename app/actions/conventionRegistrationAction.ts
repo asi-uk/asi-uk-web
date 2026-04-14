@@ -112,10 +112,13 @@ export async function conventionRegistrationAction(
             };
         }
 
-        // Use explicit BASE_URL if set, otherwise use the current Vercel deployment
-        // (works for preview deployments automatically), and finally fall back to production.
+        // Use explicit BASE_URL if set, otherwise prefer the stable Vercel branch alias
+        // (e.g. asi-uk-git-<branch>-<team>.vercel.app — same across redeploys of the same
+        // branch, so a single Stripe webhook endpoint stays valid). Fall back to the
+        // per-deployment URL, then to production.
         const baseUrl =
             process.env.NEXT_PUBLIC_BASE_URL ||
+            (process.env.VERCEL_BRANCH_URL ? `https://${process.env.VERCEL_BRANCH_URL}` : null) ||
             (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : null) ||
             "https://www.asiuk.org";
 
