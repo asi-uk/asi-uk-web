@@ -202,20 +202,29 @@ export async function createConventionRegistration(
 
         const registrationPageId = registrationResponse.id;
 
-        // Step 2: Create individual attendee records (if Attendees DB is configured)
+        // Step 2: Create individual attendee records (if Attendees DB is configured).
+        // Run the per-attendee writes concurrently — each attendee is an
+        // independent pair of Notion calls (create page + update with token).
+        // Serially this dominates the paid-registration critical path
+        // (~600-1600ms per attendee × N), so parallelising is the biggest
+        // single win before the user is redirected to Stripe.
         const attendeeIds: string[] = [];
         const attendeesWithTokens: AttendeeWithToken[] = [];
         const attendeesDatabaseId = process.env.NOTION_CONVENTION_ATTENDEES_DB_ID;
 
         if (attendeesDatabaseId) {
-            for (const attendee of data.attendees) {
-                const ticketPrice = TICKET_PRICES[attendee.ticketType] || 0;
-                const attendeeResult = await createAttendee(registrationPageId, attendee, ticketPrice);
+            const attendeeResults = await Promise.all(
+                data.attendees.map((attendee) => {
+                    const ticketPrice = TICKET_PRICES[attendee.ticketType] || 0;
+                    return createAttendee(registrationPageId, attendee, ticketPrice);
+                }),
+            );
 
+            attendeeResults.forEach((attendeeResult, i) => {
+                const attendee = data.attendees[i];
                 if (attendeeResult.success && attendeeResult.pageId) {
                     attendeeIds.push(attendeeResult.pageId);
 
-                    // Store attendee info with check-in token
                     if (attendeeResult.token) {
                         attendeesWithTokens.push({
                             pageId: attendeeResult.pageId,
@@ -230,7 +239,7 @@ export async function createConventionRegistration(
                 } else if (!attendeeResult.success) {
                     console.error(`Failed to create attendee record: ${attendeeResult.error}`);
                 }
-            }
+            });
         }
 
         return {
