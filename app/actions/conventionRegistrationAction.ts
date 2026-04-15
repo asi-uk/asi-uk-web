@@ -1,5 +1,6 @@
 "use server";
 
+import { after } from "next/server";
 import { z } from "zod";
 import Stripe from "stripe";
 import {
@@ -60,15 +61,21 @@ export async function conventionRegistrationAction(
             : undefined;
 
         // Subscribe to the marketing newsletter if the user opted in.
-        // Best-effort — a Mailchimp failure must not fail the registration.
+        // Best-effort — a Mailchimp failure must not fail the registration,
+        // and it doesn't need to complete before we hand off to Stripe, so
+        // defer it until after the response is sent. This keeps the action's
+        // critical-path latency low (the handoff was tipping Vercel's
+        // serverless timeout and producing 504s).
         if (validatedData.newsletterOptIn) {
-            const mailchimpResult = await subscribeToNewsletter(serviceData.email);
-            if (!mailchimpResult.success) {
-                console.warn(
-                    "Newsletter subscription failed for convention registrant (continuing):",
-                    mailchimpResult.error,
-                );
-            }
+            after(async () => {
+                const mailchimpResult = await subscribeToNewsletter(serviceData.email);
+                if (!mailchimpResult.success) {
+                    console.warn(
+                        "Newsletter subscription failed for convention registrant (continuing):",
+                        mailchimpResult.error,
+                    );
+                }
+            });
         }
 
         // If free registration, send confirmation email, Discord notification, and return success
@@ -140,9 +147,29 @@ export async function conventionRegistrationAction(
             },
         });
 
-        // Update Notion with Stripe session ID
+        // Store the Stripe session ID on the Notion registration. The webhook
+        // reads `notionPageId` from Stripe session metadata (not by querying
+        // Notion for the session ID), so this write is purely bookkeeping for
+        // the confirmation page's QR-code lookup — it doesn't need to land
+        // before we redirect the user. Defer it so we can return the Stripe
+        // URL immediately. The user spends 30s+ on Stripe checkout; `after()`
+        // completes in a fraction of that.
         if (notionResult.pageId && session.id) {
-            await updateConventionRegistrationStatus(notionResult.pageId, "Pending Payment", session.id);
+            const pageId = notionResult.pageId;
+            const sessionId = session.id;
+            after(async () => {
+                const result = await updateConventionRegistrationStatus(
+                    pageId,
+                    "Pending Payment",
+                    sessionId,
+                );
+                if (!result.success) {
+                    console.warn(
+                        "Failed to persist Stripe session ID on Notion registration (continuing):",
+                        result.error,
+                    );
+                }
+            });
         }
 
         return {
