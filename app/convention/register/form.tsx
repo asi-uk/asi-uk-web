@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
-import { CalendarFold, MapPin, Coffee, Plus, Loader2, ArrowUpRight } from "lucide-react";
+import { CalendarFold, MapPin, Coffee, Plus, Loader2, ArrowUpRight, BedDouble, UtensilsCrossed } from "lucide-react";
 import { CONVENTION_2026 } from "@/data/convention";
 import { toast } from "@/components/hooks/use-toast";
 import { Button } from "@/components/ui/button";
@@ -49,6 +49,8 @@ export function ConventionRegistrationForm() {
             attendees: [{ ...defaultAttendee }],
             email: "",
             newsletterOptIn: false,
+            interestedInAccommodation: false,
+            interestedInMeals: false,
             privacyPolicyAccepted: false as unknown as true,
         },
     });
@@ -245,6 +247,97 @@ export function ConventionRegistrationForm() {
                                 </FormItem>
                             )}
                         />
+                    </div>
+                </div>
+
+                {/* Accommodation & Meals */}
+                <div>
+                    <h1 className="text-asi-blue text-left text-lg font-bold md:text-xl mb-4">
+                        Accommodation & Meals
+                    </h1>
+                    <p className="text-gray-600 text-sm mb-6">
+                        These options do not affect your registration price. We&apos;ll send booking details separately after registration.
+                    </p>
+
+                    <div className="space-y-4">
+                        <div className="bg-white p-5 rounded-2xl space-y-4">
+                            <div className="flex items-start gap-3">
+                                <div className="rounded-xl bg-asi-blue/10 p-2.5 text-asi-blue mt-0.5">
+                                    <BedDouble className="h-5 w-5" />
+                                </div>
+                                <div>
+                                    <h2 className="font-medium text-asi-blue text-base">On-campus Accommodation</h2>
+                                    <p className="text-sm text-gray-600 mt-1">
+                                        On-campus rooms are available for convention attendees, starting from £41 per night.
+                                        Options range from shared-standard rooms and bunk rooms through to en-suite singles and doubles,
+                                        across Keough House, Schuil House, and Moor Close. Self-catering flats are also available.
+                                    </p>
+                                    <p className="text-sm text-gray-500 mt-2">
+                                        <span className="font-medium">Indicative nightly rates:</span>{" "}
+                                        Singles from £41 · Doubles from £53 · En-suite singles £53 · En-suite doubles £79 · Bunk beds from £22pp · Flats from £126
+                                    </p>
+                                </div>
+                            </div>
+
+                            <FormField
+                                control={form.control}
+                                name="interestedInAccommodation"
+                                render={({ field }) => (
+                                    <FormItem className="flex flex-row items-start space-x-3 space-y-0 pl-12">
+                                        <FormControl>
+                                            <Checkbox
+                                                checked={field.value}
+                                                onCheckedChange={field.onChange}
+                                            />
+                                        </FormControl>
+                                        <div className="space-y-1 leading-none">
+                                            <FormLabel className="font-normal">
+                                                Yes, please send me accommodation booking details
+                                            </FormLabel>
+                                        </div>
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+
+                        <div className="bg-white p-5 rounded-2xl space-y-4">
+                            <div className="flex items-start gap-3">
+                                <div className="rounded-xl bg-asi-blue/10 p-2.5 text-asi-blue mt-0.5">
+                                    <UtensilsCrossed className="h-5 w-5" />
+                                </div>
+                                <div>
+                                    <h2 className="font-medium text-asi-blue text-base">Meals</h2>
+                                    <p className="text-sm text-gray-600 mt-1">
+                                        Light refreshments are included with your registration throughout the convention.
+                                        Full meals in the Newbold dining hall are also available for booking, alongside your accommodation or on their own.
+                                    </p>
+                                    <p className="text-sm text-gray-500 mt-2">
+                                        <span className="font-medium">Per meal:</span>{" "}
+                                        Breakfast £7.80 (under-12s £4.40) · Lunch or dinner £9.31 (under-12s £6.00)
+                                    </p>
+                                </div>
+                            </div>
+
+                            <FormField
+                                control={form.control}
+                                name="interestedInMeals"
+                                render={({ field }) => (
+                                    <FormItem className="flex flex-row items-start space-x-3 space-y-0 pl-12">
+                                        <FormControl>
+                                            <Checkbox
+                                                checked={field.value}
+                                                onCheckedChange={field.onChange}
+                                            />
+                                        </FormControl>
+                                        <div className="space-y-1 leading-none">
+                                            <FormLabel className="font-normal">
+                                                Yes, please send me meal booking details
+                                            </FormLabel>
+                                        </div>
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
                     </div>
                 </div>
 

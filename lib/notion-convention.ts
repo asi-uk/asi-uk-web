@@ -190,6 +190,8 @@ export async function createConventionRegistration(
             Status: { select: { name: status } },
             "Registration Date": { date: { start: new Date().toISOString() } },
             "Newsletter Opt-in": { checkbox: data.newsletterOptIn },
+            "Interested in Newbold Accommodations": { checkbox: data.interestedInAccommodation },
+            "Interested in Newbold Meals": { checkbox: data.interestedInMeals },
         };
 
         // Get data source ID for the registrations database
