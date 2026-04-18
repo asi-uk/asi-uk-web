@@ -1,6 +1,7 @@
 import { Metadata } from "next";
+import Link from "next/link";
 import { ConventionRegistrationForm } from "./form";
-import { AlertCircle } from "lucide-react";
+import { AlertCircle, ArrowLeft } from "lucide-react";
 
 export const metadata: Metadata = {
     title: "ASI UK | Convention 2026 Registration",
@@ -43,7 +44,25 @@ export default async function ConventionRegistrationPage({ searchParams }: PageP
         <div className="w-full min-h-full bg-slate-50 overflow-x-hidden">
             <div className="md:max-w-5xl mx-auto">
                 <div className="p-5 pt-10 pb-20">
-                    <h2 className="heading-section">Convention Registration</h2>
+                    <Link
+                        href="/convention"
+                        className="inline-flex items-center gap-2 text-sm font-semibold text-asi-blue hover:text-asi-darkBlue"
+                    >
+                        <ArrowLeft className="h-4 w-4" />
+                        Back to Convention
+                    </Link>
+
+                    <header className="mt-6 mb-8">
+                        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-asi-blue">
+                            ASI UK Convention 2026
+                        </p>
+                        <h1 className="mt-3 text-4xl font-bold leading-tight text-asi-darkBlue md:text-5xl">
+                            Register
+                        </h1>
+                        <p className="mt-4 max-w-2xl text-slate-600">
+                            Join us on 20–21 June 2026 at Newbold College for Faith at Work — a weekend for Adventist professionals, entrepreneurs, and ministry leaders.
+                        </p>
+                    </header>
 
                     {wasCancelled && (
                         <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6 flex items-start gap-3">

@@ -2,6 +2,7 @@ import { Suspense } from 'react';
 import Link from 'next/link';
 import { ArrowRight, FolderOpen, Heart, Lightbulb } from 'lucide-react';
 import ConventionBanner from '@/app/components/ConventionBanner';
+import ConventionHero from '@/app/convention/components/ConventionHero';
 import NewsletterSignup from '@/app/components/NewsletterSignup';
 import PostCard from '@/app/news/components/PostCard';
 import { getRecentPosts } from '@/lib/sanity/queries';
@@ -64,35 +65,8 @@ function RecentPostsSkeleton() {
 export default function Home() {
     return (
         <div className="w-full">
-            {/* Hero */}
-            <section
-                className="relative w-full bg-cover bg-center -mt-[100px] md:-mt-[110px] pt-[100px] md:pt-[110px]"
-                style={{ backgroundImage: "url('https://res.cloudinary.com/disrkguox/image/upload/w_1920/v1742976209/sam-knight-jhpL88kP7Y8-unsplash_rvxhux.jpg')" }}
-            >
-                <div className="absolute inset-0 bg-asi-darkBlue/70" />
-                <div className="relative max-w-5xl mx-auto px-4 py-24 md:py-32 flex flex-col items-center text-center gap-6">
-                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
-                        Sharing Christ in the Marketplace
-                    </h1>
-                    <p className="text-lg md:text-xl text-white/80 max-w-2xl">
-                        ASI UK unites Adventist professionals, entrepreneurs, and ministries to integrate faith with professional life.
-                    </p>
-                    <div className="flex flex-col sm:flex-row gap-3 mt-2">
-                        <Link
-                            href="/membership"
-                            className="bg-white text-asi-blue hover:bg-white/90 py-3 px-8 rounded-lg font-semibold transition-colors duration-200"
-                        >
-                            Join ASI
-                        </Link>
-                        <Link
-                            href="/about"
-                            className="border border-white text-white hover:bg-white/10 py-3 px-8 rounded-lg font-semibold transition-colors duration-200"
-                        >
-                            Learn More
-                        </Link>
-                    </div>
-                </div>
-            </section>
+            {/* Hero — Faith at Work 2026 */}
+            <ConventionHero variant="home" />
 
             {/* Convention & Project Funding */}
             <section className="w-full bg-slate-50">

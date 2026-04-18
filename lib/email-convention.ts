@@ -2,6 +2,16 @@ import { Resend } from "resend";
 import { generateQRCodeDataUrl, AttendeeQRCode } from "@/lib/qr-code";
 import { TICKET_LABELS, TicketType } from "@/lib/schemas/convention-registration";
 
+// NOTE: `generateConventionTicketsPdf` is loaded via a dynamic `import()` below
+// rather than a static import. Its dependency `@react-pdf/renderer` is large
+// (pdfkit + fontkit + font tables) and does substantial work at module init.
+// The paid-registration server action imports this file to call
+// `sendFreeRegistrationConfirmationEmail`, but never actually generates a PDF
+// on that code path — the PDF is only produced for free registrations and for
+// the Stripe webhook. A static import would pull the renderer into the
+// server-action bundle and blow the Vercel cold-start budget (504s on
+// "Proceed to Payment"). Keep this lazy.
+
 // Initialize Resend client (will be undefined if API key not set)
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
@@ -154,11 +164,39 @@ export async function sendConventionConfirmationEmail(
     try {
         const html = await generateConventionConfirmationEmailHtml(params);
 
+        // Build ticket PDF attachment if we have attendees. PDF generation is
+        // best-effort — if it fails we still send the email (with inline HTML
+        // QR codes) rather than failing the whole confirmation.
+        let attachments: { filename: string; content: Buffer }[] | undefined;
+        if (params.attendees && params.attendees.length > 0) {
+            try {
+                const { generateConventionTicketsPdf } = await import("@/lib/pdf-convention");
+                const pdfBuffer = await generateConventionTicketsPdf({
+                    email: params.email,
+                    attendeeCount: params.attendeeCount,
+                    orderTotal: params.orderTotal,
+                    attendees: params.attendees,
+                });
+                attachments = [
+                    {
+                        filename: "asi-uk-convention-2026-tickets.pdf",
+                        content: pdfBuffer,
+                    },
+                ];
+            } catch (pdfError) {
+                console.error(
+                    "Failed to generate convention tickets PDF (sending email without attachment):",
+                    pdfError,
+                );
+            }
+        }
+
         const { error } = await resend.emails.send({
             from: FROM_EMAIL,
             to: params.email,
             subject: "ASI UK Convention 2026 - Registration Confirmed",
             html,
+            attachments,
         });
 
         if (error) {

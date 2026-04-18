@@ -61,6 +61,8 @@ export const conventionRegistrationSchema = z.object({
         .max(100, "Email must not exceed 100 characters")
         .regex(emailPattern, "Please enter a valid email address"),
     newsletterOptIn: z.boolean().optional().default(false),
+    interestedInAccommodation: z.boolean().optional().default(false),
+    interestedInMeals: z.boolean().optional().default(false),
     privacyPolicyAccepted: z.literal(true, {
         errorMap: () => ({ message: "You must accept the privacy policy to continue" }),
     }),
@@ -120,6 +122,8 @@ export interface ConventionRegistrationServiceData {
     attendees: AttendeeData[];
     email: string;
     newsletterOptIn: boolean;
+    interestedInAccommodation: boolean;
+    interestedInMeals: boolean;
     privacyPolicyAccepted: boolean;
     orderTotal: number;
     attendeeCount: number;
@@ -140,6 +144,8 @@ export function toServiceData(data: ConventionRegistrationData): ConventionRegis
         attendees: data.attendees,
         email: data.email,
         newsletterOptIn: data.newsletterOptIn ?? false,
+        interestedInAccommodation: data.interestedInAccommodation ?? false,
+        interestedInMeals: data.interestedInMeals ?? false,
         privacyPolicyAccepted: data.privacyPolicyAccepted,
         orderTotal: calculateOrderTotal(data.attendees),
         attendeeCount: data.attendees.length,

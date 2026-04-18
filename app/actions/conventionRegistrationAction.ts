@@ -1,5 +1,6 @@
 "use server";
 
+import { after } from "next/server";
 import { z } from "zod";
 import Stripe from "stripe";
 import {
@@ -19,6 +20,7 @@ import {
 } from "@/lib/notion-convention";
 import { sendConventionDiscordNotification } from "@/lib/discord-convention";
 import { sendFreeRegistrationConfirmationEmail } from "@/lib/email-convention";
+import { subscribeToNewsletter } from "@/lib/mailchimp";
 
 // Initialize Stripe (will be undefined if not configured)
 const stripe = process.env.STRIPE_SECRET_KEY
@@ -57,6 +59,24 @@ export async function conventionRegistrationAction(
         const notionPageUrl = notionResult.pageId
             ? getNotionPageUrl(notionResult.pageId)
             : undefined;
+
+        // Subscribe to the marketing newsletter if the user opted in.
+        // Best-effort — a Mailchimp failure must not fail the registration,
+        // and it doesn't need to complete before we hand off to Stripe, so
+        // defer it until after the response is sent. This keeps the action's
+        // critical-path latency low (the handoff was tipping Vercel's
+        // serverless timeout and producing 504s).
+        if (validatedData.newsletterOptIn) {
+            after(async () => {
+                const mailchimpResult = await subscribeToNewsletter(serviceData.email);
+                if (!mailchimpResult.success) {
+                    console.warn(
+                        "Newsletter subscription failed for convention registrant (continuing):",
+                        mailchimpResult.error,
+                    );
+                }
+            });
+        }
 
         // If free registration, send confirmation email, Discord notification, and return success
         if (isFree) {
@@ -99,8 +119,15 @@ export async function conventionRegistrationAction(
             };
         }
 
-        // Use explicit BASE_URL if set, otherwise fallback to production domain
-        const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://www.asiuk.org";
+        // Use explicit BASE_URL if set, otherwise prefer the stable Vercel branch alias
+        // (e.g. asi-uk-git-<branch>-<team>.vercel.app — same across redeploys of the same
+        // branch, so a single Stripe webhook endpoint stays valid). Fall back to the
+        // per-deployment URL, then to production.
+        const baseUrl =
+            process.env.NEXT_PUBLIC_BASE_URL ||
+            (process.env.VERCEL_BRANCH_URL ? `https://${process.env.VERCEL_BRANCH_URL}` : null) ||
+            (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : null) ||
+            "https://www.asiuk.org";
 
         // Build line items for Stripe
         const lineItems = buildStripeLineItems(validatedData.attendees);
@@ -120,9 +147,29 @@ export async function conventionRegistrationAction(
             },
         });
 
-        // Update Notion with Stripe session ID
+        // Store the Stripe session ID on the Notion registration. The webhook
+        // reads `notionPageId` from Stripe session metadata (not by querying
+        // Notion for the session ID), so this write is purely bookkeeping for
+        // the confirmation page's QR-code lookup — it doesn't need to land
+        // before we redirect the user. Defer it so we can return the Stripe
+        // URL immediately. The user spends 30s+ on Stripe checkout; `after()`
+        // completes in a fraction of that.
         if (notionResult.pageId && session.id) {
-            await updateConventionRegistrationStatus(notionResult.pageId, "Pending Payment", session.id);
+            const pageId = notionResult.pageId;
+            const sessionId = session.id;
+            after(async () => {
+                const result = await updateConventionRegistrationStatus(
+                    pageId,
+                    "Pending Payment",
+                    sessionId,
+                );
+                if (!result.success) {
+                    console.warn(
+                        "Failed to persist Stripe session ID on Notion registration (continuing):",
+                        result.error,
+                    );
+                }
+            });
         }
 
         return {
