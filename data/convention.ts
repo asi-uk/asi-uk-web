@@ -88,7 +88,7 @@ export const CONVENTION_2026 = {
         },
         {
             question: "Is accommodation available?",
-            answer: "Yes — accommodation is available at Newbold College and should be booked directly with the college.",
+            answer: "Yes — on-campus rooms are available at Newbold College, starting from £41 per night. Options range from shared-standard rooms and bunk rooms to en-suite singles and doubles, plus self-catering flats. You can indicate your interest during registration and we'll send you booking details.",
         },
         {
             question: "Is parking available?",
@@ -96,7 +96,7 @@ export const CONVENTION_2026 = {
         },
         {
             question: "What's included with my ticket?",
-            answer: "Light refreshments throughout each day are included with your ticket. Meals can be arranged separately at the Newbold dining hall by direct arrangement with the college.",
+            answer: "Light refreshments throughout each day are included with your registration. Full meals in the Newbold dining hall are also available for booking — breakfast £7.80, lunch or dinner £9.31 (reduced rates for under-12s). You can indicate your interest during registration and we'll send you booking details.",
         },
         {
             question: "How do I qualify for the member discount?",
