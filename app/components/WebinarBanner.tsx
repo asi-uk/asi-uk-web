@@ -11,10 +11,10 @@ export default function WebinarBanner() {
                 {/* Poster */}
                 <div className="w-full md:w-1/3 flex-shrink-0">
                     <Image
-                        src="https://res.cloudinary.com/disrkguox/image/upload/v1774513138/friday-webinar-little-light-square_pmg548.png"
+                        src="https://res.cloudinary.com/disrkguox/image/upload/v1776588124/asiuk-ftgu-session2-square-sposter_kil2ot.png"
                         width={600}
                         height={600}
-                        alt="From the Ground Up — Session #1 with Little Light Studios"
+                        alt="From the Ground Up — Session #2 with Alistair Huong, AudioVerse"
                         className="w-full h-auto rounded-xl shadow-md"
                     />
                 </div>
@@ -34,22 +34,22 @@ export default function WebinarBanner() {
                     </p>
 
                     <p className="text-slate-800 font-semibold">
-                        Session #1: Scotty Mayer & Keith Detwieler — Little Light Studios
+                        Session #2: Alistair Huong — AudioVerse
                     </p>
 
                     <div className="flex items-center gap-2 text-slate-600">
                         <Calendar className="h-5 w-5 text-asi-blue" />
-                        <span>10th April 2026, 7:00 PM BST</span>
+                        <span>1st May 2026, 7:00 PM BST</span>
                         <span className="text-slate-300">|</span>
                         <Video className="h-5 w-5 text-asi-blue" />
                         <span>Online</span>
                     </div>
 
                     <a
-                        href="https://luma.com/event/evt-gAQTS7l6km47wR7"
+                        href="https://luma.com/event/evt-KQNKgQSaTHYeran"
                         className="luma-checkout--button !bg-asi-blue !text-white hover:!bg-blue-700 !py-3 !px-8 !rounded-lg !font-semibold transition-colors duration-200 inline-flex items-center justify-center gap-2 mt-2"
                         data-luma-action="checkout"
-                        data-luma-event-id="evt-gAQTS7l6km47wR7"
+                        data-luma-event-id="evt-KQNKgQSaTHYeran"
                     >
                         Register for Event
                     </a>
