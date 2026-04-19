@@ -5,6 +5,7 @@ import ConventionBanner from '@/app/components/ConventionBanner';
 import ConventionHero from '@/app/convention/components/ConventionHero';
 import NewsletterSignup from '@/app/components/NewsletterSignup';
 import PostCard from '@/app/news/components/PostCard';
+import WebinarBanner from '@/app/components/WebinarBanner';
 import { getRecentPosts } from '@/lib/sanity/queries';
 
 async function RecentPosts() {
@@ -67,6 +68,13 @@ export default function Home() {
         <div className="w-full">
             {/* Hero — Faith at Work 2026 */}
             <ConventionHero variant="home" />
+
+            {/* Webinar Banner */}
+            <section className="w-full bg-white">
+                <div className="max-w-5xl mx-auto px-4 py-16 md:py-20">
+                    <WebinarBanner />
+                </div>
+            </section>
 
             {/* Convention & Project Funding */}
             <section className="w-full bg-slate-50">
