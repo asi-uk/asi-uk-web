@@ -213,7 +213,7 @@ export const approvedProjects2025: Project[] = [
     },
 ];
 
-export const FUNDING_RECEIVED_2025 = 13941.95;
+export const FUNDING_RECEIVED_2025 = 23941.95;
 export const FUNDING_PLEDGED_2025 = 27894;
 
 export type CycleStatus = 'applications-open' | 'funding-in-progress' | 'completed';
