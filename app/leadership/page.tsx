@@ -73,6 +73,10 @@ export default function Leadership() {
                                     <p className="font-medium text-slate-900">Charlicia Sinclair</p>
                                     <p className="text-sm text-slate-500">Director of Youth</p>
                                 </div>
+                                <div>
+                                    <p className="font-medium text-slate-900">Rachel Graham-Tohue</p>
+                                    <p className="text-sm text-slate-500">Director for Logistics</p>
+                                </div>
                             </div>
                         </div>
                     </div>
