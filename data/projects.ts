@@ -231,20 +231,18 @@ export interface ProjectCycle {
     guidelinesUrl?: string;
     submitEmail?: string;
     infoBanner?: string;
+    footerNote?: string;
     showDonateLink?: boolean;
 }
 
 export const projectCycles: ProjectCycle[] = [
     {
         year: 2026,
-        status: 'applications-open',
-        statusLabel: 'Applications Open',
+        status: 'completed',
+        statusLabel: 'Applications Closed',
         projects: [],
-        applicationDeadline: 'Thursday 23rd April 2026',
-        applicationFormUrl: 'https://c1crerc0h1fs4ljz.public.blob.vercel-storage.com/asi-uk-project-funding-application-form.docx',
-        budgetFormUrl: 'https://c1crerc0h1fs4ljz.public.blob.vercel-storage.com/asi-uk-project-funding-budget-form.xlsx',
-        guidelinesUrl: 'https://c1crerc0h1fs4ljz.public.blob.vercel-storage.com/asi-uk-project-funding-guidelines.pdf',
-        submitEmail: 'evangelism@asiuk.org',
+        infoBanner: 'Applications for the 2026 project cycle are now closed. Submitted projects are currently being reviewed and will be announced soon, ahead of our Annual Convention on 20th June 2026.',
+        footerNote: 'New applications can be submitted during the 2027 project funding cycle, which will open in early 2027.',
     },
     {
         year: 2025,
