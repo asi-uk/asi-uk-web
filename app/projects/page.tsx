@@ -4,7 +4,7 @@ import { projectCycles } from "@/data/projects";
 export const metadata = {
     title: "ASI UK | Project Funding",
     description:
-        "Apply for ASI UK project funding for your evangelistic initiatives. 2026 applications now open - deadline Thursday 23rd April 2026.",
+        "ASI UK provides funding for evangelistic initiatives across the UK. 2026 applications are now closed - details for the 2027 project funding cycle will be posted in early 2027.",
     keywords: [
         "ASI UK Projects",
         "Evangelism",
@@ -28,9 +28,9 @@ export const metadata = {
     openGraph: {
         url: "https://asiuk.org/projects",
         type: "website",
-        title: "ASI UK | Project Funding - 2026 Applications Open",
+        title: "ASI UK | Project Funding",
         description:
-            "Apply for ASI UK project funding for your evangelistic initiatives. 2026 applications now open - deadline Thursday 23rd April 2026.",
+            "ASI UK provides funding for evangelistic initiatives across the UK. 2026 applications are now closed - details for the 2027 project funding cycle will be posted in early 2027.",
         images: [
             {
                 url: "https://www.asiuk.org/thumbnail.png",
@@ -42,9 +42,9 @@ export const metadata = {
     },
     twitter: {
         card: "summary_large_image",
-        title: "ASI UK | Project Funding - 2026 Applications Open",
+        title: "ASI UK | Project Funding",
         description:
-            "Apply for ASI UK project funding for your evangelistic initiatives. 2026 applications now open - deadline Thursday 23rd April 2026.",
+            "ASI UK provides funding for evangelistic initiatives across the UK. 2026 applications are now closed - details for the 2027 project funding cycle will be posted in early 2027.",
         images: [
             {
                 url: "https://www.asiuk.org/thumbnail.png",

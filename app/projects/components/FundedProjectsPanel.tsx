@@ -54,10 +54,17 @@ export default function FundedProjectsPanel({ cycle }: { cycle: ProjectCycle }) 
                         <div className="text-center py-12 bg-slate-50 rounded-xl">
                             <Heart className="h-12 w-12 text-slate-400 mx-auto mb-4" />
                             <h3 className="text-lg font-medium text-slate-600 mb-2">Projects Coming Soon</h3>
-                            <p className="text-slate-500">{cycle.year} approved projects will be displayed here after the convention.</p>
+                            <p className="text-slate-500">{cycle.year} approved projects will be displayed here soon.</p>
                         </div>
                     )}
                 </div>
+
+                {/* Footer Note */}
+                {cycle.footerNote && (
+                    <p className="mt-8 text-center text-sm text-slate-500">
+                        {cycle.footerNote}
+                    </p>
+                )}
             </div>
         </div>
     );
