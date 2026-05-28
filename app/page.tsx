@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { ArrowRight, FolderOpen, Heart, Lightbulb } from 'lucide-react';
 import ConventionBanner from '@/app/components/ConventionBanner';
 import ConventionHero from '@/app/convention/components/ConventionHero';
+import EventsCarousel from '@/app/components/EventsCarousel';
 import NewsletterSignup from '@/app/components/NewsletterSignup';
 import PostCard from '@/app/news/components/PostCard';
 import { getRecentPosts } from '@/lib/sanity/queries';
@@ -67,6 +68,9 @@ export default function Home() {
         <div className="w-full">
             {/* Hero — Faith at Work 2026 */}
             <ConventionHero variant="home" />
+
+            {/* From the Ground Up — upcoming events */}
+            <EventsCarousel />
 
             {/* Convention & Project Funding */}
             <section className="w-full bg-slate-50">
