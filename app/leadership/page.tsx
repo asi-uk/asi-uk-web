@@ -1,6 +1,90 @@
 import CTARounded from "@/app/components/CTARounded";
 import {Collapsible, CollapsibleContent, CollapsibleTrigger} from "@/components/ui/collapsible";
-import {ChevronDown, Shield, Users} from "lucide-react";
+import {ChevronDown, Mail, Shield, Users} from "lucide-react";
+
+type Member = {
+    name: string;
+    role: string;
+    email?: string;
+};
+
+const currentExecutives: Member[] = [
+    {name: "Angel Alishev", role: "President", email: "president@asiuk.org"},
+    {name: "Bianna Espinal", role: "Vice President", email: "vp@asiuk.org"},
+    {name: "Tashana Samuels", role: "Vice President for Evangelism", email: "evangelism@asiuk.org"},
+    {name: "Silvia Garcia Portilla", role: "Treasurer", email: "treasurer@asiuk.org"},
+    {name: "Eric Welch", role: "Secretary", email: "secretary@asiuk.org"},
+];
+
+const currentCommittee: Member[] = [
+    {name: "Charlicia Sinclair", role: "Director of Youth", email: "youth@asiuk.org"},
+    {name: "Rachel Graham-Tohue", role: "Director for Logistics", email: "logistics@asiuk.org"},
+    {name: "Sam Walters", role: "Projects Committee", email: "projects@asiuk.org"},
+    {name: "Jason Garcia Portilla", role: "Projects Committee", email: "projects@asiuk.org"},
+];
+
+const previousExecutives: Member[] = [
+    {name: "Daniel Klop", role: "President"},
+    {name: "Karlene Agard", role: "Vice President"},
+    {name: "Craig Gooden", role: "Vice President for Chapter Growth"},
+    {name: "Angel Alishev", role: "Vice President for Evangelism"},
+    {name: "Michael Garkov", role: "Treasurer"},
+    {name: "Eric Welch", role: "Secretary"},
+];
+
+const previousCommittee: Member[] = [
+    {name: "Jason Garcia Portilla", role: "Projects Committee"},
+    {name: "Tashana Samuels", role: "Projects Committee"},
+    {name: "Sam Walters", role: "Director for Youth Relations"},
+    {name: "Rachel Graham-Tohue", role: "Director for Logistics"},
+];
+
+function initials(name: string) {
+    return name
+        .split(" ")
+        .map((part) => part[0])
+        .slice(0, 2)
+        .join("")
+        .toUpperCase();
+}
+
+function MemberCard({member}: {member: Member}) {
+    return (
+        <div className="flex items-start gap-3 rounded-xl p-3 transition-colors hover:bg-slate-50">
+            <div
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-asi-blue/10 text-sm font-semibold text-asi-blue">
+                {initials(member.name)}
+            </div>
+            <div className="min-w-0">
+                <p className="font-medium text-slate-900 leading-tight">{member.name}</p>
+                <p className="text-sm text-slate-500">{member.role}</p>
+                {member.email && (
+                    <a href={`mailto:${member.email}`}
+                       className="mt-1 inline-flex items-center gap-1.5 text-sm text-asi-blue hover:underline">
+                        <Mail className="h-3.5 w-3.5 shrink-0"/>
+                        <span className="truncate">{member.email}</span>
+                    </a>
+                )}
+            </div>
+        </div>
+    );
+}
+
+function MemberGroup({title, icon, members}: {title: string; icon: React.ReactNode; members: Member[]}) {
+    return (
+        <div className="bg-white rounded-2xl p-6 border border-slate-200">
+            <div className="flex items-center gap-3 mb-4">
+                <div className="rounded-full bg-asi-blue/10 p-2 shrink-0">{icon}</div>
+                <h3 className="font-semibold text-lg text-asi-darkBlue">{title}</h3>
+            </div>
+            <div className="divide-y divide-slate-100">
+                {members.map((member, i) => (
+                    <MemberCard key={`${member.name}-${i}`} member={member}/>
+                ))}
+            </div>
+        </div>
+    );
+}
 
 export default function Leadership() {
     return (
@@ -19,66 +103,17 @@ export default function Leadership() {
             <section className="w-full">
                 <div className="max-w-5xl mx-auto px-4 py-12 md:py-16">
                     <h2 className="text-3xl font-bold text-asi-blue text-center mb-10">Current Team (2025–2027)</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {/* Executive Officers */}
-                        <div className="bg-white rounded-2xl p-6 border border-slate-200">
-                            <div className="flex items-center gap-3 mb-6">
-                                <div className="rounded-full bg-asi-blue/10 p-2 shrink-0">
-                                    <Shield className="h-5 w-5 text-asi-blue"/>
-                                </div>
-                                <h3 className="font-semibold text-lg text-asi-darkBlue">Executive Officers</h3>
-                            </div>
-                            <div className="space-y-4">
-                                <div>
-                                    <p className="font-medium text-slate-900">Angel Alishev</p>
-                                    <p className="text-sm text-slate-500">President</p>
-                                </div>
-                                <div>
-                                    <p className="font-medium text-slate-900">Bianna Espinal</p>
-                                    <p className="text-sm text-slate-500">Vice President</p>
-                                </div>
-                                <div>
-                                    <p className="font-medium text-slate-900">Tashana Samuels</p>
-                                    <p className="text-sm text-slate-500">Vice President for Evangelism</p>
-                                </div>
-                                <div>
-                                    <p className="font-medium text-slate-900">Silvia Garcia Portilla</p>
-                                    <p className="text-sm text-slate-500">Treasurer</p>
-                                </div>
-                                <div>
-                                    <p className="font-medium text-slate-900">Eric Welch</p>
-                                    <p className="text-sm text-slate-500">Secretary</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Committee Members & Directors */}
-                        <div className="bg-white rounded-2xl p-6 border border-slate-200">
-                            <div className="flex items-center gap-3 mb-6">
-                                <div className="rounded-full bg-asi-blue/10 p-2 shrink-0">
-                                    <Users className="h-5 w-5 text-asi-blue"/>
-                                </div>
-                                <h3 className="font-semibold text-lg text-asi-darkBlue">Committee Members & Directors</h3>
-                            </div>
-                            <div className="space-y-4">
-                                <div>
-                                    <p className="font-medium text-slate-900">Sam Walters</p>
-                                    <p className="text-sm text-slate-500">Projects Committee</p>
-                                </div>
-                                <div>
-                                    <p className="font-medium text-slate-900">Jason Garcia Portilla</p>
-                                    <p className="text-sm text-slate-500">Projects Committee</p>
-                                </div>
-                                <div>
-                                    <p className="font-medium text-slate-900">Charlicia Sinclair</p>
-                                    <p className="text-sm text-slate-500">Director of Youth</p>
-                                </div>
-                                <div>
-                                    <p className="font-medium text-slate-900">Rachel Graham-Tohue</p>
-                                    <p className="text-sm text-slate-500">Director for Logistics</p>
-                                </div>
-                            </div>
-                        </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+                        <MemberGroup
+                            title="Executive Officers"
+                            icon={<Shield className="h-5 w-5 text-asi-blue"/>}
+                            members={currentExecutives}
+                        />
+                        <MemberGroup
+                            title="Committee Members & Directors"
+                            icon={<Users className="h-5 w-5 text-asi-blue"/>}
+                            members={currentCommittee}
+                        />
                     </div>
                 </div>
             </section>
@@ -94,71 +129,17 @@ export default function Leadership() {
                                 className="h-5 w-5 transition-transform duration-200 data-[state=open]:rotate-180"/>
                         </CollapsibleTrigger>
                         <CollapsibleContent className="pt-6">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                {/* Executive Officers */}
-                                <div className="bg-white rounded-2xl p-6 border border-slate-200">
-                                    <div className="flex items-center gap-3 mb-6">
-                                        <div className="rounded-full bg-asi-blue/10 p-2 shrink-0">
-                                            <Shield className="h-5 w-5 text-asi-blue"/>
-                                        </div>
-                                        <h3 className="font-semibold text-lg text-asi-darkBlue">Executive Officers</h3>
-                                    </div>
-                                    <div className="space-y-4">
-                                        <div>
-                                            <p className="font-medium text-slate-900">Daniel Klop</p>
-                                            <p className="text-sm text-slate-500">President</p>
-                                        </div>
-                                        <div>
-                                            <p className="font-medium text-slate-900">Karlene Agard</p>
-                                            <p className="text-sm text-slate-500">Vice President</p>
-                                        </div>
-                                        <div>
-                                            <p className="font-medium text-slate-900">Craig Gooden</p>
-                                            <p className="text-sm text-slate-500">Vice President for Chapter Growth</p>
-                                        </div>
-                                        <div>
-                                            <p className="font-medium text-slate-900">Angel Alishev</p>
-                                            <p className="text-sm text-slate-500">Vice President for Evangelism</p>
-                                        </div>
-                                        <div>
-                                            <p className="font-medium text-slate-900">Michael Garkov</p>
-                                            <p className="text-sm text-slate-500">Treasurer</p>
-                                        </div>
-                                        <div>
-                                            <p className="font-medium text-slate-900">Eric Welch</p>
-                                            <p className="text-sm text-slate-500">Secretary</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* Committee Members & Directors */}
-                                <div className="bg-white rounded-2xl p-6 border border-slate-200">
-                                    <div className="flex items-center gap-3 mb-6">
-                                        <div className="rounded-full bg-asi-blue/10 p-2 shrink-0">
-                                            <Users className="h-5 w-5 text-asi-blue"/>
-                                        </div>
-                                        <h3 className="font-semibold text-lg text-asi-darkBlue">Committee Members &
-                                            Directors</h3>
-                                    </div>
-                                    <div className="space-y-4">
-                                        <div>
-                                            <p className="font-medium text-slate-900">Jason Garcia Portilla</p>
-                                            <p className="text-sm text-slate-500">Projects Committee</p>
-                                        </div>
-                                        <div>
-                                            <p className="font-medium text-slate-900">Tashana Samuels</p>
-                                            <p className="text-sm text-slate-500">Projects Committee</p>
-                                        </div>
-                                        <div>
-                                            <p className="font-medium text-slate-900">Sam Walters</p>
-                                            <p className="text-sm text-slate-500">Director for Youth Relations</p>
-                                        </div>
-                                        <div>
-                                            <p className="font-medium text-slate-900">Rachel Graham-Tohue</p>
-                                            <p className="text-sm text-slate-500">Director for Logistics</p>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+                                <MemberGroup
+                                    title="Executive Officers"
+                                    icon={<Shield className="h-5 w-5 text-asi-blue"/>}
+                                    members={previousExecutives}
+                                />
+                                <MemberGroup
+                                    title="Committee Members & Directors"
+                                    icon={<Users className="h-5 w-5 text-asi-blue"/>}
+                                    members={previousCommittee}
+                                />
                             </div>
                         </CollapsibleContent>
                     </Collapsible>
