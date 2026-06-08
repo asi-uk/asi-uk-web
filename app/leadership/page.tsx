@@ -1,26 +1,26 @@
 import CTARounded from "@/app/components/CTARounded";
 import {Collapsible, CollapsibleContent, CollapsibleTrigger} from "@/components/ui/collapsible";
 import {ChevronDown, Mail, Shield, Users} from "lucide-react";
+import Link from "next/link";
 
 type Member = {
     name: string;
     role: string;
-    email?: string;
 };
 
 const currentExecutives: Member[] = [
-    {name: "Angel Alishev", role: "President", email: "president@asiuk.org"},
-    {name: "Bianna Espinal", role: "Vice President", email: "vp@asiuk.org"},
-    {name: "Tashana Samuels", role: "Vice President for Evangelism", email: "evangelism@asiuk.org"},
-    {name: "Silvia Garcia Portilla", role: "Treasurer", email: "treasurer@asiuk.org"},
-    {name: "Eric Welch", role: "Secretary", email: "secretary@asiuk.org"},
+    {name: "Angel Alishev", role: "President"},
+    {name: "Bianna Espinal", role: "Vice President"},
+    {name: "Tashana Samuels", role: "Vice President for Evangelism"},
+    {name: "Silvia Garcia Portilla", role: "Treasurer"},
+    {name: "Eric Welch", role: "Secretary"},
 ];
 
 const currentCommittee: Member[] = [
-    {name: "Charlicia Sinclair", role: "Director of Youth", email: "youth@asiuk.org"},
-    {name: "Rachel Graham-Tohue", role: "Director for Logistics", email: "logistics@asiuk.org"},
-    {name: "Sam Walters", role: "Projects Committee", email: "projects@asiuk.org"},
-    {name: "Jason Garcia Portilla", role: "Projects Committee", email: "projects@asiuk.org"},
+    {name: "Charlicia Sinclair", role: "Director of Youth"},
+    {name: "Rachel Graham-Tohue", role: "Director for Logistics"},
+    {name: "Sam Walters", role: "Projects Committee"},
+    {name: "Jason Garcia Portilla", role: "Projects Committee"},
 ];
 
 const previousExecutives: Member[] = [
@@ -58,13 +58,6 @@ function MemberCard({member}: {member: Member}) {
             <div className="min-w-0">
                 <p className="font-medium text-slate-900 leading-tight">{member.name}</p>
                 <p className="text-sm text-slate-500">{member.role}</p>
-                {member.email && (
-                    <a href={`mailto:${member.email}`}
-                       className="mt-1 inline-flex items-center gap-1.5 text-sm text-asi-blue hover:underline">
-                        <Mail className="h-3.5 w-3.5 shrink-0"/>
-                        <span className="truncate">{member.email}</span>
-                    </a>
-                )}
             </div>
         </div>
     );
@@ -114,6 +107,14 @@ export default function Leadership() {
                             icon={<Users className="h-5 w-5 text-asi-blue"/>}
                             members={currentCommittee}
                         />
+                    </div>
+
+                    <div className="mt-10 text-center">
+                        <Link href="/contact-us"
+                              className="inline-flex items-center gap-2 rounded-full bg-asi-blue px-6 py-3 text-white font-medium hover:bg-asi-darkBlue transition-colors">
+                            <Mail className="h-5 w-5"/>
+                            Contact the team
+                        </Link>
                     </div>
                 </div>
             </section>
