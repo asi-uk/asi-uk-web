@@ -1,10 +1,10 @@
 import { Heart, Hammer } from 'lucide-react';
 import Link from 'next/link';
 import ProgressBar from "@/app/components/ProgressBar";
-import { approvedProjects2025, FUNDING_RECEIVED_2025, FUNDING_PLEDGED_2025 } from "@/data/projects";
+import { approvedProjects2026, FUNDING_RECEIVED_2026, FUNDING_PLEDGED_2026 } from "@/data/projects";
 
 export default function Projects() {
-    const totalGoal = approvedProjects2025.filter(project => !project.cancelled).reduce((sum, project) => sum + project.amount, 0);
+    const totalGoal = approvedProjects2026.filter(project => !project.cancelled).reduce((sum, project) => sum + project.amount, 0);
 
     return (
         <div className="relative w-full overflow-x-hidden">
@@ -16,7 +16,7 @@ export default function Projects() {
                             Donate to ASI UK
                         </h1>
                         <h2 className="text-2xl md:text-3xl font-normal text-blue-100 mb-4">
-                            Support our 2025 Project Cycle
+                            Support our 2026 Project Cycle
                         </h2>
                         <p className="text-sm md:text-lg text-blue-50 max-w-2xl mx-auto leading-relaxed mb-8">
                         ASI UK is supporting many exciting ministries and projects during this project cycle. Every bit of support will go far to supporting the spreading the gospel here in the UK and abroad.
@@ -25,9 +25,9 @@ export default function Projects() {
                         {/* Funding Progress Bar */}
                         <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 mb-8 max-w-2xl mx-auto">
                             <ProgressBar
-                                current={FUNDING_RECEIVED_2025}
+                                current={FUNDING_RECEIVED_2026}
                                 total={totalGoal}
-                                pledged={FUNDING_PLEDGED_2025}
+                                pledged={FUNDING_PLEDGED_2026}
                                 variant="light"
                                 className="text-white"
                             />
