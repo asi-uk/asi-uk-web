@@ -27,6 +27,9 @@ export interface Project {
         firstInstalmentPaid?: string;
         secondInstalment?: number;
         secondInstalmentPaid?: string;
+        // Set when the disbursed amount is final and no further instalment is due
+        // (e.g. the project does not require its full approved amount).
+        complete?: boolean;
     };
 }
 
@@ -37,7 +40,7 @@ export const approvedProjects2025: Project[] = [
         website: "https://discovertruth.ie",
         amount: 20000,
         location: "Dublin, Ireland",
-        disbursement: { firstInstalment: 6800, firstInstalmentPaid: "02.02.26" },
+        disbursement: { firstInstalment: 6800, firstInstalmentPaid: "02.02.26", complete: true },
         shortDescription: "Transformative community programmes across Ireland, combining Adventist health principles with practical ministry support through Health Expos and ongoing wellness programmes.",
         longDescription: "This project will bring transformative community programmes across Ireland, combining Adventist health principles with practical ministry support. The project will launch with Health Expos in major cities including Dublin, Cork, Limerick, and Galway, offering free health screenings, natural remedies workshops, and plant-based cooking demonstrations. Following the expos, ongoing programmes will include weekly Cooking Clubs, Ministry of Healing reading groups, and Bible study groups that provide both physical wellness education and spiritual growth opportunities. The initiative will also feature three internationally renowned health ministry speakers who will conduct training workshops and public programmes to inspire participants and equip local volunteers. Through this comprehensive approach, the project aims to share Adventist health messages, promote holistic healing, and build meaningful connections between local communities and the Seventh-day Adventist Church across Ireland.",
         media: [
@@ -94,7 +97,7 @@ export const approvedProjects2025: Project[] = [
         website: "https://hopefm.org.uk/",
         amount: 7000,
         location: "Birmingham, England",
-        disbursement: { firstInstalment: 2380, firstInstalmentPaid: "02.02.26" },
+        disbursement: { firstInstalment: 2380, firstInstalmentPaid: "02.02.26", secondInstalment: 2380, secondInstalmentPaid: "07.05.26" },
         shortDescription: "HopeFM seeks to relaunch and expand its Christian radio ministry through conference-wide promotion, radio roadshows, DAB expansion to major cities, and website development to reach more listeners.",
         longDescription: "With 87% of UK adults tuning into radio weekly and only 26 registered Christian stations nationwide, HopeFM represents a significant opportunity to reach audiences the church might never otherwise encounter. HopeFM, the broadcasting arm of Hope FM Ministries Limited, has operated as a volunteer-led Christian radio station since 2022, broadcasting via internet and DAB to areas including South and North Birmingham with a potential reach of 1.2 million listeners. Following management changes that reduced services, dedicated presenters maintained the ministry at a minimum level whilst funding operations independently. This project aims to relaunch and expand HopeFM through comprehensive conference-wide promotion encouraging member participation in presenting, producing, and technical roles. The initiative includes radio roadshows that will broadcast from local North England Conference churches, promoting media evangelism whilst giving congregations airtime exposure. DAB expansion plans involve gradually increasing presence in major NEC cities, starting with one additional service to help regain the previously achieved potential reach of 6 million listeners. The project also includes a complete website overhaul and promotional materials for events, conferences, and roadshows to maximise the station's evangelistic impact and community engagement.",
         media: [
@@ -156,7 +159,7 @@ export const approvedProjects2025: Project[] = [
         organisation: "ACE Association",
         amount: 1250,
         location: "Manchester, England",
-        disbursement: { firstInstalment: 425, firstInstalmentPaid: "29.01.26" },
+        disbursement: { firstInstalment: 425, firstInstalmentPaid: "29.01.26", secondInstalment: 425, secondInstalmentPaid: "07.05.26" },
         shortDescription: "This badminton outreach project has already attracted diverse participants including Muslims, Atheists, and Hindus, creating networking opportunities to share God's word through sport. This project aims to continue this effort and culminate in full-day community events.",
         longDescription: "Over the past four years, Manchester's badminton initiative has gained significant traction within the local community and beyond, successfully welcoming participants from diverse religious and cultural backgrounds including Adventists, Muslims, Atheists, and Hindus. This sports programme has proven to be an excellent networking platform for attracting individuals and sharing God's word in a natural, welcoming environment. Manchester's position as a major hub for domestic and international students and professionals provides exceptional outreach opportunities, with numerous hospitals, residential areas, shops, and universities nearby facilitating effective promotion through flyers and word-of-mouth marketing. Beyond encouraging healthy participation and physical fitness, the regular badminton sessions build towards organised full-day community events where all participants come together, creating valuable networking opportunities to reach out and share God's word. These gatherings allow attendees to witness God's character demonstrated through participants' actions and attitudes, fostering a spirit of faith, hope, and unity amongst people from vastly different backgrounds. The programme effectively combines physical wellness with spiritual outreach, using sport as a bridge to build meaningful relationships and share the Adventist message with Manchester's diverse population.",
         media: [

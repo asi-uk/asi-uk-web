@@ -79,6 +79,12 @@ function DisbursementBadge({ disbursement }: { disbursement: NonNullable<Project
                     paidDate={disbursement.secondInstalmentPaid}
                 />
             )}
+            {disbursement.complete && (
+                <span className="inline-flex items-center gap-1.5 bg-slate-50 text-slate-600 text-xs font-medium px-2.5 py-1 rounded-full border border-slate-200">
+                    <CheckCircle2 className="h-3.5 w-3.5" />
+                    No further funding required
+                </span>
+            )}
         </div>
     );
 }
