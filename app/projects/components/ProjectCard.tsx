@@ -7,6 +7,38 @@ import {
 } from "@/components/ui/collapsible";
 import type { Project } from "@/data/projects";
 
+// Render lightweight inline **bold** markers within description text.
+function renderInline(text: string) {
+    return text.split(/(\*\*[^*]+\*\*)/g).map((part, i) =>
+        part.startsWith('**') && part.endsWith('**')
+            ? <strong key={i} className="font-semibold text-slate-800">{part.slice(2, -2)}</strong>
+            : <span key={i}>{part}</span>
+    );
+}
+
+function LongDescription({ content }: { content: NonNullable<Project['longDescription']> }) {
+    if (typeof content === 'string') {
+        return <p className="text-slate-700 leading-relaxed text-sm md:text-base">{content}</p>;
+    }
+    return (
+        <div className="space-y-4">
+            {content.map((block, i) => {
+                if (block.type === 'heading') {
+                    return <h4 key={i} className="text-base md:text-lg font-semibold text-asi-blue">{block.text}</h4>;
+                }
+                if (block.type === 'list') {
+                    return (
+                        <ul key={i} className="list-disc pl-5 space-y-2 text-slate-700 leading-relaxed text-sm md:text-base">
+                            {block.items.map((item, j) => <li key={j}>{renderInline(item)}</li>)}
+                        </ul>
+                    );
+                }
+                return <p key={i} className="text-slate-700 leading-relaxed text-sm md:text-base">{renderInline(block.text)}</p>;
+            })}
+        </div>
+    );
+}
+
 function formatDisbursementDate(date: string): string {
     const [day, month, year] = date.split('.');
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -113,7 +145,7 @@ export default function ProjectCard({ title, amount, location, shortDescription,
                         <div className="px-6 pb-6 pt-0 space-y-6 border-t border-slate-100">
                             {longDescription && (
                                 <div className="pt-4">
-                                    <p className="text-slate-700 leading-relaxed text-sm md:text-base">{longDescription}</p>
+                                    <LongDescription content={longDescription} />
                                 </div>
                             )}
 

@@ -5,12 +5,19 @@ export interface ProjectMedia {
     thumbnail?: string;
 }
 
+// Rich content blocks for long descriptions. Inline **bold** is supported in
+// paragraph/list text. A plain string is also accepted for simple descriptions.
+export type ProjectContentBlock =
+    | { type: 'paragraph'; text: string }
+    | { type: 'heading'; text: string }
+    | { type: 'list'; items: string[] };
+
 export interface Project {
     title: string;
     amount: number;
     location: string;
     shortDescription: string;
-    longDescription?: string;
+    longDescription?: string | ProjectContentBlock[];
     organisation?: string;
     website?: string;
     media?: ProjectMedia[];
@@ -216,6 +223,111 @@ export const approvedProjects2025: Project[] = [
 export const FUNDING_RECEIVED_2025 = 23941.95;
 export const FUNDING_PLEDGED_2025 = 27894;
 
+export const FUNDING_RECEIVED_2026 = 0;
+export const FUNDING_PLEDGED_2026 = 0;
+
+export const approvedProjects2026: Project[] = [
+    {
+        title: "Balm in Gilead: Health, Mental Wellness & Evangelism Expansion",
+        organisation: "Balm in Gilead / Saol na Croí Fellowship",
+        amount: 15000,
+        location: "Ireland",
+        shortDescription: "The next phase of a growing Irish health ministry: a NEWSTART health retreat, the volunteer-led Nedley Depression & Anxiety Recovery Programme, and Barbara O'Neill seminars in London and Dublin — all building toward a self-sustaining centre of health excellence.",
+        longDescription: [
+            { type: 'paragraph', text: "Confident that God has prepared the way to increase both the scope and reach of their ministry, Balm in Gilead is entering an ambitious next phase for the 2026/27 mission cycle, built around three complementary pillars." },
+            { type: 'heading', text: 'Three pillars for 2026/27' },
+            { type: 'list', items: [
+                "**NEWSTART health retreat** — planned for the second quarter of 2027 and developed in consultation with the Adventist-run Black Hills Health and Education Center, who have kindly agreed to help set it up and run it. The goal is a sustainable retreat that ultimately funds both itself and the work of the gospel.",
+                "**Nedley Depression & Anxiety Recovery Programme (NDARP)** — a volunteer-led, community-based programme responding to the reality that close to half the community struggles with some form of mental health challenge. It has proven highly effective at easing those struggles while generating genuine interest in the gospel and in Jesus as the true healer, and runs free of charge — participants cover only materials and incidental costs — making it self-sustaining.",
+                "**Barbara O'Neill seminars** — in London and Dublin in October 2026, replicating an earlier event that was a tremendous success, distributing thousands of copies of Ministry of Healing and other Spirit of Prophecy books and producing excellent follow-ups for Bible studies and health lectures, while generating a surplus to support the wider health ministry.",
+            ]},
+            { type: 'heading', text: 'Long-term vision' },
+            { type: 'paragraph', text: "Together these initiatives advance a long-term vision of community health programmes, retreats and conferences that serve as both revenue generators and points of engagement — ultimately leading to the establishment of their own centre of health excellence, guided by the health principles set out in the Spirit of Prophecy." },
+        ],
+    },
+    {
+        title: "Hope FM Supports OneVoice27",
+        organisation: "Hope FM",
+        website: "https://hopefm.org.uk/",
+        amount: 9600,
+        location: "Birmingham, England",
+        shortDescription: "Positioning Hope FM as the radio voice of the OneVoice27 evangelistic initiative across the North England Conference — expanding onto two new DAB multiplexes in major cities and repurposing local church outreach into accessible broadcasting.",
+        longDescription: [
+            { type: 'paragraph', text: "Hope FM seeks continued ASI UK support to become a strategic media partner to the wider church — primarily the North England Conference (NEC) — in advancing the evangelistic objectives of OneVoice27 (onevoice27.org), an initiative uniting the global Seventh-day Adventist Church in proclaiming the everlasting gospel in preparation for the second coming of Christ. As a volunteer-led Christian radio station broadcasting via internet and DAB since 2022, Hope FM is uniquely positioned to amplify, repurpose and extend the reach of local church outreach across the NEC and beyond." },
+            { type: 'heading', text: 'What the funding will enable' },
+            { type: 'list', items: [
+                "Expand onto two new DAB multiplexes in two major cities",
+                "Serve as the radio voice of OneVoice27 across the NEC airwaves",
+                "Repurpose local church evangelistic and outreach content into accessible radio programming",
+                "Deliver a replicable, week-long Bible lecture series aligned with OneVoice27 themes",
+                "Expand roadshows and live broadcasts from churches and evangelistic events",
+                "Increase production quality and listener engagement, supported by an improved website presence",
+                "Strengthen volunteer presenter development and ministry participation",
+            ]},
+            { type: 'heading', text: 'Building on real momentum' },
+            { type: 'paragraph', text: "This builds on strong recent progress, including successful church roadshows, live evangelistic programming with audience interaction, a growing base of volunteer presenters and technical support, and the launch of Prayers of Hope Live, which allows listeners to submit prayer requests and receive pastoral engagement. With 87% of UK adults tuning into radio weekly and very few registered Christian stations nationally, Hope FM's long-term desire is to increase its footprint on more and more multiplexes — becoming a ministry platform that connects churches with their communities and supports other church ministries." },
+        ],
+    },
+    {
+        title: "Ace Sports Club",
+        organisation: "Ace Sports Club",
+        amount: 2500,
+        location: "Manchester, England",
+        shortDescription: "A Manchester badminton outreach that has welcomed Adventists, Muslims, Atheists and Hindus over five years — expanding into more one-day community events that use sport to build relationships and naturally share God's word.",
+        longDescription: [
+            { type: 'paragraph', text: "Over the past five years, Ace Sports Club's badminton initiative has gained significant traction within the local community and beyond, successfully welcoming participants from diverse backgrounds — including Adventists and non-Adventists such as Muslims, Atheists and Hindus. The sport has proven to be an excellent networking platform for attracting individuals and sharing God's word in a natural, welcoming environment. Manchester, a hub for domestic and international students and professionals, offers an exceptional opportunity to reach many people through flyers and word of mouth, given the concentration of hospitals, homes, shops and universities nearby." },
+            { type: 'heading', text: 'Expanding the outreach' },
+            { type: 'paragraph', text: "With additional funding, the club aims to increase the number of one-day events that use badminton as a tool for community engagement. These gatherings build unity and a sense of belonging among diverse participants while creating long-term, sustainable relationships, and by making events more accessible the club hopes to attract new players and broaden participation. Beyond skill development and physical activity, the events open doors for deeper, meaningful engagement — a space where God's Word can be shared naturally and His character demonstrated through the participants." },
+            { type: 'heading', text: 'Long-term mission' },
+            { type: 'paragraph', text: "Looking ahead, the goal is to nurture ongoing relationships with those who express interest in the Bible. A dedicated core team — including the organisers, who have completed the Discipleship Course and Church Planting Programme, alongside other club members — will provide consistent follow-up through small-group meetings in their homes, offering a relaxed and welcoming environment where individuals feel comfortable to engage. The ultimate aim is to win souls for Christ through genuine connection, fellowship and shared faith." },
+        ],
+    },
+    {
+        title: "Transforming \"Ye Shall Know Them by Their Fruits\" into a Public-Facing Book",
+        amount: 2200,
+        location: "United Kingdom",
+        shortDescription: "Reworking an academic book into an accessible, public-facing title that bridges curiosity about society, morality and truth to the message of Revelation 14 — aiming for 1,000–2,000 copies and 10,000+ digital readers in its first year.",
+        longDescription: [
+            { type: 'paragraph', text: "This project seeks to transform the academic book \"Ye Shall Know Them by Their Fruits\" into a high-quality, public-facing non-fiction title designed for a wide audience, with the explicit purpose of opening hearts and minds to biblical truth — particularly the Three Angels' Messages of Revelation 14. While the original reached academic readers, this new version will be rewritten in accessible, narrative-driven language. The strategy recognises that many people today are not reached through traditional evangelism but are open to exploring questions about society, corruption, morality and truth; a compelling, well-presented book becomes a bridge from intellectual curiosity to spiritual interest." },
+            { type: 'heading', text: 'How the funding will be used' },
+            { type: 'list', items: [
+                "Professional editorial development, to adapt the book for a general audience",
+                "High-quality cover design and formatting, to position it competitively in the mainstream market",
+                "A targeted marketing campaign — Amazon optimisation, social media promotion and publicity outreach",
+            ]},
+            { type: 'heading', text: 'Measurable first-year outcomes' },
+            { type: 'list', items: [
+                "Distribute 1,000–2,000 copies",
+                "Reach 10,000+ readers through online content and promotion",
+                "Deliver 5–8 presentations in churches, small groups and public talks",
+                "Invite around 20 individuals into Bible study conversations",
+            ]},
+            { type: 'heading', text: 'Long-term plans' },
+            { type: 'paragraph', text: "The book is intended as the foundation of a broader evangelistic communication strategy aimed at secular and professional audiences, with future development including translation into additional languages (Spanish and French), expanded speaking engagements and seminars, and a structured outreach programme linking readers to Bible study resources. Any financial surplus will be fully reinvested into mission activities, establishing a sustainable model of intellectual and public evangelism that leads individuals from curiosity, to reflection, to engagement with Scripture, and ultimately to a deeper relationship with Christ." },
+        ],
+    },
+    {
+        title: "Health Heroes Project",
+        amount: 2000,
+        location: "Kings Norton, Birmingham",
+        shortDescription: "A children's health and discipleship programme in a deprived Kings Norton ward, teaching 4–10-year-olds the eight health principles through 'Healthy Biblical Heroes', daily nutritious meals and family fun days — following Christ's method of meeting needs first.",
+        longDescription: [
+            { type: 'paragraph', text: "The Health Heroes Project is designed to inspire the approximately 25,000 people who live in the Kings Norton Ward, educating children and their families about the eight health principles and, in doing so, introducing them to — or deepening their relationship with — God. Based at the Hawkesley Community Centre in one of south Kings Norton's most deprived estates, the project aspires to emulate Christ's method of reaching people: mingling with them as one who desired their good, showing sympathy, ministering to their needs, winning their confidence, and then bidding them, \"Follow Me\" (Ministry of Healing, p. 143). Its first phase focuses on the 1,128 children living in low-income households — 32.8% of all children in the ward — highlighting substantial physical and spiritual poverty." },
+            { type: 'heading', text: 'A two-week programme for ages 4–10' },
+            { type: 'paragraph', text: "This inclusive programme introduces children from diverse faiths and backgrounds to Healthy Biblical Heroes who model ways to grow spiritually and physically. Each week begins with a Children's Health Expo and a family fun day and culminates in a celebration with families showcasing the children's achievements, with a hot, nutritious vegetarian meal and snack provided daily. Up to 60 children are expected across the two weeks, with all volunteers DBS-checked at an 8:1 ratio, a first aider present, and food prepared by Food Hygiene–certificated staff." },
+            { type: 'heading', text: 'A typical day (9:30–13:30)' },
+            { type: 'list', items: [
+                "Interactive devotionals focused on health heroes such as Daniel, Martha and Samson",
+                "Innovative Bible-based games and at least one form of exercise each day",
+                "Crafts, puppetry, obstacle courses, cooking and cultural learning such as the steelpan",
+                "A copy of The 8 Laws of Health: Educational, Colouring & Activity Book for every child",
+            ]},
+            { type: 'heading', text: 'Long-term plans' },
+            { type: 'paragraph', text: "After the two-week intensive, children continue in a weekly Healthy Heroes Faith Builders (LEGO) club — sharing a hot vegetarian meal before collaborative, faith-based building activities centred on the 21-session My Place with Jesus study series — culminating in a celebratory graduation and baptism. In the long term, the project aims to become a source of light for the community at least three days each week." },
+        ],
+    },
+];
+
 export type CycleStatus = 'applications-open' | 'funding-in-progress' | 'completed';
 
 export interface ProjectCycle {
@@ -238,20 +350,21 @@ export interface ProjectCycle {
 export const projectCycles: ProjectCycle[] = [
     {
         year: 2026,
-        status: 'completed',
-        statusLabel: 'Applications Closed',
-        projects: [],
-        infoBanner: 'Applications for the 2026 project cycle are now closed. Submitted projects are currently being reviewed and will be announced soon, ahead of our Annual Convention on 20th June 2026.',
-        footerNote: 'New applications can be submitted during the 2027 project funding cycle, which will open in early 2027.',
+        status: 'funding-in-progress',
+        statusLabel: 'Funding In Progress',
+        projects: approvedProjects2026,
+        fundingReceived: FUNDING_RECEIVED_2026,
+        fundingPledged: FUNDING_PLEDGED_2026,
+        showDonateLink: true,
+        infoBanner: 'The 2026 approved projects are listed below. Fundraising is now underway — your gift helps us fully fund these ministries. Approved projects will be presented at our Annual Convention on 20th June 2026.',
     },
     {
         year: 2025,
-        status: 'funding-in-progress',
-        statusLabel: 'Funding In Progress',
+        status: 'completed',
+        statusLabel: 'Funding Closed',
         projects: approvedProjects2025,
         fundingReceived: FUNDING_RECEIVED_2025,
         fundingPledged: FUNDING_PLEDGED_2025,
-        infoBanner: 'Fundraising for 2025 projects is still ongoing. First instalments have been disbursed to approved projects based on the current amount of funds received .',
-        showDonateLink: true,
+        infoBanner: 'Fundraising for the 2025 project cycle is now closed. Thank you to everyone who gave — funds are still being disbursed to projects as indicated below.',
     },
 ];

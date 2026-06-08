@@ -7,8 +7,9 @@ interface ProgressBarProps {
 }
 
 export default function ProgressBar({ current, total, pledged, className = "", variant = "default" }: ProgressBarProps) {
-    const percentage = Math.min((current / total) * 100, 100);
-    const pledgedPercentage = pledged ? Math.min((pledged / total) * 100, 100) : 0;
+    const percentage = total > 0 ? Math.min((current / total) * 100, 100) : 0;
+    const hasPledged = pledged != null && pledged > 0;
+    const pledgedPercentage = hasPledged ? Math.min((pledged / total) * 100, 100) : 0;
     const isLight = variant === 'light';
 
     return (
@@ -16,11 +17,11 @@ export default function ProgressBar({ current, total, pledged, className = "", v
             <div className="flex justify-between items-center mb-3">
                 <span className={`text-base font-semibold ${isLight ? 'text-white' : 'text-slate-700'}`}>Funding Progress</span>
                 <span className={`text-base font-medium ${isLight ? 'text-blue-100' : 'text-slate-600'}`}>
-                    £{current.toLocaleString()}{pledged ? ' received' : ''} of £{total.toLocaleString()}
+                    £{current.toLocaleString()}{hasPledged ? ' received' : ''} of £{total.toLocaleString()}
                 </span>
             </div>
             <div className={`relative w-full rounded-full h-4 overflow-hidden ${isLight ? 'bg-white/20' : 'bg-slate-200'}`}>
-                {pledged && (
+                {hasPledged && (
                     <div
                         className={`absolute h-full rounded-full ${isLight ? 'bg-white/40' : 'bg-asi-blue/20'}`}
                         style={{ width: `${pledgedPercentage}%` }}
@@ -36,7 +37,7 @@ export default function ProgressBar({ current, total, pledged, className = "", v
                     {percentage.toFixed(1)}% Complete
                 </span>
                 <span className={`text-sm ${isLight ? 'text-blue-100' : 'text-slate-500'}`}>
-                    {pledged ? `£${pledged.toLocaleString()} pledged` : `£${(total - current).toLocaleString()} remaining`}
+                    {hasPledged ? `£${pledged.toLocaleString()} pledged` : `£${(total - current).toLocaleString()} remaining`}
                 </span>
             </div>
         </div>
