@@ -8,7 +8,6 @@ import {
     Users,
     HeartHandshake,
     ArrowUpRight,
-    Sparkles,
     PlayCircle,
 } from 'lucide-react';
 import ConventionHero from '@/app/convention/components/ConventionHero';
@@ -188,28 +187,6 @@ export default function ConventionPage() {
                         {CONVENTION_2026.presenters.map((presenter) => (
                             <SpeakerCard key={presenter.name} presenter={presenter} />
                         ))}
-                        {/* "More to come" placeholder card */}
-                        <div className="flex flex-col gap-4">
-                            <div className="relative flex aspect-[3/4] w-full items-center justify-center overflow-hidden rounded-2xl border-2 border-dashed border-slate-200 bg-slate-50">
-                                <div className="flex flex-col items-center gap-3 px-6 text-center">
-                                    <Sparkles className="h-10 w-10 text-asi-blue/60" />
-                                    <p className="text-base font-semibold text-asi-darkBlue">
-                                        More speakers coming soon
-                                    </p>
-                                    <p className="text-sm text-slate-500">
-                                        The line-up is still being finalised.
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="flex flex-col gap-1 px-1">
-                                <h3 className="text-xl md:text-2xl font-semibold text-asi-darkBlue leading-tight">
-                                    To be announced
-                                </h3>
-                                <p className="text-sm text-slate-500">
-                                    Check back soon for more names.
-                                </p>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </section>

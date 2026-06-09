@@ -51,18 +51,46 @@ const DAYS: DayBlock[] = [
         day: 'Sabbath — Saturday 20 June',
         dayShort: 'SAT 20 JUN',
         sessions: [
-            { time: '10:00', title: 'Welcome & Panel Discussion' },
             {
-                time: '11:30',
-                title: 'Main Service',
-                description: 'Ministries spotlight, offering, and sermon.',
+                time: '10:00',
+                title: 'Welcome & Mixer',
+                description: 'Housekeeping, prayer, worship in song, and an opening group discussion.',
             },
-            { time: '13:00', title: 'Lunch' },
-            { time: '14:30', title: 'Mixer' },
-            { time: '15:15', title: 'Seminar #1 — Ministries' },
-            { time: '16:30', title: 'Seminar #2 — Professionals' },
-            { time: '17:30', title: 'Seminar #3 — Business & Entrepreneurship' },
-            { time: '18:30', title: 'Close' },
+            {
+                time: '11:15',
+                title: 'Main Service',
+                description:
+                    "Worship in song, highlights from last year's projects, the history of ASI with Adam Ramdin, ministry spotlights, and the offering appeal.",
+            },
+            {
+                time: '12:15',
+                title: 'Sermon: "Faith at Work"',
+                speaker: 'Jesse Zwiker',
+            },
+            { time: '13:00', title: 'Lunch / Networking' },
+            { time: '14:30', title: 'Afternoon Welcome & Worship' },
+            {
+                time: '15:15',
+                title: 'Ministries Focus — "Taking the Initiative"',
+                speaker: 'Dusanka Rancic',
+                description:
+                    'The role of supporting ministries in the church, with personal testimony.',
+            },
+            {
+                time: '16:30',
+                title: '"Witness at Work" — Professionals Panel',
+                description: 'A moderated panel on living out faith in professional life.',
+            },
+            {
+                time: '17:30',
+                title: 'Business & Entrepreneurship — "Honouring God Through My Business"',
+                speaker: 'Jesse Zwiker',
+            },
+            {
+                time: '18:30',
+                title: 'Close',
+                description: 'Prayer and announcements.',
+            },
             {
                 time: 'Evening',
                 title: 'Informal Mixers & Social',
@@ -79,9 +107,14 @@ const DAYS: DayBlock[] = [
                 time: '10:00',
                 title: 'Parallel Breakout Training Seminars',
                 description:
-                    'Topics include setting up a ministry (financial, legal), harnessing technology in business and ministry, and leadership.',
+                    'Concurrent practical sessions, including setting up a ministry (financial, legal, compliance), harnessing technology in business and ministry with Eric Welch, and the top business and ministry mistakes with Jesse Zwiker.',
             },
-            { time: '12:00', title: 'Final Charge & Goodbyes' },
+            {
+                time: '12:00',
+                title: 'Final Charge & Goodbyes',
+                description:
+                    'Announcements, closing thoughts, a final word from Jesse Zwiker, and group prayer.',
+            },
             {
                 time: '14:00',
                 title: 'Annual General Meeting (AGM)',
@@ -122,10 +155,6 @@ export default function ConventionProgrammePage() {
                             {CONVENTION_2026.venue}, {CONVENTION_2026.venueLocation}
                         </span>
                     </div>
-                    <p className="mt-6 max-w-2xl text-base text-slate-600">
-                        A provisional outline of the weekend. Session details, speakers, and exact
-                        times will be added as the programme is finalised.
-                    </p>
                 </header>
 
                 {/* Day tabs */}
@@ -188,11 +217,6 @@ export default function ConventionProgrammePage() {
                         </section>
                     ))}
                 </div>
-
-                <p className="mt-10 text-center text-sm text-slate-500">
-                    Programme subject to change. Final schedule will be shared with registered
-                    attendees ahead of the event.
-                </p>
             </div>
         </div>
     );

@@ -55,10 +55,10 @@ export const CONVENTION_2026 = {
             day: "Saturday 20 June",
             dayShort: "SAT 20 JUN",
             sessions: [
-                { time: "10:00", title: "Welcome & Panel Discussion" },
-                { time: "11:30", title: "Main Service" },
-                { time: "14:30", title: "Seminars & Mixer" },
-                { time: "Evening", title: "Informal Gathering" },
+                { time: "10:00", title: "Welcome & Mixer" },
+                { time: "11:15", title: "Main Service & Sermon" },
+                { time: "14:30", title: "Afternoon Sessions" },
+                { time: "Evening", title: "Informal Mixers" },
             ],
         },
         {
