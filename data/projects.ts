@@ -1,5 +1,5 @@
 export interface ProjectMedia {
-    type: 'image' | 'video' | 'flyer';
+    type: 'image' | 'video' | 'flyer' | 'link';
     url: string;
     title?: string;
     thumbnail?: string;
@@ -307,6 +307,21 @@ export const approvedProjects2026: Project[] = [
             ]},
             { type: 'heading', text: 'Long-term plans' },
             { type: 'paragraph', text: "The book is intended as the foundation of a broader evangelistic communication strategy aimed at secular and professional audiences, with future development including translation into additional languages (Spanish and French), expanded speaking engagements and seminars, and a structured outreach programme linking readers to Bible study resources. Any financial surplus will be fully reinvested into mission activities, establishing a sustainable model of intellectual and public evangelism that leads individuals from curiosity, to reflection, to engagement with Scripture, and ultimately to a deeper relationship with Christ." },
+        ],
+        media: [
+            {
+                type: 'video',
+                url: 'https://www.youtube.com/embed/CgMQQy8Xpek',
+            },
+            {
+                type: 'video',
+                url: 'https://www.youtube.com/embed/3Nv81PlivZA',
+            },
+            {
+                type: 'link',
+                url: 'https://link.springer.com/book/10.1007/978-3-030-78498-0',
+                title: 'View "Ye Shall Know Them by Their Fruits" on Springer',
+            },
         ],
     },
     {

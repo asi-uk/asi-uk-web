@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { MapPin, Heart, Download, ExternalLink, CheckCircle2, Clock } from "lucide-react";
+import { MapPin, Heart, Download, ExternalLink, CheckCircle2, Clock, BookOpen } from "lucide-react";
 import {
     Collapsible,
     CollapsibleContent,
@@ -221,7 +221,23 @@ export default function ProjectCard({ title, amount, location, shortDescription,
                                                     </div>
                                                 )}
 
-                                                {item.title && item.type !== 'flyer' && (
+                                                {item.type === 'link' && (
+                                                    <div className="p-4 bg-slate-50">
+                                                        <a
+                                                            href={item.url}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className="flex items-center gap-3 text-asi-blue hover:text-asi-darkBlue transition-colors"
+                                                        >
+                                                            <BookOpen className="h-5 w-5"/>
+                                                            <span
+                                                                className="font-medium">{item.title || `Visit Link ${index + 1}`}</span>
+                                                            <ExternalLink className="h-4 w-4"/>
+                                                        </a>
+                                                    </div>
+                                                )}
+
+                                                {item.title && item.type !== 'flyer' && item.type !== 'link' && (
                                                     <div className="p-3 bg-slate-50">
                                                         <p className="text-sm font-medium text-slate-700">{item.title}</p>
                                                     </div>
