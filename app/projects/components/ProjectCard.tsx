@@ -7,13 +7,22 @@ import {
 } from "@/components/ui/collapsible";
 import type { Project } from "@/data/projects";
 
-// Render lightweight inline **bold** markers within description text.
+// Render lightweight inline **bold** markers and [label](url) links within description text.
 function renderInline(text: string) {
-    return text.split(/(\*\*[^*]+\*\*)/g).map((part, i) =>
-        part.startsWith('**') && part.endsWith('**')
-            ? <strong key={i} className="font-semibold text-slate-800">{part.slice(2, -2)}</strong>
-            : <span key={i}>{part}</span>
-    );
+    return text.split(/(\*\*[^*]+\*\*|\[[^\]]+\]\([^)]+\))/g).map((part, i) => {
+        if (part.startsWith('**') && part.endsWith('**')) {
+            return <strong key={i} className="font-semibold text-slate-800">{part.slice(2, -2)}</strong>;
+        }
+        const link = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+        if (link) {
+            return (
+                <a key={i} href={link[2]} target="_blank" rel="noopener noreferrer" className="text-asi-blue underline hover:text-asi-darkBlue transition">
+                    {link[1]}
+                </a>
+            );
+        }
+        return <span key={i}>{part}</span>;
+    });
 }
 
 function LongDescription({ content }: { content: NonNullable<Project['longDescription']> }) {
