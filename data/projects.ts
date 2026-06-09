@@ -231,13 +231,13 @@ export const FUNDING_PLEDGED_2026 = 0;
 
 export const approvedProjects2026: Project[] = [
     {
-        title: "Balm in Gilead: Health, Mental Wellness & Evangelism Expansion",
-        organisation: "Balm in Gilead / Saol na Croí Fellowship",
+        title: "Balm of Gilead: Health, Mental Wellness & Evangelism Expansion",
+        organisation: "Balm of Gilead / Saol na Croí Fellowship",
         amount: 15000,
         location: "Ireland",
         shortDescription: "The next phase of a growing Irish health ministry: a NEWSTART health retreat, the volunteer-led Nedley Depression & Anxiety Recovery Programme, and Barbara O'Neill seminars in London and Dublin — all building toward a self-sustaining centre of health excellence.",
         longDescription: [
-            { type: 'paragraph', text: "Confident that God has prepared the way to increase both the scope and reach of their ministry, Balm in Gilead is entering an ambitious next phase for the 2026/27 mission cycle, built around three complementary pillars." },
+            { type: 'paragraph', text: "Confident that God has prepared the way to increase both the scope and reach of their ministry, Balm of Gilead is entering an ambitious next phase for the 2026/27 mission cycle, built around three complementary pillars." },
             { type: 'heading', text: 'Three pillars for 2026/27' },
             { type: 'list', items: [
                 "**NEWSTART health retreat** — planned for the second quarter of 2027 and developed in consultation with the Adventist-run Black Hills Health and Education Center, who have kindly agreed to help set it up and run it. The goal is a sustainable retreat that ultimately funds both itself and the work of the gospel.",
