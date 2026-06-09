@@ -280,6 +280,13 @@ export const approvedProjects2026: Project[] = [
             { type: 'heading', text: 'Building on real momentum' },
             { type: 'paragraph', text: "This builds on strong recent progress, including successful church roadshows, live evangelistic programming with audience interaction, a growing base of volunteer presenters and technical support, and the launch of Prayers of Hope Live, which allows listeners to submit prayer requests and receive pastoral engagement. With 87% of UK adults tuning into radio weekly and very few registered Christian stations nationally, Hope FM's long-term desire is to increase its footprint on more and more multiplexes — becoming a ministry platform that connects churches with their communities and supports other church ministries." },
         ],
+        media: [
+            {
+                type: 'link',
+                url: 'https://hopefm.org.uk/',
+                title: 'Visit the Hope FM website',
+            },
+        ],
     },
     {
         title: "Ace Sports Club",
