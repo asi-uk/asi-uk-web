@@ -171,12 +171,12 @@ export default function ProjectCard({ title, amount, location, shortDescription,
                                         {media.map((item, index) => (
                                             <div key={index} className="border border-slate-200 rounded-lg overflow-hidden">
                                                 {item.type === 'image' && (
-                                                    <div className="aspect-video relative">
+                                                    <div className={`relative bg-slate-100 ${item.orientation === 'portrait' ? 'aspect-[3/4]' : 'aspect-video'}`}>
                                                         <Image
                                                             src={item.url}
                                                             alt={item.title || `${title} image ${index + 1}`}
                                                             fill
-                                                            className="object-cover"
+                                                            className={item.orientation === 'portrait' ? 'object-contain' : 'object-cover'}
                                                         />
                                                     </div>
                                                 )}

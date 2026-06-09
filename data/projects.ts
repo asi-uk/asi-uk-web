@@ -3,6 +3,9 @@ export interface ProjectMedia {
     url: string;
     title?: string;
     thumbnail?: string;
+    // Image orientation; defaults to 'landscape'. Use 'portrait' for tall
+    // images so they are shown upright rather than cropped to a wide frame.
+    orientation?: 'portrait' | 'landscape';
 }
 
 // Rich content blocks for long descriptions. Inline **bold** is supported in
@@ -246,6 +249,13 @@ export const approvedProjects2026: Project[] = [
             ]},
             { type: 'heading', text: 'Long-term vision' },
             { type: 'paragraph', text: "Together these initiatives advance a long-term vision of community health programmes, retreats and conferences that serve as both revenue generators and points of engagement — ultimately leading to the establishment of their own centre of health excellence, guided by the health principles set out in the Spirit of Prophecy." },
+        ],
+        media: [
+            {
+                type: 'image',
+                url: 'https://res.cloudinary.com/disrkguox/image/upload/v1781037884/Health_retreat_2027_eio2o4.jpg',
+                orientation: 'portrait',
+            },
         ],
     },
     {
