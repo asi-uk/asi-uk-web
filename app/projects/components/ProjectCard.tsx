@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { MapPin, Heart, Download, ExternalLink, CheckCircle2, Clock } from "lucide-react";
+import { MapPin, Heart, Download, ExternalLink, CheckCircle2, Clock, BookOpen } from "lucide-react";
 import {
     Collapsible,
     CollapsibleContent,
@@ -7,13 +7,22 @@ import {
 } from "@/components/ui/collapsible";
 import type { Project } from "@/data/projects";
 
-// Render lightweight inline **bold** markers within description text.
+// Render lightweight inline **bold** markers and [label](url) links within description text.
 function renderInline(text: string) {
-    return text.split(/(\*\*[^*]+\*\*)/g).map((part, i) =>
-        part.startsWith('**') && part.endsWith('**')
-            ? <strong key={i} className="font-semibold text-slate-800">{part.slice(2, -2)}</strong>
-            : <span key={i}>{part}</span>
-    );
+    return text.split(/(\*\*[^*]+\*\*|\[[^\]]+\]\([^)]+\))/g).map((part, i) => {
+        if (part.startsWith('**') && part.endsWith('**')) {
+            return <strong key={i} className="font-semibold text-slate-800">{part.slice(2, -2)}</strong>;
+        }
+        const link = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+        if (link) {
+            return (
+                <a key={i} href={link[2]} target="_blank" rel="noopener noreferrer" className="text-asi-blue underline hover:text-asi-darkBlue transition">
+                    {link[1]}
+                </a>
+            );
+        }
+        return <span key={i}>{part}</span>;
+    });
 }
 
 function LongDescription({ content }: { content: NonNullable<Project['longDescription']> }) {
@@ -162,12 +171,12 @@ export default function ProjectCard({ title, amount, location, shortDescription,
                                         {media.map((item, index) => (
                                             <div key={index} className="border border-slate-200 rounded-lg overflow-hidden">
                                                 {item.type === 'image' && (
-                                                    <div className="aspect-video relative">
+                                                    <div className={`relative bg-slate-100 ${item.orientation === 'portrait' ? 'aspect-[3/4]' : 'aspect-video'}`}>
                                                         <Image
                                                             src={item.url}
                                                             alt={item.title || `${title} image ${index + 1}`}
                                                             fill
-                                                            className="object-cover"
+                                                            className={item.orientation === 'portrait' ? 'object-contain' : 'object-cover'}
                                                         />
                                                     </div>
                                                 )}
@@ -212,7 +221,23 @@ export default function ProjectCard({ title, amount, location, shortDescription,
                                                     </div>
                                                 )}
 
-                                                {item.title && item.type !== 'flyer' && (
+                                                {item.type === 'link' && (
+                                                    <div className="p-4 bg-slate-50">
+                                                        <a
+                                                            href={item.url}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className="flex items-center gap-3 text-asi-blue hover:text-asi-darkBlue transition-colors"
+                                                        >
+                                                            <BookOpen className="h-5 w-5"/>
+                                                            <span
+                                                                className="font-medium">{item.title || `Visit Link ${index + 1}`}</span>
+                                                            <ExternalLink className="h-4 w-4"/>
+                                                        </a>
+                                                    </div>
+                                                )}
+
+                                                {item.title && item.type !== 'flyer' && item.type !== 'link' && (
                                                     <div className="p-3 bg-slate-50">
                                                         <p className="text-sm font-medium text-slate-700">{item.title}</p>
                                                     </div>

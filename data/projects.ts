@@ -1,8 +1,11 @@
 export interface ProjectMedia {
-    type: 'image' | 'video' | 'flyer';
+    type: 'image' | 'video' | 'flyer' | 'link';
     url: string;
     title?: string;
     thumbnail?: string;
+    // Image orientation; defaults to 'landscape'. Use 'portrait' for tall
+    // images so they are shown upright rather than cropped to a wide frame.
+    orientation?: 'portrait' | 'landscape';
 }
 
 // Rich content blocks for long descriptions. Inline **bold** is supported in
@@ -231,13 +234,13 @@ export const FUNDING_PLEDGED_2026 = 0;
 
 export const approvedProjects2026: Project[] = [
     {
-        title: "Balm in Gilead: Health, Mental Wellness & Evangelism Expansion",
-        organisation: "Balm in Gilead / Saol na Croí Fellowship",
+        title: "Balm of Gilead: Health, Mental Wellness & Evangelism Expansion",
+        organisation: "Balm of Gilead / Saol na Croí Fellowship",
         amount: 15000,
         location: "Ireland",
         shortDescription: "The next phase of a growing Irish health ministry: a NEWSTART health retreat, the volunteer-led Nedley Depression & Anxiety Recovery Programme, and Barbara O'Neill seminars in London and Dublin — all building toward a self-sustaining centre of health excellence.",
         longDescription: [
-            { type: 'paragraph', text: "Confident that God has prepared the way to increase both the scope and reach of their ministry, Balm in Gilead is entering an ambitious next phase for the 2026/27 mission cycle, built around three complementary pillars." },
+            { type: 'paragraph', text: "Confident that God has prepared the way to increase both the scope and reach of their ministry, Balm of Gilead is entering an ambitious next phase for the 2026/27 mission cycle, built around three complementary pillars." },
             { type: 'heading', text: 'Three pillars for 2026/27' },
             { type: 'list', items: [
                 "**NEWSTART health retreat** — planned for the second quarter of 2027 and developed in consultation with the Adventist-run Black Hills Health and Education Center, who have kindly agreed to help set it up and run it. The goal is a sustainable retreat that ultimately funds both itself and the work of the gospel.",
@@ -246,6 +249,13 @@ export const approvedProjects2026: Project[] = [
             ]},
             { type: 'heading', text: 'Long-term vision' },
             { type: 'paragraph', text: "Together these initiatives advance a long-term vision of community health programmes, retreats and conferences that serve as both revenue generators and points of engagement — ultimately leading to the establishment of their own centre of health excellence, guided by the health principles set out in the Spirit of Prophecy." },
+        ],
+        media: [
+            {
+                type: 'image',
+                url: 'https://res.cloudinary.com/disrkguox/image/upload/v1781037884/Health_retreat_2027_eio2o4.jpg',
+                orientation: 'portrait',
+            },
         ],
     },
     {
@@ -270,6 +280,13 @@ export const approvedProjects2026: Project[] = [
             { type: 'heading', text: 'Building on real momentum' },
             { type: 'paragraph', text: "This builds on strong recent progress, including successful church roadshows, live evangelistic programming with audience interaction, a growing base of volunteer presenters and technical support, and the launch of Prayers of Hope Live, which allows listeners to submit prayer requests and receive pastoral engagement. With 87% of UK adults tuning into radio weekly and very few registered Christian stations nationally, Hope FM's long-term desire is to increase its footprint on more and more multiplexes — becoming a ministry platform that connects churches with their communities and supports other church ministries." },
         ],
+        media: [
+            {
+                type: 'link',
+                url: 'https://hopefm.org.uk/',
+                title: 'Visit the Hope FM website',
+            },
+        ],
     },
     {
         title: "Ace Sports Club",
@@ -291,7 +308,7 @@ export const approvedProjects2026: Project[] = [
         location: "United Kingdom",
         shortDescription: "Reworking an academic book into an accessible, public-facing title that bridges curiosity about society, morality and truth to the message of Revelation 14 — aiming for 1,000–2,000 copies and 10,000+ digital readers in its first year.",
         longDescription: [
-            { type: 'paragraph', text: "This project seeks to transform the academic book \"Ye Shall Know Them by Their Fruits\" into a high-quality, public-facing non-fiction title designed for a wide audience, with the explicit purpose of opening hearts and minds to biblical truth — particularly the Three Angels' Messages of Revelation 14. While the original reached academic readers, this new version will be rewritten in accessible, narrative-driven language. The strategy recognises that many people today are not reached through traditional evangelism but are open to exploring questions about society, corruption, morality and truth; a compelling, well-presented book becomes a bridge from intellectual curiosity to spiritual interest." },
+            { type: 'paragraph', text: "This project seeks to transform the academic book [\"Ye Shall Know Them by Their Fruits\"](https://link.springer.com/book/10.1007/978-3-030-78498-0) into a high-quality, public-facing non-fiction title designed for a wide audience, with the explicit purpose of opening hearts and minds to biblical truth — particularly the Three Angels' Messages of Revelation 14. While the original reached academic readers, this new version will be rewritten in accessible, narrative-driven language. The strategy recognises that many people today are not reached through traditional evangelism but are open to exploring questions about society, corruption, morality and truth; a compelling, well-presented book becomes a bridge from intellectual curiosity to spiritual interest." },
             { type: 'heading', text: 'How the funding will be used' },
             { type: 'list', items: [
                 "Professional editorial development, to adapt the book for a general audience",
@@ -307,6 +324,21 @@ export const approvedProjects2026: Project[] = [
             ]},
             { type: 'heading', text: 'Long-term plans' },
             { type: 'paragraph', text: "The book is intended as the foundation of a broader evangelistic communication strategy aimed at secular and professional audiences, with future development including translation into additional languages (Spanish and French), expanded speaking engagements and seminars, and a structured outreach programme linking readers to Bible study resources. Any financial surplus will be fully reinvested into mission activities, establishing a sustainable model of intellectual and public evangelism that leads individuals from curiosity, to reflection, to engagement with Scripture, and ultimately to a deeper relationship with Christ." },
+        ],
+        media: [
+            {
+                type: 'video',
+                url: 'https://www.youtube.com/embed/CgMQQy8Xpek',
+            },
+            {
+                type: 'video',
+                url: 'https://www.youtube.com/embed/3Nv81PlivZA',
+            },
+            {
+                type: 'link',
+                url: 'https://link.springer.com/book/10.1007/978-3-030-78498-0',
+                title: 'View "Ye Shall Know Them by Their Fruits" on Springer',
+            },
         ],
     },
     {
