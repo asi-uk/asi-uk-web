@@ -4,6 +4,7 @@ import Footer from "@/app/components/Footer";
 import MainHeader from "@/app/components/MainHeader";
 import React from "react";
 import ScrollToTop from "@/app/components/ScrollToTop";
+import { Analytics } from "@vercel/analytics/next";
 
 const sourceSans = Source_Sans_3({ subsets: ['latin'] })
 
@@ -45,6 +46,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {children}
       </main>
       <Footer />
+      <Analytics />
       </body>
       </html>
   )
