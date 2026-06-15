@@ -88,7 +88,7 @@ export const CONVENTION_2026 = {
         },
         {
             question: "Is accommodation available?",
-            answer: "Yes — on-campus rooms are available at Newbold College, starting from £41 per night. Options range from shared-standard rooms and bunk rooms to en-suite singles and doubles, plus self-catering flats. You can indicate your interest during registration and we'll send you booking details.",
+            answer: "On-campus rooms at Newbold College were available to book alongside convention registration until 15 June 2026. Unfortunately, we are unable to accept bookings for accommodation at Newbold after this date.",
         },
         {
             question: "Is parking available?",
@@ -96,7 +96,7 @@ export const CONVENTION_2026 = {
         },
         {
             question: "What's included with my ticket?",
-            answer: "Light refreshments throughout each day are included with your registration. Full meals in the Newbold dining hall are also available for booking — breakfast £7.80, lunch or dinner £9.31 (reduced rates for under-12s). You can indicate your interest during registration and we'll send you booking details.",
+            answer: "Light refreshments throughout each day are included with your registration. Cafeteria meals in the Newbold dining hall were available to book alongside convention registration until 15 June 2026. Unfortunately, we are unable to accept bookings for cafeteria meals at Newbold after this date.",
         },
         {
             question: "How do I qualify for the member discount?",
