@@ -229,8 +229,8 @@ export const approvedProjects2025: Project[] = [
 export const FUNDING_RECEIVED_2025 = 23941.95;
 export const FUNDING_PLEDGED_2025 = 27894;
 
-export const FUNDING_RECEIVED_2026 = 0;
-export const FUNDING_PLEDGED_2026 = 0;
+export const FUNDING_RECEIVED_2026 = 5241;
+export const FUNDING_PLEDGED_2026 = 3000;
 
 export const approvedProjects2026: Project[] = [
     {
