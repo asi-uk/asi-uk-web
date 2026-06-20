@@ -70,26 +70,26 @@ const DAYS: DayBlock[] = [
             { time: '13:00', title: 'Lunch / Networking' },
             { time: '14:30', title: 'Afternoon Welcome & Worship' },
             {
-                time: '15:15',
+                time: '14:45',
                 title: 'Ministries Focus — "Taking the Initiative"',
                 speaker: 'Dusanka Rancic',
                 description:
                     'The role of supporting ministries in the church, with personal testimony.',
             },
             {
-                time: '16:30',
+                time: '15:45',
                 title: '"Witness at Work" — Professionals Panel',
                 description: 'A moderated panel on living out faith in professional life.',
             },
             {
-                time: '17:30',
+                time: '16:45',
                 title: 'Business & Entrepreneurship — "Honouring God Through My Business"',
                 speaker: 'Jesse Zwiker',
             },
             {
-                time: '18:30',
+                time: '17:45',
                 title: 'Close',
-                description: 'Prayer and announcements.',
+                description: 'Prayer, announcements, and group photo.',
             },
             {
                 time: 'Evening',
@@ -105,9 +105,17 @@ const DAYS: DayBlock[] = [
         sessions: [
             {
                 time: '10:00',
-                title: 'Parallel Breakout Training Seminars',
+                title: 'Training Seminar: Top Business & Ministry Mistakes',
+                speaker: 'Jesse Zwiker',
                 description:
-                    'Concurrent practical sessions, including setting up a ministry (financial, legal, compliance), harnessing technology in business and ministry with Eric Welch, and the top business and ministry mistakes with Jesse Zwiker.',
+                    'Practical lessons on the most common pitfalls in business and ministry.',
+            },
+            {
+                time: '11:00',
+                title: 'Training Seminar: Harnessing Technology in Business & Ministry',
+                speaker: 'Eric Welch',
+                description:
+                    'Using technology effectively to advance business and mission.',
             },
             {
                 time: '12:00',
