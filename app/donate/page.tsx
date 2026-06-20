@@ -1,4 +1,4 @@
-import { Heart, Hammer } from 'lucide-react';
+import { Heart, Hammer, HandCoins } from 'lucide-react';
 import Link from 'next/link';
 import ProgressBar from "@/app/components/ProgressBar";
 import { approvedProjects2026, FUNDING_RECEIVED_2026, FUNDING_PLEDGED_2026 } from "@/data/projects";
@@ -33,8 +33,8 @@ export default function Projects() {
                             />
                         </div>
 
-                        {/* Call to Action Button */}
-                        <div className="flex justify-center">
+                        {/* Call to Action Buttons */}
+                        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                             <Link
                                 href="https://donate.stripe.com/eVa6oNg2Ka7l21a288"
                                 target="_blank"
@@ -43,6 +43,15 @@ export default function Projects() {
                             >
                                 <Heart className="h-5 w-5 text-red-600" />
                                 Donate Now
+                            </Link>
+                            <Link
+                                href="https://docs.google.com/forms/d/e/1FAIpQLScNfpjMJdxSJnm3ciymBs8xhmIiyzXFXVRhjKcl9UdMbn95Yg/viewform"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 text-xl bg-transparent text-white border-2 border-white hover:bg-white hover:text-asi-blue px-6 py-3 rounded-lg font-medium transition-colors duration-200 shadow-sm hover:shadow-md"
+                            >
+                                <HandCoins className="h-5 w-5" />
+                                Make a Pledge
                             </Link>
                         </div>
                     </div>
