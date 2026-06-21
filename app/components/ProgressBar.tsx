@@ -1,6 +1,8 @@
 interface ProgressBarProps {
     current: number;
     total: number;
+    // Additional amount pledged but not yet received. Rendered as a distinct
+    // segment stacked on top of the received bar (i.e. received + pledged).
     pledged?: number;
     className?: string;
     variant?: 'default' | 'light';
@@ -9,7 +11,11 @@ interface ProgressBarProps {
 export default function ProgressBar({ current, total, pledged, className = "", variant = "default" }: ProgressBarProps) {
     const percentage = total > 0 ? Math.min((current / total) * 100, 100) : 0;
     const hasPledged = pledged != null && pledged > 0;
-    const pledgedPercentage = hasPledged ? Math.min((pledged / total) * 100, 100) : 0;
+    // Stack the pledged segment after the received bar, capped so the two
+    // together never exceed the full track width.
+    const pledgedPercentage = hasPledged && total > 0
+        ? Math.min((pledged / total) * 100, 100 - percentage)
+        : 0;
     const isLight = variant === 'light';
 
     return (
@@ -20,17 +26,17 @@ export default function ProgressBar({ current, total, pledged, className = "", v
                     £{current.toLocaleString()}{hasPledged ? ' received' : ''} of £{total.toLocaleString()}
                 </span>
             </div>
-            <div className={`relative w-full rounded-full h-4 overflow-hidden ${isLight ? 'bg-white/20' : 'bg-slate-200'}`}>
+            <div className={`relative flex w-full rounded-full h-4 overflow-hidden ${isLight ? 'bg-white/20' : 'bg-slate-200'}`}>
+                <div
+                    className={`h-full transition-all duration-500 ease-out ${isLight ? 'bg-white' : 'bg-gradient-to-r from-asi-blue to-asi-darkBlue'}`}
+                    style={{ width: `${percentage}%` }}
+                />
                 {hasPledged && (
                     <div
-                        className={`absolute h-full rounded-full ${isLight ? 'bg-white/40' : 'bg-asi-blue/20'}`}
+                        className={`h-full transition-all duration-500 ease-out ${isLight ? 'bg-white/40' : 'bg-asi-blue/30'}`}
                         style={{ width: `${pledgedPercentage}%` }}
                     />
                 )}
-                <div
-                    className={`relative h-full rounded-full transition-all duration-500 ease-out ${isLight ? 'bg-white' : 'bg-gradient-to-r from-asi-blue to-asi-darkBlue'}`}
-                    style={{ width: `${percentage}%` }}
-                />
             </div>
             <div className="flex justify-between items-center mt-2">
                 <span className={`text-sm ${isLight ? 'text-blue-100' : 'text-slate-500'}`}>
