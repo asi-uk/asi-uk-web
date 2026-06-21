@@ -227,10 +227,11 @@ export const approvedProjects2025: Project[] = [
 ];
 
 export const FUNDING_RECEIVED_2025 = 23941.95;
-export const FUNDING_PLEDGED_2025 = 27894;
+// Pledged is the amount still outstanding on top of what was received.
+export const FUNDING_PLEDGED_2025 = 3952.05;
 
-export const FUNDING_RECEIVED_2026 = 5241;
-export const FUNDING_PLEDGED_2026 = 3000;
+export const FUNDING_RECEIVED_2026 = 5794.74;
+export const FUNDING_PLEDGED_2026 = 13140;
 
 export const approvedProjects2026: Project[] = [
     {
