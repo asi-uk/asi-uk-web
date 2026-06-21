@@ -1,7 +1,8 @@
 import { Suspense } from 'react';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import ConventionHero from '@/app/convention/components/ConventionHero';
+import ProjectsHero from '@/app/components/ProjectsHero';
+import FeaturedProjects from '@/app/components/FeaturedProjects';
 import EventsCarousel from '@/app/components/EventsCarousel';
 import NewsletterSignup from '@/app/components/NewsletterSignup';
 import PostCard from '@/app/news/components/PostCard';
@@ -65,8 +66,11 @@ function RecentPostsSkeleton() {
 export default function Home() {
     return (
         <div className="w-full">
-            {/* Hero — Faith at Work 2026 */}
-            <ConventionHero variant="home" />
+            {/* Hero — 2026 project funding drive */}
+            <ProjectsHero />
+
+            {/* Featured 2026 projects */}
+            <FeaturedProjects />
 
             {/* From the Ground Up — upcoming events */}
             <EventsCarousel />
