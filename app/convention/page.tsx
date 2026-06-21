@@ -10,7 +10,6 @@ import {
     ArrowUpRight,
     PlayCircle,
 } from 'lucide-react';
-import ConventionHero from '@/app/convention/components/ConventionHero';
 import SpeakerCard from '@/app/convention/components/SpeakerCard';
 import FAQSection from '@/app/convention/components/FAQSection';
 import { CONVENTION_2026 } from '@/data/convention';
@@ -69,8 +68,46 @@ export const metadata = {
 export default function ConventionPage() {
     return (
         <div className="w-full">
-            {/* 1 — Hero */}
-            <ConventionHero variant="page" />
+            {/* 1 — Header */}
+            <section className="relative w-full overflow-hidden bg-asi-darkBlue text-white -mt-[100px] md:-mt-[110px] pt-[100px] md:pt-[110px]">
+                <div
+                    aria-hidden
+                    className="pointer-events-none absolute inset-0 opacity-50"
+                    style={{
+                        backgroundImage:
+                            'radial-gradient(ellipse 70% 60% at 20% 10%, rgba(255,255,255,0.12), transparent 60%), radial-gradient(ellipse 60% 50% at 85% 90%, rgba(244,197,55,0.18), transparent 60%)',
+                    }}
+                />
+                <div className="relative mx-auto flex max-w-3xl flex-col items-center gap-5 px-6 py-16 text-center md:px-8 md:py-20">
+                    <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-white/90 backdrop-blur">
+                        ASI UK Convention 2026
+                    </span>
+                    <h1 className="text-4xl font-bold leading-tight tracking-tight md:text-6xl">
+                        Faith at Work — Convention 2026
+                    </h1>
+                    <div className="flex flex-wrap items-center justify-center gap-3 text-white/80">
+                        <span className="inline-flex items-center gap-2">
+                            <CalendarDays className="h-4 w-4" />
+                            {CONVENTION_2026.dates}
+                        </span>
+                        <span className="inline-flex items-center gap-2">
+                            <MapPin className="h-4 w-4" />
+                            {CONVENTION_2026.venue}
+                        </span>
+                    </div>
+                    <p className="max-w-xl text-base text-white/80 md:text-lg">
+                        This year&apos;s convention has now concluded. Thank you to everyone
+                        who joined us — recordings will be shared on our news page.
+                    </p>
+                    <Link
+                        href="/news/convention-2025-recordings"
+                        className="inline-flex items-center gap-2 rounded-lg bg-white px-6 py-3 font-semibold text-asi-blue shadow-sm transition hover:bg-white/90"
+                    >
+                        <PlayCircle className="h-5 w-5" />
+                        Watch Past Recordings
+                    </Link>
+                </div>
+            </section>
 
             {/* 2 — At a glance */}
             <section className="w-full bg-white">
