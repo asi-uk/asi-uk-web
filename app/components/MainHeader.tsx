@@ -216,13 +216,41 @@ const MainHeader: React.FC = () => {
                                         </NavigationMenuLink>
                                     </NavigationMenuItem>
 
-                                    {/* Convention link */}
+                                    {/* Events dropdown */}
                                     <NavigationMenuItem>
-                                        <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-                                            <Link href="/convention">
-                                                <Calendar className="mr-2 h-4 w-4"/> Convention
-                                            </Link>
-                                        </NavigationMenuLink>
+                                        <NavigationMenuTrigger><Calendar
+                                            className="mr-2 h-4 w-4"/> Events</NavigationMenuTrigger>
+                                        <NavigationMenuContent>
+                                            <ul className="grid gap-3 p-4 w-[280px] md:w-[500px] lg:w-[600px] md:grid-cols-2">
+                                                <li>
+                                                    <NavigationMenuLink asChild
+                                                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                                                        <Link href="/convention">
+                                                            <div className="text-sm font-medium leading-none">Convention
+                                                            </div>
+                                                            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                                                                ASI UK&apos;s annual convention — a weekend for
+                                                                Adventist professionals and ministry leaders
+                                                            </p>
+                                                        </Link>
+                                                    </NavigationMenuLink>
+                                                </li>
+                                                <li>
+                                                    <NavigationMenuLink asChild
+                                                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                                                        <Link href="/events/from-the-ground-up">
+                                                            <div className="text-sm font-medium leading-none">From the
+                                                                Ground Up
+                                                            </div>
+                                                            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                                                                A live webinar series on how ministries were
+                                                                built — register or watch past recordings
+                                                            </p>
+                                                        </Link>
+                                                    </NavigationMenuLink>
+                                                </li>
+                                            </ul>
+                                        </NavigationMenuContent>
                                     </NavigationMenuItem>
 
                                     {/* News link */}
@@ -335,11 +363,33 @@ const MainHeader: React.FC = () => {
                                                         </div>
                                                     </AccordionContent>
                                                 </AccordionItem>
+
+                                                <AccordionItem value="events" className="border-b-0">
+                                                    <AccordionTrigger
+                                                        className="py-2 px-3 text-sm font-normal rounded-md hover:bg-accent">
+                                                        <div className="flex items-center">
+                                                            <Calendar className="h-4 w-4 mr-2"/>
+                                                            Events
+                                                        </div>
+                                                    </AccordionTrigger>
+                                                    <AccordionContent>
+                                                        <div className="flex flex-col gap-1 pl-6">
+                                                            <Link href="/convention"
+                                                                  className="py-2 text-sm hover:underline"
+                                                                  onClick={() => setOpen(false)}>
+                                                                Convention
+                                                            </Link>
+                                                            <Link href="/events/from-the-ground-up"
+                                                                  className="py-2 text-sm hover:underline"
+                                                                  onClick={() => setOpen(false)}>
+                                                                From the Ground Up
+                                                            </Link>
+                                                        </div>
+                                                    </AccordionContent>
+                                                </AccordionItem>
                                             </Accordion>
                                             <MobileNavItem href="/projects"
                                                            icon={<Hammer className="h-4 w-4"/>}>Projects</MobileNavItem>
-                                            <MobileNavItem href="/convention"
-                                                           icon={<Calendar className="h-4 w-4"/>}>Convention</MobileNavItem>
                                             <MobileNavItem href="/news"
                                                            icon={<Newspaper className="h-4 w-4"/>}>News</MobileNavItem>
                                         </div>
