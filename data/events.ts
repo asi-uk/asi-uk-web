@@ -25,28 +25,28 @@ export const ftguEvents: FtguEvent[] = [
     {
         id: 'ftgu-session-1',
         session: 'Session #1',
-        title: 'TODO — Speaker · Ministry', // TODO(content)
-        date: new Date('2026-04-01T19:00:00+01:00'), // TODO(content): real date
-        dateLabel: '1st April 2026, 7:00 PM BST', // TODO(content)
+        title: 'Scotty Mayer & Keith Detwieler - Little Light Studios', //
+        date: new Date('2026-04-10T19:00:00+01:00'),
+        dateLabel: '10th April 2026, 7:00 PM BST',
         location: 'Online',
         posterUrl:
-            'https://res.cloudinary.com/disrkguox/image/upload/v1780001856/asiuk-ftgu-session3-thumbnail_smf9yc.png', // TODO(content): real poster
+            'https://res.cloudinary.com/disrkguox/image/upload/v1774513138/friday-webinar-little-light-square_pmg548.png',
         lumaEventId: '',
         lumaUrl: '',
-        // youtubeUrl: 'https://youtu.be/XXXXXXXXXXX', // TODO(content): recording
+        youtubeUrl: 'https://youtu.be/ZVgterTs_YQ',
     },
     {
         id: 'ftgu-session-2',
         session: 'Session #2',
         title: 'Alistair Huong — AudioVerse',
-        date: new Date('2026-05-01T19:00:00+01:00'), // TODO(content): confirm date
-        dateLabel: '1st May 2026, 7:00 PM BST', // TODO(content): confirm
+        date: new Date('2026-05-01T19:00:00+01:00'),
+        dateLabel: '1st May 2026, 7:00 PM BST',
         location: 'Online',
         posterUrl:
-            'https://res.cloudinary.com/disrkguox/image/upload/v1780001856/asiuk-ftgu-session3-thumbnail_smf9yc.png', // TODO(content): real poster
+            'https://res.cloudinary.com/disrkguox/image/upload/v1776588124/asiuk-ftgu-session2-square-sposter_kil2ot.png',
         lumaEventId: '',
         lumaUrl: '',
-        // youtubeUrl: 'https://youtu.be/XXXXXXXXXXX', // TODO(content): recording
+        youtubeUrl: 'https://youtu.be/0QWrN2NDJFs',
     },
     {
         id: 'ftgu-session-3',
@@ -59,6 +59,7 @@ export const ftguEvents: FtguEvent[] = [
             'https://res.cloudinary.com/disrkguox/image/upload/v1780001856/asiuk-ftgu-session3-thumbnail_smf9yc.png',
         lumaEventId: 'evt-26ddM9zT4BFyhw1',
         lumaUrl: 'https://luma.com/event/evt-26ddM9zT4BFyhw1',
+        youtubeUrl: 'https://youtu.be/_BJ7wvJZTMo',
     },    {
         id: 'ftgu-session-4',
         session: 'Session #4',
@@ -70,6 +71,7 @@ export const ftguEvents: FtguEvent[] = [
             'https://res.cloudinary.com/disrkguox/image/upload/v1780001856/asiuk-ftgu-session4-thumbnail_s6qtss.png',
         lumaEventId: 'evt-tmG9WFD5Op8wEjV',
         lumaUrl: 'https://luma.com/event/evt-tmG9WFD5Op8wEjV',
+        youtubeUrl: 'https://youtu.be/H6POxac5w4g',
     },    {
         id: 'ftgu-session-5',
         session: 'Session #5',
