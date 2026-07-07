@@ -83,6 +83,7 @@ export const ftguEvents: FtguEvent[] = [
             'https://res.cloudinary.com/disrkguox/image/upload/v1780001856/asiuk-ftgu-session5-thumbnail_cp3i6n.png',
         lumaEventId: 'evt-c6xhmO6vRJk7qVv',
         lumaUrl: 'https://luma.com/event/evt-c6xhmO6vRJk7qVv',
+        youtubeUrl: 'https://youtu.be/IVruCbEp-bw',
     },    {
         id: 'ftgu-session-6',
         session: 'Session #6',
