@@ -106,6 +106,28 @@ export const ftguEvents: FtguEvent[] = [
             'https://res.cloudinary.com/disrkguox/image/upload/v1780001856/asiuk-ftgu-session7-thumbnail_yej2d6.png',
         lumaEventId: 'evt-5rvPEiTbztyQaEp',
         lumaUrl: 'https://luma.com/event/evt-5rvPEiTbztyQaEp',
+    },   {
+        id: 'ftgu-session-8',
+        session: 'Session #8',
+        title: 'Darren Bullock - Advent Press',
+        date: new Date('2026-10-02T19:00:00+01:00'),
+        dateLabel: '2nd October 2026, 7:00 PM BST',
+        location: 'Online',
+        posterUrl:
+            'https://res.cloudinary.com/disrkguox/image/upload/v1785428137/ftgu_dbullock_mb9m9h.png',
+        lumaEventId: 'evt-Tm64j8BcAFTtizs',
+        lumaUrl: 'https://luma.com/su4isl3w',
+    },   {
+        id: 'ftgu-session-9',
+        session: 'Session #9',
+        title: 'Manna House Health Education & Wellness',
+        date: new Date('2026-11-06T19:00:00+00:00'),
+        dateLabel: '6th November 2026, 7:00 PM GMT',
+        location: 'Online',
+        posterUrl:
+            'https://res.cloudinary.com/disrkguox/image/upload/v1785428137/ftgu_manna_sudlu2.png',
+        lumaEventId: 'evt-wshLUEsDlZmhrAO',
+        lumaUrl: 'https://luma.com/4tzcstlr',
     },
 ];
 
