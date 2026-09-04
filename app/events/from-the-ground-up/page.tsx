@@ -7,6 +7,12 @@ import {
     getPastFtguEvents,
 } from '@/data/events';
 
+// The upcoming/past split depends on the current date. Without this the page
+// is prerendered once at build time and "now" stays frozen at the deploy date,
+// so sessions that have since happened keep showing as upcoming. Revalidate
+// hourly so the split is re-evaluated without a redeploy.
+export const revalidate = 3600;
+
 export const metadata = {
     title: 'ASI UK | From the Ground Up',
     description:

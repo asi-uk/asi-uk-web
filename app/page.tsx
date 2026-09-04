@@ -8,6 +8,10 @@ import NewsletterSignup from '@/app/components/NewsletterSignup';
 import PostCard from '@/app/news/components/PostCard';
 import { getRecentPosts } from '@/lib/sanity/queries';
 
+// Re-render hourly so the "From the Ground Up" upcoming filter (and latest
+// news) reflect the current date rather than the last deploy.
+export const revalidate = 3600;
+
 async function RecentPosts() {
     const posts = await getRecentPosts(3);
 
