@@ -11,6 +11,7 @@ type Member = {
 const currentExecutives: Member[] = [
     {name: "Angel Alishev", role: "President"},
     {name: "Bianna Espinal", role: "Vice President"},
+    {name: "Mirko Didara", role: "Vice President for Chapter Growth"},
     {name: "Tashana Samuels", role: "Vice President for Evangelism"},
     {name: "Silvia Garcia Portilla", role: "Treasurer"},
     {name: "Eric Welch", role: "Secretary"},
