@@ -151,6 +151,17 @@ export const ftguEvents: FtguEvent[] = [
         lumaEventId: 'evt-RxI8urWdgSfHnH4',
         lumaUrl: 'https://luma.com/dclpu71v',
     },   {
+        id: 'ftgu-session-12',
+        session: 'Session #12',
+        title: 'John Bradshaw - It Is Written',
+        date: new Date('2027-02-05T19:00:00+00:00'),
+        dateLabel: '5th February 2027, 7:00 PM GMT',
+        location: 'Online',
+        posterUrl:
+            'https://res.cloudinary.com/disrkguox/image/upload/v1791232547/ftgu_johnbradshaw_bzh6zn.png',
+        lumaEventId: 'evt-8q90kWwNZ7fKOGO',
+        lumaUrl: 'https://luma.com/m5d1i8rs',
+    },   {
         id: 'ftgu-session-13',
         session: 'Session #13',
         title: 'Joanna Daniels - Wounds to Scars',
