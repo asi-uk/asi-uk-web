@@ -72,7 +72,7 @@ export const approvedProjects2025: Project[] = [
         organisation: "Balm of Gilead",
         amount: 7500,
         location: "Cork, Ireland",
-        disbursement: { firstInstalment: 2550, firstInstalmentPaid: "05.03.26" },
+        disbursement: { firstInstalment: 2550, firstInstalmentPaid: "05.03.26", secondInstalment: 2550, secondInstalmentPaid: "08.09.26"},
         shortDescription: "Supports hosting Dr. Neil Nedley's Depression and Anxiety Recovery Programme in Ireland.",
         longDescription: "This organisation's experience hosting health seminars with Barbara O'Neill and implementing programmes like the Nedley Depression and Anxiety Recovery Programme has demonstrated that health ministry provides an excellent entry point into Ireland's majority Catholic community. Participants not only attended these health-focused events but many expressed genuine interest in deepening their relationship with God, confirming the belief that health serves as the ideal foundation for carrying the Gospel message throughout Ireland. This initiative will significantly strengthen ongoing community work whilst helping achieve the Irish Mission's long-held vision of establishing a native Irish Seventh-day Adventist church. Money given to this project will support in the success of hosting another Nedley Depression and Anxiety Recovery Programme. The programme will provide health, mental wellness, and spiritual growth in a comprehensive 10-day residential event that leads participants to Christ whilst improving their overall wellbeing.",
         media: [
