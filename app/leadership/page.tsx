@@ -17,7 +17,8 @@ const currentExecutives: Member[] = [
 ];
 
 const currentCommittee: Member[] = [
-    {name: "Charlicia Sinclair", role: "Director of Youth"},
+    {name: "Charlicia Sinclair", role: "Director for Youth"},
+    {name: "Daniel Cudjoe", role: "Director for Marketing"},
     {name: "Rachel Graham-Tohue", role: "Director for Logistics"},
     {name: "Sam Walters", role: "Projects Committee"},
     {name: "Jason Garcia Portilla", role: "Projects Committee"},
