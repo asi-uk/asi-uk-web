@@ -128,6 +128,39 @@ export const ftguEvents: FtguEvent[] = [
             'https://res.cloudinary.com/disrkguox/image/upload/v1785428137/ftgu_manna_sudlu2.png',
         lumaEventId: 'evt-wshLUEsDlZmhrAO',
         lumaUrl: 'https://luma.com/4tzcstlr',
+    },   {
+        id: 'ftgu-session-10',
+        session: 'Session #10',
+        title: "Barbara O'Neill",
+        date: new Date('2026-12-04T19:00:00+00:00'),
+        dateLabel: '4th December 2026, 7:00 PM GMT',
+        location: 'Online',
+        posterUrl:
+            'https://res.cloudinary.com/disrkguox/image/upload/v1791230856/ftgu_barbara_oneill_capu4n.png',
+        lumaEventId: 'evt-VtkxAdU2JBhIQfY',
+        lumaUrl: 'https://luma.com/s0y1hz41',
+    },   {
+        id: 'ftgu-session-11',
+        session: 'Session #11',
+        title: 'Lorraine McDonald - Hope FM',
+        date: new Date('2027-01-08T19:00:00+00:00'),
+        dateLabel: '8th January 2027, 7:00 PM GMT',
+        location: 'Online',
+        posterUrl:
+            'https://res.cloudinary.com/disrkguox/image/upload/v1791230856/ftgu_hopefm_uxexss.png',
+        lumaEventId: 'evt-RxI8urWdgSfHnH4',
+        lumaUrl: 'https://luma.com/dclpu71v',
+    },   {
+        id: 'ftgu-session-13',
+        session: 'Session #13',
+        title: 'Joanna Daniels - Wounds to Scars',
+        date: new Date('2027-03-05T19:00:00+00:00'),
+        dateLabel: '5th March 2027, 7:00 PM GMT',
+        location: 'Online',
+        posterUrl:
+            'https://res.cloudinary.com/disrkguox/image/upload/v1791230856/ftgu_jdaniels_oee66e.png',
+        lumaEventId: 'evt-p28v3JB33KBSXod',
+        lumaUrl: 'https://luma.com/vx21f3bf',
     },
 ];
 
