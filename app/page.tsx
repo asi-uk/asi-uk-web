@@ -4,6 +4,7 @@ import { ArrowRight } from 'lucide-react';
 import ProjectsHero from '@/app/components/ProjectsHero';
 import FeaturedProjects from '@/app/components/FeaturedProjects';
 import EventsCarousel from '@/app/components/EventsCarousel';
+import FaithAndWorkBanner from '@/app/components/FaithAndWorkBanner';
 import NewsletterSignup from '@/app/components/NewsletterSignup';
 import PostCard from '@/app/news/components/PostCard';
 import { getRecentPosts } from '@/lib/sanity/queries';
@@ -72,6 +73,9 @@ export default function Home() {
         <div className="w-full">
             {/* Hero — 2026 project funding drive */}
             <ProjectsHero />
+
+            {/* Faith & Work networking event (hides itself after the event) */}
+            <FaithAndWorkBanner />
 
             {/* Featured 2026 projects */}
             <FeaturedProjects />

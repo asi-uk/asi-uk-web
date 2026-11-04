@@ -4,6 +4,7 @@ import Footer from "@/app/components/Footer";
 import MainHeader from "@/app/components/MainHeader";
 import React from "react";
 import ScrollToTop from "@/app/components/ScrollToTop";
+import EventAnnouncementBar from "@/app/components/EventAnnouncementBar";
 import { Analytics } from "@vercel/analytics/next";
 
 const sourceSans = Source_Sans_3({ subsets: ['latin'] })
@@ -43,6 +44,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <ScrollToTop />
       <MainHeader/>
       <main className="pt-[100px] md:pt-[110px] flex-grow">
+        <EventAnnouncementBar />
         {children}
       </main>
       <Footer />
