@@ -3,6 +3,8 @@ import type { Presenter } from '@/data/convention';
 
 interface SpeakerCardProps {
     presenter: Presenter;
+    /** "portrait" = 3:4 rounded rectangle (default); "circle" = round headshot with centred text. */
+    shape?: 'portrait' | 'circle';
 }
 
 function getInitials(name: string): string {
@@ -14,18 +16,29 @@ function getInitials(name: string): string {
         .join('');
 }
 
-export default function SpeakerCard({ presenter }: SpeakerCardProps) {
+export default function SpeakerCard({ presenter, shape = 'portrait' }: SpeakerCardProps) {
     const hasImage = Boolean(presenter.imageUrl);
+    const isCircle = shape === 'circle';
 
     return (
-        <div className="group flex flex-col gap-4">
-            <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl bg-gradient-to-br from-asi-blue to-asi-darkBlue shadow-sm transition group-hover:shadow-md">
+        <div className={`group flex flex-col gap-4 ${isCircle ? 'items-center text-center' : ''}`}>
+            <div
+                className={
+                    isCircle
+                        ? `relative aspect-square w-full max-w-[240px] overflow-hidden rounded-full ${
+                              // No background behind a photo: a coloured bg bleeds through the
+                              // anti-aliased curved edge and shows as a thin fringe.
+                              hasImage ? '' : 'bg-gradient-to-br from-asi-blue to-asi-darkBlue'
+                          }`
+                        : 'relative aspect-[3/4] w-full overflow-hidden rounded-2xl bg-gradient-to-br from-asi-blue to-asi-darkBlue shadow-sm transition group-hover:shadow-md'
+                }
+            >
                 {hasImage ? (
                     <Image
                         src={presenter.imageUrl}
                         alt={presenter.name}
                         fill
-                        sizes="(min-width: 1024px) 320px, (min-width: 640px) 45vw, 90vw"
+                        sizes={isCircle ? '240px' : '(min-width: 1024px) 320px, (min-width: 640px) 45vw, 90vw'}
                         className="object-cover"
                     />
                 ) : (

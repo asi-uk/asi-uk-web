@@ -238,6 +238,19 @@ const MainHeader: React.FC = () => {
                                                 <li>
                                                     <NavigationMenuLink asChild
                                                         className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                                                        <Link href="/events/faith-and-work">
+                                                            <div className="text-sm font-medium leading-none">Faith &amp; Work
+                                                            </div>
+                                                            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                                                                Free networking event for Christian professionals and
+                                                                entrepreneurs — 29 Nov, Birmingham
+                                                            </p>
+                                                        </Link>
+                                                    </NavigationMenuLink>
+                                                </li>
+                                                <li>
+                                                    <NavigationMenuLink asChild
+                                                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
                                                         <Link href="/events/from-the-ground-up">
                                                             <div className="text-sm font-medium leading-none">From the
                                                                 Ground Up
@@ -378,6 +391,11 @@ const MainHeader: React.FC = () => {
                                                                   className="py-2 text-sm hover:underline"
                                                                   onClick={() => setOpen(false)}>
                                                                 Convention
+                                                            </Link>
+                                                            <Link href="/events/faith-and-work"
+                                                                  className="py-2 text-sm hover:underline"
+                                                                  onClick={() => setOpen(false)}>
+                                                                Faith &amp; Work
                                                             </Link>
                                                             <Link href="/events/from-the-ground-up"
                                                                   className="py-2 text-sm hover:underline"
