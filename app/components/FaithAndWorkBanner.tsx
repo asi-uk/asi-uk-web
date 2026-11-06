@@ -13,10 +13,10 @@ export default function FaithAndWorkBanner() {
             <div className="max-w-5xl mx-auto px-4 py-12 md:py-16">
                 <div className="overflow-hidden rounded-2xl bg-gradient-to-br from-asi-extraDarkBlue via-asi-darkBlue to-asi-blue text-white shadow-lg md:flex">
                     {EVENT.posterUrl && (
-                        <div className="relative md:w-2/5 aspect-[3/4] md:aspect-auto shrink-0">
+                        <div className="relative md:w-2/5 aspect-video md:aspect-auto shrink-0">
                             <Image
                                 src={EVENT.posterUrl}
-                                alt={`${EVENT.title} flyer`}
+                                alt={`${EVENT.title} networking event`}
                                 fill
                                 sizes="(min-width: 768px) 400px, 100vw"
                                 className="object-cover"

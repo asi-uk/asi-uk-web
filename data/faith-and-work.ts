@@ -23,25 +23,26 @@ export const FAITH_AND_WORK_2026 = {
     refreshments: "Light refreshments provided. Food available to buy on the day.",
     donations:
         "Entry is free. A voluntary donation will be collected on the day to help cover the cost of the event.",
-    // TODO(content): upload the flyer / hero artwork to Cloudinary and paste the URLs here.
-    // Leave empty to fall back to the gradient layout.
-    posterUrl: "",
-    heroImageUrl: "",
+    // Event artwork (networking photo). posterUrl is used for the homepage
+    // feature card and social share image; heroImageUrl sits behind the hero
+    // gradient. Leave either empty to fall back to the gradient-only layout.
+    posterUrl: "https://res.cloudinary.com/disrkguox/image/upload/c_fill,g_auto,w_1200,h_630/v1793962135/ASI_UK_-_IMAGE_usgbdg.jpg",
+    heroImageUrl: "https://res.cloudinary.com/disrkguox/image/upload/w_1920/v1793962135/ASI_UK_-_IMAGE_usgbdg.jpg",
     speakers: [
         {
             name: "Adrian Mateas",
             title: "Entrepreneur | Dentist | Business Owner",
-            imageUrl: "", // TODO(content): Cloudinary headshot
+            imageUrl: "https://res.cloudinary.com/disrkguox/image/upload/c_fill,g_face,ar_3:4,w_800/v1793962135/Andrea_1_anornk.jpg",
         },
         {
             name: "Craig Gooden",
             title: "Elder | IT Specialist | Evangelist",
-            imageUrl: "", // TODO(content): Cloudinary headshot
+            imageUrl: "https://res.cloudinary.com/disrkguox/image/upload/c_fill,g_face,ar_3:4,w_800/v1793962135/Craig_tpiphy.jpg",
         },
         {
             name: "Hugh Gray",
             title: "Entrepreneur | Construction | Engineering",
-            imageUrl: "", // TODO(content): Cloudinary headshot
+            imageUrl: "https://res.cloudinary.com/disrkguox/image/upload/c_fill,g_face,ar_3:4,w_800/v1793962135/Hugh_hrxf0b.jpg",
         },
     ] satisfies Presenter[],
 } as const;
