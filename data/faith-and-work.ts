@@ -32,17 +32,17 @@ export const FAITH_AND_WORK_2026 = {
         {
             name: "Adrian Mateas",
             title: "Entrepreneur | Dentist | Business Owner",
-            imageUrl: "https://res.cloudinary.com/disrkguox/image/upload/c_fill,g_face,ar_3:4,w_800/v1793962135/Andrea_1_anornk.jpg",
+            imageUrl: "https://res.cloudinary.com/disrkguox/image/upload/c_fill,g_face,ar_1:1,w_600/v1793962135/Andrea_1_anornk.jpg",
         },
         {
             name: "Craig Gooden",
             title: "Elder | IT Specialist | Evangelist",
-            imageUrl: "https://res.cloudinary.com/disrkguox/image/upload/c_fill,g_face,ar_3:4,w_800/v1793962135/Craig_tpiphy.jpg",
+            imageUrl: "https://res.cloudinary.com/disrkguox/image/upload/w_600/v1793962135/Craig_Gooden_adiwl0.png",
         },
         {
             name: "Hugh Gray",
             title: "Entrepreneur | Construction | Engineering",
-            imageUrl: "https://res.cloudinary.com/disrkguox/image/upload/c_fill,g_face,ar_3:4,w_800/v1793962135/Hugh_hrxf0b.jpg",
+            imageUrl: "https://res.cloudinary.com/disrkguox/image/upload/w_600/v1793962136/Hugh_Gray_c2y77b.png",
         },
     ] satisfies Presenter[],
 } as const;

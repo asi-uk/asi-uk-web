@@ -130,7 +130,7 @@ export default function FaithAndWorkPage() {
                     <h2 className="text-2xl md:text-3xl font-bold text-asi-blue text-center mb-10">Our Speakers</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto">
                         {EVENT.speakers.map((s) => (
-                            <SpeakerCard key={s.name} presenter={s} />
+                            <SpeakerCard key={s.name} presenter={s} shape="circle" />
                         ))}
                     </div>
                 </section>
