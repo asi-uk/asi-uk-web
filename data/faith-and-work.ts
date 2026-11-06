@@ -36,7 +36,7 @@ export const FAITH_AND_WORK_2026 = {
         },
         {
             name: "Craig Gooden",
-            title: "Elder | IT Specialist | Evangelist",
+            title: "Elder | Software Engineer | Evangelist",
             imageUrl: "https://res.cloudinary.com/disrkguox/image/upload/w_600/v1793962135/Craig_Gooden_adiwl0.png",
         },
         {
