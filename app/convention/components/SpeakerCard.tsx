@@ -25,7 +25,11 @@ export default function SpeakerCard({ presenter, shape = 'portrait' }: SpeakerCa
             <div
                 className={
                     isCircle
-                        ? 'relative aspect-square w-full max-w-[240px] overflow-hidden rounded-full bg-gradient-to-br from-asi-blue to-asi-darkBlue shadow-sm ring-4 ring-white transition group-hover:shadow-md'
+                        ? `relative aspect-square w-full max-w-[240px] overflow-hidden rounded-full ${
+                              // No background behind a photo: a coloured bg bleeds through the
+                              // anti-aliased curved edge and shows as a thin fringe.
+                              hasImage ? '' : 'bg-gradient-to-br from-asi-blue to-asi-darkBlue'
+                          }`
                         : 'relative aspect-[3/4] w-full overflow-hidden rounded-2xl bg-gradient-to-br from-asi-blue to-asi-darkBlue shadow-sm transition group-hover:shadow-md'
                 }
             >

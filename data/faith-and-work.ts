@@ -37,12 +37,12 @@ export const FAITH_AND_WORK_2026 = {
         {
             name: "Craig Gooden",
             title: "Elder | IT Specialist | Evangelist",
-            imageUrl: "https://res.cloudinary.com/disrkguox/image/upload/c_crop,g_center,w_0.92,h_0.92/w_600/v1793962135/Craig_Gooden_adiwl0.png",
+            imageUrl: "https://res.cloudinary.com/disrkguox/image/upload/w_600/v1793962135/Craig_Gooden_adiwl0.png",
         },
         {
             name: "Hugh Gray",
             title: "Entrepreneur | Construction | Engineering",
-            imageUrl: "https://res.cloudinary.com/disrkguox/image/upload/c_crop,g_center,w_0.92,h_0.92/w_600/v1793962136/Hugh_Gray_c2y77b.png",
+            imageUrl: "https://res.cloudinary.com/disrkguox/image/upload/w_600/v1793962136/Hugh_Gray_c2y77b.png",
         },
     ] satisfies Presenter[],
 } as const;
