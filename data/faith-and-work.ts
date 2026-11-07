@@ -1,11 +1,13 @@
 import type { Presenter } from "@/data/convention";
 
 // Faith & Work — free networking event for Christian professionals and
-// entrepreneurs. Registration is handled by /events/faith-and-work and stored
-// in Notion (see lib/notion-faith-and-work.ts).
+// entrepreneurs. Registration is handled by Luma (event on the ASI UK
+// calendar); the site opens Luma's checkout popup via LumaCheckoutButton.
 
 export const FAITH_AND_WORK_2026 = {
-    id: "faith-and-work-2026", // written to the Notion "Event" select
+    id: "faith-and-work-2026",
+    lumaEventId: "evt-2glh8nT0BNxrDGH",
+    lumaUrl: "https://luma.com/payz7iyg",
     title: "Faith & Work",
     tagline: "Join Christian Professionals and Entrepreneurs",
     description:
@@ -50,18 +52,4 @@ export const FAITH_AND_WORK_2026 = {
 /** Registration stays open until the event ends. */
 export function isFaithAndWorkRegistrationOpen(now: Date = new Date()): boolean {
     return now.getTime() < FAITH_AND_WORK_2026.endDate.getTime();
-}
-
-/** Google Calendar "add event" link for confirmation page + email. */
-export function getFaithAndWorkCalendarUrl(): string {
-    const fmt = (d: Date) => d.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
-    const e = FAITH_AND_WORK_2026;
-    const params = new URLSearchParams({
-        action: "TEMPLATE",
-        text: `ASI UK — ${e.title}`,
-        dates: `${fmt(e.startDate)}/${fmt(e.endDate)}`,
-        details: `${e.tagline}. https://www.asiuk.org${e.path}`,
-        location: `${e.venue}, ${e.venueAddress}`,
-    });
-    return `https://calendar.google.com/calendar/render?${params.toString()}`;
 }
