@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import LumaCheckoutButton from '@/app/components/LumaCheckoutButton';
 import { ArrowRight, CalendarDays, Clock, MapPin } from 'lucide-react';
 import { FAITH_AND_WORK_2026 as EVENT, isFaithAndWorkRegistrationOpen } from '@/data/faith-and-work';
 
@@ -57,13 +58,19 @@ export default function FaithAndWorkBanner() {
                         <p className="text-sm text-white/70">
                             Speakers: {EVENT.speakers.map((s) => s.name).join(', ')}
                         </p>
-                        <Link
-                            href={`${EVENT.path}#register`}
-                            className="mt-auto inline-flex items-center justify-center gap-2 self-start rounded-lg bg-amber-400 hover:bg-amber-300 text-asi-extraDarkBlue font-bold py-3 px-6 transition-colors"
-                        >
-                            Register for free
-                            <ArrowRight className="h-4 w-4" />
-                        </Link>
+                        <div className="mt-auto flex flex-wrap items-center gap-4">
+                            <LumaCheckoutButton
+                                eventId={EVENT.lumaEventId}
+                                eventUrl={EVENT.lumaUrl}
+                                className="!inline-flex !items-center !justify-center !gap-2 !rounded-lg !bg-amber-400 hover:!bg-amber-300 !text-asi-extraDarkBlue !font-bold !py-3 !px-6 !transition-colors"
+                            >
+                                Register for free
+                                <ArrowRight className="h-4 w-4" />
+                            </LumaCheckoutButton>
+                            <Link href={EVENT.path} className="font-semibold text-white/90 hover:text-white underline-offset-4 hover:underline">
+                                Event details
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </div>

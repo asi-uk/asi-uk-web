@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { ArrowUpRight, CalendarDays, Clock, Coffee, HeartHandshake, MapPin } from "lucide-react";
 import SpeakerCard from "@/app/convention/components/SpeakerCard";
-import { FaithAndWorkRegistrationForm } from "./form";
+import LumaCheckoutButton from "@/app/components/LumaCheckoutButton";
 import { FAITH_AND_WORK_2026 as EVENT, isFaithAndWorkRegistrationOpen } from "@/data/faith-and-work";
 
 // Re-render hourly so registration closes on its own after the event.
@@ -71,12 +71,13 @@ export default function FaithAndWorkPage() {
                             {EVENT.timeLabel}
                         </div>
                         {registrationOpen && (
-                            <a
-                                href="#register"
-                                className="inline-flex items-center justify-center rounded-xl bg-amber-400 hover:bg-amber-300 text-asi-extraDarkBlue font-bold px-6 py-3 transition-colors"
+                            <LumaCheckoutButton
+                                eventId={EVENT.lumaEventId}
+                                eventUrl={EVENT.lumaUrl}
+                                className="!inline-flex !items-center !justify-center !rounded-xl !bg-amber-400 hover:!bg-amber-300 !text-asi-extraDarkBlue !font-bold !px-6 !py-3 !transition-colors"
                             >
                                 Register for free
-                            </a>
+                            </LumaCheckoutButton>
                         )}
                     </div>
                 </div>
@@ -140,11 +141,20 @@ export default function FaithAndWorkPage() {
                     <h2 className="text-2xl md:text-3xl font-bold text-asi-blue">Register</h2>
                     {registrationOpen ? (
                         <>
-                            <p className="mt-2 mb-6 text-slate-600">
-                                Entry is free, but please register so we can plan refreshments. Coming with
-                                friends, family or colleagues? You can register everyone together.
-                            </p>
-                            <FaithAndWorkRegistrationForm />
+                            <div className="mt-4 rounded-2xl bg-white p-6 md:p-8 shadow-sm ring-1 ring-slate-100 space-y-5">
+                                <p className="text-slate-600">
+                                    Entry is free, but please register so we can plan refreshments. Coming with
+                                    friends, family or colleagues? You can register several people at once.
+                                </p>
+                                <LumaCheckoutButton
+                                    eventId={EVENT.lumaEventId}
+                                    eventUrl={EVENT.lumaUrl}
+                                    className="!flex !w-full !items-center !justify-center !rounded-lg !bg-asi-blue hover:!bg-asi-darkBlue !text-white !text-lg !font-semibold !py-4 !transition-colors"
+                                >
+                                    Register — Free
+                                </LumaCheckoutButton>
+                                <p className="text-center text-sm text-slate-500">{EVENT.donations}</p>
+                            </div>
                         </>
                     ) : (
                         <p className="mt-4 rounded-2xl bg-white p-6 text-slate-600 ring-1 ring-slate-100">
