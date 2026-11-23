@@ -129,17 +129,6 @@ export const ftguEvents: FtguEvent[] = [
         lumaEventId: 'evt-wshLUEsDlZmhrAO',
         lumaUrl: 'https://luma.com/4tzcstlr',
     },   {
-        id: 'ftgu-session-10',
-        session: 'Session #10',
-        title: "Barbara O'Neill",
-        date: new Date('2026-12-04T19:00:00+00:00'),
-        dateLabel: '4th December 2026, 7:00 PM GMT',
-        location: 'Online',
-        posterUrl:
-            'https://res.cloudinary.com/disrkguox/image/upload/v1791230856/ftgu_barbara_oneill_capu4n.png',
-        lumaEventId: 'evt-VtkxAdU2JBhIQfY',
-        lumaUrl: 'https://luma.com/s0y1hz41',
-    },   {
         id: 'ftgu-session-11',
         session: 'Session #11',
         title: 'Lorraine McDonald - Hope FM',
